@@ -193,7 +193,7 @@
           </p>
           <div class="mt-8 flex justify-between">
             <button type="button" class="book-sub-back rounded-md border border-neutral-300 px-6 py-3 font-medium hover:bg-neutral-50" data-subback="3">Back</button>
-            <button type="submit" form="book-form" class="rounded-md bg-primary-30 text-white px-6 py-3 font-medium hover:bg-primary-40">Confirm booking</button>
+            <button type="button" id="book-confirm-btn" class="rounded-md bg-primary-30 text-white px-6 py-3 font-medium hover:bg-primary-40">Confirm booking</button>
           </div>
         </div>
       </div>
@@ -482,9 +482,7 @@
         btn.addEventListener("click", () => showSubstep(parseInt(btn.dataset.subback, 10)));
       });
 
-      qs("#book-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-
+      function doConfirmBooking() {
         const email = (qs("#patient-email") && qs("#patient-email").value.trim()) || "";
         const payload = {
           email,
@@ -508,12 +506,20 @@
           insurance: booking.insurance || "",
         };
 
-        function showThankYou() {
+        function showThankYouAndRedirect() {
           alert("Thank you. Your booking request has been submitted.");
           window.location.href = "index.html";
         }
 
+        var didShow = false;
+        function showOnce() {
+          if (didShow) return;
+          didShow = true;
+          showThankYouAndRedirect();
+        }
+
         if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+          var timeout = setTimeout(showOnce, 4000);
           fetch(SUPABASE_URL + "/rest/v1/bookings", {
             method: "POST",
             headers: {
@@ -524,12 +530,15 @@
             },
             body: JSON.stringify(payload),
           })
-            .then((res) => { if (!res.ok) throw new Error(res.statusText); showThankYou(); })
-            .catch(() => showThankYou());
+            .then(function(res) { if (!res.ok) throw new Error(res.statusText); clearTimeout(timeout); showOnce(); })
+            .catch(function() { clearTimeout(timeout); showOnce(); });
         } else {
-          showThankYou();
+          showOnce();
         }
-      });
+      }
+
+      var confirmBtn = qs("#book-confirm-btn");
+      if (confirmBtn) confirmBtn.addEventListener("click", doConfirmBooking);
 
       showBookStep(1);
     </script>

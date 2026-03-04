@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <title>Online ADHD Treatment in Arizona | Arizona Telepsychiatry Clinic</title>
+    <meta
+      name="description"
+      content="Arizona Telepsychiatry Clinic provides online ADHD evaluations and treatment for adults across Arizona, with board-certified care and flexible telepsychiatry appointments."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Tailwind CDN (for fast prototyping) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                0: "#F6F7F2",
+                30: "#6BAF92",
+                40: "#3F7A5B",
+              },
+              neutral: {
+                10: "#F5F5F7",
+                50: "#6B7280",
+                60: "#111827",
+              },
+              success: {
+                30: "#22C55E",
+              },
+            },
+            fontFamily: {
+              primary: ["system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .no-scroll {
+        overflow: hidden;
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Arizona Telepsychiatry Clinic",
+        "url": "https://arizonatelepsychiatryclinic.com",
+        "description": "Online ADHD evaluations and telepsychiatry visits for adults across Arizona.",
+        "areaServed": "Arizona",
+        "medicalSpecialty": "Psychiatry",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "AZ",
+          "addressCountry": "US"
+        }
+      }
+    </script>
+  </head>
+  <body class="font-primary text-neutral-600 bg-white">
+    <!-- NAVBAR -->
+    <header class="w-full border-b bg-white sticky top-0 z-40">
+      <div
+        class="max-w-6xl mx-auto flex items-center justify-between h-16 px-4 lg:h-20"
+      >
+        <!-- Logo (text only) -->
+        <a href="#" class="flex items-center space-x-2">
+          <span class="font-semibold text-lg text-neutral-900">
+            Arizona Telepsychiatry Clinic
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center space-x-6 text-sm">
+          <button
+            class="flex items-center text-primary-30 hover:text-primary-40"
+          >
+            What we treat
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+          <a
+            href="#pricing"
+            class="hover:text-primary-30 js-nav"
+            data-section="pricing"
+            >Pricing</a
+          >
+          <a
+            href="#treatment"
+            class="hover:text-primary-30 js-nav"
+            data-section="treatment"
+            >Process</a
+          >
+          <a href="blog.html" class="hover:text-primary-30">Learning Center</a>
+          <a href="#faq" class="hover:text-primary-30">FAQs</a>
+        </nav>
+
+        <!-- Auth / CTAs -->
+        <div class="hidden md:flex items-center space-x-2">
+          <a
+            href="book.html"
+            class="rounded-md font-medium text-white bg-primary-30 hover:bg-primary-40 shadow-sm px-5 py-2.5 text-sm"
+          >
+            Book Now
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden p-2 rounded-md text-neutral-600 hover:bg-neutral-10"
+          aria-label="Open menu"
+          onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        >
+          <svg width="24" height="24">
+            <path
+              stroke="currentColor"
+              stroke-width="2.5"
+              d="M4 6H20M4 12H20M4 18H20"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+          <div id="mobile-menu" class="md:hidden hidden border-t bg-white">
+        <nav class="flex flex-col px-4 py-3 space-y-2 text-sm">
+          <button
+            class="flex items-center justify-between py-2 text-primary-30"
+          >
+            <span>What we treat</span>
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+          <a
+            href="#pricing"
+            class="py-1 hover:text-primary-30 js-nav"
+            data-section="pricing"
+            >Pricing</a
+          >
+          <a
+            href="#treatment"
+            class="py-1 hover:text-primary-30 js-nav"
+            data-section="treatment"
+            >Process</a
+          >
+          <a href="blog.html" class="py-1 hover:text-primary-30">Learning Center</a>
+          <a
+            href="#faq"
+            class="py-1 hover:text-primary-30 js-nav"
+            data-section="faq"
+            >FAQs</a
+          >
+          <div class="pt-3 flex flex-col space-y-2">
+            <a
+              href="book.html"
+              class="text-center rounded-md py-2.5 font-medium text-white bg-primary-30 hover:bg-primary-40"
+            >
+              Book Now
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO: ADHD -->
+    <main class="bg-primary-0 min-h-screen">
+      <section class="max-w-6xl mx-auto px-4 pt-10 pb-16 lg:pt-16">
+        <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+          <!-- Left: copy -->
+          <div class="flex-1 space-y-4">
+            <h1
+              class="text-3xl md:text-4xl font-semibold leading-snug text-neutral-900 max-w-xl"
+            >
+              Online ADHD Treatment with Your Board Certified Provider
+            </h1>
+
+            <!-- Rating + trust badges -->
+            <div class="space-y-2">
+              <div class="flex flex-wrap gap-4 items-center text-neutral-500">
+                <div class="flex items-center gap-2 text-primary-30">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="flex-shrink-0"
+                  >
+                    <path
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                    />
+                  </svg>
+                  <p class="text-sm font-medium">2000+ virtual patients served</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-2 text-sm text-neutral-500">
+                <span class="mt-1">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="#6BAF92"
+                  >
+                    <path
+                      d="M13.19 2.81a4 4 0 0 0-5.66 0L2.81 7.53a4 4 0 1 0 5.66 5.66l3.3-3.3 1.41-1.41a4 4 0 0 0 0-5.66zM6.11 6.11l3.77 3.77-1.71 1.71a2 2 0 0 1-2.83-2.83l1.77-1.77z"
+                    />
+                  </svg>
+                </span>
+                <p>
+                  Clinically appropriate treatments &amp; prescriptions often
+                  available in 2–3 appointments.
+                  <a
+                    href="#treatment"
+                    class="underline whitespace-nowrap"
+                    >Learn More</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-3 mt-4">
+              <a
+                href="book.html"
+                class="rounded-md text-sm font-medium text-white bg-primary-30 hover:bg-primary-40 shadow px-6 py-3 text-center"
+              >
+                Book Appointment
+              </a>
+              <button
+                class="rounded-md text-sm font-medium text-primary-30 border border-neutral-200 hover:bg-neutral-10 px-6 py-3"
+                data-action="open-pricing"
+                type="button"
+              >
+                Pricing &amp; Insurance
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Right: questionnaire card -->
+          <div
+            class="flex-1 w-full lg:w-1/2 bg-white rounded-lg shadow-xl border overflow-hidden"
+          >
+            <div class="w-full bg-neutral-200 h-1">
+              <div
+                class="bg-primary-30 h-1 rounded-full"
+                style="width: 0%"
+                id="progress-bar"
+              ></div>
+            </div>
+            <div class="p-4 space-y-8 flex flex-col justify-center" style="min-height: 420px">
+              <!-- ADHD screening questions -->
+              <div class="space-y-6" id="adhd-quiz">
+                <div
+                  class="space-y-4 opacity-100 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you have trouble wrapping up the final details of
+                    a project, once the challenging parts have been done?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you have difficulty getting things in order when you
+                    have to do a task that requires organization?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you have problems remembering appointments or obligations?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    When you have a task that requires a lot of thought, how often do you
+                    avoid or delay getting started?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you make careless mistakes when working on a boring or
+                    complicated task?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you fidget or squirm with your hands or feet when you have
+                    to sit still for a long time?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="space-y-4 opacity-0 transition-opacity duration-300 ease-out"
+                  data-question
+                >
+                  <h2 class="text-lg font-medium">
+                    How often do you feel overly active and compelled to do things, as if
+                    you were driven by a motor?
+                  </h2>
+                  <div class="space-y-2 text-sm">
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Never
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Rarely
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Sometimes
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Often
+                    </button>
+                    <button
+                      class="w-full text-left p-3 border rounded-md hover:border-primary-30"
+                    >
+                      Very often
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="adhd-quiz-submit-step" class="space-y-4 hidden">
+                <p class="text-sm text-neutral-500 text-center">
+                  Click or tap <span class="font-medium">'Submit'</span> to see if your
+                  symptoms are suggestive of ADHD in adults.
+                </p>
+                <button
+                  id="adhd-quiz-submit"
+                  class="w-full text-white font-medium bg-primary-30 rounded-md py-3 hover:bg-primary-40 transition-colors"
+                  type="button"
+                >
+                  Submit
+                </button>
+              </div>
+              <div
+                id="adhd-quiz-result"
+                class="space-y-5 hidden"
+              >
+                <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 text-center">
+                  Next steps
+                </p>
+                <p class="text-sm text-neutral-700 text-center">
+                  Your symptoms may be suggestive of ADHD in adults – and our providers
+                  can help.
+                </p>
+                <a
+                  href="book.html"
+                  class="block w-full text-center rounded-md bg-primary-30 px-6 py-3 text-sm font-medium text-white hover:bg-primary-40 transition-colors"
+                >
+                  Book Appointment
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING + INSURANCE (section) -->
+      <section id="pricing" class="bg-white">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+          <div class="flex items-end justify-between gap-6 flex-wrap">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-semibold text-neutral-900">
+                Pricing and insurance
+              </h2>
+              <p class="text-neutral-500 mt-2 max-w-2xl">
+                Transparent pricing with no memberships. If you use insurance,
+                your out-of-pocket cost depends on your plan.
+              </p>
+            </div>
+            <button
+              class="rounded-md text-sm font-medium text-white bg-primary-30 hover:bg-primary-40 px-5 py-3 shadow"
+              data-action="open-pricing"
+              type="button"
+            >
+              View pricing details
+            </button>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-10">
+            <div class="rounded-xl border bg-white p-6">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-neutral-900">Self‑pay</h3>
+                <span
+                  class="text-xs rounded-full bg-primary-0 text-primary-30 px-2 py-1 font-medium"
+                  >Per appointment</span
+                >
+              </div>
+              <dl class="mt-5 space-y-4">
+                <div class="flex items-center justify-between">
+                  <dt class="text-neutral-500">First appointment</dt>
+                  <dd class="font-semibold text-neutral-900">$179</dd>
+                </div>
+                <div class="h-px bg-neutral-100"></div>
+                <div class="flex items-center justify-between">
+                  <dt class="text-neutral-500">Follow‑up appointments</dt>
+                  <dd class="font-semibold text-neutral-900">$120</dd>
+                </div>
+              </dl>
+              <p class="text-xs text-neutral-500 mt-5">
+                You’re not charged until after your appointment is completed.
+              </p>
+            </div>
+
+            <div class="rounded-xl border bg-white p-6">
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-neutral-900">Use insurance</h3>
+                <span
+                  class="text-xs rounded-full bg-primary-0 text-primary-30 px-2 py-1 font-medium"
+                  >Typical range</span
+                >
+              </div>
+              <div class="mt-5 flex items-end justify-between">
+                <div>
+                  <p class="text-neutral-500">Average out‑of‑pocket</p>
+                  <p class="text-3xl font-semibold text-neutral-900">$0–40</p>
+                </div>
+                <button
+                  class="rounded-md text-sm font-medium text-primary-30 border border-neutral-200 hover:bg-neutral-10 px-4 py-2"
+                  data-action="open-pricing"
+                  type="button"
+                >
+                  See details
+                </button>
+              </div>
+              <p class="text-xs text-neutral-500 mt-5">
+                Estimates vary by plan and deductible. Verify during booking for
+                a more specific estimate.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-10 flex justify-center">
+            <img
+              src="assets/insurance-logos.png"
+              alt="Logos of frequently accepted insurance plans"
+              class="w-full max-w-4xl h-auto object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- TREATMENT STEPS -->
+      <section id="treatment" class="bg-primary-0">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+          <div class="max-w-2xl">
+            <h2 class="text-2xl md:text-3xl font-semibold text-neutral-900">
+              Treatment, step by step
+            </h2>
+            <p class="text-neutral-500 mt-2">
+              A structured process designed for adults—assessment first, then a
+              plan that fits your goals.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-10">
+            <div class="rounded-xl bg-white border p-6">
+              <p class="text-xs font-semibold text-primary-30">Appointment 1</p>
+              <h3 class="text-lg font-semibold text-neutral-900 mt-2">
+                Intake &amp; assessment
+              </h3>
+              <p class="text-neutral-500 mt-2">
+                Meet your provider, review symptoms and history, and start an
+                evidence‑based evaluation.
+              </p>
+              <ul class="mt-4 text-sm text-neutral-600 space-y-2">
+                <li>• 30‑minute video visit</li>
+                <li>• Clear next steps</li>
+                <li>• Upfront self‑pay pricing</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl bg-white border p-6">
+              <p class="text-xs font-semibold text-primary-30">Appointment 2</p>
+              <h3 class="text-lg font-semibold text-neutral-900 mt-2">
+                Annual wellness check
+              </h3>
+              <p class="text-neutral-500 mt-2">
+                A recent wellness exam helps ensure your full health picture is
+                considered before starting a treatment plan.
+              </p>
+              <ul class="mt-4 text-sm text-neutral-600 space-y-2">
+                <li>• Often covered by insurance</li>
+                <li>• Can be completed virtually</li>
+                <li>• Documentation accepted if recent</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl bg-white border p-6">
+              <p class="text-xs font-semibold text-primary-30">Appointment 3</p>
+              <h3 class="text-lg font-semibold text-neutral-900 mt-2">
+                Plan &amp; next steps
+              </h3>
+              <p class="text-neutral-500 mt-2">
+                Review results, options, and follow‑up cadence. If clinically
+                appropriate, medication may be considered.
+              </p>
+              <ul class="mt-4 text-sm text-neutral-600 space-y-2">
+                <li>• Personalized plan</li>
+                <li>• Clear expectations</li>
+                <li>• Follow‑ups scheduled online</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl bg-white border p-6">
+              <p class="text-xs font-semibold text-primary-30">Ongoing</p>
+              <h3 class="text-lg font-semibold text-neutral-900 mt-2">
+                Monthly check‑ins
+              </h3>
+              <p class="text-neutral-500 mt-2">
+                Regular visits help you track progress, adjust the plan, and
+                stay on top of refills (when applicable).
+              </p>
+              <ul class="mt-4 text-sm text-neutral-600 space-y-2">
+                <li>• Easy rescheduling</li>
+                <li>• Secure messaging</li>
+                <li>• Continuous improvement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews" class="bg-primary-0">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+          <div class="flex items-end justify-between gap-6 flex-wrap">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-semibold text-neutral-900">
+                What patients say
+              </h2>
+              <p class="text-neutral-500 mt-2 max-w-2xl">
+                These are anonymized quotes from real ADHD patients seen in a
+                virtual‑first setting.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-neutral-600">
+              <div class="flex items-center gap-1">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="#6BAF92"
+                >
+                  <path
+                    d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"
+                  />
+                </svg>
+                <span class="font-semibold">4.9</span>
+              </div>
+              <span class="text-neutral-500">2000+ virtual patients served</span>
+            </div>
+          </div>
+
+          <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <article class="rounded-xl bg-white border p-6 shadow-sm">
+              <p class="text-sm text-neutral-600">
+                “For the first time I felt like someone understood how my brain
+                works. The plan we made actually fits around my job and kids.”
+              </p>
+              <p class="mt-4 font-semibold text-neutral-900">Samantha, 34</p>
+              <p class="text-xs text-neutral-500">ADHD evaluation &amp; follow‑up</p>
+            </article>
+            <article class="rounded-xl bg-white border p-6 shadow-sm">
+              <p class="text-sm text-neutral-600">
+                “Scheduling was easy and every visit has been on time. My
+                provider explains options clearly and checks in on how things
+                are actually going.”
+              </p>
+              <p class="mt-4 font-semibold text-neutral-900">Jordan, 28</p>
+              <p class="text-xs text-neutral-500">Medication management</p>
+            </article>
+            <article class="rounded-xl bg-white border p-6 shadow-sm">
+              <p class="text-sm text-neutral-600">
+                “I was nervous to start, but being able to do everything from
+                home made it manageable. The structure and follow‑ups have made
+                a huge difference.”
+              </p>
+              <p class="mt-4 font-semibold text-neutral-900">Miguel, 41</p>
+              <p class="text-xs text-neutral-500">Ongoing check‑ins</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="bg-white">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+          <div class="max-w-2xl">
+            <h2 class="text-2xl md:text-3xl font-semibold text-neutral-900">
+              Quick answers
+            </h2>
+            <p class="text-neutral-500 mt-2">
+              A few common questions people ask before booking.
+            </p>
+          </div>
+
+          <div class="mt-10 grid lg:grid-cols-2 gap-6 items-stretch">
+            <div class="space-y-3">
+              <div class="rounded-xl border">
+                <button
+                  class="w-full flex items-center justify-between px-5 py-4 text-left font-medium text-neutral-900"
+                  data-accordion="toggle"
+                  type="button"
+                >
+                  <span>How many appointments does an evaluation take?</span>
+                  <span class="text-neutral-500">+</span>
+                </button>
+                <div
+                  class="hidden px-5 pb-5 text-sm text-neutral-500"
+                  data-accordion="panel"
+                >
+                  Most people complete an intake and follow‑up steps over
+                  multiple visits. Timing varies by clinical needs and history.
+                </div>
+              </div>
+
+              <div class="rounded-xl border">
+                <button
+                  class="w-full flex items-center justify-between px-5 py-4 text-left font-medium text-neutral-900"
+                  data-accordion="toggle"
+                  type="button"
+                >
+                  <span>Do you accept insurance?</span>
+                  <span class="text-neutral-500">+</span>
+                </button>
+                <div
+                  class="hidden px-5 pb-5 text-sm text-neutral-500"
+                  data-accordion="panel"
+                >
+                  Many PPO plans can be supported. Coverage depends on plan type
+                  and network rules—verify during booking for the best estimate.
+                </div>
+              </div>
+
+              <div class="rounded-xl border">
+                <button
+                  class="w-full flex items-center justify-between px-5 py-4 text-left font-medium text-neutral-900"
+                  data-accordion="toggle"
+                  type="button"
+                >
+                  <span>Can I message my care team?</span>
+                  <span class="text-neutral-500">+</span>
+                </button>
+                <div
+                  class="hidden px-5 pb-5 text-sm text-neutral-500"
+                  data-accordion="panel"
+                >
+                  Yes—most virtual‑first clinics provide a secure messaging
+                  channel for questions and coordination.
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl bg-primary-0 p-6 h-full flex flex-col justify-between">
+              <h3 class="font-semibold text-neutral-900">Ready to get started?</h3>
+              <p class="text-sm text-neutral-500 mt-2">
+                Choose a time that fits your schedule, then verify your details
+                during checkout.
+              </p>
+              <div class="mt-5 flex flex-col gap-3">
+                <a
+                  href="book.html"
+                  data-track-book
+                  class="rounded-md text-sm font-medium text-white bg-primary-30 hover:bg-primary-40 px-6 py-3 shadow text-center"
+                  >Book Appointment</a
+                >
+                <button
+                  class="rounded-md text-sm font-medium text-primary-30 border border-neutral-200 hover:bg-white px-6 py-3"
+                  data-action="open-pricing"
+                  type="button"
+                >
+                  Pricing &amp; Insurance
+                </button>
+              </div>
+              <p class="text-xs text-neutral-500 mt-5">
+                Arizona Telepsychiatry Clinic — schedule online in minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="bg-primary-40 text-white">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+          <div class="flex flex-wrap items-start justify-between gap-10">
+            <div class="max-w-md">
+              <div class="flex items-center gap-2">
+                <p class="font-semibold">Arizona Telepsychiatry Clinic</p>
+              </div>
+              <p class="text-white/70 mt-3 text-sm">
+                Virtual‑first ADHD care with flexible scheduling, video visits, and
+                ongoing support between appointments. Connect with your board
+                certified provider from home. We serve adults across Arizona,
+                including Phoenix, Tucson, Mesa, Chandler, Scottsdale, Gilbert,
+                Tempe, Glendale, Flagstaff, and Yuma.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-10 text-sm">
+              <div>
+                <p class="font-semibold">Company</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="#about" class="hover:text-white">About</a></li>
+                  <li>
+                    <a href="#providers" class="hover:text-white">Providers</a>
+                  </li>
+                  <li>
+                    <a href="#locations" class="hover:text-white">Locations</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold">Resources</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+                  <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+                  <li><a href="#reviews" class="hover:text-white">Reviews</a></li>
+                  <li><a href="blog.html" class="hover:text-white">Learning Center</a></li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold">Legal</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="#" class="hover:text-white">Privacy</a></li>
+                  <li><a href="#" class="hover:text-white">Terms</a></li>
+                  <li>
+                    <a href="#" class="hover:text-white">Cookie preferences</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="border-t border-white/10 mt-10 pt-6 text-xs text-white/60">
+            © 2026 Arizona Telepsychiatry Clinic.
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- PRICING MODAL -->
+    <div
+      id="pricing-modal"
+      class="hidden fixed inset-0 z-50"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pricing-modal-title"
+    >
+      <div class="absolute inset-0 bg-black/50" data-action="close-pricing"></div>
+      <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="w-full max-w-3xl rounded-xl bg-white shadow-xl overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b">
+            <h2 id="pricing-modal-title" class="font-semibold text-neutral-900">
+              Pricing and insurance
+            </h2>
+            <button
+              class="rounded-md px-3 py-2 hover:bg-neutral-10 text-neutral-600"
+              aria-label="Close"
+              data-action="close-pricing"
+              type="button"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="p-5">
+            <div class="grid md:grid-cols-2 gap-3">
+              <button
+                class="rounded-lg border px-4 py-3 text-left hover:bg-neutral-10"
+                data-pricing-tab="selfpay"
+                type="button"
+              >
+                <p class="font-semibold text-neutral-900">Self‑pay</p>
+                <p class="text-sm text-neutral-500 mt-1">
+                  Flexible scheduling and upfront pricing.
+                </p>
+              </button>
+              <button
+                class="rounded-lg border px-4 py-3 text-left hover:bg-neutral-10"
+                data-pricing-tab="insurance"
+                type="button"
+              >
+                <p class="font-semibold text-neutral-900">Use insurance</p>
+                <p class="text-sm text-neutral-500 mt-1">
+                  Book with a provider who accepts your plan.
+                </p>
+              </button>
+            </div>
+
+            <div class="mt-5">
+              <div id="pricing-panel-selfpay" class="rounded-xl bg-primary-0 p-5">
+                <p class="text-sm font-semibold text-neutral-900">
+                  Self‑pay pricing
+                </p>
+                <dl class="mt-4 space-y-3 text-sm">
+                  <div class="flex items-center justify-between">
+                    <dt class="text-neutral-600">First appointment</dt>
+                    <dd class="font-semibold text-neutral-900">$179</dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-neutral-600">Follow‑up appointments</dt>
+                    <dd class="font-semibold text-neutral-900">$120</dd>
+                  </div>
+                </dl>
+                <p class="text-xs text-neutral-500 mt-4">
+                  You’re not charged until after the appointment is completed.
+                </p>
+              </div>
+
+              <div
+                id="pricing-panel-insurance"
+                class="hidden rounded-xl bg-primary-0 p-5"
+              >
+                <p class="text-sm font-semibold text-neutral-900">
+                  Insurance estimate
+                </p>
+                <p class="text-sm text-neutral-600 mt-2">
+                  Typical out‑of‑pocket range:
+                  <span class="font-semibold text-neutral-900">$0–40</span>
+                </p>
+                <p class="text-xs text-neutral-500 mt-3">
+                  Estimates depend on your plan, deductible, and provider
+                  network.
+                </p>
+                <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <div
+                    class="h-10 rounded-lg bg-white border flex items-center justify-center text-xs font-medium text-neutral-600"
+                  >
+                    PPO plans
+                  </div>
+                  <div
+                    class="h-10 rounded-lg bg-white border flex items-center justify-center text-xs font-medium text-neutral-600"
+                  >
+                    Out‑of‑network varies
+                  </div>
+                  <div
+                    class="h-10 rounded-lg bg-white border flex items-center justify-center text-xs font-medium text-neutral-600"
+                  >
+                    Deductibles apply
+                  </div>
+                  <div
+                    class="h-10 rounded-lg bg-white border flex items-center justify-center text-xs font-medium text-neutral-600"
+                  >
+                    Verify at booking
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 flex items-center justify-end gap-3">
+              <button
+                class="rounded-md border px-4 py-2 hover:bg-neutral-10"
+                data-action="close-pricing"
+                type="button"
+              >
+                Close
+              </button>
+              <a
+                href="book.html"
+                class="rounded-md bg-primary-30 text-white px-5 py-2.5 font-medium hover:bg-primary-40"
+                >Book Appointment</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const qs = (sel, root = document) => root.querySelector(sel);
+      const qsa = (sel, root = document) =>
+        Array.from(root.querySelectorAll(sel));
+
+      const body = document.body;
+      const mobileMenu = qs("#mobile-menu");
+
+      function setNoScroll(on) {
+        body.classList.toggle("no-scroll", on);
+      }
+
+      function openPricing() {
+        qs("#pricing-modal").classList.remove("hidden");
+        setNoScroll(true);
+      }
+
+      function closePricing() {
+        qs("#pricing-modal").classList.add("hidden");
+        setNoScroll(false);
+      }
+
+      function setPricingTab(tab) {
+        const selfpay = qs("#pricing-panel-selfpay");
+        const insurance = qs("#pricing-panel-insurance");
+        const isInsurance = tab === "insurance";
+        insurance.classList.toggle("hidden", !isInsurance);
+        selfpay.classList.toggle("hidden", isInsurance);
+      }
+
+      // Pricing modal open/close
+      qsa('[data-action="open-pricing"]').forEach((btn) => {
+        btn.addEventListener("click", () => openPricing());
+      });
+      qsa('[data-action="close-pricing"]').forEach((btn) => {
+        btn.addEventListener("click", () => closePricing());
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !qs("#pricing-modal").classList.contains("hidden")) {
+          closePricing();
+        }
+      });
+
+      // Pricing tabs
+      qsa("[data-pricing-tab]").forEach((btn) => {
+        btn.addEventListener("click", () => setPricingTab(btn.dataset.pricingTab));
+      });
+
+      // Accordion
+      qsa('[data-accordion="toggle"]').forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const panel = btn.parentElement.querySelector('[data-accordion="panel"]');
+          const isHidden = panel.classList.contains("hidden");
+          panel.classList.toggle("hidden", !isHidden);
+          btn.querySelector("span:last-child").textContent = isHidden ? "−" : "+";
+        });
+      });
+
+      // Reviews simple carousel (rotate sample reviews)
+      const reviews = [
+        {
+          quote: "“Fast scheduling and a provider who really listened.”",
+          name: "Immanuel",
+          meta: "Video visit",
+        },
+        {
+          quote: "“The process was clear, and the follow‑up plan made sense.”",
+          name: "Ben",
+          meta: "ADHD program",
+        },
+        {
+          quote: "“Simple steps, reminders, and easy rescheduling—huge help.”",
+          name: "Kyle",
+          meta: "App experience",
+        },
+        {
+          quote: "“I felt supported and had clear next steps after the first visit.”",
+          name: "Jewel",
+          meta: "Care plan",
+        },
+        {
+          quote: "“Convenient appointments that fit around work and life.”",
+          name: "Natalya",
+          meta: "Scheduling",
+        },
+        {
+          quote: "“Everything was straightforward—less friction, more progress.”",
+          name: "Edwin",
+          meta: "Onboarding",
+        },
+      ];
+
+      let reviewIndex = 0;
+      function renderReviews() {
+        const cards = qsa(".review-card");
+        for (let i = 0; i < cards.length; i++) {
+          const r = reviews[(reviewIndex + i) % reviews.length];
+          const ps = cards[i].querySelectorAll("p");
+          ps[0].textContent = r.quote;
+          ps[1].textContent = r.name;
+          ps[2].textContent = r.meta;
+        }
+      }
+      function nextReviews() {
+        reviewIndex = (reviewIndex + 1) % reviews.length;
+        renderReviews();
+      }
+      function prevReviews() {
+        reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length;
+        renderReviews();
+      }
+      qsa('[data-action="reviews-next"]').forEach((b) =>
+        b.addEventListener("click", nextReviews)
+      );
+      qsa('[data-action="reviews-prev"]').forEach((b) =>
+        b.addEventListener("click", prevReviews)
+      );
+
+      renderReviews();
+      setPricingTab("selfpay");
+
+      // FAQ schema.org markup
+      (function () {
+        const faqJson = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How many appointments does an ADHD evaluation take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most people complete an intake and follow-up steps over multiple visits. Timing varies based on clinical needs and history."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you accept insurance for online ADHD visits in Arizona?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Many PPO plans can be supported. Coverage depends on plan type and network rules, so we verify benefits during booking for the best estimate."
+              }
+            }
+          ]
+        };
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.textContent = JSON.stringify(faqJson);
+        document.head.appendChild(script);
+      })();
+
+      // Nav active state for sections
+      (function () {
+        const sectionIds = ["pricing", "treatment", "faq"];
+        const navLinks = qsa(".js-nav");
+
+        function setActive(section) {
+          navLinks.forEach((link) => {
+            const isActive = link.dataset.section === section;
+            link.classList.toggle("text-primary-30", isActive);
+          });
+        }
+
+        function updateOnScroll() {
+          const scrollY = window.scrollY + 160; // account for sticky header
+          let current = null;
+          sectionIds.forEach((id) => {
+            const el = qs("#" + id);
+            if (!el) return;
+            if (scrollY >= el.offsetTop) current = id;
+          });
+          if (current) setActive(current);
+        }
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            const id = link.dataset.section;
+            if (id) setActive(id);
+          });
+        });
+
+        window.addEventListener("scroll", updateOnScroll);
+        updateOnScroll();
+      })();
+
+      // ADHD quiz: show one question at a time with progress
+      const quizRoot = qs("#adhd-quiz");
+      if (quizRoot) {
+        const questionBlocks = qsa("[data-question]", quizRoot);
+        const progressBar = qs("#progress-bar");
+        const submitStep = qs("#adhd-quiz-submit-step");
+        const submitBtn = qs("#adhd-quiz-submit");
+        const resultView = qs("#adhd-quiz-result");
+
+        function showQuestion(index) {
+          questionBlocks.forEach((block, i) => {
+            if (i === index) {
+              block.classList.remove("hidden");
+              block.classList.add("opacity-0");
+              block.classList.remove("opacity-100");
+              requestAnimationFrame(() => {
+                block.classList.remove("opacity-0");
+                block.classList.add("opacity-100");
+              });
+            } else {
+              block.classList.add("hidden");
+              block.classList.add("opacity-0");
+              block.classList.remove("opacity-100");
+            }
+          });
+          if (progressBar && questionBlocks.length > 0) {
+            const pct = (index / questionBlocks.length) * 100;
+            progressBar.style.width = pct + "%";
+          }
+        }
+
+        function handleAnswer(index) {
+          if (index < questionBlocks.length - 1) {
+            showQuestion(index + 1);
+          } else {
+            questionBlocks.forEach((block) => block.classList.add("hidden"));
+            if (progressBar && questionBlocks.length > 0) {
+              progressBar.style.width = "100%";
+            }
+            if (submitStep) submitStep.classList.remove("hidden");
+          }
+        }
+
+        questionBlocks.forEach((block, index) => {
+          qsa("button", block).forEach((btn) => {
+            btn.addEventListener("click", () => handleAnswer(index));
+          });
+        });
+
+        questionBlocks.forEach((block, i) => {
+          block.classList.add("opacity-0");
+          if (i !== 0) block.classList.add("hidden");
+        });
+        if (submitStep) submitStep.classList.add("hidden");
+        if (resultView) resultView.classList.add("hidden");
+
+        if (submitBtn) {
+          submitBtn.addEventListener("click", () => {
+            if (submitStep) submitStep.classList.add("hidden");
+            if (resultView) resultView.classList.remove("hidden");
+          });
+        }
+        showQuestion(0);
+      }
+    </script>
+  </body>
+</html>
+
+

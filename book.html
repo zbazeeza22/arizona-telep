@@ -203,9 +203,8 @@
     </form>
 
     <script>
-      // Backend: set your Supabase URL and anon key (from Supabase project → Settings → API)
-      const SUPABASE_URL = "https://rqhpjgfmxrobvrccwfkr.supabase.co";
-      const SUPABASE_ANON_KEY = "sb_publishable_2FucxHKhU8VoUpRi7VBEkA_pgviGZN2";
+      // SECURITY: API keys moved to secure server-side endpoint
+      // All bookings now submitted through /api/submit-booking
 
       const qs = (s, r = document) => r.querySelector(s);
       const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -482,7 +481,7 @@
         btn.addEventListener("click", () => showSubstep(parseInt(btn.dataset.subback, 10)));
       });
 
-      function doConfirmBooking() {
+      async function doConfirmBooking() {
         const email = (qs("#patient-email") && qs("#patient-email").value.trim()) || "";
         const payload = {
           email,
@@ -506,34 +505,26 @@
           insurance: booking.insurance || "",
         };
 
-        function showThankYouAndRedirect() {
-          alert("Thank you. Your booking request has been submitted.");
-          window.location.href = "index.html";
-        }
-
-        var didShow = false;
-        function showOnce() {
-          if (didShow) return;
-          didShow = true;
-          showThankYouAndRedirect();
-        }
-
-        if (SUPABASE_URL && SUPABASE_ANON_KEY) {
-          var timeout = setTimeout(showOnce, 4000);
-          fetch(SUPABASE_URL + "/rest/v1/bookings", {
+        try {
+          const response = await fetch("/api/submit-booking", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "apikey": SUPABASE_ANON_KEY,
-              "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-              "Prefer": "return=minimal",
             },
             body: JSON.stringify(payload),
-          })
-            .then(function(res) { if (!res.ok) throw new Error(res.statusText); clearTimeout(timeout); showOnce(); })
-            .catch(function() { clearTimeout(timeout); showOnce(); });
-        } else {
-          showOnce();
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || "Submission failed");
+          }
+
+          alert("Thank you. Your booking request has been submitted.");
+          window.location.href = "index.html";
+        } catch (error) {
+          console.error("Booking error:", error);
+          alert("An error occurred. Please try again or call us.");
         }
       }
 

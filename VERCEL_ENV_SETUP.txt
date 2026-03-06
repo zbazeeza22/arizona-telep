@@ -1,0 +1,63 @@
+VERCEL ENVIRONMENT VARIABLES - ADD THESE TO YOUR PROJECT
+================================================================
+
+Go to: https://vercel.com/dashboard
+→ Select your project (arizona-telep)
+→ Settings → Environment Variables
+→ Add each variable below
+→ Check: Production ✓ Preview ✓ Development ✓
+
+----------------------------------------------------------------
+VARIABLE NAME: SUPABASE_URL
+VALUE: https://rqhpjgfmxrobvrccwfkr.supabase.co
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: SUPABASE_ANON_KEY
+VALUE: sb_publishable_2FucxHKhU8VoUpRi7VBEkA_pgviGZN2
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: SUPABASE_SERVICE_ROLE_KEY
+VALUE: [GET FROM SUPABASE DASHBOARD]
+
+How to get:
+1. Go to: https://supabase.com/dashboard
+2. Select your project
+3. Settings → API
+4. Copy the "service_role" key (NOT the anon key)
+5. Paste it here in Vercel
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: ENCRYPTION_KEY
+VALUE: /AjcgzPCVyZjSqOjjLtjX3xp2l1DGtzYWt+nEj/rkgQ=
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: SESSION_SECRET
+VALUE: MrtiPvV8G8xwLAxeaZWG9w26LjyG+uE3fHAg9rcXCQs=
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: SESSION_TIMEOUT_MINUTES
+VALUE: 15
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: AUDIT_LOG_ENABLED
+VALUE: true
+----------------------------------------------------------------
+
+----------------------------------------------------------------
+VARIABLE NAME: NODE_ENV
+VALUE: production
+----------------------------------------------------------------
+
+IMPORTANT NOTES:
+- Make sure to check all three environments: Production, Preview, Development
+- The service_role key is CRITICAL - get it from Supabase Dashboard
+- After adding all variables, trigger a new deployment
+- These are the same values from your .env file
+
+After adding these, your secure API endpoint will work correctly!

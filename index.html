@@ -554,10 +554,7 @@
                 <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 text-center">
                   Next steps
                 </p>
-                <p class="text-sm text-neutral-700 text-center">
-                  Your symptoms may be suggestive of ADHD in adults – and our providers
-                  can help.
-                </p>
+                <p id="adhd-result-message" class="text-sm text-neutral-700 text-center"></p>
                 <a
                   href="book.html"
                   class="block w-full text-center rounded-md bg-primary-30 px-6 py-3 text-sm font-medium text-white hover:bg-primary-40 transition-colors"
@@ -1331,6 +1328,10 @@
         const submitStep = qs("#adhd-quiz-submit-step");
         const submitBtn = qs("#adhd-quiz-submit");
         const resultView = qs("#adhd-quiz-result");
+        const resultMessage = qs("#adhd-result-message");
+
+        const ANSWER_VALUES = { "Never": 0, "Rarely": 1, "Sometimes": 2, "Often": 3, "Very often": 4 };
+        const answers = [];
 
         function showQuestion(index) {
           questionBlocks.forEach((block, i) => {
@@ -1354,7 +1355,8 @@
           }
         }
 
-        function handleAnswer(index) {
+        function handleAnswer(index, value) {
+          answers[index] = value;
           if (index < questionBlocks.length - 1) {
             showQuestion(index + 1);
           } else {
@@ -1368,7 +1370,11 @@
 
         questionBlocks.forEach((block, index) => {
           qsa("button", block).forEach((btn) => {
-            btn.addEventListener("click", () => handleAnswer(index));
+            btn.addEventListener("click", () => {
+              const text = (btn.textContent || "").trim();
+              const value = ANSWER_VALUES[text] ?? 2;
+              handleAnswer(index, value);
+            });
           });
         });
 
@@ -1383,6 +1389,20 @@
           submitBtn.addEventListener("click", () => {
             if (submitStep) submitStep.classList.add("hidden");
             if (resultView) resultView.classList.remove("hidden");
+
+            var oftenOrVeryOften = answers.filter(function (v) { return v >= 3; }).length;
+            var answered = answers.filter(function (v) { return v !== undefined; }).length;
+
+            if (resultMessage) {
+              if (oftenOrVeryOften >= 4 && answered >= 5) {
+                resultMessage.textContent =
+                  "Your symptoms may be suggestive of ADHD in adults – and our providers can help.";
+              } else {
+                resultMessage.textContent =
+                  "Based on your answers, it's less likely that you're experiencing ADHD symptoms. " +
+                  "Still, our providers can help with a full evaluation or other concerns—schedule a visit anytime.";
+              }
+            }
           });
         }
         showQuestion(0);

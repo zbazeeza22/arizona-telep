@@ -1,6 +1,9 @@
 {
   "version": 2,
   "regions": ["iad1"],
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": "npm install",
   "headers": [
     {
       "source": "/(.*)",

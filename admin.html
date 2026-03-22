@@ -258,15 +258,26 @@
         <div class="bg-white rounded-xl border shadow-sm p-6">
           <div class="flex items-start justify-between">
             <div>
-              <h2 class="text-lg font-semibold text-neutral-900">Pelvic Scan Tool</h2>
+              <h2 class="text-lg font-semibold text-neutral-900">PelvicScan AI</h2>
               <p class="text-sm text-neutral-500 mt-1">
-                Clinical tool for pelvic ultrasound scan documentation and analysis.
+                AI-powered pelvic fracture detection and clinical decision support.
               </p>
             </div>
-            <span class="text-xs rounded-full bg-yellow-100 text-yellow-800 px-2.5 py-1 font-medium">
-              Coming Soon
+            <span class="text-xs rounded-full bg-blue-100 text-blue-800 px-2.5 py-1 font-medium">
+              Phase 1 Active
             </span>
           </div>
+
+          <!-- Launch button -->
+          <a href="admin-pelvic-scan.html"
+             class="mt-4 flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary-30 text-white
+                    text-sm font-medium rounded-lg hover:bg-primary-40 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            Launch PelvicScan AI Tool
+          </a>
 
           <div class="mt-6 rounded-xl bg-primary-0 p-6 space-y-4">
             <div class="flex items-center gap-3">
@@ -277,33 +288,53 @@
                 </svg>
               </div>
               <div>
-                <p class="text-sm font-semibold text-neutral-900">Pelvic Scan Documentation Tool</p>
+                <p class="text-sm font-semibold text-neutral-900">Phase 1: Fracture Detection (Active)</p>
                 <p class="text-xs text-neutral-500">
-                  This tool will help with documenting and analyzing pelvic ultrasound scans.
+                  EfficientNet-B4 + ResNet50-3D ensemble | FDA 510(k) Class II | Predicate: Aidoc K252970/K231953
                 </p>
               </div>
             </div>
 
             <div class="border-t border-neutral-200 pt-4">
               <p class="text-sm text-neutral-600">
-                <strong class="text-neutral-900">Planned features:</strong>
+                <strong class="text-neutral-900">Phase 1 capabilities:</strong>
               </p>
               <ul class="mt-2 text-sm text-neutral-600 space-y-1.5">
                 <li class="flex items-start gap-2">
-                  <span class="text-primary-30 mt-0.5">&#9679;</span>
-                  Structured input form for scan measurements and findings
+                  <span class="text-primary-30 mt-0.5">&#10003;</span>
+                  Binary fracture detection (fracture / no fracture)
                 </li>
                 <li class="flex items-start gap-2">
-                  <span class="text-primary-30 mt-0.5">&#9679;</span>
-                  Normal range reference values
+                  <span class="text-primary-30 mt-0.5">&#10003;</span>
+                  GradCAM explainability heatmaps (FDA required)
                 </li>
                 <li class="flex items-start gap-2">
-                  <span class="text-primary-30 mt-0.5">&#9679;</span>
-                  Summary generation for clinical documentation
+                  <span class="text-primary-30 mt-0.5">&#10003;</span>
+                  Per-slice fracture probability mapping
                 </li>
                 <li class="flex items-start gap-2">
-                  <span class="text-primary-30 mt-0.5">&#9679;</span>
-                  Printable report output
+                  <span class="text-primary-30 mt-0.5">&#10003;</span>
+                  Clinical report generation
+                </li>
+              </ul>
+            </div>
+
+            <div class="border-t border-neutral-200 pt-4">
+              <p class="text-sm text-neutral-600">
+                <strong class="text-neutral-900">Coming soon:</strong>
+              </p>
+              <ul class="mt-2 text-sm text-neutral-600 space-y-1.5">
+                <li class="flex items-start gap-2">
+                  <span class="text-neutral-400 mt-0.5">&#9679;</span>
+                  Phase 2: Young-Burgess + AO/OTA classification
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-neutral-400 mt-0.5">&#9679;</span>
+                  Phase 3: Surgical planning + stability assessment
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-neutral-400 mt-0.5">&#9679;</span>
+                  Phase 4: Hemorrhage triage + outcome prediction
                 </li>
               </ul>
             </div>

@@ -1,0 +1,256 @@
+# ============================================================================
+# PelvicScan AI - Phase 1: Fracture Detection Configuration
+# ============================================================================
+# This config follows FDA 510(k) documentation requirements (IEC 62304)
+# All hyperparameters are documented with clinical justification
+# ============================================================================
+
+project:
+  name: "PelvicScan-AI"
+  version: "1.0.0"
+  phase: "Phase 1 - Fracture Detection"
+  regulatory_class: "Class II (510(k))"
+  predicate_device: "Aidoc BriefCase for Pelvic Fractures (K231953)"
+
+# ============================================================================
+# Dataset Configuration
+# ============================================================================
+dataset:
+  # CTPelvic1K - benchmark pelvic CT dataset (Liu et al., 2021)
+  # Source: https://github.com/MIRACLE-Center/CTPelvic1K
+  # 1,184 CT volumes with voxel-level annotations
+  pretrain_source: "CTPelvic1K"
+  pretrain_path: "./data/CTPelvic1K"
+
+  # Custom clinical dataset
+  clinical_path: "./data/clinical"
+  clinical_scans: 4000
+
+  # Data split (FDA requires clear train/val/test separation)
+  # No data leakage between splits - enforced at patient level
+  split:
+    train: 0.70    # 2,800 scans
+    val: 0.15      # 600 scans
+    test: 0.15     # 600 scans
+    seed: 42       # Reproducibility (IEC 62304 requirement)
+
+  # Preprocessing
+  preprocessing:
+    # CT windowing for bone visualization
+    # Bone window: WL=300, WW=1500 (standard radiology protocol)
+    ct_window:
+      center: 300
+      width: 1500
+    # Soft tissue window for hemorrhage detection
+    soft_tissue_window:
+      center: 40
+      width: 400
+    # Standardize voxel spacing (critical for consistent measurements)
+    target_spacing: [1.0, 1.0, 1.0]  # mm isotropic
+    # Input dimensions
+    input_size: [512, 512]
+    # Clip HU range
+    hu_min: -200
+    hu_max: 1800
+    # Normalization
+    normalize: true
+    norm_method: "min_max"  # Scale to [0, 1]
+
+  # Data augmentation (conservative for medical imaging)
+  # Reference: "Data Augmentation in Medical Imaging" (Garcea et al., 2023)
+  augmentation:
+    train:
+      random_rotation: 15          # degrees (anatomical plausibility)
+      random_flip_horizontal: true  # Left-right symmetry
+      random_flip_vertical: false   # NOT anatomically valid
+      random_scale: [0.9, 1.1]     # ±10% zoom
+      random_translate: [0.05, 0.05]  # ±5% shift
+      elastic_deform: false         # Disabled: can create artifact fractures
+      gaussian_noise:
+        enabled: true
+        std: 0.01                   # Mild noise augmentation
+      brightness_contrast:
+        enabled: true
+        brightness: 0.05
+        contrast: 0.05
+    val:
+      # NO augmentation on validation (FDA requirement for unbiased evaluation)
+    test:
+      # NO augmentation on test (FDA requirement for unbiased evaluation)
+
+# ============================================================================
+# Model Configuration
+# ============================================================================
+model:
+  # Phase 1: Binary fracture detection (fracture / no fracture)
+  # Architecture selection justified by medical imaging literature:
+  #   - EfficientNet-B4: Best accuracy/parameter ratio (Tan & Le, 2019)
+  #   - ResNet-50: Proven baseline, extensive medical imaging validation
+  #   - DenseNet-121: CheXNet architecture, strong medical imaging track record
+  #   - 3D ResNet: For volumetric analysis (Phase 1b)
+
+  # Primary model (2D slice-level detection)
+  primary:
+    architecture: "efficientnet_b4"
+    pretrained: true              # ImageNet pretraining
+    num_classes: 2                # fracture / no_fracture
+    dropout: 0.3                  # Regularization
+    input_channels: 3             # bone, soft tissue, original HU windows
+
+  # Secondary model (3D volume-level detection)
+  secondary:
+    architecture: "resnet50_3d"
+    pretrained: true              # Pre-trained on CTPelvic1K
+    num_classes: 2
+    dropout: 0.3
+    input_channels: 1
+    volume_depth: 64              # Number of slices per volume
+
+  # Ensemble (final prediction combines both)
+  ensemble:
+    method: "weighted_average"
+    primary_weight: 0.6
+    secondary_weight: 0.4
+
+# ============================================================================
+# Training Configuration
+# ============================================================================
+training:
+  # Phase 1a: Pre-train on CTPelvic1K
+  pretrain:
+    epochs: 100
+    batch_size: 16
+    learning_rate: 0.001
+    optimizer: "AdamW"
+    weight_decay: 0.01
+    scheduler: "cosine_annealing"
+    warmup_epochs: 5
+
+  # Phase 1b: Fine-tune on clinical dataset
+  finetune:
+    epochs: 50
+    batch_size: 8
+    learning_rate: 0.0001          # 10x lower than pretrain
+    optimizer: "AdamW"
+    weight_decay: 0.01
+    scheduler: "cosine_annealing"
+    warmup_epochs: 3
+    freeze_backbone_epochs: 5      # Freeze feature extractor initially
+
+  # Loss function
+  loss:
+    type: "focal_loss"             # Handles class imbalance
+    gamma: 2.0                     # Focus on hard examples
+    alpha: 0.75                    # Weight for fracture class (minority)
+
+  # Early stopping
+  early_stopping:
+    monitor: "val_auc"
+    patience: 10
+    min_delta: 0.001
+    mode: "max"
+
+  # Checkpointing
+  checkpoint:
+    save_best: true
+    monitor: "val_auc"
+    save_every_n_epochs: 5
+
+# ============================================================================
+# FDA Validation Configuration
+# ============================================================================
+# These thresholds are based on FDA-cleared predicate devices:
+#   - Aidoc Pelvic Fracture: 97% sensitivity (K231953)
+#   - GLEAMER BoneView: 94% sensitivity (K213454)
+#   - Target: ≥90% sensitivity, ≥85% specificity (FDA minimum for 510(k))
+# ============================================================================
+validation:
+  # Performance thresholds (must meet ALL for FDA submission)
+  thresholds:
+    sensitivity_min: 0.90          # True positive rate
+    specificity_min: 0.85          # True negative rate
+    auc_min: 0.92                  # Area under ROC curve
+    npv_min: 0.95                  # Negative predictive value (critical: don't miss fractures)
+
+  # Statistical requirements
+  statistics:
+    confidence_interval: 0.95      # 95% CI for all metrics
+    method: "wilson_score"         # CI calculation method
+    power_analysis:
+      target_power: 0.80
+      significance: 0.05
+
+  # Multi-reader multi-case (MRMC) study design
+  # Required for FDA 510(k) submission
+  reader_study:
+    num_readers: 5                 # Minimum 3, recommend 5
+    reader_types:
+      - "board_certified_radiologist"
+      - "trauma_surgeon"
+      - "emergency_physician"
+    cases_per_reader: 200          # From held-out test set
+    blinding: "double_blind"       # Reader cannot see AI output during baseline
+    washout_period_weeks: 4        # Between read sessions
+
+  # Subgroup analysis (FDA requires demographic breakdown)
+  subgroups:
+    - "age_under_50"
+    - "age_50_to_70"
+    - "age_over_70"
+    - "male"
+    - "female"
+    - "fracture_displaced"
+    - "fracture_nondisplaced"
+    - "fracture_comminuted"
+    - "scanner_manufacturer"
+
+  # Metrics to compute
+  metrics:
+    - "sensitivity"
+    - "specificity"
+    - "auc_roc"
+    - "auc_prc"                    # Precision-recall curve
+    - "positive_predictive_value"
+    - "negative_predictive_value"
+    - "f1_score"
+    - "accuracy"
+    - "cohen_kappa"                # Inter-rater agreement
+    - "confusion_matrix"
+    - "calibration_curve"
+
+# ============================================================================
+# Classification Taxonomy (Phase 1 labels)
+# ============================================================================
+classification:
+  # Phase 1: Binary detection
+  phase1:
+    classes:
+      - "no_fracture"
+      - "fracture"
+
+  # Phase 2 (Coming Soon): Young-Burgess Classification
+  phase2_young_burgess:
+    classes:
+      - "APC_I"      # Anteroposterior Compression Type I
+      - "APC_II"     # Anteroposterior Compression Type II
+      - "APC_III"    # Anteroposterior Compression Type III
+      - "LC_I"       # Lateral Compression Type I
+      - "LC_II"      # Lateral Compression Type II
+      - "LC_III"     # Lateral Compression Type III
+      - "VS"         # Vertical Shear
+      - "CM"         # Combined Mechanism
+
+  # Phase 2 (Coming Soon): AO/OTA Classification
+  phase2_ao_ota:
+    classes:
+      - "61-A"       # Stable
+      - "61-B"       # Rotationally unstable, vertically stable
+      - "61-C"       # Rotationally and vertically unstable
+
+  # Phase 3 (Coming Soon): Stability Assessment
+  phase3_stability:
+    classes:
+      - "stable"
+      - "rotationally_unstable"
+      - "vertically_unstable"
+      - "combined_instability"

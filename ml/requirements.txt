@@ -1,0 +1,36 @@
+# PelvicScan AI - ML Pipeline Dependencies
+# Phase 1: Pelvic Fracture Detection
+
+# Core ML Framework
+torch>=2.1.0
+torchvision>=0.16.0
+
+# Medical Imaging
+monai>=1.3.0
+nibabel>=5.2.0
+SimpleITK>=2.3.0
+pydicom>=2.4.0
+dicom2nifti>=2.4.0
+
+# Data Processing
+numpy>=1.24.0
+scipy>=1.11.0
+pandas>=2.1.0
+scikit-learn>=1.3.0
+scikit-image>=0.22.0
+
+# Visualization & Reporting
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Model Architectures
+timm>=0.9.0
+segmentation-models-pytorch>=0.3.3
+
+# Experiment Tracking
+tensorboard>=2.15.0
+
+# Utilities
+tqdm>=4.66.0
+pyyaml>=6.0.1
+python-dotenv>=1.0.0

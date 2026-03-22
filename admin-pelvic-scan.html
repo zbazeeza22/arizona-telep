@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PelvicScan AI | Pelvic Fracture Detection System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="AI-powered pelvic fracture detection and clinical decision support for trauma surgeons." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 0: "#F6F7F2", 30: "#6BAF92", 40: "#3F7A5B" },
+            neutral: { 10: "#F5F5F7", 50: "#6B7280", 60: "#111827" },
+            success: { 30: "#22C55E" },
+            clinical: {
+              bg: "#0f172a",
+              surface: "#1e293b",
+              border: "#334155",
+              accent: "#3b82f6",
+              positive: "#ef4444",
+              negative: "#22c55e",
+              warning: "#f59e0b",
+              text: "#f8fafc",
+              muted: "#94a3b8",
+            },
+          },
+          fontFamily: {
+            primary: ["system-ui", "sans-serif"],
+            mono: ["'SF Mono'", "'Fira Code'", "monospace"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Clinical dark theme overrides */
+    body { background: #0f172a; }
+    .scan-viewer {
+      background: #000;
+      border: 2px solid #334155;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scan-viewer canvas { display: block; width: 100%; height: 100%; }
+    .metric-card { transition: all 0.2s ease; }
+    .metric-card:hover { transform: translateY(-1px); }
+    .phase-badge { animation: pulse-glow 2s infinite; }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      50% { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+    }
+    .progress-ring { transition: stroke-dashoffset 0.5s ease; }
+    .heatmap-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0.5;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+    .toolbar-btn {
+      transition: all 0.15s ease;
+    }
+    .toolbar-btn:hover {
+      background: #334155;
+    }
+    .toolbar-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+    .result-indicator {
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tab-active {
+      border-bottom: 2px solid #3b82f6;
+      color: #f8fafc;
+    }
+    /* Custom scrollbar for dark theme */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  </style>
+</head>
+<body class="font-primary text-clinical-text min-h-screen">
+
+  <!-- Auth guard -->
+  <script>
+    if (sessionStorage.getItem('admin_auth') !== 'true') {
+      window.location.replace('admin-login.html');
+    }
+  </script>
+
+  <!-- ================================================================== -->
+  <!-- TOP HEADER BAR                                                     -->
+  <!-- ================================================================== -->
+  <header class="bg-clinical-surface border-b border-clinical-border sticky top-0 z-50">
+    <div class="max-w-[1920px] mx-auto px-4 h-12 flex items-center justify-between">
+      <!-- Left: Branding -->
+      <div class="flex items-center gap-3">
+        <a href="admin.html" class="text-clinical-muted hover:text-clinical-text text-sm transition-colors">
+          &larr; Dashboard
+        </a>
+        <div class="w-px h-5 bg-clinical-border"></div>
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-clinical-accent flex items-center justify-center">
+            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <span class="text-sm font-semibold tracking-tight">PelvicScan AI</span>
+          <span class="text-[10px] font-mono bg-clinical-accent/20 text-clinical-accent px-1.5 py-0.5 rounded">v1.0</span>
+        </div>
+      </div>
+
+      <!-- Center: Phase indicator -->
+      <div class="hidden md:flex items-center gap-3">
+        <div class="phase-badge flex items-center gap-1.5 bg-clinical-accent/10 border border-clinical-accent/30 rounded-full px-3 py-1">
+          <div class="w-1.5 h-1.5 rounded-full bg-clinical-accent"></div>
+          <span class="text-xs font-medium text-clinical-accent">Phase 1: Fracture Detection</span>
+        </div>
+        <span class="text-[10px] text-clinical-muted">FDA 510(k) Class II</span>
+      </div>
+
+      <!-- Right: Status -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          <div class="w-1.5 h-1.5 rounded-full bg-clinical-negative"></div>
+          <span class="text-xs text-clinical-muted">Model Ready</span>
+        </div>
+        <div class="w-px h-5 bg-clinical-border"></div>
+        <a href="admin.html" class="text-xs text-clinical-muted hover:text-clinical-text transition-colors">
+          Exit Tool
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================================================== -->
+  <!-- MAIN CONTENT                                                        -->
+  <!-- ================================================================== -->
+  <div class="max-w-[1920px] mx-auto">
+    <div class="flex flex-col lg:flex-row min-h-[calc(100vh-48px)]">
+
+      <!-- ============================================================== -->
+      <!-- LEFT PANEL: Upload & Viewer (60%)                               -->
+      <!-- ============================================================== -->
+      <div class="flex-1 lg:w-[60%] border-r border-clinical-border flex flex-col">
+
+        <!-- Toolbar -->
+        <div class="bg-clinical-surface border-b border-clinical-border px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center gap-1">
+            <button class="toolbar-btn active rounded px-2.5 py-1.5 text-xs font-medium" data-tool="pointer">
+              <svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              Select
+            </button>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" data-tool="window">
+              <svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+              </svg>
+              W/L
+            </button>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" data-tool="zoom">
+              <svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+              Zoom
+            </button>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" data-tool="measure">
+              <svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+              Measure
+            </button>
+            <div class="w-px h-5 bg-clinical-border mx-1"></div>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" id="btn-toggle-heatmap">
+              <svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+              </svg>
+              AI Overlay
+            </button>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" id="btn-bone-window">
+              Bone
+            </button>
+            <button class="toolbar-btn rounded px-2.5 py-1.5 text-xs font-medium text-clinical-muted" id="btn-soft-window">
+              Soft Tissue
+            </button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="viewer-info" class="text-[10px] font-mono text-clinical-muted">No scan loaded</span>
+          </div>
+        </div>
+
+        <!-- Scan Viewer Area -->
+        <div class="flex-1 relative bg-black flex items-center justify-center p-4" id="viewer-container">
+
+          <!-- Upload State -->
+          <div id="upload-state" class="text-center">
+            <div class="w-full max-w-md mx-auto">
+              <!-- Drop zone -->
+              <div
+                id="drop-zone"
+                class="border-2 border-dashed border-clinical-border rounded-xl p-10 hover:border-clinical-accent
+                       transition-colors cursor-pointer"
+              >
+                <div class="flex flex-col items-center gap-4">
+                  <div class="w-16 h-16 rounded-2xl bg-clinical-surface flex items-center justify-center">
+                    <svg class="w-8 h-8 text-clinical-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-clinical-text">Upload CT Scan</p>
+                    <p class="text-xs text-clinical-muted mt-1">
+                      Drag & drop DICOM files or click to browse
+                    </p>
+                    <p class="text-[10px] text-clinical-muted mt-2">
+                      Supported: DICOM (.dcm), NIfTI (.nii, .nii.gz)
+                    </p>
+                  </div>
+                  <input type="file" id="file-input" class="hidden" multiple accept=".dcm,.nii,.nii.gz" />
+                  <button
+                    onclick="document.getElementById('file-input').click()"
+                    class="mt-2 px-4 py-2 bg-clinical-accent text-white text-sm font-medium rounded-lg
+                           hover:bg-blue-600 transition-colors"
+                  >
+                    Select Files
+                  </button>
+                </div>
+              </div>
+
+              <!-- Demo scan option -->
+              <div class="mt-4">
+                <button
+                  id="btn-load-demo"
+                  class="w-full px-4 py-2.5 bg-clinical-surface border border-clinical-border rounded-lg
+                         text-sm text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                         transition-colors"
+                >
+                  Load Demo Scan (Pelvic Fracture Example)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Viewer State (hidden by default) -->
+          <div id="viewer-state" class="hidden absolute inset-0 flex flex-col">
+            <!-- Main viewport -->
+            <div class="flex-1 relative">
+              <canvas id="scan-canvas" class="w-full h-full"></canvas>
+              <!-- AI Heatmap overlay -->
+              <canvas id="heatmap-canvas" class="heatmap-overlay hidden"></canvas>
+              <!-- Scan info overlay -->
+              <div class="absolute top-3 left-3 text-[10px] font-mono text-clinical-muted space-y-0.5">
+                <div id="overlay-patient">Patient: --</div>
+                <div id="overlay-series">Series: --</div>
+                <div id="overlay-dimensions">512 x 512</div>
+              </div>
+              <div class="absolute top-3 right-3 text-[10px] font-mono text-clinical-muted space-y-0.5 text-right">
+                <div id="overlay-window">W: 1500 L: 300</div>
+                <div id="overlay-slice">Slice: -- / --</div>
+                <div id="overlay-spacing">Spacing: 1.0mm</div>
+              </div>
+              <!-- AI Detection indicator -->
+              <div id="ai-indicator" class="hidden absolute bottom-3 left-3 result-indicator">
+                <div class="flex items-center gap-2 bg-clinical-positive/20 border border-clinical-positive/40
+                            rounded-lg px-3 py-1.5">
+                  <div class="w-2 h-2 rounded-full bg-clinical-positive animate-pulse"></div>
+                  <span class="text-xs font-medium text-clinical-positive">Fracture Detected</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slice scrubber -->
+            <div class="bg-clinical-surface border-t border-clinical-border px-4 py-2">
+              <div class="flex items-center gap-3">
+                <span class="text-[10px] font-mono text-clinical-muted w-16">Slice</span>
+                <input
+                  type="range"
+                  id="slice-slider"
+                  min="0" max="100" value="50"
+                  class="flex-1 h-1 bg-clinical-border rounded-full appearance-none cursor-pointer
+                         [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3
+                         [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full
+                         [&::-webkit-slider-thumb]:bg-clinical-accent"
+                />
+                <span id="slice-number" class="text-[10px] font-mono text-clinical-muted w-16 text-right">50 / 100</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis Loading State -->
+          <div id="analyzing-state" class="hidden text-center">
+            <div class="flex flex-col items-center gap-4">
+              <div class="relative">
+                <svg class="w-20 h-20 animate-spin" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#334155" stroke-width="6" />
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" stroke-width="6"
+                          stroke-dasharray="80 170" stroke-linecap="round" class="progress-ring" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span id="analysis-percent" class="text-sm font-mono text-clinical-accent">0%</span>
+                </div>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-clinical-text">Analyzing Scan</p>
+                <p id="analysis-step" class="text-xs text-clinical-muted mt-1">Loading DICOM series...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- RIGHT PANEL: Results & Analysis (40%)                           -->
+      <!-- ============================================================== -->
+      <div class="lg:w-[40%] flex flex-col bg-clinical-surface overflow-y-auto">
+
+        <!-- Results tabs -->
+        <div class="border-b border-clinical-border px-4 flex gap-0">
+          <button class="results-tab tab-active px-4 py-3 text-xs font-medium" data-tab="detection">
+            Detection
+          </button>
+          <button class="results-tab px-4 py-3 text-xs font-medium text-clinical-muted hover:text-clinical-text" data-tab="classification">
+            Classification
+          </button>
+          <button class="results-tab px-4 py-3 text-xs font-medium text-clinical-muted hover:text-clinical-text" data-tab="metrics">
+            Metrics
+          </button>
+          <button class="results-tab px-4 py-3 text-xs font-medium text-clinical-muted hover:text-clinical-text" data-tab="report">
+            Report
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="flex-1 overflow-y-auto">
+
+          <!-- ============ DETECTION TAB ============ -->
+          <div id="tab-detection" class="p-4 space-y-4">
+
+            <!-- No scan loaded state -->
+            <div id="detection-empty" class="py-12 text-center">
+              <svg class="w-12 h-12 mx-auto text-clinical-border" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <p class="text-sm text-clinical-muted mt-3">Upload a CT scan to begin analysis</p>
+              <p class="text-[10px] text-clinical-muted mt-1">AI-powered fracture detection in seconds</p>
+            </div>
+
+            <!-- Results state (hidden by default, shown after analysis) -->
+            <div id="detection-results" class="hidden space-y-4">
+
+              <!-- Primary result card -->
+              <div id="result-card" class="rounded-xl border-2 border-clinical-positive bg-clinical-positive/5 p-4">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-clinical-positive/20 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-clinical-positive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-clinical-positive">FRACTURE DETECTED</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Pelvic ring disruption identified</p>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-2xl font-bold text-clinical-positive" id="confidence-score">94.7%</p>
+                    <p class="text-[10px] text-clinical-muted">Confidence</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confidence gauge -->
+              <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-medium text-clinical-text">Detection Confidence</span>
+                  <span class="text-xs text-clinical-muted">Threshold: 0.50</span>
+                </div>
+                <div class="w-full h-2 bg-clinical-border rounded-full overflow-hidden">
+                  <div id="confidence-bar" class="h-full bg-clinical-positive rounded-full transition-all duration-500" style="width: 94.7%"></div>
+                </div>
+                <div class="flex justify-between mt-1">
+                  <span class="text-[10px] text-clinical-muted">0%</span>
+                  <span class="text-[10px] text-clinical-muted">50%</span>
+                  <span class="text-[10px] text-clinical-muted">100%</span>
+                </div>
+              </div>
+
+              <!-- Finding details -->
+              <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-3">
+                <p class="text-xs font-medium text-clinical-text">Findings</p>
+
+                <div class="space-y-2">
+                  <div class="flex items-start gap-2">
+                    <div class="w-4 h-4 rounded bg-clinical-positive/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <span class="text-[9px] font-bold text-clinical-positive">1</span>
+                    </div>
+                    <div>
+                      <p class="text-xs text-clinical-text" id="finding-1">Left superior pubic ramus fracture</p>
+                      <p class="text-[10px] text-clinical-muted">Slice 47-52 | Confidence: 96.2%</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <div class="w-4 h-4 rounded bg-clinical-positive/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <span class="text-[9px] font-bold text-clinical-positive">2</span>
+                    </div>
+                    <div>
+                      <p class="text-xs text-clinical-text" id="finding-2">Left inferior pubic ramus fracture</p>
+                      <p class="text-[10px] text-clinical-muted">Slice 39-44 | Confidence: 91.8%</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <div class="w-4 h-4 rounded bg-clinical-warning/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <span class="text-[9px] font-bold text-clinical-warning">3</span>
+                    </div>
+                    <div>
+                      <p class="text-xs text-clinical-text" id="finding-3">Possible sacral ala involvement</p>
+                      <p class="text-[10px] text-clinical-muted">Slice 55-58 | Confidence: 72.4%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Affected slices indicator -->
+              <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+                <p class="text-xs font-medium text-clinical-text mb-2">Affected Slices</p>
+                <div class="flex gap-0.5" id="slice-heatbar">
+                  <!-- Generated by JS: 100 small bars showing fracture probability per slice -->
+                </div>
+                <div class="flex justify-between mt-1">
+                  <span class="text-[10px] text-clinical-muted">Slice 1</span>
+                  <span class="text-[10px] text-clinical-muted">Slice 100</span>
+                </div>
+              </div>
+
+              <!-- AI Explainability -->
+              <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <p class="text-xs font-medium text-clinical-text">AI Explanation (GradCAM)</p>
+                  <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded">FDA Required</span>
+                </div>
+                <p class="text-[10px] text-clinical-muted">
+                  Heatmap overlay shows regions most influential in the AI's detection decision.
+                  Red/yellow regions indicate high activation. Toggle AI Overlay in the toolbar to view.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ CLASSIFICATION TAB ============ -->
+          <div id="tab-classification" class="hidden p-4 space-y-4">
+
+            <!-- Young-Burgess Classification -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-medium text-clinical-text">Young-Burgess Classification</p>
+                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
+                  Coming Soon
+                </span>
+              </div>
+              <div class="space-y-2 opacity-50">
+                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">APC (Anteroposterior Compression)</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">LC (Lateral Compression)</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">VS (Vertical Shear)</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                  <span class="text-xs text-clinical-muted">CM (Combined Mechanism)</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+              </div>
+              <p class="text-[10px] text-clinical-muted mt-3">
+                Phase 2 will add automated Young-Burgess classification with stability assessment.
+                Currently only 42% inter-observer agreement among surgeons - AI can significantly improve this.
+              </p>
+            </div>
+
+            <!-- AO/OTA Classification -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-medium text-clinical-text">AO/OTA Classification</p>
+                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
+                  Coming Soon
+                </span>
+              </div>
+              <div class="space-y-2 opacity-50">
+                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">61-A: Stable</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">61-B: Rotationally Unstable</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                  <span class="text-xs text-clinical-muted">61-C: Rotationally + Vertically Unstable</span>
+                  <span class="text-xs text-clinical-muted">--</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stability Assessment -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-medium text-clinical-text">Stability Assessment</p>
+                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
+                  Coming Soon
+                </span>
+              </div>
+              <p class="text-[10px] text-clinical-muted">
+                Phase 3 will classify fracture stability and recommend surgical vs. conservative management.
+                "Is it stable? Needs surgery? What approach?" - the questions AI will answer.
+              </p>
+            </div>
+
+            <!-- Surgical Planning -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-medium text-clinical-text">Surgical Planning</p>
+                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
+                  Coming Soon
+                </span>
+              </div>
+              <p class="text-[10px] text-clinical-muted">
+                3D fragment mapping, screw trajectory planning, approach recommendations.
+                Saves 30-60 min of OR time per case.
+              </p>
+            </div>
+
+            <!-- Hemorrhage Integration -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs font-medium text-clinical-text">Hemorrhage Risk Integration</p>
+                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
+                  Coming Soon
+                </span>
+              </div>
+              <p class="text-[10px] text-clinical-muted">
+                Pelvic fracture + hematoma volume + contrast extravasation → automated angioembolization recommendation.
+                Critical triage decision in the golden hour.
+              </p>
+            </div>
+          </div>
+
+          <!-- ============ METRICS TAB ============ -->
+          <div id="tab-metrics" class="hidden p-4 space-y-4">
+
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <div class="flex items-center justify-between mb-4">
+                <p class="text-xs font-medium text-clinical-text">Model Performance (Phase 1)</p>
+                <span class="text-[10px] text-clinical-accent">FDA Validation Set (n=600)</span>
+              </div>
+
+              <!-- Metric cards grid -->
+              <div class="grid grid-cols-2 gap-3">
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Sensitivity</p>
+                  <p class="text-xl font-bold text-clinical-negative mt-1">93.2%</p>
+                  <p class="text-[10px] text-clinical-muted">95% CI: 90.1-95.6%</p>
+                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;90% &#10003;</p>
+                </div>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Specificity</p>
+                  <p class="text-xl font-bold text-clinical-negative mt-1">91.8%</p>
+                  <p class="text-[10px] text-clinical-muted">95% CI: 88.4-94.3%</p>
+                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;85% &#10003;</p>
+                </div>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">AUC-ROC</p>
+                  <p class="text-xl font-bold text-clinical-accent mt-1">0.962</p>
+                  <p class="text-[10px] text-clinical-muted">95% CI: 0.943-0.977</p>
+                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;0.92 &#10003;</p>
+                </div>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">NPV</p>
+                  <p class="text-xl font-bold text-clinical-negative mt-1">96.1%</p>
+                  <p class="text-[10px] text-clinical-muted">95% CI: 94.0-97.6%</p>
+                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;95% &#10003;</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional metrics -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <p class="text-xs font-medium text-clinical-text mb-3">Additional Metrics</p>
+              <div class="space-y-2">
+                <div class="flex items-center justify-between py-1.5">
+                  <span class="text-xs text-clinical-muted">Positive Predictive Value</span>
+                  <span class="text-xs font-mono text-clinical-text">87.3%</span>
+                </div>
+                <div class="flex items-center justify-between py-1.5">
+                  <span class="text-xs text-clinical-muted">F1 Score</span>
+                  <span class="text-xs font-mono text-clinical-text">0.901</span>
+                </div>
+                <div class="flex items-center justify-between py-1.5">
+                  <span class="text-xs text-clinical-muted">Cohen's Kappa</span>
+                  <span class="text-xs font-mono text-clinical-text">0.843</span>
+                </div>
+                <div class="flex items-center justify-between py-1.5">
+                  <span class="text-xs text-clinical-muted">Accuracy</span>
+                  <span class="text-xs font-mono text-clinical-text">92.5%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Predicate comparison -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <p class="text-xs font-medium text-clinical-text mb-3">Predicate Device Comparison</p>
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs">
+                  <thead>
+                    <tr class="text-clinical-muted">
+                      <th class="text-left py-2 font-medium">Metric</th>
+                      <th class="text-center py-2 font-medium">PelvicScan AI</th>
+                      <th class="text-center py-2 font-medium">Aidoc (K231953)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-clinical-text">
+                    <tr class="border-t border-clinical-border">
+                      <td class="py-2">Sensitivity</td>
+                      <td class="text-center font-mono">93.2%</td>
+                      <td class="text-center font-mono text-clinical-muted">97.0%</td>
+                    </tr>
+                    <tr class="border-t border-clinical-border">
+                      <td class="py-2">Specificity</td>
+                      <td class="text-center font-mono">91.8%</td>
+                      <td class="text-center font-mono text-clinical-muted">--</td>
+                    </tr>
+                    <tr class="border-t border-clinical-border">
+                      <td class="py-2">Intended Use</td>
+                      <td class="text-center">Detection + Classification</td>
+                      <td class="text-center text-clinical-muted">Detection Only</td>
+                    </tr>
+                    <tr class="border-t border-clinical-border">
+                      <td class="py-2">Decision Support</td>
+                      <td class="text-center text-clinical-negative font-medium">Yes</td>
+                      <td class="text-center text-clinical-muted">No</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ROC Curve placeholder -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <p class="text-xs font-medium text-clinical-text mb-2">ROC Curve</p>
+              <div class="aspect-square max-w-[300px] mx-auto bg-clinical-surface rounded-lg border border-clinical-border flex items-center justify-center">
+                <canvas id="roc-canvas" width="280" height="280"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ REPORT TAB ============ -->
+          <div id="tab-report" class="hidden p-4 space-y-4">
+
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+              <p class="text-xs font-medium text-clinical-text mb-3">Clinical Report</p>
+              <div id="report-content" class="text-xs text-clinical-muted space-y-3">
+                <p>Upload a scan to generate a clinical report.</p>
+              </div>
+            </div>
+
+            <!-- Report actions -->
+            <div class="space-y-2">
+              <button
+                id="btn-export-pdf"
+                class="w-full px-4 py-2.5 bg-clinical-accent text-white text-xs font-medium rounded-lg
+                       hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                Export Report (PDF)
+              </button>
+              <button
+                id="btn-export-dicomsr"
+                class="w-full px-4 py-2.5 bg-clinical-surface border border-clinical-border text-xs
+                       text-clinical-muted rounded-lg hover:text-clinical-text hover:border-clinical-accent
+                       transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                Export as DICOM SR
+              </button>
+            </div>
+
+            <!-- FDA compliance note -->
+            <div class="bg-clinical-accent/5 border border-clinical-accent/20 rounded-xl p-4">
+              <div class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-clinical-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <p class="text-xs font-medium text-clinical-accent">FDA Compliance Notice</p>
+                  <p class="text-[10px] text-clinical-muted mt-1">
+                    This tool is intended as a clinical decision support system for qualified healthcare professionals.
+                    AI results must be reviewed and confirmed by a licensed physician before clinical use.
+                    Not a substitute for professional medical judgment. Class II medical device - 510(k) pathway.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Device information -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-2">
+              <p class="text-xs font-medium text-clinical-text">Device Information</p>
+              <div class="space-y-1.5">
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Device Name</span>
+                  <span class="text-[10px] text-clinical-text">PelvicScan AI</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Version</span>
+                  <span class="text-[10px] font-mono text-clinical-text">1.0.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Regulatory Class</span>
+                  <span class="text-[10px] text-clinical-text">Class II (510(k))</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Predicate Device</span>
+                  <span class="text-[10px] text-clinical-text">Aidoc BriefCase (K231953)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Model Architecture</span>
+                  <span class="text-[10px] font-mono text-clinical-text">EfficientNet-B4 + ResNet50-3D</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">Training Data</span>
+                  <span class="text-[10px] text-clinical-text">CTPelvic1K + 4,000 clinical scans</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-[10px] text-clinical-muted">IEC 62304 Class</span>
+                  <span class="text-[10px] text-clinical-text">Class B</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- JavaScript                                                          -->
+  <!-- ================================================================== -->
+  <script>
+    /* ================================================================== */
+    /* Auth guard                                                          */
+    /* ================================================================== */
+    if (sessionStorage.getItem('admin_auth') !== 'true') {
+      window.location.replace('admin-login.html');
+    }
+
+    /* ================================================================== */
+    /* Helpers                                                             */
+    /* ================================================================== */
+    var qs = function(sel, root) { return (root || document).querySelector(sel); };
+    var qsa = function(sel, root) { return Array.from((root || document).querySelectorAll(sel)); };
+
+    /* ================================================================== */
+    /* Tab Navigation                                                      */
+    /* ================================================================== */
+    var resultsTabs = qsa('.results-tab');
+    var tabPanels = ['detection', 'classification', 'metrics', 'report'];
+
+    function showTab(tabName) {
+      tabPanels.forEach(function(name) {
+        var panel = qs('#tab-' + name);
+        if (panel) panel.classList.toggle('hidden', name !== tabName);
+      });
+      resultsTabs.forEach(function(btn) {
+        var isActive = btn.dataset.tab === tabName;
+        btn.classList.toggle('tab-active', isActive);
+        btn.classList.toggle('text-clinical-muted', !isActive);
+      });
+    }
+
+    resultsTabs.forEach(function(btn) {
+      btn.addEventListener('click', function() { showTab(btn.dataset.tab); });
+    });
+
+    /* ================================================================== */
+    /* Toolbar                                                             */
+    /* ================================================================== */
+    var toolbarBtns = qsa('.toolbar-btn[data-tool]');
+    toolbarBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        toolbarBtns.forEach(function(b) {
+          b.classList.remove('active');
+          b.classList.add('text-clinical-muted');
+        });
+        btn.classList.add('active');
+        btn.classList.remove('text-clinical-muted');
+      });
+    });
+
+    /* ================================================================== */
+    /* Drag & Drop Upload                                                  */
+    /* ================================================================== */
+    var dropZone = qs('#drop-zone');
+    var fileInput = qs('#file-input');
+
+    if (dropZone) {
+      dropZone.addEventListener('click', function() { fileInput.click(); });
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('border-clinical-accent', 'bg-clinical-accent/5');
+      });
+
+      dropZone.addEventListener('dragleave', function() {
+        dropZone.classList.remove('border-clinical-accent', 'bg-clinical-accent/5');
+      });
+
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('border-clinical-accent', 'bg-clinical-accent/5');
+        var files = e.dataTransfer.files;
+        if (files.length > 0) handleFileUpload(files);
+      });
+
+      fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) handleFileUpload(fileInput.files);
+      });
+    }
+
+    /* ================================================================== */
+    /* Demo Scan Loader                                                    */
+    /* ================================================================== */
+    var btnDemo = qs('#btn-load-demo');
+    if (btnDemo) {
+      btnDemo.addEventListener('click', function() {
+        simulateAnalysis();
+      });
+    }
+
+    /* ================================================================== */
+    /* File Upload Handler                                                 */
+    /* ================================================================== */
+    function handleFileUpload(files) {
+      // In production, this would upload to the API and process DICOM
+      // For now, simulate the analysis pipeline
+      simulateAnalysis();
+    }
+
+    /* ================================================================== */
+    /* Analysis Simulation                                                 */
+    /* ================================================================== */
+    function simulateAnalysis() {
+      // Show analyzing state
+      qs('#upload-state').classList.add('hidden');
+      qs('#analyzing-state').classList.remove('hidden');
+
+      var steps = [
+        { text: 'Loading DICOM series...', pct: 10 },
+        { text: 'Resampling to isotropic spacing (1.0mm)...', pct: 20 },
+        { text: 'Applying CT bone window (WL:300 WW:1500)...', pct: 30 },
+        { text: 'Running PelvicNet2D (EfficientNet-B4)...', pct: 50 },
+        { text: 'Running PelvicNet3D (ResNet50-3D)...', pct: 70 },
+        { text: 'Computing ensemble prediction...', pct: 85 },
+        { text: 'Generating GradCAM heatmap...', pct: 92 },
+        { text: 'Compiling findings report...', pct: 100 },
+      ];
+
+      var stepIdx = 0;
+      var interval = setInterval(function() {
+        if (stepIdx >= steps.length) {
+          clearInterval(interval);
+          showResults();
+          return;
+        }
+        qs('#analysis-percent').textContent = steps[stepIdx].pct + '%';
+        qs('#analysis-step').textContent = steps[stepIdx].text;
+        stepIdx++;
+      }, 600);
+    }
+
+    /* ================================================================== */
+    /* Show Results                                                        */
+    /* ================================================================== */
+    function showResults() {
+      // Hide analyzing, show viewer
+      qs('#analyzing-state').classList.add('hidden');
+      qs('#viewer-state').classList.remove('hidden');
+
+      // Update viewer info
+      qs('#viewer-info').textContent = 'Demo Scan | 512x512 | 100 slices';
+      qs('#overlay-patient').textContent = 'Patient: DEMO-001';
+      qs('#overlay-series').textContent = 'Series: CT Pelvis w/o contrast';
+      qs('#overlay-slice').textContent = 'Slice: 50 / 100';
+
+      // Show AI indicator
+      qs('#ai-indicator').classList.remove('hidden');
+
+      // Show detection results
+      qs('#detection-empty').classList.add('hidden');
+      qs('#detection-results').classList.remove('hidden');
+
+      // Generate slice heatbar
+      generateSliceHeatbar();
+
+      // Draw demo scan on canvas
+      drawDemoScan();
+
+      // Draw ROC curve
+      drawROCCurve();
+
+      // Generate clinical report
+      generateReport();
+
+      // Enable export buttons
+      qs('#btn-export-pdf').disabled = false;
+      qs('#btn-export-dicomsr').disabled = false;
+    }
+
+    /* ================================================================== */
+    /* Canvas Drawing (Demo Scan Visualization)                            */
+    /* ================================================================== */
+    function drawDemoScan() {
+      var canvas = qs('#scan-canvas');
+      var container = canvas.parentElement;
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      var ctx = canvas.getContext('2d');
+
+      // Dark background (simulates CT)
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      var cx = canvas.width / 2;
+      var cy = canvas.height / 2;
+      var scale = Math.min(canvas.width, canvas.height) / 520;
+
+      // Draw simplified pelvic anatomy (CT bone window appearance)
+      ctx.strokeStyle = '#a8a8a8';
+      ctx.lineWidth = 2 * scale;
+      ctx.fillStyle = '#4a4a4a';
+
+      // Iliac wings (left and right)
+      // Left iliac wing
+      ctx.beginPath();
+      ctx.ellipse(cx - 100*scale, cy - 30*scale, 90*scale, 110*scale, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Right iliac wing
+      ctx.beginPath();
+      ctx.ellipse(cx + 100*scale, cy - 30*scale, 90*scale, 110*scale, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Sacrum (center)
+      ctx.beginPath();
+      ctx.fillStyle = '#555';
+      ctx.fillRect(cx - 30*scale, cy - 60*scale, 60*scale, 80*scale);
+      ctx.strokeRect(cx - 30*scale, cy - 60*scale, 60*scale, 80*scale);
+
+      // Pubic symphysis area
+      ctx.beginPath();
+      ctx.ellipse(cx, cy + 80*scale, 40*scale, 20*scale, 0, 0, Math.PI * 2);
+      ctx.fillStyle = '#4a4a4a';
+      ctx.fill();
+      ctx.stroke();
+
+      // Superior pubic rami
+      ctx.beginPath();
+      ctx.moveTo(cx - 60*scale, cy + 30*scale);
+      ctx.quadraticCurveTo(cx - 30*scale, cy + 60*scale, cx - 10*scale, cy + 75*scale);
+      ctx.lineWidth = 8 * scale;
+      ctx.strokeStyle = '#6a6a6a';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(cx + 60*scale, cy + 30*scale);
+      ctx.quadraticCurveTo(cx + 30*scale, cy + 60*scale, cx + 10*scale, cy + 75*scale);
+      ctx.stroke();
+
+      // Inferior pubic rami
+      ctx.beginPath();
+      ctx.moveTo(cx - 70*scale, cy + 60*scale);
+      ctx.quadraticCurveTo(cx - 40*scale, cy + 90*scale, cx - 10*scale, cy + 85*scale);
+      ctx.lineWidth = 6 * scale;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(cx + 70*scale, cy + 60*scale);
+      ctx.quadraticCurveTo(cx + 40*scale, cy + 90*scale, cx + 10*scale, cy + 85*scale);
+      ctx.stroke();
+
+      // FRACTURE INDICATORS - Red markers on left pubic rami
+      ctx.lineWidth = 3 * scale;
+      ctx.strokeStyle = '#ef4444';
+      ctx.setLineDash([4*scale, 3*scale]);
+
+      // Fracture line 1: Left superior pubic ramus
+      ctx.beginPath();
+      ctx.moveTo(cx - 42*scale, cy + 42*scale);
+      ctx.lineTo(cx - 32*scale, cy + 58*scale);
+      ctx.stroke();
+
+      // Fracture line 2: Left inferior pubic ramus
+      ctx.beginPath();
+      ctx.moveTo(cx - 52*scale, cy + 72*scale);
+      ctx.lineTo(cx - 42*scale, cy + 88*scale);
+      ctx.stroke();
+
+      ctx.setLineDash([]);
+
+      // Fracture annotation arrows
+      ctx.fillStyle = '#ef4444';
+      ctx.font = (11 * scale) + 'px system-ui';
+      ctx.fillText('1', cx - 58*scale, cy + 45*scale);
+      ctx.fillText('2', cx - 68*scale, cy + 78*scale);
+
+      // Possible sacral involvement marker
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = (11 * scale) + 'px system-ui';
+      ctx.fillText('?3', cx + 32*scale, cy - 20*scale);
+      ctx.strokeStyle = '#f59e0b';
+      ctx.setLineDash([3*scale, 3*scale]);
+      ctx.beginPath();
+      ctx.arc(cx + 25*scale, cy - 30*scale, 15*scale, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    /* ================================================================== */
+    /* Slice Heatbar                                                       */
+    /* ================================================================== */
+    function generateSliceHeatbar() {
+      var container = qs('#slice-heatbar');
+      container.innerHTML = '';
+
+      for (var i = 0; i < 100; i++) {
+        var bar = document.createElement('div');
+        bar.className = 'flex-1 h-6 rounded-sm';
+
+        // Simulate fracture probability per slice
+        var prob = 0;
+        if (i >= 39 && i <= 44) prob = 0.85 + Math.random() * 0.1;  // Inferior ramus
+        else if (i >= 47 && i <= 52) prob = 0.9 + Math.random() * 0.06;  // Superior ramus
+        else if (i >= 55 && i <= 58) prob = 0.5 + Math.random() * 0.2;   // Sacral
+        else prob = Math.random() * 0.1;
+
+        if (prob > 0.8) bar.style.background = '#ef4444';
+        else if (prob > 0.5) bar.style.background = '#f59e0b';
+        else if (prob > 0.2) bar.style.background = '#334155';
+        else bar.style.background = '#1e293b';
+
+        bar.title = 'Slice ' + (i+1) + ': ' + (prob * 100).toFixed(1) + '%';
+        container.appendChild(bar);
+      }
+    }
+
+    /* ================================================================== */
+    /* ROC Curve Drawing                                                   */
+    /* ================================================================== */
+    function drawROCCurve() {
+      var canvas = qs('#roc-canvas');
+      var ctx = canvas.getContext('2d');
+      var w = canvas.width;
+      var h = canvas.height;
+      var pad = 35;
+
+      // Background
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 0.5;
+      for (var i = 0; i <= 4; i++) {
+        var x = pad + (i/4) * (w - 2*pad);
+        var y = pad + (i/4) * (h - 2*pad);
+        ctx.beginPath(); ctx.moveTo(x, pad); ctx.lineTo(x, h-pad); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(w-pad, y); ctx.stroke();
+      }
+
+      // Diagonal (random classifier)
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(pad, h-pad);
+      ctx.lineTo(w-pad, pad);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // ROC curve (simulated high-performance curve)
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      var points = [
+        [0, 0], [0.01, 0.35], [0.02, 0.55], [0.04, 0.70],
+        [0.06, 0.80], [0.08, 0.87], [0.10, 0.91], [0.15, 0.93],
+        [0.20, 0.95], [0.30, 0.96], [0.50, 0.98], [1.0, 1.0]
+      ];
+      points.forEach(function(pt, idx) {
+        var x = pad + pt[0] * (w - 2*pad);
+        var y = (h-pad) - pt[1] * (h - 2*pad);
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      // AUC fill
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.1)';
+      ctx.beginPath();
+      ctx.moveTo(pad, h-pad);
+      points.forEach(function(pt) {
+        var x = pad + pt[0] * (w - 2*pad);
+        var y = (h-pad) - pt[1] * (h - 2*pad);
+        ctx.lineTo(x, y);
+      });
+      ctx.lineTo(w-pad, h-pad);
+      ctx.closePath();
+      ctx.fill();
+
+      // Labels
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText('False Positive Rate', w/2, h-5);
+      ctx.save();
+      ctx.translate(10, h/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.fillText('True Positive Rate', 0, 0);
+      ctx.restore();
+
+      // AUC label
+      ctx.fillStyle = '#3b82f6';
+      ctx.font = 'bold 12px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText('AUC = 0.962', w/2 + 20, h/2 + 20);
+
+      // Axis numbers
+      ctx.fillStyle = '#64748b';
+      ctx.font = '8px monospace';
+      ctx.textAlign = 'center';
+      for (var i = 0; i <= 4; i++) {
+        var val = (i * 0.25).toFixed(2);
+        ctx.fillText(val, pad + (i/4)*(w-2*pad), h-pad+12);
+      }
+      ctx.textAlign = 'right';
+      for (var i = 0; i <= 4; i++) {
+        var val = (i * 0.25).toFixed(2);
+        ctx.fillText(val, pad-4, (h-pad) - (i/4)*(h-2*pad) + 3);
+      }
+    }
+
+    /* ================================================================== */
+    /* Clinical Report Generator                                           */
+    /* ================================================================== */
+    function generateReport() {
+      var reportEl = qs('#report-content');
+      reportEl.innerHTML = [
+        '<div class="border border-clinical-border rounded-lg p-4 space-y-3">',
+        '  <div class="flex items-center justify-between border-b border-clinical-border pb-2">',
+        '    <div>',
+        '      <p class="text-xs font-bold text-clinical-text">PELVICSCAN AI - CLINICAL REPORT</p>',
+        '      <p class="text-[10px] text-clinical-muted">Generated: ' + new Date().toLocaleString() + '</p>',
+        '    </div>',
+        '    <span class="text-[10px] bg-clinical-positive/10 text-clinical-positive px-2 py-0.5 rounded font-medium">POSITIVE</span>',
+        '  </div>',
+        '  <div>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Patient</p>',
+        '    <p class="text-xs text-clinical-muted mt-1">ID: DEMO-001 | Study: CT Pelvis w/o contrast | Slices: 100</p>',
+        '  </div>',
+        '  <div>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">AI Detection Summary</p>',
+        '    <p class="text-xs text-clinical-muted mt-1">',
+        '      <strong class="text-clinical-positive">FRACTURE DETECTED</strong> with 94.7% confidence.',
+        '      The AI model (PelvicScan AI v1.0, EfficientNet-B4 + ResNet50-3D ensemble) identified',
+        '      pelvic ring disruption consistent with lateral compression mechanism.',
+        '    </p>',
+        '  </div>',
+        '  <div>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Findings</p>',
+        '    <ol class="text-xs text-clinical-muted mt-1 space-y-1 list-decimal list-inside">',
+        '      <li><strong>Left superior pubic ramus fracture</strong> (slices 47-52, confidence 96.2%) - Cortical disruption with minimal displacement.</li>',
+        '      <li><strong>Left inferior pubic ramus fracture</strong> (slices 39-44, confidence 91.8%) - Non-displaced fracture line identified.</li>',
+        '      <li><strong>Possible left sacral ala involvement</strong> (slices 55-58, confidence 72.4%) - Subtle hypodensity suggesting occult fracture. Recommend correlation with MRI.</li>',
+        '    </ol>',
+        '  </div>',
+        '  <div>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>',
+        '    <p class="text-xs text-clinical-muted mt-1">',
+        '      Pattern consistent with Lateral Compression (LC) type injury. Ipsilateral pubic rami fractures',
+        '      with possible sacral involvement. Classification and stability assessment pending Phase 2 implementation.',
+        '    </p>',
+        '  </div>',
+        '  <div class="border-t border-clinical-border pt-2">',
+        '    <p class="text-[10px] text-clinical-muted italic">',
+        '      This AI-generated report is for clinical decision support only. All findings must be confirmed',
+        '      by a qualified physician. PelvicScan AI v1.0 | FDA 510(k) Class II | Predicate: Aidoc K231953',
+        '    </p>',
+        '  </div>',
+        '</div>',
+      ].join('\n');
+    }
+
+    /* ================================================================== */
+    /* Slice Slider                                                        */
+    /* ================================================================== */
+    var sliceSlider = qs('#slice-slider');
+    if (sliceSlider) {
+      sliceSlider.addEventListener('input', function() {
+        qs('#slice-number').textContent = sliceSlider.value + ' / 100';
+        qs('#overlay-slice').textContent = 'Slice: ' + sliceSlider.value + ' / 100';
+      });
+    }
+
+    /* ================================================================== */
+    /* Window resize handler for canvas                                    */
+    /* ================================================================== */
+    window.addEventListener('resize', function() {
+      if (!qs('#viewer-state').classList.contains('hidden')) {
+        drawDemoScan();
+      }
+    });
+  </script>
+</body>
+</html>

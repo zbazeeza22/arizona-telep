@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Login | Arizona Telepsychiatry Clinic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 0: "#F6F7F2", 30: "#6BAF92", 40: "#3F7A5B" },
+            neutral: { 10: "#F5F5F7", 50: "#6B7280", 60: "#111827" },
+          },
+          fontFamily: {
+            primary: ["system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="font-primary bg-primary-0 text-neutral-600 min-h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-sm mx-auto px-4">
+    <a href="index.html" class="text-sm text-primary-30 hover:text-primary-40 mb-6 inline-block">
+      &larr; Back to home
+    </a>
+
+    <div class="bg-white rounded-xl border shadow-sm p-6 space-y-6">
+      <div>
+        <h1 class="text-xl font-semibold text-neutral-900">Admin Access</h1>
+        <p class="text-sm text-neutral-500 mt-1">Enter the admin password to continue.</p>
+      </div>
+
+      <form id="admin-login-form" class="space-y-4">
+        <div>
+          <label for="admin-password" class="block text-sm font-medium text-neutral-700">
+            Password
+          </label>
+          <input
+            type="password"
+            id="admin-password"
+            name="password"
+            autocomplete="off"
+            required
+            class="mt-1 block w-full rounded-md border border-neutral-200 px-3 py-2.5 text-sm
+                   text-neutral-900 placeholder-neutral-400
+                   focus:border-primary-30 focus:outline-none focus:ring-1 focus:ring-primary-30"
+            placeholder="Enter password"
+          />
+        </div>
+
+        <p id="login-error" class="text-sm text-red-600 hidden">
+          Incorrect password. Please try again.
+        </p>
+
+        <button
+          type="submit"
+          class="w-full rounded-md bg-primary-30 px-4 py-2.5 text-sm font-medium text-white
+                 hover:bg-primary-40 transition-colors"
+        >
+          Sign In
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-xs text-neutral-500 mt-6">
+      Arizona Telepsychiatry Clinic &mdash; Internal Use Only
+    </p>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('admin_auth') === 'true') {
+      window.location.replace('admin.html');
+    }
+
+    var form = document.getElementById('admin-login-form');
+    var passwordInput = document.getElementById('admin-password');
+    var errorMsg = document.getElementById('login-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errorMsg.classList.add('hidden');
+
+      if (passwordInput.value === '1160') {
+        sessionStorage.setItem('admin_auth', 'true');
+        window.location.replace('admin.html');
+      } else {
+        errorMsg.classList.remove('hidden');
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Dashboard | Arizona Telepsychiatry Clinic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 0: "#F6F7F2", 30: "#6BAF92", 40: "#3F7A5B" },
+            neutral: { 10: "#F5F5F7", 50: "#6B7280", 60: "#111827" },
+            success: { 30: "#22C55E" },
+          },
+          fontFamily: {
+            primary: ["system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+  </style>
+</head>
+<body class="font-primary bg-primary-0 text-neutral-600 min-h-screen">
+
+  <!-- Auth guard - runs before any content renders -->
+  <script>
+    if (sessionStorage.getItem('admin_auth') !== 'true') {
+      window.location.replace('admin-login.html');
+    }
+  </script>
+
+  <!-- Header -->
+  <header class="bg-white border-b sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="text-sm text-primary-30 hover:text-primary-40">
+          &larr; Back to site
+        </a>
+        <span class="text-sm font-semibold text-neutral-900">Admin Dashboard</span>
+      </div>
+      <button
+        id="admin-logout"
+        class="text-sm text-neutral-500 hover:text-red-600 transition-colors"
+      >
+        Sign Out
+      </button>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+
+    <!-- Sidebar -->
+    <aside class="w-full md:w-56 flex-shrink-0">
+      <nav class="bg-white rounded-xl border shadow-sm overflow-hidden">
+        <ul class="flex md:flex-col overflow-x-auto md:overflow-x-visible">
+          <li>
+            <button
+              class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium
+                     hover:bg-primary-0 transition-colors whitespace-nowrap
+                     border-b border-neutral-100"
+              data-panel="redirects"
+            >
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10.172 13.828a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.102 1.101" />
+                </svg>
+                Redirects &amp; Links
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium
+                     hover:bg-primary-0 transition-colors whitespace-nowrap
+                     border-b border-neutral-100"
+              data-panel="blogs"
+            >
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Blogs &amp; Research
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium
+                     hover:bg-primary-0 transition-colors whitespace-nowrap"
+              data-panel="pelvic-scan"
+            >
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Pelvic Scan Tool
+              </span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content area -->
+    <main class="flex-1 min-w-0">
+
+      <!-- Panel: Redirects & Links -->
+      <section id="panel-redirects" class="admin-section active">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Redirects &amp; Links</h2>
+          <p class="text-sm text-neutral-500 mt-1">Quick access to external resources and tools.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- EHR & Clinical -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-2">
+                EHR &amp; Clinical
+              </p>
+              <div class="space-y-2">
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center justify-between rounded-lg border px-4 py-3
+                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                  <div>
+                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">EHR System Login</p>
+                    <p class="text-xs text-neutral-500">Electronic Health Records portal</p>
+                  </div>
+                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Insurance & Billing -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-2">
+                Insurance &amp; Billing
+              </p>
+              <div class="space-y-2">
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center justify-between rounded-lg border px-4 py-3
+                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                  <div>
+                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Billing Portal</p>
+                    <p class="text-xs text-neutral-500">Insurance claims and billing management</p>
+                  </div>
+                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Scheduling -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-2">
+                Scheduling &amp; Communication
+              </p>
+              <div class="space-y-2">
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center justify-between rounded-lg border px-4 py-3
+                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                  <div>
+                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Scheduling System</p>
+                    <p class="text-xs text-neutral-500">Appointment management</p>
+                  </div>
+                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <p class="text-xs text-neutral-400 mt-6">Update links by editing admin.html directly.</p>
+        </div>
+      </section>
+
+      <!-- Panel: Blogs & Research -->
+      <section id="panel-blogs" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Blogs &amp; Research</h2>
+          <p class="text-sm text-neutral-500 mt-1">Research references, blog drafts, and clinical resources.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Published Articles -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">
+                Published Articles
+              </p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <a href="article-adhd-symptoms-adults.html"
+                   class="rounded-lg border p-4 hover:border-primary-30 transition-colors">
+                  <p class="text-sm font-medium text-neutral-900">Common ADHD Symptoms in Adults</p>
+                  <p class="text-xs text-neutral-500 mt-1">Published on site</p>
+                </a>
+                <a href="article-adult-adhd-arizona.html"
+                   class="rounded-lg border p-4 hover:border-primary-30 transition-colors">
+                  <p class="text-sm font-medium text-neutral-900">Adult ADHD Treatment in Arizona</p>
+                  <p class="text-xs text-neutral-500 mt-1">Published on site</p>
+                </a>
+                <a href="article-adhd-women-afab.html"
+                   class="rounded-lg border p-4 hover:border-primary-30 transition-colors">
+                  <p class="text-sm font-medium text-neutral-900">ADHD in Women &amp; AFAB Adults</p>
+                  <p class="text-xs text-neutral-500 mt-1">Published on site</p>
+                </a>
+                <a href="article-prepare-online-visit.html"
+                   class="rounded-lg border p-4 hover:border-primary-30 transition-colors">
+                  <p class="text-sm font-medium text-neutral-900">Prepare for Your First Online Visit</p>
+                  <p class="text-xs text-neutral-500 mt-1">Published on site</p>
+                </a>
+              </div>
+            </div>
+
+            <!-- Research & References -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">
+                Research &amp; References
+              </p>
+              <div class="rounded-xl bg-primary-0 p-5">
+                <p class="text-sm text-neutral-600">
+                  Add research links, clinical guidelines, and reference materials here.
+                </p>
+                <div class="mt-4 space-y-2">
+                  <div class="flex items-center justify-between rounded-lg bg-white border px-4 py-3">
+                    <div>
+                      <p class="text-sm font-medium text-neutral-900">ADHD Clinical Practice Guidelines</p>
+                      <p class="text-xs text-neutral-500">Reference material</p>
+                    </div>
+                    <span class="text-xs text-neutral-400">Add link</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel: Pelvic Scan Tool -->
+      <section id="panel-pelvic-scan" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="text-lg font-semibold text-neutral-900">Pelvic Scan Tool</h2>
+              <p class="text-sm text-neutral-500 mt-1">
+                Clinical tool for pelvic ultrasound scan documentation and analysis.
+              </p>
+            </div>
+            <span class="text-xs rounded-full bg-yellow-100 text-yellow-800 px-2.5 py-1 font-medium">
+              Coming Soon
+            </span>
+          </div>
+
+          <div class="mt-6 rounded-xl bg-primary-0 p-6 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-primary-30/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-neutral-900">Pelvic Scan Documentation Tool</p>
+                <p class="text-xs text-neutral-500">
+                  This tool will help with documenting and analyzing pelvic ultrasound scans.
+                </p>
+              </div>
+            </div>
+
+            <div class="border-t border-neutral-200 pt-4">
+              <p class="text-sm text-neutral-600">
+                <strong class="text-neutral-900">Planned features:</strong>
+              </p>
+              <ul class="mt-2 text-sm text-neutral-600 space-y-1.5">
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-30 mt-0.5">&#9679;</span>
+                  Structured input form for scan measurements and findings
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-30 mt-0.5">&#9679;</span>
+                  Normal range reference values
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-30 mt-0.5">&#9679;</span>
+                  Summary generation for clinical documentation
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-30 mt-0.5">&#9679;</span>
+                  Printable report output
+                </li>
+              </ul>
+            </div>
+
+            <p class="text-xs text-neutral-400 pt-2">
+              This section will be expanded with a full interactive tool in a future update.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    /* Auth guard (redundant safety check) */
+    if (sessionStorage.getItem('admin_auth') !== 'true') {
+      window.location.replace('admin-login.html');
+    }
+
+    var qs = function (sel, root) { return (root || document).querySelector(sel); };
+    var qsa = function (sel, root) { return Array.from((root || document).querySelectorAll(sel)); };
+
+    /* Sidebar navigation */
+    var navBtns = qsa('.admin-nav-btn');
+    var panels = qsa('.admin-section');
+
+    function showPanel(panelId) {
+      panels.forEach(function (p) { p.classList.remove('active'); });
+      var target = qs('#panel-' + panelId);
+      if (target) target.classList.add('active');
+
+      navBtns.forEach(function (btn) {
+        var isActive = btn.dataset.panel === panelId;
+        btn.classList.toggle('bg-primary-0', isActive);
+        btn.classList.toggle('text-primary-40', isActive);
+      });
+    }
+
+    navBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () { showPanel(btn.dataset.panel); });
+    });
+
+    showPanel('redirects');
+
+    /* Sign Out */
+    qs('#admin-logout').addEventListener('click', function () {
+      sessionStorage.removeItem('admin_auth');
+      window.location.replace('admin-login.html');
+    });
+  </script>
+</body>
+</html>

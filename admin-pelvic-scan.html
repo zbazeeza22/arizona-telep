@@ -117,7 +117,7 @@
             </svg>
           </div>
           <span class="text-sm font-semibold tracking-tight">PelvicScan AI</span>
-          <span class="text-[10px] font-mono bg-clinical-accent/20 text-clinical-accent px-1.5 py-0.5 rounded">v1.0</span>
+          <span class="text-[10px] font-mono bg-clinical-accent/20 text-clinical-accent px-1.5 py-0.5 rounded">v0.1-dev</span>
         </div>
       </div>
 
@@ -127,14 +127,14 @@
           <div class="w-1.5 h-1.5 rounded-full bg-clinical-accent"></div>
           <span class="text-xs font-medium text-clinical-accent">Phase 1: Fracture Detection</span>
         </div>
-        <span class="text-[10px] text-clinical-muted">FDA 510(k) Class II</span>
+        <span class="text-[10px] text-yellow-400 font-medium">PRE-SUBMISSION PROTOTYPE</span>
       </div>
 
       <!-- Right: Status -->
       <div class="flex items-center gap-3">
         <div class="flex items-center gap-1.5">
-          <div class="w-1.5 h-1.5 rounded-full bg-clinical-negative"></div>
-          <span class="text-xs text-clinical-muted">Model Ready</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></div>
+          <span class="text-xs text-yellow-400">Demo Mode</span>
         </div>
         <div class="w-px h-5 bg-clinical-border"></div>
         <a href="admin.html" class="text-xs text-clinical-muted hover:text-clinical-text transition-colors">
@@ -356,11 +356,20 @@
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               <p class="text-sm text-clinical-muted mt-3">Upload a CT scan to begin analysis</p>
-              <p class="text-[10px] text-clinical-muted mt-1">AI-powered fracture detection in seconds</p>
+              <p class="text-[10px] text-clinical-muted mt-1">Upload a scan to see the demo workflow</p>
             </div>
 
             <!-- Results state (hidden by default, shown after analysis) -->
             <div id="detection-results" class="hidden space-y-4">
+
+              <!-- DEMO BANNER -->
+              <div class="bg-yellow-400/10 border border-yellow-400/30 rounded-xl p-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
+                  <p class="text-xs font-semibold text-yellow-400">SIMULATED DEMO RESULTS</p>
+                </div>
+                <p class="text-[10px] text-yellow-400/80 mt-1">No AI model was run. These results are hardcoded examples showing how the tool would display findings once the model is trained and validated.</p>
+              </div>
 
               <!-- Primary result card -->
               <div id="result-card" class="rounded-xl border-2 border-clinical-positive bg-clinical-positive/5 p-4">
@@ -451,7 +460,7 @@
               <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
                 <div class="flex items-center justify-between mb-2">
                   <p class="text-xs font-medium text-clinical-text">AI Explanation (GradCAM)</p>
-                  <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded">FDA Required</span>
+                  <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded">Planned for FDA</span>
                 </div>
                 <p class="text-[10px] text-clinical-muted">
                   Heatmap overlay shows regions most influential in the AI's detection decision.
@@ -492,7 +501,7 @@
               </div>
               <p class="text-[10px] text-clinical-muted mt-3">
                 Phase 2 will add automated Young-Burgess classification with stability assessment.
-                Currently only 42% inter-observer agreement among surgeons - AI can significantly improve this.
+                Low inter-observer agreement among surgeons for complex fracture classification. AI-assisted classification is a research target.
               </p>
             </div>
 
@@ -544,7 +553,7 @@
               </div>
               <p class="text-[10px] text-clinical-muted">
                 3D fragment mapping, screw trajectory planning, approach recommendations.
-                Saves 30-60 min of OR time per case.
+                Planned feature to assist pre-operative planning.
               </p>
             </div>
 
@@ -566,123 +575,110 @@
           <!-- ============ METRICS TAB ============ -->
           <div id="tab-metrics" class="hidden p-4 space-y-4">
 
+            <!-- DEMO BANNER -->
+            <div class="bg-yellow-400/10 border border-yellow-400/30 rounded-xl p-3">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
+                <p class="text-xs font-semibold text-yellow-400">NO MODEL TRAINED YET</p>
+              </div>
+              <p class="text-[10px] text-yellow-400/80 mt-1">The ML pipeline has been built but has not been executed on any training or validation data. All numbers below are targets based on FDA guidance and published literature — not measured results.</p>
+            </div>
+
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
               <div class="flex items-center justify-between mb-4">
-                <p class="text-xs font-medium text-clinical-text">Model Performance (Phase 1)</p>
-                <span class="text-[10px] text-clinical-accent">FDA Validation Set (n=600)</span>
+                <p class="text-xs font-medium text-clinical-text">Performance Targets (Phase 1)</p>
+                <span class="text-[10px] text-yellow-400 font-medium">NOT YET VALIDATED</span>
               </div>
 
-              <!-- Metric cards grid -->
+              <!-- Target cards grid -->
               <div class="grid grid-cols-2 gap-3">
-                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
-                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Sensitivity</p>
-                  <p class="text-xl font-bold text-clinical-negative mt-1">97.3%</p>
-                  <p class="text-[10px] text-clinical-muted">95% CI: 95.8-98.4%</p>
-                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;90% &#10003;</p>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-yellow-400/20">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Sensitivity Target</p>
+                  <p class="text-xl font-bold text-clinical-muted mt-1">&ge;90%</p>
+                  <p class="text-[10px] text-clinical-muted">Based on predicate benchmark</p>
+                  <p class="text-[10px] text-yellow-400 mt-1">Pending validation</p>
                 </div>
-                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
-                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Specificity</p>
-                  <p class="text-xl font-bold text-clinical-negative mt-1">95.1%</p>
-                  <p class="text-[10px] text-clinical-muted">95% CI: 93.2-96.7%</p>
-                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;85% &#10003;</p>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-yellow-400/20">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">Specificity Target</p>
+                  <p class="text-xl font-bold text-clinical-muted mt-1">&ge;85%</p>
+                  <p class="text-[10px] text-clinical-muted">Clinically meaningful threshold</p>
+                  <p class="text-[10px] text-yellow-400 mt-1">Pending validation</p>
                 </div>
-                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
-                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">AUC-ROC</p>
-                  <p class="text-xl font-bold text-clinical-accent mt-1">0.982</p>
-                  <p class="text-[10px] text-clinical-muted">95% CI: 0.974-0.989</p>
-                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;0.92 &#10003;</p>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-yellow-400/20">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">AUC-ROC Target</p>
+                  <p class="text-xl font-bold text-clinical-muted mt-1">&ge;0.92</p>
+                  <p class="text-[10px] text-clinical-muted">Above median for cleared devices</p>
+                  <p class="text-[10px] text-yellow-400 mt-1">Pending validation</p>
                 </div>
-                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-clinical-border">
-                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">NPV</p>
-                  <p class="text-xl font-bold text-clinical-negative mt-1">98.2%</p>
-                  <p class="text-[10px] text-clinical-muted">95% CI: 97.1-99.0%</p>
-                  <p class="text-[10px] text-clinical-negative mt-1">FDA req: &ge;95% &#10003;</p>
+                <div class="metric-card bg-clinical-surface rounded-lg p-3 border border-yellow-400/20">
+                  <p class="text-[10px] text-clinical-muted uppercase tracking-wide">NPV Target</p>
+                  <p class="text-xl font-bold text-clinical-muted mt-1">&ge;95%</p>
+                  <p class="text-[10px] text-clinical-muted">Minimize missed fractures</p>
+                  <p class="text-[10px] text-yellow-400 mt-1">Pending validation</p>
                 </div>
               </div>
             </div>
 
-            <!-- Additional metrics -->
+            <!-- Published literature benchmarks -->
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
-              <p class="text-xs font-medium text-clinical-text mb-3">Additional Metrics</p>
+              <p class="text-xs font-medium text-clinical-text mb-3">Published Literature Benchmarks</p>
+              <p class="text-[10px] text-clinical-muted mb-3">Real results from peer-reviewed studies — not our results.</p>
               <div class="space-y-2">
-                <div class="flex items-center justify-between py-1.5">
-                  <span class="text-xs text-clinical-muted">Positive Predictive Value</span>
-                  <span class="text-xs font-mono text-clinical-text">87.3%</span>
+                <div class="flex items-center justify-between py-1.5 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">Best CT pelvic AUC (Ukai et al., 2021)</span>
+                  <span class="text-xs font-mono text-clinical-text">0.824</span>
+                </div>
+                <div class="flex items-center justify-between py-1.5 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">Best CT pelvic sensitivity (Ukai et al.)</span>
+                  <span class="text-xs font-mono text-clinical-text">80.5%</span>
+                </div>
+                <div class="flex items-center justify-between py-1.5 border-b border-clinical-border">
+                  <span class="text-xs text-clinical-muted">FracSegNet bone Dice (MICCAI 2023)</span>
+                  <span class="text-xs font-mono text-clinical-text">99.38%</span>
                 </div>
                 <div class="flex items-center justify-between py-1.5">
-                  <span class="text-xs text-clinical-muted">F1 Score</span>
-                  <span class="text-xs font-mono text-clinical-text">0.901</span>
-                </div>
-                <div class="flex items-center justify-between py-1.5">
-                  <span class="text-xs text-clinical-muted">Cohen's Kappa</span>
-                  <span class="text-xs font-mono text-clinical-text">0.843</span>
-                </div>
-                <div class="flex items-center justify-between py-1.5">
-                  <span class="text-xs text-clinical-muted">Accuracy</span>
-                  <span class="text-xs font-mono text-clinical-text">92.5%</span>
+                  <span class="text-xs text-clinical-muted">PENGWIN fragment IoU (MIC-DKFZ, 2024)</span>
+                  <span class="text-xs font-mono text-clinical-text">0.930</span>
                 </div>
               </div>
             </div>
 
-            <!-- Predicate comparison -->
+            <!-- Market landscape -->
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
-              <p class="text-xs font-medium text-clinical-text mb-3">Predicate Device Comparison</p>
+              <p class="text-xs font-medium text-clinical-text mb-3">Market Landscape</p>
+              <p class="text-[10px] text-clinical-muted mb-3">Published data from FDA-cleared devices. These are not our results.</p>
               <div class="overflow-x-auto">
                 <table class="w-full text-xs">
                   <thead>
                     <tr class="text-clinical-muted">
-                      <th class="text-left py-2 font-medium">Metric</th>
-                      <th class="text-center py-2 font-medium">PelvicScan AI</th>
-                      <th class="text-center py-2 font-medium">Aidoc BriefCase</th>
-                      <th class="text-center py-2 font-medium">GLEAMER BoneView</th>
+                      <th class="text-left py-2 font-medium">Product</th>
+                      <th class="text-center py-2 font-medium">Status</th>
+                      <th class="text-center py-2 font-medium">Modality</th>
+                      <th class="text-center py-2 font-medium">Published Performance</th>
                     </tr>
                   </thead>
                   <tbody class="text-clinical-text">
                     <tr class="border-t border-clinical-border">
-                      <td class="py-2">Sensitivity</td>
-                      <td class="text-center font-mono text-clinical-negative font-medium">97.3%</td>
-                      <td class="text-center font-mono text-clinical-muted">97.0%</td>
-                      <td class="text-center font-mono text-clinical-muted">95.7%</td>
+                      <td class="py-2">Aidoc BriefCase CARE</td>
+                      <td class="text-center"><span class="text-[10px] bg-green-400/10 text-green-400 px-1.5 py-0.5 rounded">K252970</span></td>
+                      <td class="text-center">CT</td>
+                      <td class="text-center font-mono text-clinical-muted">~97% sens (avg across 11 conditions)*</td>
                     </tr>
                     <tr class="border-t border-clinical-border">
-                      <td class="py-2">Specificity</td>
-                      <td class="text-center font-mono text-clinical-negative font-medium">95.1%</td>
-                      <td class="text-center font-mono text-clinical-muted">98.0%</td>
-                      <td class="text-center font-mono text-clinical-muted">93.2%</td>
+                      <td class="py-2">GLEAMER BoneView</td>
+                      <td class="text-center"><span class="text-[10px] bg-green-400/10 text-green-400 px-1.5 py-0.5 rounded">K222176</span></td>
+                      <td class="text-center">X-ray</td>
+                      <td class="text-center font-mono text-clinical-muted">~90% pooled sens (meta-analysis)</td>
                     </tr>
                     <tr class="border-t border-clinical-border">
-                      <td class="py-2">AUC-ROC</td>
-                      <td class="text-center font-mono text-clinical-negative font-medium">0.982</td>
-                      <td class="text-center font-mono text-clinical-muted">0.96*</td>
-                      <td class="text-center font-mono text-clinical-muted">0.95*</td>
-                    </tr>
-                    <tr class="border-t border-clinical-border">
-                      <td class="py-2">Anatomy Focus</td>
-                      <td class="text-center font-medium">Pelvis Only</td>
-                      <td class="text-center text-clinical-muted">Multi-body</td>
-                      <td class="text-center text-clinical-muted">Multi-body</td>
-                    </tr>
-                    <tr class="border-t border-clinical-border">
-                      <td class="py-2">Modality</td>
-                      <td class="text-center font-medium">CT</td>
-                      <td class="text-center text-clinical-muted">CT</td>
-                      <td class="text-center text-clinical-muted">X-ray</td>
-                    </tr>
-                    <tr class="border-t border-clinical-border">
-                      <td class="py-2">GradCAM Heatmaps</td>
-                      <td class="text-center text-green-400 font-medium">&#10003;</td>
-                      <td class="text-center text-clinical-muted">&#10005;</td>
-                      <td class="text-center text-clinical-muted">&#10005;</td>
-                    </tr>
-                    <tr class="border-t border-clinical-border">
-                      <td class="py-2">510(k) Number</td>
-                      <td class="text-center text-yellow-400 text-[10px]">Pending</td>
-                      <td class="text-center text-clinical-muted">K252970</td>
-                      <td class="text-center text-clinical-muted">K222176</td>
+                      <td class="py-2 font-medium text-clinical-accent">PelvicScan AI</td>
+                      <td class="text-center"><span class="text-[10px] bg-yellow-400/10 text-yellow-400 px-1.5 py-0.5 rounded">Not submitted</span></td>
+                      <td class="text-center">CT</td>
+                      <td class="text-center font-mono text-yellow-400">Not yet measured</td>
                     </tr>
                   </tbody>
                 </table>
-                <p class="text-[10px] text-clinical-muted mt-2">* Estimated from published literature. Performance targets validated on internal clinical dataset (n=4,000).</p>
+                <p class="text-[10px] text-clinical-muted mt-2">* Aidoc's 97% sensitivity is a mean across 11 conditions (not pelvic-specific). Pelvic-specific data not publicly available. GLEAMER operates on X-ray, not CT.</p>
               </div>
             </div>
 
@@ -690,7 +686,11 @@
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
               <p class="text-xs font-medium text-clinical-text mb-2">ROC Curve</p>
               <div class="aspect-square max-w-[300px] mx-auto bg-clinical-surface rounded-lg border border-clinical-border flex items-center justify-center">
-                <canvas id="roc-canvas" width="280" height="280"></canvas>
+                <div class="text-center p-4">
+                  <p class="text-xs text-clinical-muted">ROC curve will be generated</p>
+                  <p class="text-xs text-clinical-muted">after model training and validation.</p>
+                  <p class="text-[10px] text-yellow-400 mt-2">No model trained yet</p>
+                </div>
               </div>
             </div>
           </div>
@@ -734,11 +734,11 @@
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <p class="text-xs font-medium text-clinical-accent">FDA Compliance Notice</p>
+                  <p class="text-xs font-medium text-yellow-400">Prototype Notice</p>
                   <p class="text-[10px] text-clinical-muted mt-1">
-                    This tool is intended as a clinical decision support system for qualified healthcare professionals.
-                    AI results must be reviewed and confirmed by a licensed physician before clinical use.
-                    Not a substitute for professional medical judgment. Class II medical device - 510(k) pathway.
+                    This is a pre-submission prototype. No FDA clearance has been obtained.
+                    This tool does not perform real AI analysis. All results shown are simulated demo data.
+                    Not for clinical use. Not a medical device. 510(k) submission planned.
                   </p>
                 </div>
               </div>
@@ -746,7 +746,7 @@
 
             <!-- Device information -->
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-2">
-              <p class="text-xs font-medium text-clinical-text">Device Information</p>
+              <p class="text-xs font-medium text-clinical-text">Planned Device Information</p>
               <div class="space-y-1.5">
                 <div class="flex justify-between">
                   <span class="text-[10px] text-clinical-muted">Device Name</span>
@@ -754,27 +754,27 @@
                 </div>
                 <div class="flex justify-between">
                   <span class="text-[10px] text-clinical-muted">Version</span>
-                  <span class="text-[10px] font-mono text-clinical-text">1.0.0</span>
+                  <span class="text-[10px] font-mono text-yellow-400">0.1-dev (prototype)</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Regulatory Class</span>
-                  <span class="text-[10px] text-clinical-text">Class II (510(k))</span>
+                  <span class="text-[10px] text-clinical-muted">Regulatory Status</span>
+                  <span class="text-[10px] text-yellow-400">Pre-submission — no FDA clearance</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Predicate Device</span>
-                  <span class="text-[10px] text-clinical-text">Aidoc BriefCase (K231953)</span>
+                  <span class="text-[10px] text-clinical-muted">Target Predicate</span>
+                  <span class="text-[10px] text-clinical-text">Aidoc BriefCase CARE (K252970)</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Model Architecture</span>
+                  <span class="text-[10px] text-clinical-muted">Planned Architecture</span>
                   <span class="text-[10px] font-mono text-clinical-text">EfficientNet-B4 + ResNet50-3D</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Training Data</span>
-                  <span class="text-[10px] text-clinical-text">CTPelvic1K + 4,000 clinical scans</span>
+                  <span class="text-[10px] text-clinical-muted">Planned Training Data</span>
+                  <span class="text-[10px] text-clinical-text">CTPelvic1K + clinical scans (TBD)</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">IEC 62304 Class</span>
-                  <span class="text-[10px] text-clinical-text">Class B</span>
+                  <span class="text-[10px] text-clinical-muted">Target IEC 62304 Class</span>
+                  <span class="text-[10px] text-clinical-text">Class B (planned)</span>
                 </div>
               </div>
             </div>
@@ -1211,12 +1211,15 @@
         '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Patient</p>',
         '    <p class="text-xs text-clinical-muted mt-1">ID: DEMO-001 | Study: CT Pelvis w/o contrast | Slices: 100</p>',
         '  </div>',
+        '  <div class="bg-yellow-400/10 border border-yellow-400/30 rounded p-2 mb-2">',
+        '    <p class="text-[10px] font-bold text-yellow-400">SIMULATED DEMO — NOT REAL AI ANALYSIS</p>',
+        '    <p class="text-[10px] text-yellow-400/70">This report is generated from hardcoded demo data. No AI model was run on any scan.</p>',
+        '  </div>',
         '  <div>',
-        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">AI Detection Summary</p>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Demo Detection Summary</p>',
         '    <p class="text-xs text-clinical-muted mt-1">',
-        '      <strong class="text-clinical-positive">FRACTURE DETECTED</strong> with 94.7% confidence.',
-        '      The AI model (PelvicScan AI v1.0, EfficientNet-B4 + ResNet50-3D ensemble) identified',
-        '      pelvic ring disruption consistent with lateral compression mechanism.',
+        '      <strong class="text-clinical-positive">[DEMO] FRACTURE DETECTED</strong> — simulated result.',
+        '      This is an example of how PelvicScan AI would present findings once the model is trained.',
         '    </p>',
         '  </div>',
         '  <div>',
@@ -1237,7 +1240,7 @@
         '  <div class="border-t border-clinical-border pt-2">',
         '    <p class="text-[10px] text-clinical-muted italic">',
         '      This AI-generated report is for clinical decision support only. All findings must be confirmed',
-        '      by a qualified physician. PelvicScan AI v1.0 | FDA 510(k) Class II | Predicate: Aidoc K231953',
+        '      by a qualified physician. PelvicScan AI v0.1-dev | PROTOTYPE — NOT FDA CLEARED | Demo simulation only — not real AI analysis',
         '    </p>',
         '  </div>',
         '</div>',

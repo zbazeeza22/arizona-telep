@@ -10,7 +10,7 @@ project:
   version: "1.0.0"
   phase: "Phase 1 - Fracture Detection"
   regulatory_class: "Class II (510(k))"
-  predicate_device: "Aidoc BriefCase for Pelvic Fractures (K231953)"
+  predicate_device: "Aidoc BriefCase CARE Multi-Triage CT Body (K252970)"
 
 # ============================================================================
 # Dataset Configuration
@@ -160,8 +160,8 @@ training:
 # FDA Validation Configuration
 # ============================================================================
 # These thresholds are based on FDA-cleared predicate devices:
-#   - Aidoc Pelvic Fracture: 97% sensitivity (K231953)
-#   - GLEAMER BoneView: 94% sensitivity (K213454)
+#   - Aidoc BriefCase CARE: ~97% mean sensitivity across 11 conditions (K252970) — pelvic-specific data not public
+#   - GLEAMER BoneView: ~90% pooled sensitivity, X-ray only (K222176) — different modality
 #   - Target: ≥90% sensitivity, ≥85% specificity (FDA minimum for 510(k))
 # ============================================================================
 validation:

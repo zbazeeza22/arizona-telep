@@ -25,6 +25,97 @@
   <style>
     .admin-section { display: none; }
     .admin-section.active { display: block; }
+
+    /* Sidebar active indicator */
+    .admin-nav-btn { position: relative; }
+    .admin-nav-btn.nav-active {
+      background-color: #F6F7F2;
+      color: #3F7A5B;
+      font-weight: 600;
+    }
+    .admin-nav-btn.nav-active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background-color: #6BAF92;
+    }
+    @media (max-width: 767px) {
+      .admin-nav-btn.nav-active::before {
+        left: 4px; right: 4px; top: auto; bottom: 0;
+        width: auto; height: 3px;
+        border-radius: 3px 3px 0 0;
+      }
+    }
+
+    /* Configure URL badge */
+    .configure-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .configure-badge.unconfigured {
+      background-color: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+    .configure-badge.unconfigured:hover {
+      background-color: #FDE68A;
+    }
+    .configure-badge.configured {
+      background-color: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+    .configure-badge.configured:hover {
+      background-color: #A7F3D0;
+    }
+
+    /* Inline URL editor */
+    .url-editor {
+      display: none;
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+    }
+    .url-editor.open { display: flex; }
+    .url-editor input {
+      flex: 1;
+      min-width: 0;
+      padding: 6px 10px;
+      font-size: 13px;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .url-editor input:focus { border-color: #6BAF92; }
+    .url-editor button {
+      margin-left: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+    }
+    .url-editor .btn-save { background: #6BAF92; color: #fff; }
+    .url-editor .btn-save:hover { background: #3F7A5B; }
+    .url-editor .btn-cancel { background: #E5E7EB; color: #374151; }
+    .url-editor .btn-cancel:hover { background: #D1D5DB; }
   </style>
 </head>
 <body class="font-primary bg-primary-0 text-neutral-600 min-h-screen">
@@ -131,17 +222,27 @@
                 EHR &amp; Clinical
               </p>
               <div class="space-y-2">
-                <a href="#" target="_blank" rel="noopener noreferrer"
-                   class="flex items-center justify-between rounded-lg border px-4 py-3
-                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
-                  <div>
-                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">EHR System Login</p>
-                    <p class="text-xs text-neutral-500">Electronic Health Records portal</p>
+                <div class="configurable-link" data-link-key="admin_link_ehr">
+                  <a href="#" target="_blank" rel="noopener noreferrer"
+                     class="link-anchor flex items-center justify-between rounded-lg border px-4 py-3
+                            hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">EHR System Login</p>
+                      <p class="text-xs text-neutral-500">Electronic Health Records portal</p>
+                    </div>
+                    <div class="flex items-center gap-2 ml-3">
+                      <span class="configure-badge unconfigured" title="Click to set URL">Configure URL</span>
+                      <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </a>
+                  <div class="url-editor">
+                    <input type="url" placeholder="Paste URL here (e.g., https://ehr.example.com)" />
+                    <button class="btn-save">Save</button>
+                    <button class="btn-cancel">Cancel</button>
                   </div>
-                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                </div>
               </div>
             </div>
 
@@ -151,17 +252,27 @@
                 Insurance &amp; Billing
               </p>
               <div class="space-y-2">
-                <a href="#" target="_blank" rel="noopener noreferrer"
-                   class="flex items-center justify-between rounded-lg border px-4 py-3
-                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
-                  <div>
-                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Billing Portal</p>
-                    <p class="text-xs text-neutral-500">Insurance claims and billing management</p>
+                <div class="configurable-link" data-link-key="admin_link_billing">
+                  <a href="#" target="_blank" rel="noopener noreferrer"
+                     class="link-anchor flex items-center justify-between rounded-lg border px-4 py-3
+                            hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Billing Portal</p>
+                      <p class="text-xs text-neutral-500">Insurance claims and billing management</p>
+                    </div>
+                    <div class="flex items-center gap-2 ml-3">
+                      <span class="configure-badge unconfigured" title="Click to set URL">Configure URL</span>
+                      <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </a>
+                  <div class="url-editor">
+                    <input type="url" placeholder="Paste URL here (e.g., https://billing.example.com)" />
+                    <button class="btn-save">Save</button>
+                    <button class="btn-cancel">Cancel</button>
                   </div>
-                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                </div>
               </div>
             </div>
 
@@ -171,23 +282,36 @@
                 Scheduling &amp; Communication
               </p>
               <div class="space-y-2">
-                <a href="#" target="_blank" rel="noopener noreferrer"
-                   class="flex items-center justify-between rounded-lg border px-4 py-3
-                          hover:border-primary-30 hover:bg-primary-0 transition-colors group">
-                  <div>
-                    <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Scheduling System</p>
-                    <p class="text-xs text-neutral-500">Appointment management</p>
+                <div class="configurable-link" data-link-key="admin_link_scheduling">
+                  <a href="#" target="_blank" rel="noopener noreferrer"
+                     class="link-anchor flex items-center justify-between rounded-lg border px-4 py-3
+                            hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Scheduling System</p>
+                      <p class="text-xs text-neutral-500">Appointment management</p>
+                    </div>
+                    <div class="flex items-center gap-2 ml-3">
+                      <span class="configure-badge unconfigured" title="Click to set URL">Configure URL</span>
+                      <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </a>
+                  <div class="url-editor">
+                    <input type="url" placeholder="Paste URL here (e.g., https://schedule.example.com)" />
+                    <button class="btn-save">Save</button>
+                    <button class="btn-cancel">Cancel</button>
                   </div>
-                  <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                </div>
               </div>
             </div>
 
           </div>
 
-          <p class="text-xs text-neutral-400 mt-6">Update links by editing admin.html directly.</p>
+          <div class="mt-6 flex items-center justify-between">
+            <p class="text-xs text-neutral-400">Click "Configure URL" on any card above to set its destination.</p>
+            <p id="links-last-updated" class="text-xs text-neutral-400"></p>
+          </div>
         </div>
       </section>
 
@@ -235,16 +359,64 @@
               </p>
               <div class="rounded-xl bg-primary-0 p-5">
                 <p class="text-sm text-neutral-600">
-                  Add research links, clinical guidelines, and reference materials here.
+                  Clinical guidelines, regulatory references, and research materials.
                 </p>
                 <div class="mt-4 space-y-2">
-                  <div class="flex items-center justify-between rounded-lg bg-white border px-4 py-3">
+                  <a href="https://psychiatryonline.org/doi/book/10.1176/appi.books.9780890426838"
+                     target="_blank" rel="noopener noreferrer"
+                     class="flex items-center justify-between rounded-lg bg-white border px-4 py-3 hover:border-primary-30 transition-colors group">
                     <div>
-                      <p class="text-sm font-medium text-neutral-900">ADHD Clinical Practice Guidelines</p>
-                      <p class="text-xs text-neutral-500">Reference material</p>
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">ADHD Clinical Practice Guidelines &mdash; APA</p>
+                      <p class="text-xs text-neutral-500">American Psychiatric Association practice guidelines</p>
                     </div>
-                    <span class="text-xs text-neutral-400">Add link</span>
-                  </div>
+                    <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <a href="https://publications.aap.org/pediatrics/article/144/4/e20192528/81590"
+                     target="_blank" rel="noopener noreferrer"
+                     class="flex items-center justify-between rounded-lg bg-white border px-4 py-3 hover:border-primary-30 transition-colors group">
+                    <div>
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">AAP ADHD Guidelines for Children</p>
+                      <p class="text-xs text-neutral-500">American Academy of Pediatrics clinical guidance</p>
+                    </div>
+                    <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <a href="https://www.nice.org.uk/guidance/ng87"
+                     target="_blank" rel="noopener noreferrer"
+                     class="flex items-center justify-between rounded-lg bg-white border px-4 py-3 hover:border-primary-30 transition-colors group">
+                    <div>
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">NICE ADHD Guidelines</p>
+                      <p class="text-xs text-neutral-500">UK National Institute for Health and Care Excellence</p>
+                    </div>
+                    <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <a href="https://www.cdc.gov/adhd/"
+                     target="_blank" rel="noopener noreferrer"
+                     class="flex items-center justify-between rounded-lg bg-white border px-4 py-3 hover:border-primary-30 transition-colors group">
+                    <div>
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">CDC ADHD Information</p>
+                      <p class="text-xs text-neutral-500">Centers for Disease Control and Prevention</p>
+                    </div>
+                    <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <a href="https://www.azbn.gov/"
+                     target="_blank" rel="noopener noreferrer"
+                     class="flex items-center justify-between rounded-lg bg-white border px-4 py-3 hover:border-primary-30 transition-colors group">
+                    <div>
+                      <p class="text-sm font-medium text-neutral-900 group-hover:text-primary-40">Arizona Board of Nursing</p>
+                      <p class="text-xs text-neutral-500">State regulatory board &mdash; licensing and compliance</p>
+                    </div>
+                    <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
@@ -369,8 +541,10 @@
 
       navBtns.forEach(function (btn) {
         var isActive = btn.dataset.panel === panelId;
-        btn.classList.toggle('bg-primary-0', isActive);
-        btn.classList.toggle('text-primary-40', isActive);
+        btn.classList.remove('nav-active', 'bg-primary-0', 'text-primary-40');
+        if (isActive) {
+          btn.classList.add('nav-active');
+        }
       });
     }
 
@@ -385,6 +559,110 @@
       sessionStorage.removeItem('admin_auth');
       window.location.replace('admin-login.html');
     });
+
+    /* ── Configurable Links (localStorage) ── */
+
+    function updateLastUpdatedDisplay() {
+      var el = qs('#links-last-updated');
+      if (!el) return;
+      var ts = localStorage.getItem('admin_links_last_updated');
+      if (ts) {
+        var d = new Date(parseInt(ts, 10));
+        el.textContent = 'Last updated: ' + d.toLocaleDateString('en-US', {
+          month: 'short', day: 'numeric', year: 'numeric',
+          hour: 'numeric', minute: '2-digit'
+        });
+      }
+    }
+
+    function applyBadgeState(wrapper) {
+      var key = wrapper.dataset.linkKey;
+      var anchor = qs('.link-anchor', wrapper);
+      var badge = qs('.configure-badge', wrapper);
+      var saved = localStorage.getItem(key);
+
+      if (saved) {
+        anchor.href = saved;
+        badge.textContent = 'URL Set';
+        badge.title = saved;
+        badge.classList.remove('unconfigured');
+        badge.classList.add('configured');
+      } else {
+        anchor.href = '#';
+        badge.textContent = 'Configure URL';
+        badge.title = 'Click to set URL';
+        badge.classList.remove('configured');
+        badge.classList.add('unconfigured');
+      }
+    }
+
+    /* Initialize all configurable links from localStorage */
+    var linkWrappers = qsa('.configurable-link');
+    linkWrappers.forEach(function (wrapper) {
+      applyBadgeState(wrapper);
+
+      var badge = qs('.configure-badge', wrapper);
+      var editor = qs('.url-editor', wrapper);
+      var input = qs('.url-editor input', wrapper);
+      var btnSave = qs('.url-editor .btn-save', wrapper);
+      var btnCancel = qs('.url-editor .btn-cancel', wrapper);
+      var anchor = qs('.link-anchor', wrapper);
+
+      /* Clicking badge opens the editor */
+      badge.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        /* Close any other open editors first */
+        qsa('.url-editor.open').forEach(function (ed) { ed.classList.remove('open'); });
+        var saved = localStorage.getItem(wrapper.dataset.linkKey);
+        input.value = saved || '';
+        editor.classList.add('open');
+        input.focus();
+      });
+
+      /* Prevent clicks on the badge from navigating */
+      anchor.addEventListener('click', function (e) {
+        if (anchor.href === '#' || anchor.getAttribute('href') === '#') {
+          e.preventDefault();
+        }
+      });
+
+      /* Save */
+      btnSave.addEventListener('click', function () {
+        var url = input.value.trim();
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+          localStorage.setItem(wrapper.dataset.linkKey, url);
+          localStorage.setItem('admin_links_last_updated', Date.now().toString());
+          applyBadgeState(wrapper);
+          updateLastUpdatedDisplay();
+          editor.classList.remove('open');
+        } else if (url === '') {
+          /* Allow clearing */
+          localStorage.removeItem(wrapper.dataset.linkKey);
+          localStorage.setItem('admin_links_last_updated', Date.now().toString());
+          applyBadgeState(wrapper);
+          updateLastUpdatedDisplay();
+          editor.classList.remove('open');
+        } else {
+          input.style.borderColor = '#EF4444';
+          input.placeholder = 'Must start with http:// or https://';
+          setTimeout(function () { input.style.borderColor = ''; }, 2000);
+        }
+      });
+
+      /* Cancel */
+      btnCancel.addEventListener('click', function () {
+        editor.classList.remove('open');
+      });
+
+      /* Enter key saves, Escape cancels */
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { btnSave.click(); }
+        if (e.key === 'Escape') { btnCancel.click(); }
+      });
+    });
+
+    updateLastUpdatedDisplay();
   </script>
 </body>
 </html>

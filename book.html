@@ -102,7 +102,10 @@
         </div>
         <div class="mt-4">
           <label class="block text-sm font-medium text-neutral-700">Available times</label>
+          <p class="text-xs text-neutral-500 mt-1">Showing available slots. Times are in Arizona time (MST, no daylight saving).</p>
+          <p class="text-xs text-amber-600 font-medium mt-1">Popular times fill quickly.</p>
           <div id="book-times" class="mt-2 flex flex-wrap gap-2"></div>
+          <div id="book-times-msg" class="mt-2 text-sm text-red-600 hidden"></div>
         </div>
         <div class="mt-8 flex justify-between">
           <button type="button" class="book-back rounded-md border border-neutral-300 px-6 py-3 font-medium hover:bg-neutral-50" data-back="2">Back</button>
@@ -280,22 +283,88 @@
         if (n === 2) checkSubstep2();
       }
 
+      /* --- Provider availability system --- */
+      function generateAvailableSlots() {
+        // Available hours: 9:00 AM - 4:30 PM (30-min slots, last slot starts 4:30 PM so visit ends by 5:00 PM)
+        const slots = [];
+        for (let h = 9; h <= 16; h++) {
+          for (let m = 0; m < 60; m += 30) {
+            if (h === 16 && m > 30) continue; // stop after 4:30 PM
+            const hour12 = h > 12 ? h - 12 : h;
+            const ampm = h >= 12 ? "PM" : "AM";
+            const minStr = m === 0 ? "00" : String(m);
+            slots.push({ label: hour12 + ":" + minStr + " " + ampm, hour24: h, minute: m });
+          }
+        }
+        return slots;
+      }
+
       function renderTimeSlots() {
         const container = qs("#book-times");
+        const msgEl = qs("#book-times-msg");
         const dateVal = dateInput && dateInput.value;
         container.innerHTML = "";
+        if (msgEl) { msgEl.textContent = ""; msgEl.classList.add("hidden"); }
         if (!dateVal) return;
-        const slots = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "2:00 PM", "2:30 PM", "3:00 PM", "4:00 PM", "5:00 PM", "7:15 PM"];
-        slots.forEach((t) => {
+
+        // Parse selected date as local date (noon to avoid timezone edge cases)
+        const selected = new Date(dateVal + "T12:00:00");
+        const today = new Date();
+        const todayStr = today.getFullYear() + "-" +
+          String(today.getMonth() + 1).padStart(2, "0") + "-" +
+          String(today.getDate()).padStart(2, "0");
+
+        // Check if date is in the past
+        if (dateVal < todayStr) {
+          if (msgEl) { msgEl.textContent = "Please select a future date."; msgEl.classList.remove("hidden"); }
+          qs("#book-step3-next").disabled = true;
+          booking.time = "";
+          return;
+        }
+
+        // Check for weekends (0 = Sunday, 6 = Saturday)
+        const dayOfWeek = selected.getDay();
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+          if (msgEl) { msgEl.textContent = "No availability on weekends. Please select a weekday."; msgEl.classList.remove("hidden"); }
+          qs("#book-step3-next").disabled = true;
+          booking.time = "";
+          return;
+        }
+
+        const allSlots = generateAvailableSlots();
+        const isToday = dateVal === todayStr;
+        const nowHour = today.getHours();
+        const nowMinute = today.getMinutes();
+
+        // Filter: if today, only show future time slots
+        const slots = allSlots.filter((s) => {
+          if (!isToday) return true;
+          // Slot must be strictly after current time
+          if (s.hour24 > nowHour) return true;
+          if (s.hour24 === nowHour && s.minute > nowMinute) return true;
+          return false;
+        });
+
+        if (slots.length === 0) {
+          if (msgEl) { msgEl.textContent = "No more slots available today. Please select another date."; msgEl.classList.remove("hidden"); }
+          qs("#book-step3-next").disabled = true;
+          booking.time = "";
+          return;
+        }
+
+        slots.forEach((s) => {
           const btn = document.createElement("button");
           btn.type = "button";
-          btn.className = "book-time-slot rounded-md border border-neutral-300 px-4 py-2 text-sm hover:border-primary-30 hover:bg-primary-0";
-          btn.textContent = t;
-          if (t === "7:15 PM") btn.innerHTML += ' <span class="text-neutral-400 text-xs">Last at this time</span>';
+          btn.className = "book-time-slot rounded-md border border-neutral-300 px-4 py-2 text-sm transition-colors hover:border-primary-30 hover:bg-primary-0";
+          btn.textContent = s.label;
           btn.addEventListener("click", () => {
-            qsa(".book-time-slot").forEach((b) => b.classList.remove("border-primary-30", "bg-primary-0"));
-            btn.classList.add("border-primary-30", "bg-primary-0");
-            booking.time = t;
+            qsa(".book-time-slot").forEach((b) => {
+              b.classList.remove("border-primary-30", "bg-primary-30", "text-white", "bg-primary-0");
+              b.classList.add("border-neutral-300");
+            });
+            btn.classList.remove("border-neutral-300", "bg-primary-0");
+            btn.classList.add("border-primary-30", "bg-primary-30", "text-white");
+            booking.time = s.label;
             qs("#book-step3-next").disabled = false;
           });
           container.appendChild(btn);
@@ -318,7 +387,7 @@
         sum.innerHTML =
           "<strong>Lindsay Hart, PMHNP‑BC</strong><br>" +
           dateStr +
-          (booking.time ? " – " + booking.time + " EST" : "") +
+          (booking.time ? " – " + booking.time + " MST" : "") +
           "<br>ADHD Assessment (30 min)";
       }
 
@@ -335,7 +404,7 @@
           dateStr +
           " – " +
           (booking.time || "") +
-          " EST</p>" +
+          " MST</p>" +
           "<p class=\"mt-1\"><strong>Visit</strong> ADHD Assessment (30 min)</p>" +
           "<p class=\"mt-1\"><strong>Payment</strong> " + paymentLine + "</p>";
       }

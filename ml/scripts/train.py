@@ -11,7 +11,7 @@ All training is logged and reproducible per IEC 62304.
 Checkpoints saved with full training state for audit trail.
 
 IEC 62304 Software Item: TRAIN-001
-Version: 1.0.0
+Version: 0.1-dev
 
 Usage:
     python train.py --config configs/phase1_detection.yaml --stage pretrain

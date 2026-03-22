@@ -17,7 +17,7 @@ Statistical methodology follows:
 - TRIPOD guidelines for prediction model validation
 
 IEC 62304 Software Item: VALIDATE-001
-Version: 1.0.0
+Version: 0.1-dev
 """
 
 import json
@@ -383,7 +383,7 @@ class ValidationEngine:
             'report_metadata': {
                 'generated_at': datetime.now().isoformat(),
                 'project': self.config.get('project', {}).get('name', 'PelvicScan AI'),
-                'version': self.config.get('project', {}).get('version', '1.0.0'),
+                'version': self.config.get('project', {}).get('version', '0.1-dev'),
                 'phase': 'Phase 1 - Fracture Detection',
                 'regulatory_class': 'Class II (510(k))',
                 'predicate_device': self.config.get('project', {}).get(

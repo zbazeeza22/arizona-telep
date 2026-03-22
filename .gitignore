@@ -23,3 +23,21 @@ Thumbs.db
 # Archives
 *.zip
 med-site.zip
+
+# Unrelated GBP/SEO files
+GBP_*.md
+GBP_*.html
+NAP-*.md
+NAP-*.csv
+*_GBP_*.md
+GOOGLE_*.md
+KEYWORD_*.md
+LEGAL_ENTITY_*.md
+MULTI_PROFILE_*.md
+RESTORATION_*.md
+REVIEW_ACQUISITION_*.md
+RISK_ASSESSMENT_*.md
+SERVICE_AREA_*.md
+post-verification-protocols.md
+google-business-profile-*.md
+A1_GARAGE_DOOR_*.md

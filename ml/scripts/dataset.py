@@ -11,7 +11,7 @@ Handles:
 - FDA-compliant data augmentation
 
 IEC 62304 Software Item: DATASET-001
-Version: 1.0.0
+Version: 0.1-dev
 """
 
 import os

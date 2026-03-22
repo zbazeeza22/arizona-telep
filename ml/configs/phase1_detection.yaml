@@ -7,7 +7,7 @@
 
 project:
   name: "PelvicScan-AI"
-  version: "1.0.0"
+  version: "0.1-dev"
   phase: "Phase 1 - Fracture Detection"
   regulatory_class: "Class II (510(k))"
   predicate_device: "Aidoc BriefCase CARE Multi-Triage CT Body (K252970)"

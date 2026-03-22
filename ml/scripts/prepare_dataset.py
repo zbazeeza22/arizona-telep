@@ -16,7 +16,7 @@ FDA Compliance:
 - Processing parameters documented in config
 
 IEC 62304 Software Item: PREPARE-001
-Version: 1.0.0
+Version: 0.1-dev
 
 Usage:
     python prepare_dataset.py \

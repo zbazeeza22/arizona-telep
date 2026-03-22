@@ -1,6 +1,6 @@
 # PelvicScan AI — ML Training Pipeline
 
-Phase 1: Pelvic Fracture Detection | FDA 510(k) Class II
+Phase 1: Pelvic Fracture Detection | Targeting FDA 510(k) Class II
 
 ## Quick Start
 

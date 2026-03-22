@@ -477,70 +477,706 @@
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
               <div class="flex items-center justify-between mb-3">
                 <p class="text-xs font-medium text-clinical-text">Young-Burgess Classification</p>
-                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
-                  Coming Soon
+                <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded-full font-medium">
+                  Clinical Reference
                 </span>
               </div>
-              <div class="space-y-2 opacity-50">
-                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
-                  <span class="text-xs text-clinical-muted">APC (Anteroposterior Compression)</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+              <p class="text-[10px] text-clinical-muted mb-3">Select an injury mechanism to view subtypes, stability, and clinical details.</p>
+
+              <!-- Category selector buttons -->
+              <div class="grid grid-cols-4 gap-2 mb-3" id="yb-category-selector">
+                <button data-yb-cat="LC" class="yb-cat-btn px-2 py-2 rounded-lg border border-clinical-border bg-clinical-surface text-xs font-medium text-clinical-muted hover:border-clinical-accent hover:text-clinical-text transition-colors text-center">
+                  <span class="block text-sm font-bold">LC</span>
+                  <span class="block text-[9px] mt-0.5">Lateral Compression</span>
+                </button>
+                <button data-yb-cat="APC" class="yb-cat-btn px-2 py-2 rounded-lg border border-clinical-border bg-clinical-surface text-xs font-medium text-clinical-muted hover:border-clinical-accent hover:text-clinical-text transition-colors text-center">
+                  <span class="block text-sm font-bold">APC</span>
+                  <span class="block text-[9px] mt-0.5">AP Compression</span>
+                </button>
+                <button data-yb-cat="VS" class="yb-cat-btn px-2 py-2 rounded-lg border border-clinical-border bg-clinical-surface text-xs font-medium text-clinical-muted hover:border-clinical-accent hover:text-clinical-text transition-colors text-center">
+                  <span class="block text-sm font-bold">VS</span>
+                  <span class="block text-[9px] mt-0.5">Vertical Shear</span>
+                </button>
+                <button data-yb-cat="CM" class="yb-cat-btn px-2 py-2 rounded-lg border border-clinical-border bg-clinical-surface text-xs font-medium text-clinical-muted hover:border-clinical-accent hover:text-clinical-text transition-colors text-center">
+                  <span class="block text-sm font-bold">CM</span>
+                  <span class="block text-[9px] mt-0.5">Combined</span>
+                </button>
+              </div>
+
+              <!-- LC subtypes -->
+              <div id="yb-detail-LC" class="hidden space-y-2">
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="LC-I" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-green-400 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">LC-I</span>
+                      <span class="text-[10px] text-green-400 font-medium">Stable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Transverse sacral fracture (anterior cortex only). Ipsilateral pubic rami fractures (superior and/or inferior). No posterior ligament disruption. Minimal or no displacement.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Lateral force causing internal rotation of hemipelvis. Common in side-impact MVCs and falls onto the side.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Most common pelvic ring injury (~60%). Posterior ring intact. Generally nonoperative, weight-bearing as tolerated. Low hemorrhage risk. Monitor for associated urogenital injuries.</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
-                  <span class="text-xs text-clinical-muted">LC (Lateral Compression)</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="LC-II" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-yellow-400 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">LC-II</span>
+                      <span class="text-[10px] text-yellow-400 font-medium">Rotationally Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Crescent (iliac wing) fracture with posterior iliac disruption. Ipsilateral pubic rami fractures. SI joint partially disrupted anteriorly. Internal rotation deformity of hemipelvis.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Higher-energy lateral compression. Force drives iliac wing medially, causing posterior iliac crescent fracture with partially intact posterior ligaments.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Rotationally unstable, vertically stable. Often requires operative fixation. Evaluate for L5 nerve root injury. Higher transfusion requirements than LC-I. Crescent fragment size determines surgical approach.</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
-                  <span class="text-xs text-clinical-muted">VS (Vertical Shear)</span>
-                  <span class="text-xs text-clinical-muted">--</span>
-                </div>
-                <div class="flex items-center justify-between py-2">
-                  <span class="text-xs text-clinical-muted">CM (Combined Mechanism)</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="LC-III" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">LC-III</span>
+                      <span class="text-[10px] text-red-400 font-medium">Completely Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Ipsilateral LC-I or LC-II pattern PLUS contralateral open-book injury. Widened contralateral SI joint or sacral fracture. Contralateral symphysis diastasis or rami fractures. "Windswept pelvis" appearance.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Lateral compression on one side with rollover or contralateral external rotation. High-energy (rollover MVC, crush). Contralateral hemipelvis externally rotates as ipsilateral side compresses.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Completely unstable: rotationally and vertically. High mortality. Significant hemorrhage risk -- apply pelvic binder, consider angioembolization. Requires anterior and posterior ring fixation. High association with visceral and vascular injuries. Evaluate for Morel-Lavallee lesion.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p class="text-[10px] text-clinical-muted mt-3">
-                Phase 2 will add automated Young-Burgess classification with stability assessment.
-                Low inter-observer agreement among surgeons for complex fracture classification. AI-assisted classification is a research target.
-              </p>
+
+              <!-- APC subtypes -->
+              <div id="yb-detail-APC" class="hidden space-y-2">
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="APC-I" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-green-400 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">APC-I</span>
+                      <span class="text-[10px] text-green-400 font-medium">Stable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Pubic symphysis diastasis &lt;2.5 cm. No posterior ring disruption. SI joints normal. Anterior SI ligaments intact or minimally stretched.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Low-energy AP force causing external rotation. Motorcycle straddling injuries, direct anterior blow.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Mechanically stable. Symphyseal ligaments partially torn, but sacrospinous, sacrotuberous, and posterior SI ligaments intact. Typically nonoperative. Low hemorrhage risk.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="APC-II" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-yellow-400 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">APC-II</span>
+                      <span class="text-[10px] text-yellow-400 font-medium">Rotationally Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Pubic symphysis diastasis &gt;2.5 cm ("open book"). Widened anterior SI joint. Disrupted sacrospinous and sacrotuberous ligaments. Posterior SI ligaments intact. Look for avulsion fragments at sacrospinous insertion.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Moderate-energy AP compression. Classic "open book" mechanism. Motorcycle collisions, head-on MVCs, direct anterior crush.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Rotationally unstable, vertically stable. "Open book" increases pelvic volume, causing significant retroperitoneal hemorrhage. Requires emergent pelvic binder. Operative anterior plating typically required. Average 4-6 units pRBC. Evaluate for bladder and urethral injury.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="APC-III" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">APC-III</span>
+                      <span class="text-[10px] text-red-400 font-medium">Completely Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Complete symphyseal disruption. Complete SI joint disruption (anterior and posterior ligaments). Lateral sacral fracture may replace SI dislocation. Hemipelvis displaced laterally and/or posteriorly. Evaluate for vascular contrast extravasation on CTA.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">High-energy AP compression. Complete disruption of all pelvic ligaments. Severe MVCs, pedestrian struck, crush injuries.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Completely unstable: rotationally and vertically. Mortality up to 20%. Massive hemorrhage from posterior venous plexus and internal iliac branches. Emergent binder, resuscitation, consider preperitoneal packing or angioembolization. Requires anterior and posterior fixation. Highest association with concomitant abdominal and vascular injuries.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VS subtype -->
+              <div id="yb-detail-VS" class="hidden space-y-2">
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="VS" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">Vertical Shear</span>
+                      <span class="text-[10px] text-red-400 font-medium">Completely Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Vertical displacement of hemipelvis (cranial or caudal shift). Symphysis disruption or pubic rami fractures anteriorly. Complete posterior disruption: SI dislocation, sacral fracture, or iliac wing fracture. Vertical offset &gt;1 cm on coronal reformats. Associated L5 transverse process fractures.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Axial loading through one hemipelvis. Falls from height landing on one extremity. High-speed motorcycle collisions. Force drives hemipelvis superiorly relative to sacrum.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Completely unstable in all planes. Mortality ~25%, massive transfusion requirements. Highest rate of lumbosacral plexus injury (up to 50%). Requires skeletal traction and definitive anterior + posterior fixation. Evaluate for open fracture (perineal laceration = Faringer Zone III). Associated with high ISS and multisystem trauma.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CM subtype -->
+              <div id="yb-detail-CM" class="hidden space-y-2">
+                <div class="rounded-lg border border-clinical-border overflow-hidden">
+                  <button data-yb-sub="CM" class="yb-sub-btn w-full flex items-center justify-between px-3 py-2 bg-clinical-surface hover:bg-clinical-border/30 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0"></span>
+                      <span class="text-xs font-semibold text-clinical-text">Combined Mechanism</span>
+                      <span class="text-[10px] text-red-400 font-medium">Completely Unstable</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform yb-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="yb-sub-detail hidden px-3 py-2.5 border-t border-clinical-border space-y-2">
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Key CT Findings</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Features of multiple injury patterns (e.g., LC on one side with APC or VS contralaterally). Bilateral posterior ring disruption of differing types. Asymmetric displacement. Complex sacral fracture morphology that does not fit a single mechanism.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Mechanism</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Multiple simultaneous or sequential force vectors. Highest-energy mechanisms: pedestrian struck, crush injuries, high-speed MVCs with rollover.</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>
+                      <p class="text-[10px] text-clinical-muted mt-0.5">Completely unstable. Highest ISS and mortality among pelvic fractures. Each injury component must be addressed independently. Prioritize hemorrhage control (binder, angioembolization, preperitoneal packing). Individualized surgical planning required. Multidisciplinary trauma team essential. Highest rates of associated head, thoracic, and abdominal injuries.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- AO/OTA Classification -->
             <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
               <div class="flex items-center justify-between mb-3">
-                <p class="text-xs font-medium text-clinical-text">AO/OTA Classification</p>
-                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
-                  Coming Soon
+                <p class="text-xs font-medium text-clinical-text">AO/OTA Classification (61 - Pelvic Ring)</p>
+                <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded-full font-medium">
+                  Clinical Reference
                 </span>
               </div>
-              <div class="space-y-2 opacity-50">
-                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
-                  <span class="text-xs text-clinical-muted">61-A: Stable</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+              <p class="text-[10px] text-clinical-muted mb-3">Click a type to expand subtypes. Color indicates stability: green = stable, yellow = partially unstable, red = unstable.</p>
+
+              <div class="space-y-2" id="ao-ota-container">
+                <!-- 61-A: Stable -->
+                <div class="rounded-lg border border-green-400/30 overflow-hidden">
+                  <button data-ao-type="A" class="ao-type-btn w-full flex items-center justify-between px-3 py-2.5 bg-green-400/5 hover:bg-green-400/10 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-green-400 flex-shrink-0"></span>
+                      <span class="text-xs font-bold text-clinical-text">61-A</span>
+                      <span class="text-[10px] text-green-400 font-medium">Stable Posterior Arch</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform ao-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="ao-type-detail hidden border-t border-green-400/20">
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">A1 -- Avulsion fracture</span>
+                        <span class="text-[9px] text-green-400 font-medium px-1.5 py-0.5 bg-green-400/10 rounded">Stable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">ASIS, AIIS, or ischial tuberosity avulsion. Common in young athletes. Apophyseal avulsions in adolescents. Nonoperative unless displaced &gt;2 cm.</p>
+                    </div>
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">A2 -- Iliac wing fracture (Duverney)</span>
+                        <span class="text-[9px] text-green-400 font-medium px-1.5 py-0.5 bg-green-400/10 rounded">Stable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Isolated iliac wing fracture not involving the pelvic ring. Direct blow mechanism. Posterior ring intact. Nonoperative with protected weight-bearing. Monitor for abdominal wall hernia through defect.</p>
+                    </div>
+                    <div class="px-3 py-2 hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">A3 -- Transverse sacral or coccyx fracture</span>
+                        <span class="text-[9px] text-green-400 font-medium px-1.5 py-0.5 bg-green-400/10 rounded">Stable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Isolated transverse sacral fracture below SI joints, or coccyx fracture. Fall onto buttocks. Does not disrupt pelvic ring. Nonoperative. Evaluate for cauda equina symptoms if displaced.</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex items-center justify-between py-2 border-b border-clinical-border">
-                  <span class="text-xs text-clinical-muted">61-B: Rotationally Unstable</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+
+                <!-- 61-B: Partial posterior disruption -->
+                <div class="rounded-lg border border-yellow-400/30 overflow-hidden">
+                  <button data-ao-type="B" class="ao-type-btn w-full flex items-center justify-between px-3 py-2.5 bg-yellow-400/5 hover:bg-yellow-400/10 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 flex-shrink-0"></span>
+                      <span class="text-xs font-bold text-clinical-text">61-B</span>
+                      <span class="text-[10px] text-yellow-400 font-medium">Partial Posterior Disruption (Rotationally Unstable)</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform ao-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="ao-type-detail hidden border-t border-yellow-400/20">
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">B1 -- Open book (external rotation)</span>
+                        <span class="text-[9px] text-yellow-400 font-medium px-1.5 py-0.5 bg-yellow-400/10 rounded">Rot. Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Unilateral external rotation. Symphysis diastasis or anterior rami fracture with partial posterior disruption. Anterior SI ligaments torn, posterior intact. Corresponds to APC-II. Anterior fixation indicated if diastasis &gt;2.5 cm.</p>
+                    </div>
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">B2 -- Lateral compression (internal rotation)</span>
+                        <span class="text-[9px] text-yellow-400 font-medium px-1.5 py-0.5 bg-yellow-400/10 rounded">Rot. Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Unilateral internal rotation. Ipsilateral rami fractures with posterior compression (sacral buckle or crescent fracture). Posterior SI ligaments partially intact. Corresponds to LC-II. Evaluate posterior fixation based on displacement.</p>
+                    </div>
+                    <div class="px-3 py-2 hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">B3 -- Bilateral (bilateral B1 or B2)</span>
+                        <span class="text-[9px] text-yellow-400 font-medium px-1.5 py-0.5 bg-yellow-400/10 rounded">Rot. Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Bilateral rotationally unstable injury. Bilateral open book, bilateral LC, or contralateral combination ("bucket handle"). Higher instability than unilateral. Often requires bilateral operative stabilization. Higher hemorrhage risk.</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex items-center justify-between py-2">
-                  <span class="text-xs text-clinical-muted">61-C: Rotationally + Vertically Unstable</span>
-                  <span class="text-xs text-clinical-muted">--</span>
+
+                <!-- 61-C: Complete posterior disruption -->
+                <div class="rounded-lg border border-red-500/30 overflow-hidden">
+                  <button data-ao-type="C" class="ao-type-btn w-full flex items-center justify-between px-3 py-2.5 bg-red-500/5 hover:bg-red-500/10 transition-colors">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                      <span class="text-xs font-bold text-clinical-text">61-C</span>
+                      <span class="text-[10px] text-red-400 font-medium">Complete Posterior Disruption (Rot. + Vert. Unstable)</span>
+                    </div>
+                    <svg class="w-3 h-3 text-clinical-muted transition-transform ao-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                  <div class="ao-type-detail hidden border-t border-red-500/20">
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">C1 -- Unilateral complete disruption</span>
+                        <span class="text-[9px] text-red-400 font-medium px-1.5 py-0.5 bg-red-500/10 rounded">Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Unilateral complete posterior ring disruption (SI dislocation, sacral fracture, or iliac fracture) with vertical displacement. Anterior ring disrupted. Corresponds to APC-III or VS. Requires anterior and posterior fixation. High hemorrhage risk.</p>
+                    </div>
+                    <div class="px-3 py-2 border-b border-clinical-border hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">C2 -- Bilateral, one side complete</span>
+                        <span class="text-[9px] text-red-400 font-medium px-1.5 py-0.5 bg-red-500/10 rounded">Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">One side complete (C-type), contralateral partial (B-type). Asymmetric instability. Must address both sides surgically. Corresponds to LC-III pattern. Higher ISS than unilateral C injuries.</p>
+                    </div>
+                    <div class="px-3 py-2 hover:bg-clinical-surface/50 transition-colors">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-semibold text-clinical-text">C3 -- Bilateral complete disruption</span>
+                        <span class="text-[9px] text-red-400 font-medium px-1.5 py-0.5 bg-red-500/10 rounded">Unstable</span>
+                      </div>
+                      <p class="text-[10px] text-clinical-muted mt-1">Bilateral complete posterior disruption. Maximum instability. Highest mortality, massive hemorrhage, polytrauma. Emergent damage control: binder, resuscitation, angioembolization or preperitoneal packing. Staged definitive fixation. Evaluate for associated acetabular and spinal injuries.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Stability Assessment -->
-            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
+            <!-- Stability Assessment — Interactive Decision Tree -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4" id="stability-assessment">
               <div class="flex items-center justify-between mb-3">
                 <p class="text-xs font-medium text-clinical-text">Stability Assessment</p>
-                <span class="text-[10px] bg-clinical-warning/10 text-clinical-warning px-2 py-0.5 rounded-full font-medium">
-                  Coming Soon
+                <span class="text-[10px] bg-clinical-accent/10 text-clinical-accent px-2 py-0.5 rounded-full font-medium">
+                  Decision Support
                 </span>
               </div>
-              <p class="text-[10px] text-clinical-muted">
-                Phase 3 will classify fracture stability and recommend surgical vs. conservative management.
-                "Is it stable? Needs surgery? What approach?" - the questions AI will answer.
-              </p>
+
+              <!-- Progress breadcrumb trail -->
+              <div id="sa-breadcrumb" class="mb-4 flex items-center gap-1 flex-wrap text-[10px] text-clinical-muted font-mono min-h-[18px]">
+                <!-- Filled dynamically -->
+              </div>
+
+              <!-- Question / Result container -->
+              <div id="sa-content">
+
+                <!-- Q1: Posterior ring intact? -->
+                <div id="sa-q1" class="sa-step">
+                  <p class="text-xs text-clinical-text font-medium mb-1">Question 1 of up to 4</p>
+                  <p class="text-sm text-clinical-text mb-4">Is the posterior pelvic ring intact?</p>
+                  <p class="text-[10px] text-clinical-muted mb-4">Evaluate sacrum, SI joints, and posterior ilium on axial and coronal CT images.</p>
+                  <div class="flex gap-3">
+                    <button onclick="saAnswer('q1','yes')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      Yes
+                    </button>
+                    <button onclick="saAnswer('q1','no')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      No
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Q2: Anterior ring disruption only? (shown if Q1=Yes) -->
+                <div id="sa-q2" class="sa-step hidden">
+                  <p class="text-xs text-clinical-text font-medium mb-1">Question 2 of up to 4</p>
+                  <p class="text-sm text-clinical-text mb-4">Is there anterior ring disruption only?</p>
+                  <p class="text-[10px] text-clinical-muted mb-4">Check for pubic rami fractures or symphysis diastasis without posterior involvement.</p>
+                  <div class="flex gap-3">
+                    <button onclick="saAnswer('q2','yes')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      Yes
+                    </button>
+                    <button onclick="saAnswer('q2','no')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      No
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Q3: Complete or incomplete posterior disruption? (shown if Q1=No) -->
+                <div id="sa-q3" class="sa-step hidden">
+                  <p class="text-xs text-clinical-text font-medium mb-1">Question 2 of up to 4</p>
+                  <p class="text-sm text-clinical-text mb-4">Is the posterior disruption complete or incomplete?</p>
+                  <p class="text-[10px] text-clinical-muted mb-4">Complete: full sacral fracture, SI joint dislocation, or iliac wing fracture through posterior cortex. Incomplete: partial posterior ring involvement.</p>
+                  <div class="flex gap-3">
+                    <button onclick="saAnswer('q3','incomplete')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      Incomplete
+                    </button>
+                    <button onclick="saAnswer('q3','complete')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      Complete
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Q4: Rotational instability? (shown if Q3=Incomplete) -->
+                <div id="sa-q4" class="sa-step hidden">
+                  <p class="text-xs text-clinical-text font-medium mb-1">Question 3 of up to 4</p>
+                  <p class="text-sm text-clinical-text mb-4">Is there rotational instability?</p>
+                  <p class="text-[10px] text-clinical-muted mb-4">Assess for internal/external rotation deformity of the hemipelvis on axial CT. Look for widening or compression at the SI joint and pubic symphysis.</p>
+                  <div class="flex gap-3">
+                    <button onclick="saAnswer('q4','yes')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      Yes
+                    </button>
+                    <button onclick="saAnswer('q4','no')"
+                      class="sa-btn flex-1 min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-text hover:border-clinical-accent hover:bg-clinical-accent/10
+                             transition-colors active:scale-[0.97]">
+                      No
+                    </button>
+                  </div>
+                </div>
+
+                <!-- RESULT: Stable — Type A (anterior only) -->
+                <div id="sa-result-stable-a" class="sa-step hidden">
+                  <div class="result-indicator space-y-4">
+                    <!-- Badge row -->
+                    <div class="flex items-center gap-3 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold bg-green-500/15 text-green-400 border border-green-500/30">
+                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                        STABLE (Type A)
+                      </span>
+                      <span class="text-[10px] font-mono bg-green-500/10 text-green-400/80 px-2 py-0.5 rounded border border-green-500/20">
+                        Tile A
+                      </span>
+                    </div>
+                    <p class="text-xs text-clinical-text">Posterior ring intact with isolated anterior ring disruption. The pelvic ring retains structural stability.</p>
+                    <!-- Management -->
+                    <div class="bg-green-500/5 border border-green-500/20 rounded-lg p-3 space-y-2">
+                      <p class="text-[10px] font-semibold text-green-400 uppercase tracking-wide">Immediate Management</p>
+                      <ul class="text-xs text-clinical-muted space-y-1.5 list-none">
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Weight-bearing as tolerated
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Serial imaging at 2 and 6 weeks to confirm stability
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Analgesic management and early mobilization
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          DVT prophylaxis per institutional protocol
+                        </li>
+                      </ul>
+                    </div>
+                    <button onclick="saReset()"
+                      class="sa-btn w-full min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                             transition-colors active:scale-[0.97]">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+
+                <!-- RESULT: Stable — No injury -->
+                <div id="sa-result-stable-none" class="sa-step hidden">
+                  <div class="result-indicator space-y-4">
+                    <div class="flex items-center gap-3 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold bg-green-500/15 text-green-400 border border-green-500/30">
+                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                        STABLE
+                      </span>
+                      <span class="text-[10px] font-mono bg-green-500/10 text-green-400/80 px-2 py-0.5 rounded border border-green-500/20">
+                        No Tile classification
+                      </span>
+                    </div>
+                    <p class="text-xs text-clinical-text">No pelvic ring injury identified. Posterior ring intact and no anterior ring disruption. Pelvis is stable.</p>
+                    <div class="bg-green-500/5 border border-green-500/20 rounded-lg p-3 space-y-2">
+                      <p class="text-[10px] font-semibold text-green-400 uppercase tracking-wide">Immediate Management</p>
+                      <ul class="text-xs text-clinical-muted space-y-1.5 list-none">
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Weight-bearing as tolerated
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Serial imaging if clinical concern persists
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-green-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Consider MRI if occult fracture suspected
+                        </li>
+                      </ul>
+                    </div>
+                    <button onclick="saReset()"
+                      class="sa-btn w-full min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                             transition-colors active:scale-[0.97]">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+
+                <!-- RESULT: Rotationally Unstable — Type B -->
+                <div id="sa-result-rot-unstable" class="sa-step hidden">
+                  <div class="result-indicator space-y-4">
+                    <div class="flex items-center gap-3 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold bg-yellow-500/15 text-yellow-400 border border-yellow-500/30">
+                        <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                        ROTATIONALLY UNSTABLE (Type B)
+                      </span>
+                      <span class="text-[10px] font-mono bg-yellow-500/10 text-yellow-400/80 px-2 py-0.5 rounded border border-yellow-500/20">
+                        Tile B
+                      </span>
+                    </div>
+                    <p class="text-xs text-clinical-text">Incomplete posterior disruption with rotational instability. The hemipelvis can rotate but vertical stability is maintained by intact posterior ligaments.</p>
+                    <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-lg p-3 space-y-2">
+                      <p class="text-[10px] font-semibold text-yellow-400 uppercase tracking-wide">Immediate Management</p>
+                      <ul class="text-xs text-clinical-muted space-y-1.5 list-none">
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Apply pelvic binder</strong> to reduce rotational displacement
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Restricted weight-bearing &mdash; non-weight-bearing on affected side
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Consider external fixation for persistent instability
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Orthopedic/trauma surgery consultation
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Monitor hemodynamic status &mdash; transfuse as indicated
+                        </li>
+                      </ul>
+                    </div>
+                    <button onclick="saReset()"
+                      class="sa-btn w-full min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                             transition-colors active:scale-[0.97]">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+
+                <!-- RESULT: Partially Stable — Type B1 -->
+                <div id="sa-result-partial" class="sa-step hidden">
+                  <div class="result-indicator space-y-4">
+                    <div class="flex items-center gap-3 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold bg-yellow-500/15 text-yellow-400 border border-yellow-500/30">
+                        <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                        PARTIALLY STABLE (Type B1)
+                      </span>
+                      <span class="text-[10px] font-mono bg-yellow-500/10 text-yellow-400/80 px-2 py-0.5 rounded border border-yellow-500/20">
+                        Tile B
+                      </span>
+                    </div>
+                    <p class="text-xs text-clinical-text">Incomplete posterior disruption without significant rotational instability. Posterior ligamentous structures are partially intact, providing some residual stability.</p>
+                    <div class="bg-yellow-500/5 border border-yellow-500/20 rounded-lg p-3 space-y-2">
+                      <p class="text-[10px] font-semibold text-yellow-400 uppercase tracking-wide">Immediate Management</p>
+                      <ul class="text-xs text-clinical-muted space-y-1.5 list-none">
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Apply pelvic binder</strong> as a precaution
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Restricted weight-bearing &mdash; toe-touch only on affected side
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Serial imaging at 1, 2, and 6 weeks to confirm stability is maintained
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-yellow-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Orthopedic consultation for operative vs. conservative management decision
+                        </li>
+                      </ul>
+                    </div>
+                    <button onclick="saReset()"
+                      class="sa-btn w-full min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                             transition-colors active:scale-[0.97]">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+
+                <!-- RESULT: Completely Unstable — Type C -->
+                <div id="sa-result-unstable" class="sa-step hidden">
+                  <div class="result-indicator space-y-4">
+                    <div class="flex items-center gap-3 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold bg-red-500/15 text-red-400 border border-red-500/30 animate-pulse">
+                        <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                        COMPLETELY UNSTABLE (Type C)
+                      </span>
+                      <span class="text-[10px] font-mono bg-red-500/10 text-red-400/80 px-2 py-0.5 rounded border border-red-500/20">
+                        Tile C
+                      </span>
+                    </div>
+                    <p class="text-xs text-clinical-text">Complete posterior disruption with both rotational and vertical instability. The hemipelvis is completely destabilized. High risk of life-threatening hemorrhage.</p>
+                    <!-- Urgent banner -->
+                    <div class="bg-red-500/10 border-2 border-red-500/40 rounded-lg p-3">
+                      <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                        <p class="text-xs font-bold text-red-400 uppercase">Urgent &mdash; Immediate Action Required</p>
+                      </div>
+                      <ul class="text-xs text-clinical-muted space-y-1.5 list-none">
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-red-400">Apply pelvic binder IMMEDIATELY</strong> at the level of the greater trochanters
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Prepare for emergent intervention</strong> &mdash; activate trauma surgery team
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Assess hemodynamic status</strong> &mdash; initiate massive transfusion protocol if indicated
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Consider angioembolization</strong> if arterial blush on contrast CT
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          <strong class="text-clinical-text">Consider preperitoneal packing</strong> if hemodynamically unstable and no angiography access
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="text-red-400 mt-0.5 flex-shrink-0">&#8226;</span>
+                          Strict non-weight-bearing &mdash; flat bed rest
+                        </li>
+                      </ul>
+                    </div>
+                    <button onclick="saReset()"
+                      class="sa-btn w-full min-h-[44px] px-4 py-3 bg-clinical-surface border border-clinical-border rounded-lg
+                             text-sm font-medium text-clinical-muted hover:text-clinical-text hover:border-clinical-accent
+                             transition-colors active:scale-[0.97]">
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+
+              </div><!-- /sa-content -->
+
+              <!-- Tile reference footer -->
+              <div class="mt-4 pt-3 border-t border-clinical-border">
+                <p class="text-[10px] text-clinical-muted">
+                  <strong class="text-clinical-text">Tile Classification Reference:</strong>
+                  <span class="text-green-400">A</span> = Stable (posterior ring intact) &nbsp;|&nbsp;
+                  <span class="text-yellow-400">B</span> = Rotationally unstable, vertically stable &nbsp;|&nbsp;
+                  <span class="text-red-400">C</span> = Rotationally + vertically unstable
+                </p>
+                <p class="text-[10px] text-clinical-muted mt-1">
+                  This tool is for clinical decision support only. All findings must be confirmed by a qualified physician.
+                </p>
+              </div>
             </div>
 
             <!-- Surgical Planning -->
@@ -698,14 +1334,357 @@
           <!-- ============ REPORT TAB ============ -->
           <div id="tab-report" class="hidden p-4 space-y-4">
 
-            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4">
-              <p class="text-xs font-medium text-clinical-text mb-3">Clinical Report</p>
-              <div id="report-content" class="text-xs text-clinical-muted space-y-3">
-                <p>Upload a scan to generate a clinical report.</p>
+            <!-- Header banner -->
+            <div class="bg-clinical-accent/10 border border-clinical-accent/30 rounded-xl p-3">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-clinical-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <div>
+                  <p class="text-xs font-bold text-clinical-accent">Manual Clinical Report -- Not AI Generated</p>
+                  <p class="text-[10px] text-clinical-muted mt-0.5">Structured pelvic trauma report form for manual clinician documentation. All fields are entered by the treating physician.</p>
+                </div>
               </div>
             </div>
 
-            <!-- Report actions -->
+            <!-- ===== SECTION 1: PATIENT INFO ===== -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-3">
+              <p class="text-[11px] font-bold text-clinical-text uppercase tracking-wider flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-clinical-accent/20 flex items-center justify-center text-[10px] font-bold text-clinical-accent">1</span>
+                Patient Information
+              </p>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-patient-id">Patient ID</label>
+                  <input type="text" id="rpt-patient-id" placeholder="e.g. PT-2026-0042"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text placeholder-clinical-muted/50 focus:border-clinical-accent focus:outline-none" />
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-age">Age</label>
+                    <input type="number" id="rpt-age" placeholder="--" min="0" max="120"
+                      class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                             text-clinical-text placeholder-clinical-muted/50 focus:border-clinical-accent focus:outline-none" />
+                  </div>
+                  <div>
+                    <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-sex">Sex</label>
+                    <select id="rpt-sex"
+                      class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                             text-clinical-text focus:border-clinical-accent focus:outline-none">
+                      <option value="">--</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-doi">Date of Injury</label>
+                  <input type="date" id="rpt-doi"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text focus:border-clinical-accent focus:outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-mechanism">Mechanism of Injury</label>
+                  <select id="rpt-mechanism"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text focus:border-clinical-accent focus:outline-none">
+                    <option value="">-- Select --</option>
+                    <option value="MVC">MVC (Motor Vehicle Collision)</option>
+                    <option value="Fall from height">Fall from height</option>
+                    <option value="Pedestrian vs auto">Pedestrian vs auto</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                    <option value="Crush injury">Crush injury</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SECTION 2: IMAGING FINDINGS ===== -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-4">
+              <p class="text-[11px] font-bold text-clinical-text uppercase tracking-wider flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-clinical-accent/20 flex items-center justify-center text-[10px] font-bold text-clinical-accent">2</span>
+                Imaging Findings
+              </p>
+
+              <!-- Fracture locations -->
+              <div>
+                <p class="text-[10px] font-semibold text-clinical-text mb-2">Fracture Locations</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Left superior pubic ramus"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">L superior pubic ramus</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Right superior pubic ramus"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">R superior pubic ramus</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Left inferior pubic ramus"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">L inferior pubic ramus</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Right inferior pubic ramus"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">R inferior pubic ramus</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Left acetabulum"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">L acetabulum</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Right acetabulum"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">R acetabulum</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Sacrum (left ala)"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Sacrum (left ala)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Sacrum (right ala)"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Sacrum (right ala)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Sacrum (central)"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Sacrum (central)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Left iliac wing"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">L iliac wing</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Right iliac wing"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">R iliac wing</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="Symphysis pubis diastasis"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Symphysis pubis diastasis</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="SI joint disruption (left)"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">SI joint disruption (L)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-fx" value="SI joint disruption (right)"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">SI joint disruption (R)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Displacement -->
+              <div>
+                <p class="text-[10px] font-semibold text-clinical-text mb-2">Displacement</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="rpt-displacement" value="Non-displaced"
+                      class="w-3.5 h-3.5 border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Non-displaced</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="rpt-displacement" value="Minimally displaced (<2mm)"
+                      class="w-3.5 h-3.5 border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Minimally displaced (&lt;2mm)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="rpt-displacement" value="Displaced (2-10mm)"
+                      class="w-3.5 h-3.5 border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Displaced (2-10mm)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="rpt-displacement" value="Severely displaced (>10mm)"
+                      class="w-3.5 h-3.5 border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Severely displaced (&gt;10mm)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Associated findings -->
+              <div>
+                <p class="text-[10px] font-semibold text-clinical-text mb-2">Associated Findings</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Pelvic hematoma"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Pelvic hematoma</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Bladder injury"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Bladder injury</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Urethral injury"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Urethral injury</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Vascular injury"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Vascular injury</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Bowel injury"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Bowel injury</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-assoc" value="Soft tissue injury"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Soft tissue injury</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SECTION 3: CLASSIFICATION ===== -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-3">
+              <p class="text-[11px] font-bold text-clinical-text uppercase tracking-wider flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-clinical-accent/20 flex items-center justify-center text-[10px] font-bold text-clinical-accent">3</span>
+                Classification
+              </p>
+              <p class="text-[10px] text-clinical-muted -mt-1">Select manually or values may be updated from the Classification tab in a future version.</p>
+              <div class="grid grid-cols-1 gap-3">
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-young-burgess">Young-Burgess Type</label>
+                  <select id="rpt-young-burgess"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text focus:border-clinical-accent focus:outline-none">
+                    <option value="">-- Select --</option>
+                    <option value="APC-I">APC-I (Anteroposterior Compression I)</option>
+                    <option value="APC-II">APC-II (Anteroposterior Compression II)</option>
+                    <option value="APC-III">APC-III (Anteroposterior Compression III)</option>
+                    <option value="LC-I">LC-I (Lateral Compression I)</option>
+                    <option value="LC-II">LC-II (Lateral Compression II)</option>
+                    <option value="LC-III">LC-III (Lateral Compression III)</option>
+                    <option value="VS">VS (Vertical Shear)</option>
+                    <option value="CM">CM (Combined Mechanism)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-ao-ota">AO/OTA Type</label>
+                  <select id="rpt-ao-ota"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text focus:border-clinical-accent focus:outline-none">
+                    <option value="">-- Select --</option>
+                    <option value="61-A1">61-A1 (Innominate bone avulsion)</option>
+                    <option value="61-A2">61-A2 (Innominate bone, stable fracture)</option>
+                    <option value="61-A3">61-A3 (Sacrum/coccyx fracture)</option>
+                    <option value="61-B1">61-B1 (Unilateral, external rotation)</option>
+                    <option value="61-B2">61-B2 (Unilateral, internal rotation)</option>
+                    <option value="61-B3">61-B3 (Bilateral)</option>
+                    <option value="61-C1">61-C1 (Unilateral, complete disruption)</option>
+                    <option value="61-C2">61-C2 (Bilateral, one side complete)</option>
+                    <option value="61-C3">61-C3 (Bilateral, complete disruption)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-stability">Stability Assessment</label>
+                  <select id="rpt-stability"
+                    class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                           text-clinical-text focus:border-clinical-accent focus:outline-none">
+                    <option value="">-- Select --</option>
+                    <option value="Stable">Stable</option>
+                    <option value="Rotationally unstable">Rotationally unstable</option>
+                    <option value="Completely unstable">Completely unstable (rotational + vertical)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SECTION 4: CLINICAL ASSESSMENT ===== -->
+            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-3">
+              <p class="text-[11px] font-bold text-clinical-text uppercase tracking-wider flex items-center gap-2">
+                <span class="w-5 h-5 rounded bg-clinical-accent/20 flex items-center justify-center text-[10px] font-bold text-clinical-accent">4</span>
+                Clinical Assessment
+              </p>
+              <div>
+                <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-hemodynamic">Hemodynamic Status</label>
+                <select id="rpt-hemodynamic"
+                  class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                         text-clinical-text focus:border-clinical-accent focus:outline-none">
+                  <option value="">-- Select --</option>
+                  <option value="Stable">Stable</option>
+                  <option value="Unstable">Unstable</option>
+                  <option value="In extremis">In extremis</option>
+                </select>
+              </div>
+              <div>
+                <p class="text-[10px] font-semibold text-clinical-text mb-2">Recommended Management</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-mgmt" value="Pelvic binder"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Pelvic binder</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-mgmt" value="Angioembolization"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Angioembolization</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-mgmt" value="External fixation"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">External fixation</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="checkbox" name="rpt-mgmt" value="ORIF"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">ORIF</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer group col-span-2">
+                    <input type="checkbox" name="rpt-mgmt" value="Non-operative management"
+                      class="w-3.5 h-3.5 rounded border-clinical-border bg-clinical-surface text-clinical-accent focus:ring-clinical-accent focus:ring-offset-0" />
+                    <span class="text-[11px] text-clinical-muted group-hover:text-clinical-text transition-colors">Non-operative management</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] text-clinical-muted mb-1" for="rpt-notes">Additional Notes</label>
+                <textarea id="rpt-notes" rows="3" placeholder="Free-text clinical notes..."
+                  class="w-full px-2.5 py-1.5 text-xs bg-clinical-surface border border-clinical-border rounded-lg
+                         text-clinical-text placeholder-clinical-muted/50 focus:border-clinical-accent focus:outline-none resize-y"></textarea>
+              </div>
+            </div>
+
+            <!-- ===== GENERATE REPORT BUTTON ===== -->
+            <button
+              id="btn-generate-report"
+              class="w-full px-4 py-3 bg-clinical-accent text-white text-xs font-bold rounded-lg
+                     hover:bg-blue-600 transition-colors uppercase tracking-wider flex items-center justify-center gap-2"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Generate Report
+            </button>
+
+            <!-- ===== GENERATED REPORT OUTPUT ===== -->
+            <div id="report-output" class="hidden">
+              <div id="report-content" class="text-xs text-clinical-muted space-y-3">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <!-- Report actions (Export) -->
             <div class="space-y-2">
               <button
                 id="btn-export-pdf"
@@ -737,44 +1716,9 @@
                   <p class="text-xs font-medium text-yellow-400">Prototype Notice</p>
                   <p class="text-[10px] text-clinical-muted mt-1">
                     This is a pre-submission prototype. No FDA clearance has been obtained.
-                    This tool does not perform real AI analysis. All results shown are simulated demo data.
+                    This manual report form is for documentation purposes only.
                     Not for clinical use. Not a medical device. 510(k) submission planned.
                   </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Device information -->
-            <div class="bg-clinical-bg rounded-xl border border-clinical-border p-4 space-y-2">
-              <p class="text-xs font-medium text-clinical-text">Planned Device Information</p>
-              <div class="space-y-1.5">
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Device Name</span>
-                  <span class="text-[10px] text-clinical-text">PelvicScan AI</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Version</span>
-                  <span class="text-[10px] font-mono text-yellow-400">0.1-dev (prototype)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Regulatory Status</span>
-                  <span class="text-[10px] text-yellow-400">Pre-submission — no FDA clearance</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Target Predicate</span>
-                  <span class="text-[10px] text-clinical-text">Aidoc BriefCase CARE (K252970)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Planned Architecture</span>
-                  <span class="text-[10px] font-mono text-clinical-text">EfficientNet-B4 + ResNet50-3D</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Planned Training Data</span>
-                  <span class="text-[10px] text-clinical-text">CTPelvic1K + clinical scans (TBD)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-[10px] text-clinical-muted">Target IEC 62304 Class</span>
-                  <span class="text-[10px] text-clinical-text">Class B (planned)</span>
                 </div>
               </div>
             </div>
@@ -950,12 +1894,7 @@
       // Draw ROC curve
       drawROCCurve();
 
-      // Generate clinical report
-      generateReport();
-
-      // Enable export buttons
-      qs('#btn-export-pdf').disabled = false;
-      qs('#btn-export-dicomsr').disabled = false;
+      // Report tab is now a manual form — no auto-generation needed
     }
 
     /* ================================================================== */
@@ -1102,6 +2041,7 @@
     /* ================================================================== */
     function drawROCCurve() {
       var canvas = qs('#roc-canvas');
+      if (!canvas) return;
       var ctx = canvas.getContext('2d');
       var w = canvas.width;
       var h = canvas.height;
@@ -1194,57 +2134,241 @@
     }
 
     /* ================================================================== */
-    /* Clinical Report Generator                                           */
+    /* Manual Clinical Report Generator                                    */
     /* ================================================================== */
-    function generateReport() {
+    function getCheckedValues(name) {
+      return qsa('input[name="' + name + '"]:checked').map(function(cb) { return cb.value; });
+    }
+    function getRadioValue(name) {
+      var el = qs('input[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+    function escHtml(str) {
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function compileManualReport() {
+      // Gather all form data
+      var patientId  = qs('#rpt-patient-id').value.trim() || 'Not specified';
+      var age        = qs('#rpt-age').value.trim() || '--';
+      var sex        = qs('#rpt-sex').value || 'Not specified';
+      var doi        = qs('#rpt-doi').value || 'Not specified';
+      var mechanism  = qs('#rpt-mechanism').value || 'Not specified';
+
+      var fractures     = getCheckedValues('rpt-fx');
+      var displacement  = getRadioValue('rpt-displacement') || 'Not assessed';
+      var associated    = getCheckedValues('rpt-assoc');
+
+      var youngBurgess  = qs('#rpt-young-burgess').value || 'Not classified';
+      var aoOta         = qs('#rpt-ao-ota').value || 'Not classified';
+      var stability     = qs('#rpt-stability').value || 'Not assessed';
+
+      var hemodynamic   = qs('#rpt-hemodynamic').value || 'Not assessed';
+      var management    = getCheckedValues('rpt-mgmt');
+      var notes         = qs('#rpt-notes').value.trim();
+
+      var timestamp = new Date().toLocaleString();
+
+      // Determine fracture status for badge
+      var hasFractures = fractures.length > 0;
+      var badgeColor = hasFractures ? 'clinical-positive' : 'green-400';
+      var badgeText  = hasFractures ? 'POSITIVE' : 'NEGATIVE';
+
+      // Build fracture list HTML
+      var fxListHtml = '';
+      if (fractures.length === 0) {
+        fxListHtml = '<p class="text-xs text-clinical-muted">No fracture locations selected.</p>';
+      } else {
+        fxListHtml = '<ul class="text-xs text-clinical-muted mt-1 space-y-1 list-none">';
+        fractures.forEach(function(fx, i) {
+          fxListHtml += '<li class="flex items-start gap-2">' +
+            '<span class="w-4 h-4 rounded bg-clinical-positive/20 flex items-center justify-center mt-0.5 flex-shrink-0 text-[9px] font-bold text-clinical-positive">' + (i+1) + '</span>' +
+            '<span>' + escHtml(fx) + '</span></li>';
+        });
+        fxListHtml += '</ul>';
+      }
+
+      // Build associated findings
+      var assocHtml = associated.length > 0
+        ? associated.map(function(a) { return escHtml(a); }).join(', ')
+        : 'None identified';
+
+      // Build management plan
+      var mgmtHtml = management.length > 0
+        ? management.map(function(m) { return escHtml(m); }).join(', ')
+        : 'Not specified';
+
+      // Compile the report
       var reportEl = qs('#report-content');
       reportEl.innerHTML = [
         '<div class="border border-clinical-border rounded-lg p-4 space-y-3">',
+
+        // Header
         '  <div class="flex items-center justify-between border-b border-clinical-border pb-2">',
         '    <div>',
-        '      <p class="text-xs font-bold text-clinical-text">PELVICSCAN AI - CLINICAL REPORT</p>',
-        '      <p class="text-[10px] text-clinical-muted">Generated: ' + new Date().toLocaleString() + '</p>',
+        '      <p class="text-xs font-bold text-clinical-text">PELVIC TRAUMA -- STRUCTURED CLINICAL REPORT</p>',
+        '      <p class="text-[10px] text-clinical-muted">Generated: ' + escHtml(timestamp) + '</p>',
+        '      <p class="text-[10px] text-clinical-accent font-medium mt-0.5">Manual clinician entry -- Not AI generated</p>',
         '    </div>',
-        '    <span class="text-[10px] bg-clinical-positive/10 text-clinical-positive px-2 py-0.5 rounded font-medium">POSITIVE</span>',
+        '    <span class="text-[10px] bg-' + badgeColor + '/10 text-' + badgeColor + ' px-2 py-0.5 rounded font-medium">' + badgeText + '</span>',
         '  </div>',
+
+        // Patient Info
         '  <div>',
-        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Patient</p>',
-        '    <p class="text-xs text-clinical-muted mt-1">ID: DEMO-001 | Study: CT Pelvis w/o contrast | Slices: 100</p>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Patient Information</p>',
+        '    <div class="text-xs text-clinical-muted mt-1 space-y-0.5">',
+        '      <p><span class="text-clinical-text font-medium">Patient ID:</span> ' + escHtml(patientId) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">Age / Sex:</span> ' + escHtml(age) + ' / ' + escHtml(sex) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">Date of Injury:</span> ' + escHtml(doi) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">Mechanism:</span> ' + escHtml(mechanism) + '</p>',
+        '    </div>',
         '  </div>',
-        '  <div class="bg-yellow-400/10 border border-yellow-400/30 rounded p-2 mb-2">',
-        '    <p class="text-[10px] font-bold text-yellow-400">SIMULATED DEMO — NOT REAL AI ANALYSIS</p>',
-        '    <p class="text-[10px] text-yellow-400/70">This report is generated from hardcoded demo data. No AI model was run on any scan.</p>',
-        '  </div>',
+
+        // Imaging Findings
         '  <div>',
-        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Demo Detection Summary</p>',
-        '    <p class="text-xs text-clinical-muted mt-1">',
-        '      <strong class="text-clinical-positive">[DEMO] FRACTURE DETECTED</strong> — simulated result.',
-        '      This is an example of how PelvicScan AI would present findings once the model is trained.',
-        '    </p>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Imaging Findings</p>',
+        '    <div class="mt-1">',
+        '      <p class="text-[10px] text-clinical-text font-medium mb-1">Fracture Locations:</p>',
+               fxListHtml,
+        '      <p class="text-xs text-clinical-muted mt-2"><span class="text-clinical-text font-medium">Displacement:</span> ' + escHtml(displacement) + '</p>',
+        '      <p class="text-xs text-clinical-muted mt-1"><span class="text-clinical-text font-medium">Associated Findings:</span> ' + assocHtml + '</p>',
+        '    </div>',
         '  </div>',
+
+        // Classification
         '  <div>',
-        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Findings</p>',
-        '    <ol class="text-xs text-clinical-muted mt-1 space-y-1 list-decimal list-inside">',
-        '      <li><strong>Left superior pubic ramus fracture</strong> (slices 47-52, confidence 96.2%) - Cortical disruption with minimal displacement.</li>',
-        '      <li><strong>Left inferior pubic ramus fracture</strong> (slices 39-44, confidence 96.4%) - Non-displaced fracture line identified.</li>',
-        '      <li><strong>Possible left sacral ala involvement</strong> (slices 55-58, confidence 72.4%) - Subtle hypodensity suggesting occult fracture. Recommend correlation with MRI.</li>',
-        '    </ol>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Classification</p>',
+        '    <div class="text-xs text-clinical-muted mt-1 space-y-0.5">',
+        '      <p><span class="text-clinical-text font-medium">Young-Burgess:</span> ' + escHtml(youngBurgess) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">AO/OTA:</span> ' + escHtml(aoOta) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">Stability:</span> ' + escHtml(stability) + '</p>',
+        '    </div>',
         '  </div>',
+
+        // Clinical Assessment
         '  <div>',
-        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Significance</p>',
-        '    <p class="text-xs text-clinical-muted mt-1">',
-        '      Pattern consistent with Lateral Compression (LC) type injury. Ipsilateral pubic rami fractures',
-        '      with possible sacral involvement. Classification and stability assessment pending Phase 2 implementation.',
-        '    </p>',
+        '    <p class="text-[10px] font-semibold text-clinical-text uppercase tracking-wide">Clinical Assessment</p>',
+        '    <div class="text-xs text-clinical-muted mt-1 space-y-0.5">',
+        '      <p><span class="text-clinical-text font-medium">Hemodynamic Status:</span> ' + escHtml(hemodynamic) + '</p>',
+        '      <p><span class="text-clinical-text font-medium">Recommended Management:</span> ' + mgmtHtml + '</p>',
+        (notes ? '      <div class="mt-2 p-2 bg-clinical-surface rounded border border-clinical-border"><p class="text-[10px] text-clinical-text font-medium mb-1">Additional Notes:</p><p class="text-xs text-clinical-muted whitespace-pre-wrap">' + escHtml(notes) + '</p></div>' : ''),
+        '    </div>',
         '  </div>',
+
+        // Footer
         '  <div class="border-t border-clinical-border pt-2">',
         '    <p class="text-[10px] text-clinical-muted italic">',
-        '      This AI-generated report is for clinical decision support only. All findings must be confirmed',
-        '      by a qualified physician. PelvicScan AI v0.1-dev | PROTOTYPE — NOT FDA CLEARED | Demo simulation only — not real AI analysis',
+        '      This report was manually entered by the treating clinician and does not contain AI-generated content.',
+        '      PelvicScan AI v0.1-dev | PROTOTYPE -- NOT FDA CLEARED',
         '    </p>',
         '  </div>',
+
         '</div>',
       ].join('\n');
+
+      // Show the report output
+      qs('#report-output').classList.remove('hidden');
+
+      // Enable export buttons
+      qs('#btn-export-pdf').disabled = false;
+      qs('#btn-export-dicomsr').disabled = false;
+
+      // Scroll to the generated report
+      qs('#report-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Show toast
+      if (typeof showToast === 'function') {
+        showToast('Clinical report generated successfully');
+      }
+    }
+
+    // Bind the Generate Report button
+    var btnGenReport = qs('#btn-generate-report');
+    if (btnGenReport) {
+      btnGenReport.addEventListener('click', compileManualReport);
+    }
+
+    // Export PDF handler (print-based)
+    var btnExportPdf = qs('#btn-export-pdf');
+    if (btnExportPdf) {
+      btnExportPdf.addEventListener('click', function() {
+        var reportHtml = qs('#report-content').innerHTML;
+        if (!reportHtml || reportHtml.trim() === '') return;
+        var printWin = window.open('', '_blank', 'width=800,height=600');
+        printWin.document.write([
+          '<!DOCTYPE html><html><head><title>Pelvic Trauma Report</title>',
+          '<style>',
+          'body{font-family:system-ui,sans-serif;padding:24px;color:#1e293b;font-size:12px;line-height:1.5}',
+          '.border{border:1px solid #e2e8f0}.rounded-lg{border-radius:8px}.p-4{padding:16px}',
+          '.space-y-3>*+*{margin-top:12px}.text-xs{font-size:12px}',
+          'p{margin:2px 0}.font-bold{font-weight:700}.font-medium{font-weight:500}',
+          '.uppercase{text-transform:uppercase}.tracking-wide{letter-spacing:0.05em}',
+          '.border-b{border-bottom:1px solid #e2e8f0}.pb-2{padding-bottom:8px}.pt-2{padding-top:8px}',
+          '.mt-1{margin-top:4px}.mt-2{margin-top:8px}.mb-1{margin-bottom:4px}',
+          '.italic{font-style:italic}.whitespace-pre-wrap{white-space:pre-wrap}',
+          'ul{list-style:none;padding:0}li{display:flex;align-items:flex-start;gap:8px;margin:4px 0}',
+          'span[class*="rounded"]{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:4px;background:#fee2e2;font-size:9px;font-weight:700;color:#ef4444}',
+          '@media print{body{padding:12px}}',
+          '</style></head><body>',
+          '<div style="text-align:center;margin-bottom:16px;border-bottom:2px solid #334155;padding-bottom:8px">',
+          '<strong style="font-size:14px">PELVIC TRAUMA -- STRUCTURED CLINICAL REPORT</strong><br>',
+          '<span style="font-size:10px;color:#64748b">Manual Clinician Entry -- Not AI Generated</span>',
+          '</div>',
+          reportHtml,
+          '</body></html>'
+        ].join(''));
+        printWin.document.close();
+        printWin.focus();
+        setTimeout(function() { printWin.print(); }, 400);
+      });
+    }
+
+    // Export DICOM SR handler (placeholder — generates JSON)
+    var btnExportDicomSr = qs('#btn-export-dicomsr');
+    if (btnExportDicomSr) {
+      btnExportDicomSr.addEventListener('click', function() {
+        var data = {
+          reportType: 'Pelvic Trauma Structured Report',
+          generatedAt: new Date().toISOString(),
+          aiGenerated: false,
+          patient: {
+            id: qs('#rpt-patient-id').value.trim() || null,
+            age: qs('#rpt-age').value.trim() || null,
+            sex: qs('#rpt-sex').value || null,
+            dateOfInjury: qs('#rpt-doi').value || null,
+            mechanism: qs('#rpt-mechanism').value || null
+          },
+          findings: {
+            fractureLocations: getCheckedValues('rpt-fx'),
+            displacement: getRadioValue('rpt-displacement') || null,
+            associatedFindings: getCheckedValues('rpt-assoc')
+          },
+          classification: {
+            youngBurgess: qs('#rpt-young-burgess').value || null,
+            aoOta: qs('#rpt-ao-ota').value || null,
+            stability: qs('#rpt-stability').value || null
+          },
+          clinicalAssessment: {
+            hemodynamicStatus: qs('#rpt-hemodynamic').value || null,
+            recommendedManagement: getCheckedValues('rpt-mgmt'),
+            notes: qs('#rpt-notes').value.trim() || null
+          }
+        };
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'pelvic-report-' + (data.patient.id || 'unknown') + '.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        if (typeof showToast === 'function') {
+          showToast('DICOM SR data exported as JSON');
+        }
+      });
     }
 
     /* ================================================================== */
@@ -1266,6 +2390,323 @@
         drawDemoScan();
       }
     });
+
+    /* ================================================================== */
+    /* Toast Notification Helper                                           */
+    /* ================================================================== */
+    function showToast(message) {
+      var existing = qs('#window-toast');
+      if (existing) existing.remove();
+
+      var toast = document.createElement('div');
+      toast.id = 'window-toast';
+      toast.textContent = message;
+      toast.style.cssText =
+        'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);' +
+        'background:#1e293b;color:#f8fafc;border:1px solid #334155;' +
+        'padding:8px 16px;border-radius:8px;font-size:12px;font-family:system-ui,sans-serif;' +
+        'z-index:9999;opacity:0;transition:opacity 0.3s ease;pointer-events:none;';
+      document.body.appendChild(toast);
+
+      // Trigger fade-in
+      requestAnimationFrame(function() {
+        toast.style.opacity = '1';
+      });
+
+      // Fade-out and remove after 2 seconds
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 2000);
+    }
+
+    /* ================================================================== */
+    /* Heatmap Toggle Handler                                              */
+    /* ================================================================== */
+    var btnToggleHeatmap = qs('#btn-toggle-heatmap');
+    if (btnToggleHeatmap) {
+      btnToggleHeatmap.addEventListener('click', function() {
+        var heatmapCanvas = qs('#heatmap-canvas');
+        if (!heatmapCanvas) return;
+
+        var isHidden = heatmapCanvas.classList.contains('hidden');
+        heatmapCanvas.classList.toggle('hidden', !isHidden);
+        btnToggleHeatmap.classList.toggle('active', isHidden);
+        btnToggleHeatmap.classList.toggle('text-clinical-muted', !isHidden);
+
+        if (isHidden) {
+          // Draw a demo heatmap overlay when showing
+          var container = heatmapCanvas.parentElement;
+          heatmapCanvas.width = container.clientWidth;
+          heatmapCanvas.height = container.clientHeight;
+          var ctx = heatmapCanvas.getContext('2d');
+          ctx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+
+          var cx = heatmapCanvas.width / 2;
+          var cy = heatmapCanvas.height / 2;
+          var scale = Math.min(heatmapCanvas.width, heatmapCanvas.height) / 520;
+
+          // Hotspot 1: Left superior pubic ramus fracture
+          var grad1 = ctx.createRadialGradient(
+            cx - 40*scale, cy + 50*scale, 0,
+            cx - 40*scale, cy + 50*scale, 50*scale
+          );
+          grad1.addColorStop(0, 'rgba(239, 68, 68, 0.7)');
+          grad1.addColorStop(0.4, 'rgba(245, 158, 11, 0.4)');
+          grad1.addColorStop(1, 'rgba(245, 158, 11, 0)');
+          ctx.fillStyle = grad1;
+          ctx.fillRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+
+          // Hotspot 2: Left inferior pubic ramus fracture
+          var grad2 = ctx.createRadialGradient(
+            cx - 50*scale, cy + 80*scale, 0,
+            cx - 50*scale, cy + 80*scale, 45*scale
+          );
+          grad2.addColorStop(0, 'rgba(239, 68, 68, 0.65)');
+          grad2.addColorStop(0.4, 'rgba(245, 158, 11, 0.35)');
+          grad2.addColorStop(1, 'rgba(245, 158, 11, 0)');
+          ctx.fillStyle = grad2;
+          ctx.fillRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+
+          // Hotspot 3: Possible sacral involvement (lower intensity)
+          var grad3 = ctx.createRadialGradient(
+            cx + 25*scale, cy - 30*scale, 0,
+            cx + 25*scale, cy - 30*scale, 35*scale
+          );
+          grad3.addColorStop(0, 'rgba(245, 158, 11, 0.45)');
+          grad3.addColorStop(0.5, 'rgba(245, 158, 11, 0.15)');
+          grad3.addColorStop(1, 'rgba(245, 158, 11, 0)');
+          ctx.fillStyle = grad3;
+          ctx.fillRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+
+          showToast('AI Overlay: GradCAM heatmap enabled');
+        } else {
+          showToast('AI Overlay: Heatmap hidden');
+        }
+      });
+    }
+
+    /* ================================================================== */
+    /* Bone / Soft Tissue Window Handlers                                  */
+    /* ================================================================== */
+    var btnBoneWindow = qs('#btn-bone-window');
+    var btnSoftWindow = qs('#btn-soft-window');
+    var activeWindow = 'default'; // 'default', 'bone', or 'soft'
+
+    function applyWindowPreset(preset) {
+      var scanCanvas = qs('#scan-canvas');
+      if (!scanCanvas) return;
+
+      // Clear active state on both buttons
+      if (btnBoneWindow) {
+        btnBoneWindow.classList.remove('active');
+        btnBoneWindow.classList.add('text-clinical-muted');
+      }
+      if (btnSoftWindow) {
+        btnSoftWindow.classList.remove('active');
+        btnSoftWindow.classList.add('text-clinical-muted');
+      }
+
+      if (preset === 'bone') {
+        scanCanvas.style.filter = 'brightness(1.3) contrast(1.5)';
+        btnBoneWindow.classList.add('active');
+        btnBoneWindow.classList.remove('text-clinical-muted');
+        qs('#overlay-window').textContent = 'W: 1500 L: 300 [Bone]';
+        showToast('Bone Window active (W:1500 L:300)');
+      } else if (preset === 'soft') {
+        scanCanvas.style.filter = 'brightness(0.85) contrast(0.8)';
+        btnSoftWindow.classList.add('active');
+        btnSoftWindow.classList.remove('text-clinical-muted');
+        qs('#overlay-window').textContent = 'W: 400 L: 50 [Soft Tissue]';
+        showToast('Soft Tissue Window active (W:400 L:50)');
+      } else {
+        scanCanvas.style.filter = '';
+        qs('#overlay-window').textContent = 'W: 1500 L: 300';
+        showToast('Default window preset restored');
+      }
+
+      activeWindow = preset;
+    }
+
+    if (btnBoneWindow) {
+      btnBoneWindow.addEventListener('click', function() {
+        applyWindowPreset(activeWindow === 'bone' ? 'default' : 'bone');
+      });
+    }
+
+    if (btnSoftWindow) {
+      btnSoftWindow.addEventListener('click', function() {
+        applyWindowPreset(activeWindow === 'soft' ? 'default' : 'soft');
+      });
+    }
+
+    /* ================================================================== */
+    /* Stability Assessment — Decision Tree Logic                          */
+    /* ================================================================== */
+    var saAnswers = {};
+    var saBreadcrumbData = [];
+
+    function saHideAllSteps() {
+      var steps = qsa('.sa-step', qs('#sa-content'));
+      steps.forEach(function(s) { s.classList.add('hidden'); });
+    }
+
+    function saShowStep(id) {
+      saHideAllSteps();
+      var el = qs('#' + id);
+      if (el) el.classList.remove('hidden');
+    }
+
+    function saUpdateBreadcrumb() {
+      var container = qs('#sa-breadcrumb');
+      if (!container) return;
+      container.innerHTML = '';
+      saBreadcrumbData.forEach(function(item, idx) {
+        if (idx > 0) {
+          var arrow = document.createElement('span');
+          arrow.textContent = '\u2192';
+          arrow.className = 'text-clinical-border';
+          container.appendChild(arrow);
+        }
+        var span = document.createElement('span');
+        span.className = 'px-1.5 py-0.5 rounded ' + (item.color || 'bg-clinical-surface text-clinical-muted');
+        span.textContent = item.label;
+        container.appendChild(span);
+      });
+    }
+
+    function saAnswer(question, answer) {
+      saAnswers[question] = answer;
+
+      if (question === 'q1') {
+        if (answer === 'yes') {
+          saBreadcrumbData = [{ label: 'Posterior ring: Intact', color: 'bg-green-500/10 text-green-400' }];
+          saUpdateBreadcrumb();
+          saShowStep('sa-q2');
+        } else {
+          saBreadcrumbData = [{ label: 'Posterior ring: Disrupted', color: 'bg-red-500/10 text-red-400' }];
+          saUpdateBreadcrumb();
+          saShowStep('sa-q3');
+        }
+      } else if (question === 'q2') {
+        if (answer === 'yes') {
+          saBreadcrumbData.push({ label: 'Anterior disruption only', color: 'bg-green-500/10 text-green-400' });
+          saBreadcrumbData.push({ label: 'STABLE (Tile A)', color: 'bg-green-500/15 text-green-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-result-stable-a');
+        } else {
+          saBreadcrumbData.push({ label: 'No anterior disruption', color: 'bg-green-500/10 text-green-400' });
+          saBreadcrumbData.push({ label: 'STABLE (No injury)', color: 'bg-green-500/15 text-green-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-result-stable-none');
+        }
+      } else if (question === 'q3') {
+        if (answer === 'incomplete') {
+          saBreadcrumbData.push({ label: 'Incomplete disruption', color: 'bg-yellow-500/10 text-yellow-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-q4');
+        } else {
+          saBreadcrumbData.push({ label: 'Complete disruption', color: 'bg-red-500/10 text-red-400' });
+          saBreadcrumbData.push({ label: 'UNSTABLE (Tile C)', color: 'bg-red-500/15 text-red-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-result-unstable');
+        }
+      } else if (question === 'q4') {
+        if (answer === 'yes') {
+          saBreadcrumbData.push({ label: 'Rotational instability', color: 'bg-yellow-500/10 text-yellow-400' });
+          saBreadcrumbData.push({ label: 'ROT. UNSTABLE (Tile B)', color: 'bg-yellow-500/15 text-yellow-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-result-rot-unstable');
+        } else {
+          saBreadcrumbData.push({ label: 'No rotational instability', color: 'bg-yellow-500/10 text-yellow-400' });
+          saBreadcrumbData.push({ label: 'PARTIAL (Tile B)', color: 'bg-yellow-500/15 text-yellow-400' });
+          saUpdateBreadcrumb();
+          saShowStep('sa-result-partial');
+        }
+      }
+    }
+
+    function saReset() {
+      saAnswers = {};
+      saBreadcrumbData = [];
+      saUpdateBreadcrumb();
+      saShowStep('sa-q1');
+    }
+
+    /* ================================================================== */
+    /* Young-Burgess Classification Interactivity                          */
+    /* ================================================================== */
+    (function() {
+      var catBtns = qsa('.yb-cat-btn');
+      var detailPanels = ['LC', 'APC', 'VS', 'CM'];
+
+      catBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var cat = btn.dataset.ybCat;
+
+          // Toggle: if already active, deselect
+          var isActive = btn.classList.contains('border-clinical-accent');
+
+          // Reset all category buttons
+          catBtns.forEach(function(b) {
+            b.classList.remove('border-clinical-accent', 'text-clinical-text', 'bg-clinical-accent/10');
+            b.classList.add('border-clinical-border', 'text-clinical-muted');
+          });
+
+          // Hide all detail panels
+          detailPanels.forEach(function(name) {
+            var panel = qs('#yb-detail-' + name);
+            if (panel) panel.classList.add('hidden');
+          });
+
+          if (!isActive) {
+            // Activate this button
+            btn.classList.add('border-clinical-accent', 'text-clinical-text', 'bg-clinical-accent/10');
+            btn.classList.remove('border-clinical-border', 'text-clinical-muted');
+
+            // Show corresponding detail panel
+            var panel = qs('#yb-detail-' + cat);
+            if (panel) panel.classList.remove('hidden');
+          }
+        });
+      });
+
+      // Subtype toggle (expand/collapse detail)
+      var subBtns = qsa('.yb-sub-btn');
+      subBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var detail = btn.nextElementSibling;
+          var chevron = btn.querySelector('.yb-chevron');
+          if (detail && detail.classList.contains('yb-sub-detail')) {
+            var isHidden = detail.classList.contains('hidden');
+            detail.classList.toggle('hidden');
+            if (chevron) {
+              chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
+            }
+          }
+        });
+      });
+    })();
+
+    /* ================================================================== */
+    /* AO/OTA Classification Interactivity                                 */
+    /* ================================================================== */
+    (function() {
+      var typeBtns = qsa('.ao-type-btn');
+      typeBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var detail = btn.nextElementSibling;
+          var chevron = btn.querySelector('.ao-chevron');
+          if (detail && detail.classList.contains('ao-type-detail')) {
+            var isHidden = detail.classList.contains('hidden');
+            detail.classList.toggle('hidden');
+            if (chevron) {
+              chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
+            }
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>

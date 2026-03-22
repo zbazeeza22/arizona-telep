@@ -12,7 +12,7 @@ All models documented per IEC 62304 requirements.
 Architecture decisions justified by peer-reviewed literature.
 
 IEC 62304 Software Item: MODEL-001
-Version: 1.0.0
+Version: 0.1-dev
 """
 
 import logging

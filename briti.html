@@ -54,9 +54,9 @@
     #pw-error{color:#ef4444;font-size:14px;display:none}
 
     /* Service card images */
-    .svc-card{border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+    .svc-card{border-radius:20px;overflow:hidden;transition:transform .25s,box-shadow .25s;box-shadow:0 4px 20px rgba(0,0,0,.08)}
     .svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
-    .svc-card-img{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+    .svc-card-img{aspect-ratio:5/4;display:flex;align-items:center;justify-content:center}
     .svc-card-label{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;background:#fff}
     .svc-card-label span{font-size:16px;font-weight:600;color:#1a1a1a}
   </style>
@@ -128,28 +128,28 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 
   <!-- 4 Service category cards -->
   <div class="max-w-[1320px] mx-auto px-6 pb-0" style="position:relative;z-index:2">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 fade-up fd4" style="transform:translateY(40px)">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 fade-up fd4" style="transform:translateY(100px)">
       <a href="#adhd" class="svc-card bg-white" style="text-decoration:none">
         <div class="svc-card-img" style="background:linear-gradient(135deg,#d5e8de,#b8d4c5)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M32 8C22 8 14 16 14 24c0 6 4 12 8 16v4a2 2 0 002 2h16a2 2 0 002-2v-4c4-4 8-10 8-16 0-8-8-16-18-16z" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 50h16M26 56h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <svg width="72" height="72" viewBox="0 0 64 64" fill="none"><path d="M32 8C22 8 14 16 14 24c0 6 4 12 8 16v4a2 2 0 002 2h16a2 2 0 002-2v-4c4-4 8-10 8-16 0-8-8-16-18-16z" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 50h16M26 56h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
         </div>
         <div class="svc-card-label"><span>ADHD</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a href="#anxiety" class="svc-card bg-white" style="text-decoration:none">
         <div class="svc-card-img" style="background:linear-gradient(135deg,#e8ddf0,#d4c4e3)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M32 56S8 42 8 24C8 14 16 8 24 8c4 0 6 2 8 6 2-4 4-6 8-6 8 0 16 6 16 16C56 42 32 56 32 56z" stroke="white" stroke-width="2.5" fill="none"/></svg>
+          <svg width="72" height="72" viewBox="0 0 64 64" fill="none"><path d="M32 56S8 42 8 24C8 14 16 8 24 8c4 0 6 2 8 6 2-4 4-6 8-6 8 0 16 6 16 16C56 42 32 56 32 56z" stroke="white" stroke-width="2.5" fill="none"/></svg>
         </div>
         <div class="svc-card-label"><span>Anxiety</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a href="#depression" class="svc-card bg-white" style="text-decoration:none">
         <div class="svc-card-img" style="background:linear-gradient(135deg,#dde8f0,#c4d4e3)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="18" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 36c2 4 6 6 8 6s6-2 8-6" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="28" r="2" fill="white"/><circle cx="38" cy="28" r="2" fill="white"/></svg>
+          <svg width="72" height="72" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="18" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 36c2 4 6 6 8 6s6-2 8-6" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="28" r="2" fill="white"/><circle cx="38" cy="28" r="2" fill="white"/></svg>
         </div>
         <div class="svc-card-label"><span>Depression</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a href="#insomnia" class="svc-card bg-white" style="text-decoration:none">
         <div class="svc-card-img" style="background:linear-gradient(135deg,#f0e8dd,#e3d4c0)">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M44 20A16 16 0 1028 44a12 12 0 0016-24z" stroke="white" stroke-width="2.5" fill="none"/><circle cx="46" cy="16" r="2" fill="white"/><circle cx="52" cy="26" r="1.5" fill="white"/><circle cx="42" cy="12" r="1.2" fill="white"/></svg>
+          <svg width="72" height="72" viewBox="0 0 64 64" fill="none"><path d="M44 20A16 16 0 1028 44a12 12 0 0016-24z" stroke="white" stroke-width="2.5" fill="none"/><circle cx="46" cy="16" r="2" fill="white"/><circle cx="52" cy="26" r="1.5" fill="white"/><circle cx="42" cy="12" r="1.2" fill="white"/></svg>
         </div>
         <div class="svc-card-label"><span>Insomnia</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
@@ -158,7 +158,7 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 </section>
 
 <!-- MARQUEE TRUST BAR -->
-<section style="background:#f8f7f4;padding-top:60px;padding-bottom:24px;border-bottom:1px solid #e5e5e5">
+<section style="background:#f8f7f4;padding-top:130px;padding-bottom:28px;border-bottom:1px solid #e5e5e5">
   <div class="marquee-wrap">
     <div class="marquee-track">
       <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Licensed Medical Providers</span></div>
@@ -181,8 +181,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   <div class="max-w-[1320px] mx-auto px-6">
     <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#d5e8de,#b8d4c5)">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 12C28 12 18 22 18 32c0 8 5 16 10 20v6a3 3 0 003 3h18a3 3 0 003-3v-6c5-4 10-12 10-20 0-10-10-20-22-20z" stroke="white" stroke-width="2.5" fill="none"/><path d="M30 64h20M32 70h16" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <div class="rounded-3xl w-full flex items-center justify-center" style="aspect-ratio:1/1;background:linear-gradient(135deg,#d5e8de,#b8d4c5)">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><path d="M40 12C28 12 18 22 18 32c0 8 5 16 10 20v6a3 3 0 003 3h18a3 3 0 003-3v-6c5-4 10-12 10-20 0-10-10-20-22-20z" stroke="white" stroke-width="2.5" fill="none"/><path d="M30 64h20M32 70h16" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
@@ -270,8 +270,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   <div class="max-w-[1320px] mx-auto px-6">
     <div class="flex flex-col lg:flex-row-reverse items-center gap-14 lg:gap-20">
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8ddf0,#d4c4e3)">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 70S10 50 10 30C10 18 20 10 30 10C35 10 38 12 40 16C42 12 45 10 50 10C60 10 70 18 70 30C70 50 40 70 40 70Z" fill="white" opacity=".9"/></svg>
+        <div class="rounded-3xl w-full flex items-center justify-center" style="aspect-ratio:1/1;background:linear-gradient(135deg,#e8ddf0,#d4c4e3)">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><path d="M40 70S10 50 10 30C10 18 20 10 30 10C35 10 38 12 40 16C42 12 45 10 50 10C60 10 70 18 70 30C70 50 40 70 40 70Z" fill="white" opacity=".9"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
@@ -315,8 +315,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
         </div>
       </div>
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e6f5ee,#c8e6d8)">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="25" y="8" width="30" height="50" rx="6" fill="white" opacity=".9"/><rect x="30" y="4" width="20" height="12" rx="3" fill="white" opacity=".9"/><path d="M35 35H45M40 30V40" stroke="#c8e6d8" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <div class="rounded-3xl w-full flex items-center justify-center" style="aspect-ratio:1/1;background:linear-gradient(135deg,#e6f5ee,#c8e6d8)">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><rect x="25" y="8" width="30" height="50" rx="6" fill="white" opacity=".9"/><rect x="30" y="4" width="20" height="12" rx="3" fill="white" opacity=".9"/><path d="M35 35H45M40 30V40" stroke="#c8e6d8" stroke-width="2.5" stroke-linecap="round"/></svg>
         </div>
       </div>
     </div>
@@ -328,8 +328,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   <div class="max-w-[1320px] mx-auto px-6">
     <div class="flex flex-col lg:flex-row-reverse items-center gap-14 lg:gap-20">
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8eef8,#d0daf0)">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="36" cy="40" r="18" stroke="#fff" stroke-width="3" fill="none"/><path d="M38 22c8.84 0 16 7.16 16 16s-7.16 16-16 16" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="58" cy="22" r="2.5" fill="#fff"/><circle cx="64" cy="34" r="1.8" fill="#fff"/><circle cx="52" cy="16" r="1.5" fill="#fff"/></svg>
+        <div class="rounded-3xl w-full flex items-center justify-center" style="aspect-ratio:1/1;background:linear-gradient(135deg,#e8eef8,#d0daf0)">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><circle cx="36" cy="40" r="18" stroke="#fff" stroke-width="3" fill="none"/><path d="M38 22c8.84 0 16 7.16 16 16s-7.16 16-16 16" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="58" cy="22" r="2.5" fill="#fff"/><circle cx="64" cy="34" r="1.8" fill="#fff"/><circle cx="52" cy="16" r="1.5" fill="#fff"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
@@ -373,8 +373,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Evidence-based psychiatric treatment for PTSD, trauma-related anxiety, and complex stress responses. Compassionate care that meets you where you are.</p>
       </div>
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#fff8ec,#fce6b8)">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 14L18 26v16c0 14.4 9.4 27.8 22 32 12.6-4.2 22-17.6 22-32V26L40 14z" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 56s-10-6-10-14a6.5 6.5 0 0 1 10-5.47A6.5 6.5 0 0 1 50 42c0 8-10 14-10 14z" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="rounded-3xl w-full flex items-center justify-center" style="aspect-ratio:1/1;background:linear-gradient(135deg,#fff8ec,#fce6b8)">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><path d="M40 14L18 26v16c0 14.4 9.4 27.8 22 32 12.6-4.2 22-17.6 22-32V26L40 14z" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 56s-10-6-10-14a6.5 6.5 0 0 1 10-5.47A6.5 6.5 0 0 1 50 42c0 8-10 14-10 14z" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
     </div>
@@ -386,8 +386,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   <div class="max-w-[1320px] mx-auto px-6">
     <div class="flex flex-col lg:flex-row-reverse items-center gap-14 lg:gap-20">
       <div class="lg:w-1/2 fade-up">
-        <div class="rounded-2xl w-full" style="aspect-ratio:4/3;background:linear-gradient(135deg,#fdf2f2,#f5d5d5);display:flex;align-items:center;justify-content:center">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 16C26.745 16 16 26.745 16 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M16 40L22 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 40L22 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 64C53.255 64 64 53.255 64 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M64 40L58 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M64 40L58 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="40" r="6" stroke="white" stroke-width="3.5" fill="none"/></svg>
+        <div class="rounded-3xl w-full" style="aspect-ratio:1/1;background:linear-gradient(135deg,#fdf2f2,#f5d5d5);display:flex;align-items:center;justify-content:center">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><path d="M40 16C26.745 16 16 26.745 16 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M16 40L22 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 40L22 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 64C53.255 64 64 53.255 64 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M64 40L58 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M64 40L58 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="40" r="6" stroke="white" stroke-width="3.5" fill="none"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
@@ -413,8 +413,8 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Doctor-guided care for chronic stress, burnout, and adjustment disorders. We address the root cause—not just the symptoms—so you can feel like yourself again.</p>
       </div>
       <div class="lg:w-1/2 fade-up">
-        <div class="rounded-2xl w-full" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8f8f0,#c4ead8);display:flex;align-items:center;justify-content:center">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 68V28" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M40 28C40 28 32 20 24 24C16 28 18 40 40 44" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M40 36C40 36 48 28 56 32C64 36 62 48 40 52" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M32 68H48" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="rounded-3xl w-full" style="aspect-ratio:1/1;background:linear-gradient(135deg,#e8f8f0,#c4ead8);display:flex;align-items:center;justify-content:center">
+          <svg width="100" height="100" viewBox="0 0 80 80" fill="none"><path d="M40 68V28" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M40 28C40 28 32 20 24 24C16 28 18 40 40 44" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M40 36C40 36 48 28 56 32C64 36 62 48 40 52" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M32 68H48" stroke="white" stroke-width="4" stroke-linecap="round"/></svg>
         </div>
       </div>
     </div>

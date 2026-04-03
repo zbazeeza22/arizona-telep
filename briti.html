@@ -8,42 +8,68 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    *{font-family:'Inter',system-ui,-apple-system,sans-serif}
+    *{font-family:'Inter',system-ui,-apple-system,sans-serif;margin:0;padding:0;box-sizing:border-box}
     html{scroll-padding-top:80px}
+
+    /* Animations */
     .fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
     .fade-up.visible{opacity:1;transform:translateY(0)}
-    .fade-up-d1{transition-delay:.1s}.fade-up-d2{transition-delay:.2s}.fade-up-d3{transition-delay:.3s}
-    .fade-up-d4{transition-delay:.4s}.fade-up-d5{transition-delay:.5s}.fade-up-d6{transition-delay:.6s}
-    .gold-btn{background-color:#C6A673;transition:background-color .2s ease,transform .15s ease,box-shadow .2s ease}
-    .gold-btn:hover{background-color:#b8955f;transform:translateY(-1px);box-shadow:0 6px 20px rgba(198,166,115,.35)}
-    .nav-dd{opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
-    .nav-dd.open{opacity:1;transform:translateY(0);pointer-events:auto}
+    .fd1{transition-delay:.1s}.fd2{transition-delay:.2s}.fd3{transition-delay:.3s}
+    .fd4{transition-delay:.4s}.fd5{transition-delay:.5s}.fd6{transition-delay:.6s}
+
+    /* Green button */
+    .green-btn{background:#2A7B52;color:#fff;border:none;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s}
+    .green-btn:hover{background:#236A45;transform:translateY(-1px);box-shadow:0 6px 20px rgba(42,123,82,.35)}
+
+    /* Marquee */
+    .marquee-wrap{overflow:hidden;width:100%}
+    .marquee-track{display:flex;gap:3rem;animation:marquee 25s linear infinite;width:max-content}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .marquee-item{display:flex;align-items:center;gap:.625rem;flex-shrink:0;white-space:nowrap}
+    .marquee-item svg{flex-shrink:0}
+
+    /* Scrolling reviews */
     .review-track{scrollbar-width:none;-ms-overflow-style:none}
     .review-track::-webkit-scrollbar{display:none}
-    .review-card{transition:transform .2s ease,box-shadow .2s ease}
+    .review-card{transition:transform .2s,box-shadow .2s}
     .review-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
+    /* FAQ */
     .faq-body{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .25s ease;opacity:0}
     .faq-body.open{max-height:500px;opacity:1}
-    #pw-overlay{position:fixed;inset:0;z-index:9999;background:#1a1a2e;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+
+    /* Mobile menu */
+    .nav-dd{opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .2s,transform .2s}
+    .nav-dd.open{opacity:1;transform:translateY(0);pointer-events:auto}
+
+    /* Password overlay */
+    #pw-overlay{position:fixed;inset:0;z-index:9999;background:#0f2620;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
     #pw-overlay.hidden{display:none}
     #pw-input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:12px;padding:16px 24px;font-size:18px;width:300px;text-align:center;outline:none;font-family:inherit}
-    #pw-input:focus{border-color:#C6A673;box-shadow:0 0 0 4px rgba(198,166,115,.2)}
+    #pw-input:focus{border-color:#6B9F7E;box-shadow:0 0 0 4px rgba(107,159,126,.2)}
     #pw-input::placeholder{color:rgba(255,255,255,.3)}
     #pw-error{color:#ef4444;font-size:14px;display:none}
+
+    /* Service card images */
+    .svc-card{border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+    .svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
+    .svc-card-img{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+    .svc-card-label{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;background:#fff}
+    .svc-card-label span{font-size:15px;font-weight:600;color:#1a1a1a}
   </style>
 </head>
 <body style="color:#1a1a1a;background:#fff">
 
 <!-- PASSWORD OVERLAY -->
 <div id="pw-overlay">
-  <p style="color:#C6A673;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase">Private Page</p>
+  <p style="color:#6B9F7E;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase">Private Page</p>
   <h2 style="color:#fff;font-size:32px;font-weight:700">Enter Access Code</h2>
   <input type="password" id="pw-input" placeholder="Password" autofocus />
   <p id="pw-error">Incorrect code</p>
-  <button onclick="checkPw()" class="gold-btn text-white font-semibold rounded-full px-10 py-3.5 text-sm" style="cursor:pointer">Enter</button>
+  <button onclick="checkPw()" class="green-btn font-semibold rounded-full px-10 py-3.5 text-sm" style="cursor:pointer">Enter</button>
 </div>
 <script>
 function checkPw(){var v=document.getElementById('pw-input').value;if(v==='1160'){document.getElementById('pw-overlay').classList.add('hidden');sessionStorage.setItem('briti-auth','1')}else{document.getElementById('pw-error').style.display='block';document.getElementById('pw-input').value=''}}
@@ -51,107 +77,136 @@ document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.
 if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overlay').classList.add('hidden');
 </script>
 
-<!-- NAV -->
-<header class="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#e5e5e5]" style="height:72px">
-  <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-full">
-    <a href="#" class="text-lg font-bold text-[#1a1a1a] tracking-tight">Arizona Telepsychiatry</a>
-    <nav class="hidden lg:flex items-center gap-8">
-      <a href="#adhd" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">ADHD</a>
-      <a href="#anxiety" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">Anxiety</a>
-      <a href="#depression" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">Depression</a>
-      <a href="#insomnia" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">Insomnia</a>
-      <a href="#pricing" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">Pricing</a>
-      <a href="#faq" class="text-sm font-medium text-[#6b7280] hover:text-[#1a1a1a] transition-colors">FAQ</a>
-    </nav>
-    <a href="#cta" class="hidden lg:inline-flex items-center text-sm font-semibold text-white rounded-full px-7 py-3 gold-btn">Get Started</a>
-    <button id="mob-btn" type="button" class="lg:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Menu">
-      <svg id="mob-open" class="w-6 h-6" fill="none" stroke="#1a1a1a" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      <svg id="mob-close" class="w-6 h-6 hidden" fill="none" stroke="#1a1a1a" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <div id="mob-menu" class="hidden lg:hidden bg-white border-t border-[#e5e5e5]">
-    <nav class="flex flex-col px-6 py-4 gap-1">
-      <a href="#adhd" class="py-3 text-sm font-medium text-[#1a1a1a]">ADHD</a>
-      <a href="#anxiety" class="py-3 text-sm font-medium text-[#1a1a1a]">Anxiety</a>
-      <a href="#depression" class="py-3 text-sm font-medium text-[#1a1a1a]">Depression</a>
-      <a href="#insomnia" class="py-3 text-sm font-medium text-[#1a1a1a]">Insomnia</a>
-      <a href="#pricing" class="py-3 text-sm font-medium text-[#1a1a1a]">Pricing</a>
-      <a href="#faq" class="py-3 text-sm font-medium text-[#1a1a1a]">FAQ</a>
-      <a href="#cta" class="block w-full text-center text-sm font-semibold text-white rounded-full px-7 py-3 mt-2 gold-btn">Get Started</a>
-    </nav>
-  </div>
-</header>
+<!-- HERO SECTION (dark green) -->
+<section style="background:linear-gradient(180deg,#132e27 0%,#1a4a3a 100%);position:relative;overflow:visible">
 
-<!-- HERO -->
-<section style="background:#f8f7f4">
-  <div class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
+  <!-- NAV on green -->
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(19,46,39,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
+    <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between" style="height:72px">
+      <a href="#" class="text-lg font-bold text-white tracking-tight" style="text-decoration:none">Arizona Telepsychiatry</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#adhd" class="text-sm font-medium text-white/60 hover:text-white transition-colors" style="text-decoration:none">ADHD</a>
+        <a href="#anxiety" class="text-sm font-medium text-white/60 hover:text-white transition-colors" style="text-decoration:none">Anxiety</a>
+        <a href="#depression" class="text-sm font-medium text-white/60 hover:text-white transition-colors" style="text-decoration:none">Depression</a>
+        <a href="#insomnia" class="text-sm font-medium text-white/60 hover:text-white transition-colors" style="text-decoration:none">Insomnia</a>
+        <a href="#faq" class="text-sm font-medium text-white/60 hover:text-white transition-colors" style="text-decoration:none">FAQ</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#cta" class="hidden lg:inline-flex items-center text-sm font-semibold text-white rounded-full px-7 py-3 green-btn" style="text-decoration:none">Get Started</a>
+        <button id="mob-btn" type="button" class="lg:hidden p-2" style="background:none;border:none;cursor:pointer" aria-label="Menu">
+          <svg id="mob-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16"/></svg>
+          <svg id="mob-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" class="hidden"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mob-menu" class="hidden lg:hidden" style="background:rgba(19,46,39,.95);border-top:1px solid rgba(255,255,255,.08)">
+      <nav class="flex flex-col px-6 py-4 gap-1">
+        <a href="#adhd" class="py-3 text-sm font-medium text-white/80" style="text-decoration:none">ADHD</a>
+        <a href="#anxiety" class="py-3 text-sm font-medium text-white/80" style="text-decoration:none">Anxiety</a>
+        <a href="#depression" class="py-3 text-sm font-medium text-white/80" style="text-decoration:none">Depression</a>
+        <a href="#insomnia" class="py-3 text-sm font-medium text-white/80" style="text-decoration:none">Insomnia</a>
+        <a href="#faq" class="py-3 text-sm font-medium text-white/80" style="text-decoration:none">FAQ</a>
+        <a href="#cta" class="block w-full text-center text-sm font-semibold text-white rounded-full px-7 py-3 mt-2 green-btn" style="text-decoration:none">Get Started</a>
+      </nav>
+    </div>
+  </nav>
+
+  <!-- Hero content -->
+  <div class="max-w-[1200px] mx-auto px-6 pt-16 md:pt-24 pb-8">
     <div class="max-w-3xl mx-auto text-center">
-      <p class="fade-up text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-6">Mental Health Care</p>
-      <h1 class="fade-up fade-up-d1 text-[44px] md:text-[56px] font-bold leading-[1.08] tracking-tight text-[#1a1a1a]">Join 2,000+ patients getting expert mental health care</h1>
-      <p class="fade-up fade-up-d2 text-xl md:text-2xl font-light text-[#6b7280] mt-6 leading-relaxed">Healthcare, redefined for real life.</p>
-      <p class="fade-up fade-up-d3 text-base text-[#6b7280] mt-6 max-w-2xl mx-auto leading-relaxed">We provide psychiatric care online—simple, direct, and led by board-certified providers. Whether you need ADHD treatment, anxiety support, or medication management, we make it easy.</p>
-      <div class="fade-up fade-up-d4 mt-8">
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-10 py-4 text-base">Get Started</a>
+      <p class="fade-up text-sm font-semibold text-white/70 mb-6">Join <strong class="text-white">2,000+</strong> Arizona patients</p>
+      <h1 class="fade-up fd1 text-[42px] md:text-[64px] font-extrabold leading-[1.05] tracking-tight text-white">Mental health care,<br><span style="color:#7aab8f">redefined</span> for real life.</h1>
+      <p class="fade-up fd2 text-base md:text-lg text-white/60 mt-6 max-w-2xl mx-auto leading-relaxed">We provide psychiatric care online—simple, direct, and led by licensed providers.<br class="hidden md:block">No waiting rooms. No unnecessary steps. Just care that works.</p>
+      <div class="fade-up fd3 mt-8">
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-10 py-4 text-base" style="text-decoration:none">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </div>
-  <!-- Value props bar -->
-  <div class="border-t border-[#e5e5e5]">
-    <div class="max-w-[1200px] mx-auto px-6 py-8">
-      <div class="fade-up fade-up-d5 flex flex-wrap justify-center gap-8 md:gap-12">
-        <div class="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span class="text-sm font-medium text-[#6b7280]">Licensed Medical Providers</span>
+
+  <!-- 4 Service category cards -->
+  <div class="max-w-[1200px] mx-auto px-6 pb-0" style="position:relative;z-index:2">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 fade-up fd4" style="transform:translateY(40px)">
+      <a href="#adhd" class="svc-card bg-white" style="text-decoration:none">
+        <div class="svc-card-img" style="background:linear-gradient(135deg,#d5e8de,#b8d4c5)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M32 8C22 8 14 16 14 24c0 6 4 12 8 16v4a2 2 0 002 2h16a2 2 0 002-2v-4c4-4 8-10 8-16 0-8-8-16-18-16z" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 50h16M26 56h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
         </div>
-        <div class="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <span class="text-sm font-medium text-[#6b7280]">100% Online</span>
+        <div class="svc-card-label"><span>ADHD</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#anxiety" class="svc-card bg-white" style="text-decoration:none">
+        <div class="svc-card-img" style="background:linear-gradient(135deg,#e8ddf0,#d4c4e3)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M32 56S8 42 8 24C8 14 16 8 24 8c4 0 6 2 8 6 2-4 4-6 8-6 8 0 16 6 16 16C56 42 32 56 32 56z" stroke="white" stroke-width="2.5" fill="none"/></svg>
         </div>
-        <div class="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <span class="text-sm font-medium text-[#6b7280]">Clear, transparent pricing</span>
+        <div class="svc-card-label"><span>Anxiety</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#depression" class="svc-card bg-white" style="text-decoration:none">
+        <div class="svc-card-img" style="background:linear-gradient(135deg,#dde8f0,#c4d4e3)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="18" stroke="white" stroke-width="2.5" fill="none"/><path d="M24 36c2 4 6 6 8 6s6-2 8-6" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="28" r="2" fill="white"/><circle cx="38" cy="28" r="2" fill="white"/></svg>
         </div>
-        <div class="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="text-sm font-medium text-[#6b7280]">HIPAA-compliant & secure</span>
+        <div class="svc-card-label"><span>Depression</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a href="#insomnia" class="svc-card bg-white" style="text-decoration:none">
+        <div class="svc-card-img" style="background:linear-gradient(135deg,#f0e8dd,#e3d4c0)">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M44 20A16 16 0 1028 44a12 12 0 0016-24z" stroke="white" stroke-width="2.5" fill="none"/><circle cx="46" cy="16" r="2" fill="white"/><circle cx="52" cy="26" r="1.5" fill="white"/><circle cx="42" cy="12" r="1.2" fill="white"/></svg>
         </div>
-      </div>
+        <div class="svc-card-label"><span>Insomnia</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ADHD SERVICE (Primary) -->
+<!-- MARQUEE TRUST BAR -->
+<section style="background:#f8f7f4;padding-top:60px;padding-bottom:24px;border-bottom:1px solid #e5e5e5">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Licensed Medical Providers</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">100% Online</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Clear Pricing</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">HIPAA-Compliant & Secure</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Same-Week Appointments</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Licensed Medical Providers</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">100% Online</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Clear Pricing</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">HIPAA-Compliant & Secure</span></div>
+      <div class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="text-xs font-bold uppercase tracking-[.15em] text-[#1a1a1a]">Same-Week Appointments</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADHD SERVICE -->
 <section id="adhd" class="bg-white py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div class="lg:w-1/2 w-full fade-up">
+        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#d5e8de,#b8d4c5)">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 12C28 12 18 22 18 32c0 8 5 16 10 20v6a3 3 0 003 3h18a3 3 0 003-3v-6c5-4 10-12 10-20 0-10-10-20-22-20z" stroke="white" stroke-width="2.5" fill="none"/><path d="M30 64h20M32 70h16" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">DOCTOR-GUIDED ADHD CARE</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">ADHD evaluation and treatment made simple</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">Doctor-Guided ADHD Care</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">ADHD evaluation and treatment <span style="color:#7aab8f">made simple</span></h2>
         <p class="text-lg text-[#6b7280] mb-6">A smarter approach to ADHD, built around you</p>
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm">
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm" style="text-decoration:none">
           Get Started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Your provider evaluates your symptoms, discusses treatment options, and creates a personalized plan—including medication management when appropriate.</p>
         <div class="mt-8 space-y-5">
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-[#f8f7f4] flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-[#eef6f1] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
             <p class="text-sm text-[#6b7280]">Track your progress, check in with your provider, and adjust your treatment—all from one platform.</p>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-[#f8f7f4] flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-[#eef6f1] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
             <p class="text-sm text-[#6b7280]">Unlimited messaging support between appointments</p>
           </div>
-        </div>
-        <p class="text-xs text-[#9ca3af] mt-8 italic">* All treatment plans require provider consultation. Medication prescribed only when clinically appropriate.</p>
-      </div>
-      <div class="lg:w-1/2 w-full fade-up">
-        <div class="w-full rounded-2xl flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8f0f8,#d4e4f4);border-radius:24px">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.5 2 5 5 5 9c0 2.5 1.5 4.5 3 6 .8.8 1.5 1.8 2 3h4c.5-1.2 1.2-2.2 2-3 1.5-1.5 3-3.5 3-6 0-4-3.5-7-7-7z"/><path d="M9 18h6"/><path d="M10 21h4"/></svg>
         </div>
       </div>
     </div>
@@ -159,49 +214,49 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 </section>
 
 <!-- BENEFITS GRID -->
-<section style="background-color:#f8f7f4" class="py-20 md:py-28">
+<section style="background:#f8f7f4" class="py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <h2 class="fade-up text-3xl md:text-[40px] font-bold text-center text-[#1a1a1a] mb-4 leading-tight">Whole-person psychiatric care</h2>
+    <h2 class="fade-up text-3xl md:text-[42px] font-extrabold text-center text-[#1a1a1a] mb-4 leading-tight">Whole-person <span style="color:#7aab8f">psychiatric care</span></h2>
     <p class="fade-up text-lg text-[#6b7280] text-center mb-16">Support that evolves with your needs</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:0s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.5 2 5 4.5 5 9c0 3 1.5 5 3 6.5V18a1 1 0 001 1h6a1 1 0 001-1v-2.5C17.5 14 19 12 19 9c0-4.5-3.5-7-7-7z"/><path d="M9 22h6"/></svg>
+      <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition">
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.5 2 5 4.5 5 9c0 3 1.5 5 3 6.5V18a1 1 0 001 1h6a1 1 0 001-1v-2.5C17.5 14 19 12 19 9c0-4.5-3.5-7-7-7z"/><path d="M9 22h6"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Focus & clarity</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">Improve concentration, reduce mental fog, and regain control of your daily tasks.</p>
       </div>
       <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:.1s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Emotional balance</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">Manage anxiety, stabilize mood, and build resilience against stress.</p>
       </div>
       <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:.2s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Better sleep</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">Address insomnia and sleep disruptions that affect your mental health.</p>
       </div>
       <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:.3s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Evidence-based care</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">Treatment plans backed by clinical research and psychiatric best practices.</p>
       </div>
       <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:.4s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Ongoing support</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">Unlimited messaging with your provider between scheduled appointments.</p>
       </div>
       <div class="fade-up bg-white rounded-2xl p-8 border border-[#e5e5e5] hover:shadow-md transition" style="transition-delay:.5s">
-        <div class="w-12 h-12 rounded-xl bg-[#f8f7f4] flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <div class="w-12 h-12 rounded-xl bg-[#eef6f1] flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-[#1a1a1a] mb-2">Private & secure</h3>
         <p class="text-sm text-[#6b7280] leading-relaxed">HIPAA-compliant platform with encrypted video and messaging.</p>
@@ -213,19 +268,18 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- ANXIETY & DEPRESSION -->
 <section id="anxiety" class="bg-white py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 w-full fade-up">
-        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0e6f6,#e0d0ee)">
+        <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8ddf0,#d4c4e3)">
           <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 70S10 50 10 30C10 18 20 10 30 10C35 10 38 12 40 16C42 12 45 10 50 10C60 10 70 18 70 30C70 50 40 70 40 70Z" fill="white" opacity=".9"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">ANXIETY & DEPRESSION CARE</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Whole-person care for anxiety, depression, and beyond</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">Anxiety & Depression Care</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Whole-person care for anxiety, depression, <span style="color:#7aab8f">and beyond</span></h2>
         <p class="text-lg text-[#6b7280] mb-6">Support that helps you feel like yourself again</p>
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm">
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm" style="text-decoration:none">
+          Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Doctor-guided care for generalized anxiety, panic disorders, social anxiety, and major depression. Your provider works with you to find the right treatment approach.</p>
       </div>
@@ -236,26 +290,25 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- MEDICATION MANAGEMENT -->
 <section id="depression" class="py-20 md:py-28" style="background:#f8f7f4">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">MEDICATION MANAGEMENT</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Ongoing medication care that keeps you on track</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">Medication Management</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Ongoing medication care <span style="color:#7aab8f">that keeps you on track</span></h2>
         <p class="text-lg text-[#6b7280] mb-6">Adjustments when you need them, monitoring you can trust</p>
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm">
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm" style="text-decoration:none">
+          Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Regular check-ins with your provider to monitor effectiveness, manage side effects, and optimize your treatment plan over time.</p>
         <div class="mt-8 space-y-4">
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-white flex items-center justify-center shadow-sm">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="14" rx="2" stroke="#C6A673" stroke-width="1.5"/><path d="M2 8H18" stroke="#C6A673" stroke-width="1.5"/><path d="M6 2V5" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/><path d="M14 2V5" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-white flex items-center justify-center shadow-sm">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="14" rx="2" stroke="#2A7B52" stroke-width="1.5"/><path d="M2 8H18" stroke="#2A7B52" stroke-width="1.5"/><path d="M6 2V5" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/><path d="M14 2V5" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <p class="text-sm text-[#6b7280] pt-2">Monthly follow-ups with your dedicated provider</p>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-white flex items-center justify-center shadow-sm">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V10" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/><path d="M7 17V7" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/><path d="M11 17V11" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/><path d="M15 17V4" stroke="#C6A673" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-white flex items-center justify-center shadow-sm">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V10" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/><path d="M7 17V7" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/><path d="M11 17V11" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/><path d="M15 17V4" stroke="#2A7B52" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <p class="text-sm text-[#6b7280] pt-2">Dosage adjustments based on your progress</p>
           </div>
@@ -273,31 +326,30 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- INSOMNIA -->
 <section id="insomnia" class="bg-white py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 w-full fade-up">
         <div class="rounded-2xl w-full flex items-center justify-center" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8eef8,#d0daf0)">
           <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="36" cy="40" r="18" stroke="#fff" stroke-width="3" fill="none"/><path d="M38 22c8.84 0 16 7.16 16 16s-7.16 16-16 16" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="58" cy="22" r="2.5" fill="#fff"/><circle cx="64" cy="34" r="1.8" fill="#fff"/><circle cx="52" cy="16" r="1.5" fill="#fff"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">INSOMNIA & SLEEP SUPPORT</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Sleep better, think clearer, feel stronger</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">Insomnia & Sleep Support</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Sleep better, think clearer, <span style="color:#7aab8f">feel stronger</span></h2>
         <p class="text-lg text-[#6b7280] mb-6">Advanced sleep care to help you rest and recover</p>
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm">
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm" style="text-decoration:none">
+          Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Clinically-backed treatment for chronic insomnia, sleep disruption, and circadian rhythm issues. Your provider identifies root causes—not just symptoms.</p>
         <div class="mt-8 space-y-4">
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-[#f8f7f4] flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-[#eef6f1] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
             </div>
             <p class="text-sm text-[#6b7280] pt-2">Personalized sleep protocols</p>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-[40px] h-[40px] min-w-[40px] rounded-xl bg-[#f8f7f4] flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="3" width="10" height="14" rx="5" stroke="#C6A673" stroke-width="1.5" fill="none"/><line x1="5" y1="10" x2="15" y2="10" stroke="#C6A673" stroke-width="1.5"/></svg>
+            <div class="w-10 h-10 min-w-[40px] rounded-xl bg-[#eef6f1] flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="3" width="10" height="14" rx="5" stroke="#2A7B52" stroke-width="1.5" fill="none"/><line x1="5" y1="10" x2="15" y2="10" stroke="#2A7B52" stroke-width="1.5"/></svg>
             </div>
             <p class="text-sm text-[#6b7280] pt-2">Medication options when appropriate</p>
           </div>
@@ -310,14 +362,13 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- PTSD & TRAUMA -->
 <section class="py-20 md:py-28" style="background:#f8f7f4">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">PTSD & TRAUMA CARE</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Targeted support for trauma recovery and resilience</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">PTSD & Trauma Care</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Targeted support for <span style="color:#7aab8f">trauma recovery</span> and resilience</h2>
         <p class="text-lg text-[#6b7280] mb-6">Care that works below the surface</p>
-        <a href="#cta" class="gold-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm">
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#cta" class="green-btn inline-flex items-center gap-2 text-white font-semibold rounded-full px-8 py-3.5 text-sm" style="text-decoration:none">
+          Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Evidence-based psychiatric treatment for PTSD, trauma-related anxiety, and complex stress responses. Compassionate care that meets you where you are.</p>
       </div>
@@ -333,17 +384,17 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- OCD -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 fade-up">
         <div class="rounded-2xl w-full" style="aspect-ratio:4/3;background:linear-gradient(135deg,#fdf2f2,#f5d5d5);display:flex;align-items:center;justify-content:center">
           <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M40 16C26.745 16 16 26.745 16 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M16 40L22 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 40L22 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 64C53.255 64 64 53.255 64 40" stroke="white" stroke-width="4" stroke-linecap="round"/><path d="M64 40L58 46" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M64 40L58 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="40" r="6" stroke="white" stroke-width="3.5" fill="none"/></svg>
         </div>
       </div>
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">OCD & INTRUSIVE THOUGHTS</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Break free from repetitive thoughts and compulsions</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">OCD & Intrusive Thoughts</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Break free from <span style="color:#7aab8f">repetitive thoughts</span> and compulsions</h2>
         <p class="text-lg text-[#6b7280] mb-6">Specialized care for OCD and related conditions</p>
-        <button class="bg-transparent border-2 border-[#C6A673] text-[#C6A673] rounded-full px-8 py-3.5 text-sm font-semibold cursor-default">Coming Soon</button>
+        <button class="bg-transparent border-2 border-[#2A7B52] text-[#2A7B52] rounded-full px-8 py-3.5 text-sm font-semibold cursor-default">Coming Soon</button>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Psychiatric evaluation and medication management for obsessive-compulsive disorder, with treatment plans tailored to your specific symptoms.</p>
       </div>
     </div>
@@ -353,12 +404,12 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- STRESS & BURNOUT -->
 <section class="py-20 md:py-28" style="background:#f8f7f4">
   <div class="max-w-[1200px] mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
       <div class="lg:w-1/2 fade-up">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A673] mb-4">STRESS & BURNOUT RECOVERY</p>
-        <h2 class="text-3xl md:text-[40px] font-bold leading-[1.15] text-[#1a1a1a] mb-4">Care designed for when life feels overwhelming</h2>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-[#2A7B52] mb-4">Stress & Burnout Recovery</p>
+        <h2 class="text-3xl md:text-[42px] font-extrabold leading-[1.1] text-[#1a1a1a] mb-4">Care designed for when <span style="color:#7aab8f">life feels overwhelming</span></h2>
         <p class="text-lg text-[#6b7280] mb-6">Support that helps you feel balanced and in control</p>
-        <button class="bg-transparent border-2 border-[#C6A673] text-[#C6A673] rounded-full px-8 py-3.5 text-sm font-semibold cursor-default">Coming Soon</button>
+        <button class="bg-transparent border-2 border-[#2A7B52] text-[#2A7B52] rounded-full px-8 py-3.5 text-sm font-semibold cursor-default">Coming Soon</button>
         <p class="text-sm text-[#9ca3af] mt-8 leading-relaxed">Doctor-guided care for chronic stress, burnout, and adjustment disorders. We address the root cause—not just the symptoms—so you can feel like yourself again.</p>
       </div>
       <div class="lg:w-1/2 fade-up">
@@ -370,50 +421,50 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   </div>
 </section>
 
-<!-- MODERN HEALTHCARE -->
-<section style="background-color:#1a1a2e" class="py-20 md:py-28">
+<!-- MODERN HEALTHCARE (dark green) -->
+<section style="background:#132e27" class="py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <h2 class="text-3xl md:text-[40px] font-bold text-white text-center mb-4 fade-up" style="line-height:1.2">Modern healthcare, built around you</h2>
+    <h2 class="text-3xl md:text-[42px] font-extrabold text-white text-center mb-4 fade-up" style="line-height:1.1">Modern healthcare, <span style="color:#7aab8f">built around you</span></h2>
     <p class="text-lg text-white/50 text-center mb-16 fade-up">Everything you need, nothing you don't</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:0s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.5A2 2 0 0 0 3 4.5v1a2 2 0 0 0 1.8 2c.2 1.3.8 2.5 1.7 3.5L8 12.5v3a6 6 0 0 0 3 5.2"/><path d="M19.2 2.5A2 2 0 0 1 21 4.5v1a2 2 0 0 1-1.8 2c-.2 1.3-.8 2.5-1.7 3.5L16 12.5v3a6 6 0 0 1-3 5.2"/><circle cx="12" cy="12.5" r="2"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.5A2 2 0 0 0 3 4.5v1a2 2 0 0 0 1.8 2c.2 1.3.8 2.5 1.7 3.5L8 12.5v3a6 6 0 0 0 3 5.2"/><path d="M19.2 2.5A2 2 0 0 1 21 4.5v1a2 2 0 0 1-1.8 2c-.2 1.3-.8 2.5-1.7 3.5L16 12.5v3a6 6 0 0 1-3 5.2"/><circle cx="12" cy="12.5" r="2"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">Board-certified providers</h3>
         <p class="text-sm text-white/60 leading-relaxed">Every provider is a licensed, board-certified psychiatric nurse practitioner with years of clinical experience.</p>
       </div>
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:.1s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up" style="transition-delay:.1s">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">100% online care</h3>
         <p class="text-sm text-white/60 leading-relaxed">All appointments happen via secure HIPAA-compliant video. Connect from anywhere in Arizona on any device.</p>
       </div>
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:.2s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up" style="transition-delay:.2s">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">Same-week appointments</h3>
         <p class="text-sm text-white/60 leading-relaxed">Most new patients are seen within the same week. No 3-month waitlists, no referrals needed.</p>
       </div>
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:.3s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up" style="transition-delay:.3s">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">Clear, honest pricing</h3>
         <p class="text-sm text-white/60 leading-relaxed">Know exactly what you'll pay before your appointment. No surprise bills, no hidden fees.</p>
       </div>
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:.4s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up" style="transition-delay:.4s">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">Fast & discreet</h3>
         <p class="text-sm text-white/60 leading-relaxed">Prescriptions sent to your preferred pharmacy. Most available for same-day pickup.</p>
       </div>
-      <div class="bg-white/[0.05] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.08] transition fade-up" style="transition-delay:.5s">
-        <div class="w-12 h-12 rounded-xl bg-[#C6A673]/10 flex items-center justify-center mb-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
+      <div class="bg-white/[0.06] backdrop-blur rounded-2xl p-8 border border-white/[0.08] hover:bg-white/[0.1] transition fade-up" style="transition-delay:.5s">
+        <div class="w-12 h-12 rounded-xl bg-[#2A7B52]/20 flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7aab8f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
         </div>
         <h3 class="text-lg font-semibold text-white mb-2">Unlimited support</h3>
         <p class="text-sm text-white/60 leading-relaxed">Message your provider anytime between appointments. Responses within one business day.</p>
@@ -425,23 +476,23 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- DOCTOR PROFILES -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
-    <h2 class="text-3xl md:text-[40px] font-bold text-center text-[#1a1a1a] mb-4 leading-tight fade-up">Medical care from leading health experts</h2>
+    <h2 class="text-3xl md:text-[42px] font-extrabold text-center text-[#1a1a1a] mb-4 leading-tight fade-up">Medical care from <span style="color:#7aab8f">leading health experts</span></h2>
     <p class="text-lg text-[#6b7280] text-center mb-16 max-w-2xl mx-auto fade-up">The providers we've partnered with are here to guide you through every step of your care.</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
       <div class="bg-white rounded-2xl border border-[#e5e5e5] p-8 text-center hover:shadow-lg transition fade-up">
-        <div class="w-24 h-24 rounded-full mx-auto mb-6 bg-[#6BAF92] flex items-center justify-center">
+        <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:#2A7B52">
           <span class="text-2xl font-bold text-white">LH</span>
         </div>
         <h3 class="text-xl font-semibold text-[#1a1a1a]">Lindsay Hart, PMHNP-BC</h3>
-        <span class="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-[#C6A673]">Board-Certified Psychiatric NP</span>
+        <span class="inline-block mt-2 text-xs font-bold uppercase tracking-wider text-[#2A7B52]">Board-Certified Psychiatric NP</span>
         <p class="text-sm text-[#6b7280] mt-4 leading-relaxed">Specializing in ADHD, anxiety, and depression. Over 2,000 patients treated across Arizona with a focus on personalized, evidence-based care.</p>
       </div>
       <div class="bg-white rounded-2xl border border-[#e5e5e5] p-8 text-center hover:shadow-lg transition fade-up">
-        <div class="w-24 h-24 rounded-full mx-auto mb-6 bg-[#9B8EC4] flex items-center justify-center">
+        <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:#1a4a3a">
           <span class="text-2xl font-bold text-white">SC</span>
         </div>
         <h3 class="text-xl font-semibold text-[#1a1a1a]">Dr. Sarah Chen, MD</h3>
-        <span class="inline-block mt-2 text-xs font-semibold uppercase tracking-wider text-[#C6A673]">Consulting Psychiatrist</span>
+        <span class="inline-block mt-2 text-xs font-bold uppercase tracking-wider text-[#2A7B52]">Consulting Psychiatrist</span>
         <p class="text-sm text-[#6b7280] mt-4 leading-relaxed">Board-certified psychiatrist providing clinical oversight and complex case consultation. Fellowship-trained in psychopharmacology.</p>
       </div>
     </div>
@@ -451,46 +502,46 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- TESTIMONIALS -->
 <section class="py-20 md:py-28" style="background:#f8f7f4">
   <div class="max-w-[1200px] mx-auto px-6">
-    <h2 class="text-3xl md:text-[40px] font-bold text-center text-[#1a1a1a] mb-4 leading-tight fade-up">There's a reason patients trust us.</h2>
+    <h2 class="text-3xl md:text-[42px] font-extrabold text-center text-[#1a1a1a] mb-4 leading-tight fade-up">There's a reason patients <span style="color:#7aab8f">trust us.</span></h2>
     <p class="text-lg text-[#6b7280] text-center mb-16 fade-up">Join thousands of patients who chose better mental health care.</p>
     <div class="review-track flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4">
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"The provider was knowledgeable and helpful. She answered all my questions and made me feel comfortable."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Billy R.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"I was hesitant about virtual care but this exceeded my expectations. Got my ADHD diagnosis in two visits."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Terika M.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"After years of struggling with focus, I finally got a treatment plan that works. Life-changing."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Sarah M.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"No 3-month waitlist like everywhere else. I was seen within a week."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Jamie L.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"The between-visit messaging is incredible. I had a medication question and got a response same day."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Rachel T.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"My anxiety is finally manageable. Lindsay really listens and adjusts my plan as needed."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">David K.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"Best telehealth experience I've had. Professional, thorough, and genuinely caring."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Chris B.</span>
       </div>
       <div class="review-card flex-none w-[340px] snap-start bg-white rounded-2xl p-7 flex flex-col gap-4" style="box-shadow:0 2px 12px rgba(0,0,0,.06)">
-        <div class="text-[#C6A673] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="text-[#2A7B52] text-lg tracking-wider">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="text-sm text-[#6b7280] leading-relaxed flex-1">"I appreciate the transparent pricing. No surprise bills, no games. Just good care."</p>
         <span class="font-bold text-sm text-[#1a1a1a]">Maria L.</span>
       </div>
@@ -498,25 +549,25 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   </div>
 </section>
 
-<!-- GUARANTEE -->
+<!-- GUARANTEE BAR -->
 <section id="pricing" class="bg-white border-t border-b border-[#e5e5e5] py-16 md:py-20">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="flex flex-wrap justify-center gap-8 md:gap-16">
       <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-[#f8f7f4] border border-[#e5e5e5] flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="w-12 h-12 rounded-full bg-[#eef6f1] border border-[#d5e8de] flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <span class="text-sm font-semibold text-[#1a1a1a]">Free expedited care</span>
       </div>
       <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-[#f8f7f4] border border-[#e5e5e5] flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.5A2 2 0 0 0 3 4.5v1a2 2 0 0 0 1.8 2c.2 1.3.8 2.5 1.7 3.5L8 12.5v3a6 6 0 0 0 3 5.2"/><path d="M19.2 2.5A2 2 0 0 1 21 4.5v1a2 2 0 0 1-1.8 2c-.2 1.3-.8 2.5-1.7 3.5L16 12.5v3a6 6 0 0 1-3 5.2"/><circle cx="12" cy="12.5" r="2"/></svg>
+        <div class="w-12 h-12 rounded-full bg-[#eef6f1] border border-[#d5e8de] flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.5A2 2 0 0 0 3 4.5v1a2 2 0 0 0 1.8 2c.2 1.3.8 2.5 1.7 3.5L8 12.5v3a6 6 0 0 0 3 5.2"/><path d="M19.2 2.5A2 2 0 0 1 21 4.5v1a2 2 0 0 1-1.8 2c-.2 1.3-.8 2.5-1.7 3.5L16 12.5v3a6 6 0 0 1-3 5.2"/><circle cx="12" cy="12.5" r="2"/></svg>
         </div>
         <span class="text-sm font-semibold text-[#1a1a1a]">Doctor-led plans</span>
       </div>
       <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-[#f8f7f4] border border-[#e5e5e5] flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6A673" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="w-12 h-12 rounded-full bg-[#eef6f1] border border-[#d5e8de] flex items-center justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A7B52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <span class="text-sm font-semibold text-[#1a1a1a]">No hidden fees</span>
       </div>
@@ -527,61 +578,61 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
 <!-- FAQ -->
 <section id="faq" class="py-20 md:py-28" style="background:#f8f7f4">
   <div class="max-w-[800px] mx-auto px-6">
-    <h2 class="text-3xl md:text-[40px] font-bold text-center text-[#1a1a1a] mb-16 fade-up">Frequently asked questions</h2>
+    <h2 class="text-3xl md:text-[42px] font-extrabold text-center text-[#1a1a1a] mb-16 fade-up">Frequently asked <span style="color:#7aab8f">questions</span></h2>
     <div class="space-y-3">
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">How much does treatment cost?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">Initial evaluation is $179 for self-pay. Follow-ups are $120. With insurance, your typical copay is $0-40.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">What conditions do you treat?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">ADHD, anxiety, depression, insomnia, PTSD, OCD, and other common psychiatric conditions in adults.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">How do virtual appointments work?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">All visits are via secure HIPAA-compliant video. Connect from any device with a camera. No downloads needed.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">How quickly can I be seen?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">Most new patients get an appointment within the same week. No referral required.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">Do you prescribe controlled substances?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">When clinically appropriate, yes. ADHD stimulant medications are prescribed after thorough evaluation, per Arizona guidelines.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">Can I message my provider between visits?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">Absolutely. Unlimited secure messaging is included. Responses within one business day.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">What if I need to cancel?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">Cancel or reschedule with 24 hours notice at no charge through our portal.</div>
       </div>
       <div class="bg-white rounded-xl border border-[#e5e5e5] overflow-hidden">
-        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" style="background:none;border:none;cursor:pointer">
           <span class="text-[15px] font-medium text-[#1a1a1a]">Do you accept insurance?</span>
-          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#C6A673] flex items-center justify-center text-[#C6A673] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
+          <span class="faq-icon w-6 h-6 rounded-full border-2 border-[#2A7B52] flex items-center justify-center text-[#2A7B52] text-sm font-bold flex-shrink-0 transition-transform duration-200">+</span>
         </button>
         <div class="faq-body px-6 pb-5 text-sm text-[#6b7280] leading-relaxed">Yes, most major Arizona plans accepted. Self-pay rates are transparent with no hidden fees.</div>
       </div>
@@ -589,20 +640,20 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section id="cta" style="background:#1a1a2e" class="py-20 md:py-28">
+<!-- FINAL CTA (dark green) -->
+<section id="cta" style="background:#132e27" class="py-20 md:py-28">
   <div class="max-w-[800px] mx-auto px-6 text-center">
-    <h2 class="text-3xl md:text-[44px] font-bold text-white leading-tight mb-6 fade-up">Ready to feel like yourself again?</h2>
+    <h2 class="text-3xl md:text-[44px] font-extrabold text-white leading-tight mb-6 fade-up">Ready to feel like <span style="color:#7aab8f">yourself again?</span></h2>
     <p class="text-lg text-white/50 mb-10 fade-up">Join 2,000+ patients who chose better mental health care.</p>
     <div class="fade-up">
-      <a href="book.html" class="gold-btn inline-block text-white font-semibold rounded-full px-10 py-4 text-base">Get Started Today</a>
+      <a href="book.html" class="green-btn inline-block text-white font-semibold rounded-full px-10 py-4 text-base" style="text-decoration:none">Get Started Today</a>
     </div>
-    <p class="text-sm text-white/40 mt-6 fade-up">No referral needed · Same-week appointments</p>
+    <p class="text-sm text-white/40 mt-6 fade-up">No referral needed &middot; Same-week appointments</p>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#111111" class="py-12">
+<footer style="background:#0a1f19" class="py-12">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="flex flex-wrap justify-between gap-10">
       <div class="max-w-md">
@@ -618,28 +669,28 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
         <div>
           <p class="font-semibold text-white">Company</p>
           <ul class="mt-3 space-y-2 text-white/40">
-            <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Our Providers</a></li>
-            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">About</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">Our Providers</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors" style="text-decoration:none">Pricing</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">Contact</a></li>
           </ul>
         </div>
         <div>
           <p class="font-semibold text-white">Resources</p>
           <ul class="mt-3 space-y-2 text-white/40">
-            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">ADHD Resources</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Patient Portal</a></li>
-            <li><a href="#faq" class="hover:text-white transition-colors">FAQs</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">Blog</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">ADHD Resources</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">Patient Portal</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors" style="text-decoration:none">FAQs</a></li>
           </ul>
         </div>
         <div>
           <p class="font-semibold text-white">Legal</p>
           <ul class="mt-3 space-y-2 text-white/40">
-            <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="terms-of-service.html" class="hover:text-white transition-colors">Terms of Service</a></li>
-            <li><a href="consent-forms.html" class="hover:text-white transition-colors">Consent Forms</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">HIPAA Notice</a></li>
+            <li><a href="privacy-policy.html" class="hover:text-white transition-colors" style="text-decoration:none">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="hover:text-white transition-colors" style="text-decoration:none">Terms of Service</a></li>
+            <li><a href="consent-forms.html" class="hover:text-white transition-colors" style="text-decoration:none">Consent Forms</a></li>
+            <li><a href="#" class="hover:text-white transition-colors" style="text-decoration:none">HIPAA Notice</a></li>
           </ul>
         </div>
       </div>
@@ -681,7 +732,7 @@ if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overla
   });
 })();
 
-// Smooth scroll for anchor links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click',function(e){
     var id=this.getAttribute('href');

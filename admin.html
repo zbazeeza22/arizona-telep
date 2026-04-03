@@ -189,6 +189,22 @@
           <li>
             <button
               class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium
+                     hover:bg-primary-0 transition-colors whitespace-nowrap
+                     border-b border-neutral-100"
+              data-panel="landing-pages"
+            >
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2" />
+                </svg>
+                Landing Pages
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium
                      hover:bg-primary-0 transition-colors whitespace-nowrap"
               data-panel="pelvic-scan"
             >
@@ -422,6 +438,44 @@
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- Panel: Landing Pages -->
+      <section id="panel-landing-pages" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Landing Pages</h2>
+          <p class="text-sm text-neutral-500 mt-1">Private landing pages for campaigns and partnerships.</p>
+
+          <div class="mt-6 space-y-3">
+            <a href="briti.html" target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-between rounded-lg border px-4 py-4
+                      hover:border-primary-30 hover:bg-primary-0 transition-colors group">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background-color: #C6A673;">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-neutral-900 group-hover:text-primary-40">Briti Landing Page</p>
+                  <p class="text-xs text-neutral-500">Mental health campaign &middot; MEDVi-style design</p>
+                  <p class="text-xs text-neutral-400 mt-0.5">Password: <code class="bg-neutral-100 px-1.5 py-0.5 rounded text-neutral-600 font-mono">1160</code></p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs rounded-full bg-green-100 text-green-800 px-2.5 py-1 font-medium">Live</span>
+                <svg class="w-4 h-4 text-neutral-400 group-hover:text-primary-30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+            </a>
+          </div>
+
+          <p class="text-xs text-neutral-400 mt-4">Landing pages are password-protected and hidden from search engines (noindex).</p>
         </div>
       </section>
 

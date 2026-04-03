@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <title>Online ADHD & Mental Health Care in Arizona | Arizona Telepsychiatry</title>
+  <meta name="description" content="Board-certified psychiatric care from home. Personalized ADHD and mental health treatment plans often available in 2-3 appointments. Join 2,000+ patients." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{font-family:'Red Hat Text',sans-serif}
+    html{scroll-padding-top:80px}
+    .no-scroll{overflow:hidden}
+    .fade-up{opacity:0;transform:translate3d(0,35px,0);transition:opacity .7s ease-out,transform .7s ease-out}
+    .fade-up.visible{opacity:1;transform:translate3d(0,0,0)}
+    .fade-up-delay-1{transition-delay:.1s}.fade-up-delay-2{transition-delay:.2s}.fade-up-delay-3{transition-delay:.3s}
+    .fade-up-delay-4{transition-delay:.4s}.fade-up-delay-5{transition-delay:.5s}.fade-up-delay-6{transition-delay:.6s}
+    .nav-dropdown{opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+    .nav-dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}
+    .press-marquee-track{display:flex;width:max-content;animation:marquee-scroll 36s linear infinite}
+    .press-marquee-track:hover{animation-play-state:paused}
+    @keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-33.3333%)}}
+    .press-logo-text{opacity:.55;filter:grayscale(100%);transition:opacity .3s ease;user-select:none;white-space:nowrap}
+    .press-logo-text:hover{opacity:.85}
+    .symptom-slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:9999px;background:linear-gradient(to right,#C6A673 0%,#C6A673 var(--slider-pct,0%),#E4DCD8 var(--slider-pct,0%),#E4DCD8 100%);outline:none;cursor:pointer}
+    .symptom-slider::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid #C6A673;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .symptom-slider::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid #C6A673;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .testimonial-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}
+    .testimonial-track::-webkit-scrollbar{display:none}
+    .testimonial-card{flex:0 0 320px;scroll-snap-align:start;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:28px 24px;display:flex;flex-direction:column;gap:16px;transition:transform .2s ease,box-shadow .2s ease}
+    .testimonial-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+    @media(max-width:767px){.testimonial-card{flex:0 0 calc(100vw - 80px)}}
+    .services-scroll{scrollbar-width:none;-ms-overflow-style:none}
+    .services-scroll::-webkit-scrollbar{display:none}
+    .service-card{opacity:0;transform:translateY(35px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    .service-card.visible{opacity:1;transform:translateY(0)}
+    .gold-btn{background-color:#C6A673;transition:background-color .2s ease,transform .15s ease,box-shadow .2s ease}
+    .gold-btn:hover{background-color:#b8955f;transform:translateY(-1px);box-shadow:0 6px 20px rgba(198,166,115,.4)}
+    .faq-panel{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .faq-panel.open{max-height:400px}
+    .journey-image-placeholder{border-radius:20px;display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;width:100%;max-width:460px}
+    @media(max-width:767px){.journey-row,.journey-row.reverse{flex-direction:column!important;gap:24px!important;text-align:center}.journey-row .journey-img{order:-1}}
+    /* Password overlay */
+    #pw-overlay{position:fixed;inset:0;z-index:9999;background:#111827;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+    #pw-overlay.hidden{display:none}
+    #pw-input{background:#1f2937;border:2px solid #C6A673;color:#fff;border-radius:8px;padding:12px 20px;font-size:16px;width:280px;text-align:center;outline:none}
+    #pw-input:focus{box-shadow:0 0 0 4px rgba(198,166,115,.25)}
+    #pw-error{color:#ef4444;font-size:14px;display:none}
+  </style>
+</head>
+<body style="color:#1a1a1a;background:#fff">
+
+<!-- PASSWORD OVERLAY -->
+<div id="pw-overlay">
+  <p style="color:#C6A673;font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase">Private Landing Page</p>
+  <h2 style="color:#fff;font-size:28px;font-weight:700">Enter Access Code</h2>
+  <input type="password" id="pw-input" placeholder="Password" autofocus />
+  <p id="pw-error">Incorrect password</p>
+  <button onclick="checkPw()" class="gold-btn text-white font-semibold rounded-lg px-8 py-3 text-sm">Enter</button>
+</div>
+<script>
+function checkPw(){var v=document.getElementById('pw-input').value;if(v==='1160'){document.getElementById('pw-overlay').classList.add('hidden');sessionStorage.setItem('briti-auth','1')}else{document.getElementById('pw-error').style.display='block';document.getElementById('pw-input').value=''}}
+document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPw()});
+if(sessionStorage.getItem('briti-auth')==='1')document.getElementById('pw-overlay').classList.add('hidden');
+</script>
+
+<!-- ============================================================ -->
+<!-- NAV BAR                                                       -->
+<!-- ============================================================ -->
+<header class="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-sm" style="border-bottom:1px solid rgba(198,166,115,.15)">
+  <div class="max-w-7xl mx-auto flex items-center justify-between h-[72px] px-5 lg:px-8">
+    <a href="#" class="text-xl font-bold tracking-tight" style="color:#3D2B1F">Arizona Telepsychiatry</a>
+    <nav class="hidden lg:flex items-center gap-8">
+      <div class="relative">
+        <button id="treat-btn" type="button" class="flex items-center gap-1 text-sm font-medium hover:opacity-70" style="color:#1a1a1a">
+          What We Treat
+          <svg class="w-4 h-4 transition-transform" id="treat-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="treat-menu" class="nav-dropdown absolute left-1/2 -translate-x-1/2 top-full mt-3 w-52 bg-white rounded-xl shadow-lg py-2 z-50" style="border:1px solid rgba(198,166,115,.2)">
+          <a href="#" class="block px-4 py-2.5 text-sm hover:bg-[#F7F3EE]">ADHD (Adult)</a>
+          <a href="#" class="block px-4 py-2.5 text-sm hover:bg-[#F7F3EE]">Anxiety</a>
+          <a href="#" class="block px-4 py-2.5 text-sm hover:bg-[#F7F3EE]">Depression</a>
+          <a href="#" class="block px-4 py-2.5 text-sm hover:bg-[#F7F3EE]">Insomnia</a>
+          <a href="#" class="block px-4 py-2.5 text-sm hover:bg-[#F7F3EE]">PTSD</a>
+        </div>
+      </div>
+      <a href="#pricing" class="text-sm font-medium hover:opacity-70">Pricing</a>
+      <a href="#process" class="text-sm font-medium hover:opacity-70">Our Process</a>
+      <a href="#reviews" class="text-sm font-medium hover:opacity-70">Reviews</a>
+      <a href="#faq" class="text-sm font-medium hover:opacity-70">FAQs</a>
+    </nav>
+    <a href="#cta" class="hidden lg:inline-flex items-center text-sm font-semibold text-white rounded-full px-7 py-3 gold-btn">Get Started</a>
+    <button id="mob-btn" type="button" class="lg:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="Menu">
+      <svg id="mob-open" class="w-6 h-6" fill="none" stroke="#1a1a1a" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="mob-close" class="w-6 h-6 hidden" fill="none" stroke="#1a1a1a" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="mob-menu" class="hidden lg:hidden bg-white border-t" style="border-color:rgba(198,166,115,.15)">
+    <nav class="flex flex-col px-5 py-4 gap-1">
+      <a href="#pricing" class="py-3 text-sm font-medium">Pricing</a>
+      <a href="#process" class="py-3 text-sm font-medium">Our Process</a>
+      <a href="#reviews" class="py-3 text-sm font-medium">Reviews</a>
+      <a href="#faq" class="py-3 text-sm font-medium">FAQs</a>
+      <a href="#cta" class="block w-full text-center text-sm font-semibold text-white rounded-full px-7 py-3 mt-2 gold-btn">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HERO                                                          -->
+<!-- ============================================================ -->
+<section class="relative overflow-hidden" style="background:#F9F6F2">
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-20 -translate-y-1/3 translate-x-1/4" style="background:radial-gradient(circle,#E4DCD8 0%,transparent 70%)"></div>
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-8 pt-14 pb-20 lg:pt-20 lg:pb-28">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+      <div class="flex-1 max-w-2xl">
+        <h1 class="fade-up text-[32px] sm:text-[40px] md:text-[48px] leading-[1.15] font-bold tracking-tight">
+          Join 2,000+ Patients Getting Expert <span style="color:#C6A673">ADHD &amp; Mental Health</span> Care Online
+        </h1>
+        <p class="fade-up fade-up-delay-1 mt-5 text-lg sm:text-xl font-light leading-relaxed max-w-lg" style="color:#555">
+          Board-certified psychiatric care from home. Personalized treatment plans often available in 2&#8211;3 appointments.
+        </p>
+        <ul class="mt-8 space-y-3.5">
+          <li class="fade-up fade-up-delay-2 flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style="background:#C6A673">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-[15px] font-medium">Licensed psychiatric nurse practitioners</span>
+          </li>
+          <li class="fade-up fade-up-delay-3 flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style="background:#C6A673">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-[15px] font-medium">Medication management included</span>
+          </li>
+          <li class="fade-up fade-up-delay-4 flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style="background:#C6A673">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-[15px] font-medium">Accepted insurance &amp; affordable self-pay</span>
+          </li>
+          <li class="fade-up fade-up-delay-5 flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style="background:#C6A673">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-[15px] font-medium">100% virtual &#8212; no commute needed</span>
+          </li>
+          <li class="fade-up fade-up-delay-6 flex items-start gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style="background:#C6A673">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <span class="text-[15px] font-medium">Same-week appointments available</span>
+          </li>
+        </ul>
+        <div class="fade-up fade-up-delay-6 mt-10">
+          <a href="#cta" class="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full px-8 py-4 gold-btn">
+            Am I a Good Fit?
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flex-1 w-full lg:max-w-md xl:max-w-lg">
+        <div class="fade-up fade-up-delay-3 grid grid-cols-3 gap-3 sm:gap-4">
+          <div class="col-span-1 row-span-2 rounded-2xl flex items-center justify-center" style="background:#E4DCD8;min-height:220px"><div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white text-lg sm:text-xl font-bold" style="background:#C6A673">JM</div></div>
+          <div class="col-span-1 rounded-2xl flex items-center justify-center" style="background:#D4C5B5;min-height:100px"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#B8956A">SK</div></div>
+          <div class="col-span-1 rounded-2xl flex items-center justify-center" style="background:#EDE7E0;min-height:100px"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#A08C76">RL</div></div>
+          <div class="col-span-1 rounded-2xl flex items-center justify-center" style="background:#F0E9E1;min-height:100px"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#C6A673">AP</div></div>
+          <div class="col-span-1 rounded-2xl flex items-center justify-center" style="background:#D9CFC4;min-height:100px"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#8B7A63">TN</div></div>
+          <div class="col-span-2 rounded-2xl flex items-center justify-center gap-4" style="background:#E8DFD6;min-height:110px">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#C6A673">MV</div>
+            <div class="text-left"><p class="text-xs font-semibold uppercase tracking-wider" style="color:#C6A673">2,000+</p><p class="text-sm font-medium">Patients treated</p></div>
+          </div>
+          <div class="col-span-1 rounded-2xl flex items-center justify-center" style="background:#D1C4B4;min-height:110px"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold" style="background:#9C8768">DW</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-[3px]" style="background:linear-gradient(90deg,#C6A673 0%,#E4DCD8 50%,#C6A673 100%)"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PRESS LOGOS MARQUEE                                            -->
+<!-- ============================================================ -->
+<section style="background:#F9F7F5;border-top:1px solid #eae6e1;border-bottom:1px solid #eae6e1" class="py-8 overflow-hidden">
+  <p class="text-center text-xs font-semibold uppercase tracking-widest mb-6" style="color:#C6A673">Trusted by Leading Health Publications</p>
+  <div class="overflow-hidden">
+    <div class="press-marquee-track">
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Psychology Today</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">WebMD</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Healthline</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">NAMI</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">ADDitude</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Arizona Republic</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Verywell Mind</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Psychology Today</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">WebMD</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Healthline</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">NAMI</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">ADDitude</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Arizona Republic</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Verywell Mind</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Psychology Today</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">WebMD</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Healthline</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">NAMI</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">ADDitude</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Arizona Republic</span>
+      <span class="press-logo-text text-xl font-bold px-12" style="color:#555">Verywell Mind</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PRICING / SERVICE CARDS                                        -->
+<!-- ============================================================ -->
+<section id="pricing" class="bg-white overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+    <div class="text-center max-w-2xl mx-auto mb-12 fade-up">
+      <h2 class="text-2xl md:text-3xl font-semibold" style="color:#1a1a1a">Personalized Treatment Plans</h2>
+      <p class="text-neutral-500 mt-3 text-base md:text-lg">Evidence-based care tailored to your needs</p>
+    </div>
+    <div class="services-scroll flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
+      <!-- Card 1 -->
+      <div class="service-card flex-shrink-0 w-[280px] lg:w-auto snap-start rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
+        <div class="relative h-36 flex items-center justify-center" style="background:linear-gradient(135deg,#E8F4FD,#BDD9F0)">
+          <span class="absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full text-white shadow-sm" style="background:#C6A673">Most Popular</span>
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-60"><circle cx="24" cy="24" r="20" stroke="#4A90D9" stroke-width="2" fill="none"/><path d="M24 14v10l7 4" stroke="#4A90D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="3" fill="#4A90D9"/></svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-base">ADHD Evaluation &amp; Treatment</h3>
+          <div class="mt-2"><span class="text-lg font-bold">$179</span><span class="text-sm text-neutral-500"> initial</span><span class="text-neutral-300 mx-1">/</span><span class="text-lg font-bold">$120</span><span class="text-sm text-neutral-500"> follow-up</span></div>
+          <p class="text-sm text-neutral-500 mt-3 leading-relaxed flex-1">Comprehensive ADHD assessment with personalized medication management</p>
+          <a href="#cta" class="gold-btn mt-4 block text-center text-white text-sm font-semibold py-2.5 rounded-lg">Learn More</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card flex-shrink-0 w-[280px] lg:w-auto snap-start rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col" style="transition-delay:.1s">
+        <div class="h-36 flex items-center justify-center" style="background:linear-gradient(135deg,#F0E6F6,#D8C4E8)">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-60"><path d="M24 38s-14-8.36-14-18a8 8 0 0 1 14-5.28A8 8 0 0 1 38 20c0 9.64-14 18-14 18z" stroke="#8B5FBF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-base">Anxiety &amp; Depression Care</h3>
+          <div class="mt-2"><span class="text-lg font-bold">$179</span><span class="text-sm text-neutral-500"> initial</span><span class="text-neutral-300 mx-1">/</span><span class="text-lg font-bold">$120</span><span class="text-sm text-neutral-500"> follow-up</span></div>
+          <p class="text-sm text-neutral-500 mt-3 leading-relaxed flex-1">Targeted treatment plans for generalized anxiety, social anxiety, and depression</p>
+          <a href="#cta" class="gold-btn mt-4 block text-center text-white text-sm font-semibold py-2.5 rounded-lg">Learn More</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card flex-shrink-0 w-[280px] lg:w-auto snap-start rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col" style="transition-delay:.2s">
+        <div class="relative h-36 flex items-center justify-center" style="background:linear-gradient(135deg,#E6F5EE,#B8E4CF)">
+          <span class="absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full text-white shadow-sm" style="background:#C6A673">Ongoing Care</span>
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-60"><rect x="16" y="10" width="16" height="28" rx="4" stroke="#3EA67A" stroke-width="2.5" fill="none"/><line x1="16" y1="20" x2="32" y2="20" stroke="#3EA67A" stroke-width="2"/><circle cx="24" cy="30" r="3" stroke="#3EA67A" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-base">Medication Management</h3>
+          <div class="mt-2"><span class="text-lg font-bold">$120</span><span class="text-sm text-neutral-500">/visit</span></div>
+          <p class="text-sm text-neutral-500 mt-3 leading-relaxed flex-1">Ongoing psychiatric medication monitoring and optimization</p>
+          <a href="#cta" class="gold-btn mt-4 block text-center text-white text-sm font-semibold py-2.5 rounded-lg">Learn More</a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card flex-shrink-0 w-[280px] lg:w-auto snap-start rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col" style="transition-delay:.3s">
+        <div class="h-36 flex items-center justify-center" style="background:linear-gradient(135deg,#FFF8EC,#FCE6B8)">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-60"><path d="M24 8l-14 8v10c0 8.84 5.98 17.09 14 20 8.02-2.91 14-11.16 14-20V16L24 8z" stroke="#C6A673" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 24l4 4 8-8" stroke="#C6A673" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-base">Insurance-Based Care</h3>
+          <div class="mt-2"><span class="text-lg font-bold">$0-40</span><span class="text-sm text-neutral-500"> typical copay</span></div>
+          <p class="text-sm text-neutral-500 mt-3 leading-relaxed flex-1">We accept most major insurance plans for covered services</p>
+          <a href="#cta" class="gold-btn mt-4 block text-center text-white text-sm font-semibold py-2.5 rounded-lg">Learn More</a>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="service-card flex-shrink-0 w-[280px] lg:w-auto snap-start rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col" style="transition-delay:.4s">
+        <div class="h-36 flex items-center justify-center" style="background:linear-gradient(135deg,#E8F0F8,#C4DAF0)">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="opacity-60"><path d="M14 34c0-5.52 4.48-10 10-10s10 4.48 10 10" stroke="#5B8DB8" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="24" cy="18" r="6" stroke="#5B8DB8" stroke-width="2.5" fill="none"/><path d="M36 18h4M36 14l3-3M36 22l3 3" stroke="#5B8DB8" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="font-bold text-base">Crisis Support Add-On</h3>
+          <div class="mt-2"><span class="text-lg font-bold">Included</span></div>
+          <p class="text-sm text-neutral-500 mt-3 leading-relaxed flex-1">Between-visit messaging support with your provider</p>
+          <a href="#cta" class="gold-btn mt-4 block text-center text-white text-sm font-semibold py-2.5 rounded-lg">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RESULTS / STATS                                                -->
+<!-- ============================================================ -->
+<section class="relative overflow-hidden" style="background:#111827">
+  <div class="absolute inset-0 opacity-30" style="background:radial-gradient(ellipse at 20% 50%,rgba(198,166,115,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(198,166,115,.08) 0%,transparent 50%)"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-20 md:py-28">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">Real Results, Real Lives Changed</h2>
+      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto" style="color:rgba(255,255,255,.55)">Evidence-based outcomes from our patients</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 mb-16">
+      <div class="text-center"><div class="mb-3"><span class="text-5xl md:text-6xl font-extrabold tracking-tight" style="color:#C6A673">92%</span></div><p class="text-white text-sm md:text-base font-medium">Report improved<br>daily functioning</p></div>
+      <div class="text-center"><div class="mb-3"><span class="text-5xl md:text-6xl font-extrabold tracking-tight" style="color:#C6A673">2,000+</span></div><p class="text-white text-sm md:text-base font-medium">Patients treated<br>across Arizona</p></div>
+      <div class="text-center"><div class="mb-3"><span class="text-5xl md:text-6xl font-extrabold tracking-tight" style="color:#C6A673">4.9/5</span></div><p class="text-white text-sm md:text-base font-medium">Average patient<br>satisfaction rating</p></div>
+      <div class="text-center"><div class="mb-3"><span class="text-5xl md:text-6xl font-extrabold tracking-tight" style="color:#C6A673">87%</span></div><p class="text-white text-sm md:text-base font-medium">See improvement<br>within 90 days</p></div>
+    </div>
+    <div class="w-24 h-px mx-auto mb-12" style="background:rgba(198,166,115,.35)"></div>
+    <div class="flex flex-wrap justify-center gap-4">
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg" style="width:120px;height:120px;background:#7C9A8E">S.M.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style="width:90px;height:90px;background:#A8B5D6">J.R.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg" style="width:70px;height:70px;background:#C4A882">K.L.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg" style="width:110px;height:110px;background:#B8A0C8">A.T.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold shadow-lg" style="width:85px;height:85px;background:#8AADBD">D.P.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg" style="width:105px;height:105px;background:#9AB8A0">M.C.</div>
+      <div class="rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg" style="width:95px;height:95px;background:#D4A89A">R.H.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SYMPTOM IMPACT SLIDER                                          -->
+<!-- ============================================================ -->
+<section style="background:#F9F7F5">
+  <div class="max-w-3xl mx-auto px-4 py-16 md:py-24">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold" style="color:#1a1a1a">How Much Are Your Symptoms Affecting You?</h2>
+      <p class="mt-4 text-base md:text-lg" style="color:#6b6b6b">See how treatment could help improve your daily life</p>
+    </div>
+    <div class="rounded-2xl bg-white shadow-lg border p-6 md:p-10" style="border-color:#eae6e1">
+      <label class="block text-sm font-semibold uppercase tracking-wider mb-8" style="color:#C6A673">Rate your daily symptom impact</label>
+      <div class="text-center mb-6">
+        <span id="sliderVal" class="text-4xl md:text-5xl font-bold" style="color:#1a1a1a">1</span>
+        <span class="text-sm font-medium ml-1" style="color:#C6A673">out of 10</span>
+      </div>
+      <input type="range" id="symptomSlider" class="symptom-slider w-full" min="1" max="10" value="1" step="1" style="--slider-pct:0%"/>
+      <div class="flex justify-between mt-3 mb-8 px-1"><span class="text-xs font-medium" style="color:#999">Minimal</span><span class="text-xs font-medium" style="color:#999">Severe</span></div>
+      <div class="w-full h-px mb-8" style="background:#eae6e1"></div>
+      <p id="sliderResult" class="text-center text-base md:text-lg leading-relaxed mb-8" style="color:#444">Your symptoms are manageable &#8212; but care can optimize your wellbeing</p>
+      <div class="text-center">
+        <a href="#cta" class="gold-btn inline-block rounded-lg text-white font-semibold text-base px-8 py-4 shadow-md">Get Your Free Assessment</a>
+        <p class="mt-3 text-xs" style="color:#aaa">No commitment required. 100% confidential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- JOURNEY / PROCESS                                              -->
+<!-- ============================================================ -->
+<section id="process" class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
+    <div class="text-center mb-16 md:mb-20 fade-up">
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight" style="color:#1a1a1a">Your Path to Better Mental Health</h2>
+      <p class="mt-4 text-lg text-neutral-500 max-w-xl mx-auto">Simple, streamlined, and fully virtual</p>
+    </div>
+    <!-- Step 1 -->
+    <div class="journey-row flex flex-col md:flex-row items-center gap-12 mb-20 fade-up">
+      <div class="journey-img flex-1 flex justify-center">
+        <div class="journey-image-placeholder" style="background:#6BAF92">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><path d="M3 9H21" stroke="white" stroke-width="1.5"/><path d="M8 2V5" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M16 2V5" stroke="white" stroke-width="1.5" stroke-linecap="round"/><rect x="7" y="12" width="3" height="3" rx=".5" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="flex-1 max-w-lg">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full mb-4" style="color:#C6A673;background:rgba(198,166,115,.1)">Step 1</span>
+        <h3 class="text-2xl md:text-[28px] font-semibold leading-snug mb-4" style="color:#1a1a1a">Book Your Evaluation</h3>
+        <p class="text-base md:text-lg text-neutral-500 leading-relaxed">Complete a brief online intake form and schedule your first video appointment with a board-certified provider &#8212; often within the same week.</p>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div class="journey-row reverse flex flex-col md:flex-row-reverse items-center gap-12 mb-20 fade-up">
+      <div class="journey-img flex-1 flex justify-center">
+        <div class="journey-image-placeholder" style="background:#9B8EC4">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="19" rx="3" stroke="white" stroke-width="1.5"/><path d="M9 10H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M9 13.5H15" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><path d="M9 17H12" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity=".35"/></svg>
+        </div>
+      </div>
+      <div class="flex-1 max-w-lg">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full mb-4" style="color:#C6A673;background:rgba(198,166,115,.1)">Step 2</span>
+        <h3 class="text-2xl md:text-[28px] font-semibold leading-snug mb-4" style="color:#1a1a1a">Get Your Personalized Plan</h3>
+        <p class="text-base md:text-lg text-neutral-500 leading-relaxed">Your provider conducts a thorough psychiatric evaluation and creates a treatment plan tailored to your symptoms, lifestyle, and goals.</p>
+      </div>
+    </div>
+    <!-- Step 3 -->
+    <div class="journey-row flex flex-col md:flex-row items-center gap-12 fade-up">
+      <div class="journey-img flex-1 flex justify-center">
+        <div class="journey-image-placeholder" style="background:#C6A673">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none"><path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" fill="white" opacity=".9"/></svg>
+        </div>
+      </div>
+      <div class="flex-1 max-w-lg">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full mb-4" style="color:#C6A673;background:rgba(198,166,115,.1)">Step 3</span>
+        <h3 class="text-2xl md:text-[28px] font-semibold leading-snug mb-4" style="color:#1a1a1a">Ongoing Care &amp; Support</h3>
+        <p class="text-base md:text-lg text-neutral-500 leading-relaxed">Monthly follow-up appointments to monitor progress, adjust medications, and ensure you're on track. Between-visit messaging included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SUPPORT                                                        -->
+<!-- ============================================================ -->
+<section style="background:#F9F7F5">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+      <div class="w-full lg:w-1/2">
+        <div class="w-full flex items-center justify-center" style="background:linear-gradient(135deg,#6BAF92,#3F7A5B);border-radius:16px;aspect-ratio:4/3">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none"><path d="M20 65C20 42.909 37.909 25 60 25C82.091 25 100 42.909 100 65" stroke="white" stroke-width="5" stroke-linecap="round"/><rect x="12" y="55" width="16" height="28" rx="8" fill="white"/><rect x="92" y="55" width="16" height="28" rx="8" fill="white"/><path d="M92 75C92 75 88 90 75 93" stroke="white" stroke-width="4" stroke-linecap="round"/><circle cx="72" cy="95" r="6" fill="white"/><rect x="42" y="52" width="36" height="24" rx="6" fill="white" fill-opacity=".3"/><circle cx="52" cy="64" r="2.5" fill="white"/><circle cx="60" cy="64" r="2.5" fill="white"/><circle cx="68" cy="64" r="2.5" fill="white"/></svg>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 space-y-6">
+        <p class="text-xs font-bold uppercase tracking-widest" style="color:#C6A673">Ongoing Support</p>
+        <h2 class="text-3xl md:text-4xl font-semibold leading-snug" style="color:#1a1a1a">Your Provider Is Always Within Reach</h2>
+        <p class="text-base leading-relaxed" style="color:#6B7280">Between appointments, message your psychiatric provider directly through our secure patient portal. Get answers, request medication adjustments, and feel supported &#8212; not just during visits, but every day.</p>
+        <ul class="space-y-4 pt-2">
+          <li class="flex items-start gap-3"><svg class="w-6 h-6 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#C6A673" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="font-medium" style="color:#1a1a1a">Direct messaging with your provider</span></li>
+          <li class="flex items-start gap-3"><svg class="w-6 h-6 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#C6A673" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="font-medium" style="color:#1a1a1a">Prescription renewals &amp; adjustments</span></li>
+          <li class="flex items-start gap-3"><svg class="w-6 h-6 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#C6A673" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="font-medium" style="color:#1a1a1a">Flexible scheduling &#8212; evenings available</span></li>
+        </ul>
+        <div class="pt-4"><a href="#cta" class="gold-btn inline-block rounded-md text-sm font-semibold text-white px-8 py-3.5 shadow-md">Start Your Care Today</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- TESTIMONIALS                                                   -->
+<!-- ============================================================ -->
+<section id="reviews" class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold" style="color:#1a1a1a">What Our Patients Say</h2>
+      <p class="mt-3 text-neutral-500 max-w-xl mx-auto">Real experiences from real patients across Arizona</p>
+    </div>
+    <div class="testimonial-track">
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#7C9EB5">S</div><div><p class="font-semibold" style="font-size:15px">Sarah M.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"After years of struggling with focus at work, I finally got an ADHD diagnosis and treatment plan. Within a month, my productivity completely changed."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#C6A673">J</div><div><p class="font-semibold" style="font-size:15px">James R.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"The convenience of virtual visits is unbeatable. My provider genuinely listens and adjusts my medication based on how I'm actually feeling."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#8BA89A">M</div><div><p class="font-semibold" style="font-size:15px">Maria L.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"I was nervous about starting medication for anxiety, but Lindsay walked me through everything. I feel like myself again."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#B07D62">D</div><div><p class="font-semibold" style="font-size:15px">David K.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"Getting an appointment within the same week was a game-changer. No 3-month waitlists like everywhere else in Phoenix."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#9B8EC4">R</div><div><p class="font-semibold" style="font-size:15px">Rachel T.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"The between-visit messaging is incredible. I had a question about side effects and got a response the same day."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+      <article class="testimonial-card">
+        <div class="flex items-center gap-3"><div class="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white text-xl font-semibold" style="background:#6BAF92">C</div><div><p class="font-semibold" style="font-size:15px">Chris B.</p><div style="color:#C6A673;font-size:18px;letter-spacing:2px">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+        <p class="text-sm leading-relaxed" style="color:#4B5563;flex-grow:1">"I've tried other telehealth platforms &#8212; this is the first one where I actually feel like I have a real provider who knows me."</p>
+        <div class="flex items-center gap-1.5 text-xs" style="color:#9CA3AF"><svg width="14" height="14" viewBox="0 0 24 24" fill="#9CA3AF"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Verified Patient</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PROVIDER                                                       -->
+<!-- ============================================================ -->
+<section style="background:#F9F7F5">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-semibold" style="color:#1a1a1a">Meet Your Provider</h2>
+      <p class="mt-3 text-neutral-500">Board-certified psychiatric care you can trust</p>
+    </div>
+    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-8 text-center">
+      <div class="w-[120px] h-[120px] rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6" style="background:#6BAF92">LH</div>
+      <h3 class="text-xl font-bold" style="color:#1a1a1a">Lindsay Hart, PMHNP-BC</h3>
+      <p class="text-sm mt-1" style="color:#C6A673;font-weight:600">Board-Certified Psychiatric Mental Health Nurse Practitioner</p>
+      <p class="text-sm text-neutral-500 mt-4 leading-relaxed">With over 2,000 patients served, Lindsay specializes in ADHD, anxiety, and depression treatment for adults across Arizona. She combines evidence-based psychiatry with a compassionate, patient-first approach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FAQ                                                            -->
+<!-- ============================================================ -->
+<section id="faq" class="bg-white">
+  <div class="max-w-3xl mx-auto px-4 py-16 md:py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-semibold" style="color:#1a1a1a">Frequently Asked Questions</h2>
+      <p class="mt-3 text-neutral-500">Everything you need to know before getting started</p>
+    </div>
+    <div class="space-y-3" id="faq-list">
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>How much does treatment cost?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">Our initial psychiatric evaluation is $179 for self-pay patients, with follow-up appointments at $120. If you have insurance, your typical out-of-pocket cost ranges from $0-$40 depending on your plan.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>What conditions do you treat?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">We specialize in ADHD, anxiety disorders, depression, insomnia, PTSD, and other common psychiatric conditions in adults.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>How do virtual appointments work?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">All appointments are conducted via secure HIPAA-compliant video. You'll connect from home using any device with a camera. No downloads required.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>How quickly can I get an appointment?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">Most new patients are seen within the same week. Follow-up appointments are scheduled monthly or as needed.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>Do you prescribe controlled substances?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">Yes, when clinically appropriate. Our providers can prescribe stimulant medications for ADHD after a thorough evaluation, following all Arizona prescribing guidelines.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>Can I message my provider between visits?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">Absolutely. All patients have access to secure between-visit messaging. Your provider typically responds within the same business day.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>What if I need to cancel or reschedule?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">You can cancel or reschedule with at least 24 hours notice at no charge through our online portal.</div>
+      </div>
+      <div class="border rounded-xl" style="border-color:#eae6e1">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left font-medium" style="color:#1a1a1a"><span>Do you accept insurance?</span><span class="text-lg" style="color:#C6A673">+</span></button>
+        <div class="faq-panel px-6 pb-5 text-sm text-neutral-500 leading-relaxed">Yes, we accept most major insurance plans in Arizona. During booking, you can verify your coverage. Our self-pay rates are transparent with no hidden fees.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GUARANTEE                                                      -->
+<!-- ============================================================ -->
+<section style="background:#F9F7F5">
+  <div class="max-w-2xl mx-auto px-4 py-16 md:py-20 text-center">
+    <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="border:3px solid #C6A673;background:#fff">
+      <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="#C6A673" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-4" style="color:#1a1a1a">Your Wellbeing, Guaranteed</h2>
+    <p class="text-neutral-500 mb-8 max-w-lg mx-auto leading-relaxed">If you're not completely satisfied after your first appointment, we'll make it right. Your mental health journey should feel supported from day one.</p>
+    <a href="#cta" class="gold-btn inline-block rounded-lg text-white font-semibold px-8 py-4 shadow-md">Start With Confidence</a>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FINAL CTA                                                      -->
+<!-- ============================================================ -->
+<section id="cta" style="background:#111827">
+  <div class="max-w-3xl mx-auto px-4 py-20 md:py-28 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">What's Your Mental Health Goal?</h2>
+    <p class="mb-10" style="color:rgba(255,255,255,.5)">Select what best describes you</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-10">
+      <button class="rounded-xl border-2 border-white/20 text-white text-sm font-medium px-6 py-4 hover:border-[#C6A673] hover:bg-[#C6A673]/10 transition-all text-left">I think I might have ADHD</button>
+      <button class="rounded-xl border-2 border-white/20 text-white text-sm font-medium px-6 py-4 hover:border-[#C6A673] hover:bg-[#C6A673]/10 transition-all text-left">I'm struggling with anxiety or depression</button>
+      <button class="rounded-xl border-2 border-white/20 text-white text-sm font-medium px-6 py-4 hover:border-[#C6A673] hover:bg-[#C6A673]/10 transition-all text-left">I need medication management</button>
+      <button class="rounded-xl border-2 border-white/20 text-white text-sm font-medium px-6 py-4 hover:border-[#C6A673] hover:bg-[#C6A673]/10 transition-all text-left">Not sure &#8212; I just want to feel better</button>
+    </div>
+    <a href="book.html" class="gold-btn inline-block rounded-full text-white font-semibold text-lg px-10 py-4 shadow-lg">Get Started Today</a>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                         -->
+<!-- ============================================================ -->
+<footer style="background:#0f0f0f;color:rgba(255,255,255,.7)">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex flex-wrap items-start justify-between gap-10">
+      <div class="max-w-md">
+        <p class="font-semibold text-white text-lg">Arizona Telepsychiatry</p>
+        <p class="text-sm mt-3 leading-relaxed" style="color:rgba(255,255,255,.5)">Arizona Telepsychiatry Clinic provides telehealth psychiatric services to adults throughout the state of Arizona. Our providers are licensed and board-certified. This website does not provide medical advice.</p>
+        <div class="mt-4 space-y-2 text-sm" style="color:rgba(255,255,255,.45)">
+          <p>Email: info@arizonatelepsychiatryclinic.com</p>
+          <p>Phone: (480) 555-0192</p>
+          <p>Serving all of Arizona via telehealth</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-10 text-sm">
+        <div>
+          <p class="font-semibold text-white">Company</p>
+          <ul class="mt-3 space-y-2" style="color:rgba(255,255,255,.5)">
+            <li><a href="#" class="hover:text-white">About</a></li>
+            <li><a href="#" class="hover:text-white">Our Provider</a></li>
+            <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-white">Resources</p>
+          <ul class="mt-3 space-y-2" style="color:rgba(255,255,255,.5)">
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">ADHD Resources</a></li>
+            <li><a href="#" class="hover:text-white">Patient Portal</a></li>
+            <li><a href="#faq" class="hover:text-white">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-white">Legal</p>
+          <ul class="mt-3 space-y-2" style="color:rgba(255,255,255,.5)">
+            <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="consent-forms.html" class="hover:text-white">Consent Forms</a></li>
+            <li><a href="#" class="hover:text-white">HIPAA Notice</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t mt-10 pt-6 text-xs" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)">
+      &copy; 2026 Arizona Telepsychiatry Clinic. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                        -->
+<!-- ============================================================ -->
+<script>
+// Fade-up observer
+(function(){
+  var els=document.querySelectorAll('.fade-up');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('visible')});return}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+// Service card observer
+(function(){
+  var cards=document.querySelectorAll('.service-card');
+  if(!('IntersectionObserver' in window)){cards.forEach(function(c){c.classList.add('visible')});return}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var d=parseFloat(e.target.style.transitionDelay)||0;setTimeout(function(){e.target.classList.add('visible')},d*1000);obs.unobserve(e.target)}})},{threshold:.15});
+  cards.forEach(function(c){obs.observe(c)});
+})();
+
+// Mobile menu
+(function(){
+  var btn=document.getElementById('mob-btn'),menu=document.getElementById('mob-menu'),open=document.getElementById('mob-open'),close=document.getElementById('mob-close');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){var h=menu.classList.contains('hidden');menu.classList.toggle('hidden',!h);open.classList.toggle('hidden',h);close.classList.toggle('hidden',!h)});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.add('hidden');open.classList.remove('hidden');close.classList.add('hidden')})});
+})();
+
+// Nav dropdown
+(function(){
+  var btn=document.getElementById('treat-btn'),menu=document.getElementById('treat-menu'),chev=document.getElementById('treat-chev');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.classList.contains('open');menu.classList.toggle('open',!o);if(chev)chev.style.transform=o?'':'rotate(180deg)'});
+  document.addEventListener('click',function(e){if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn){menu.classList.remove('open');if(chev)chev.style.transform=''}});
+})();
+
+// Symptom slider
+(function(){
+  var s=document.getElementById('symptomSlider'),v=document.getElementById('sliderVal'),r=document.getElementById('sliderResult');
+  if(!s)return;
+  var msgs={low:'Your symptoms are manageable \u2014 but care can optimize your wellbeing',mid:'Moderate impact \u2014 treatment could improve focus, mood & daily function by up to 60%',high:'Significant impact \u2014 patients like you report 87% improvement with personalized care'};
+  var last='low';
+  function upd(){var val=parseInt(s.value,10);var pct=((val-1)/9)*100;s.style.setProperty('--slider-pct',pct+'%');v.textContent=val;var cat=val<=3?'low':val<=6?'mid':'high';if(cat!==last){r.style.opacity='0';setTimeout(function(){r.textContent=msgs[cat];r.style.opacity='1'},200);last=cat}}
+  s.addEventListener('input',upd);s.addEventListener('change',upd);r.style.transition='opacity .3s ease';upd();
+})();
+
+// FAQ accordion
+(function(){
+  var toggles=document.querySelectorAll('.faq-toggle');
+  toggles.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var panel=btn.nextElementSibling;
+      var icon=btn.querySelector('span:last-child');
+      var isOpen=panel.classList.contains('open');
+      // Close all others
+      document.querySelectorAll('.faq-panel.open').forEach(function(p){p.classList.remove('open');p.previousElementSibling.querySelector('span:last-child').textContent='+'});
+      if(!isOpen){panel.classList.add('open');icon.textContent='\u2212'}
+    });
+  });
+})();
+</script>
+</body>
+</html>

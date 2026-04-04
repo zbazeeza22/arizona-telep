@@ -10,6 +10,22 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+# Allow AI answer engine crawlers (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 # Block admin pages
 Disallow: /admin.html
 Disallow: /admin-login.html

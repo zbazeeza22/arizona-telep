@@ -1,0 +1,668 @@
+[
+  {
+    "name": "Phoenix",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 1650000,
+    "notable_feature": "State capital and 5th largest US city; major healthcare hub with Banner Health, Dignity Health, and HonorHealth systems",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Tucson",
+    "tier": 1,
+    "county": "Pima",
+    "population_tier": "100k+",
+    "population_estimate": 547000,
+    "notable_feature": "Home to University of Arizona; rich cultural heritage blending Mexican and Native American traditions; surrounded by Saguaro National Park",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Mesa",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 512000,
+    "notable_feature": "3rd largest city in Arizona; home to the Arizona Museum of Natural History and spring training baseball; strong family-oriented community",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Gilbert",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 280000,
+    "notable_feature": "Largest municipality incorporated as a town in the US; Heritage District with local shops and restaurants; top-rated schools",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Chandler",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 280000,
+    "notable_feature": "Major tech employment hub with Intel, PayPal, and Northrop Grumman campuses; vibrant downtown district",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Scottsdale",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 242000,
+    "notable_feature": "Upscale resort destination; Old Town arts district; world-class spas and golf courses",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Glendale",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 252000,
+    "notable_feature": "Home to State Farm Stadium (Arizona Cardinals) and Desert Diamond Arena; Westgate Entertainment District",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Tempe",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 185000,
+    "notable_feature": "Home to Arizona State University (ASU); Tempe Town Lake; Mill Avenue entertainment district; young professional demographic",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Peoria",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 195000,
+    "notable_feature": "Spring training home for the San Diego Padres and Seattle Mariners; Lake Pleasant Regional Park nearby",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Surprise",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 155000,
+    "notable_feature": "One of Arizona's fastest-growing cities; Surprise Stadium spring training; large retirement and young family communities",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Goodyear",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 117000,
+    "notable_feature": "Rapidly growing West Valley city; Goodyear Ballpark spring training; Estrella Mountain Regional Park",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Buckeye",
+    "tier": 1,
+    "county": "Maricopa",
+    "population_tier": "100k+",
+    "population_estimate": 113000,
+    "notable_feature": "Fastest-growing large city in Arizona; Skyline Regional Park; massive planned development in the West Valley",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "San Tan Valley",
+    "tier": 1,
+    "county": "Pinal",
+    "population_tier": "100k+",
+    "population_estimate": 105000,
+    "notable_feature": "Large unincorporated community; one of the fastest-growing areas in Arizona; suburban family-oriented between Phoenix and Tucson",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Avondale",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 97000,
+    "notable_feature": "Home to Phoenix Raceway (NASCAR); growing West Valley community with diverse population",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Flagstaff",
+    "tier": 2,
+    "county": "Coconino",
+    "population_tier": "20k-100k",
+    "population_estimate": 76000,
+    "notable_feature": "Home to Northern Arizona University; gateway to Grand Canyon; historic Route 66 town at 7000 ft elevation",
+    "nearest_metro": "Flagstaff"
+  },
+  {
+    "name": "Queen Creek",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 79000,
+    "notable_feature": "Rapidly growing family community; Schnepf Farms agritourism; equestrian culture",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Yuma",
+    "tier": 2,
+    "county": "Yuma",
+    "population_tier": "20k-100k",
+    "population_estimate": 100000,
+    "notable_feature": "Sunniest city on Earth (Guinness record); major agriculture center; Yuma Territorial Prison; near CA and Mexico borders",
+    "nearest_metro": "Yuma"
+  },
+  {
+    "name": "Marana",
+    "tier": 2,
+    "county": "Pima",
+    "population_tier": "20k-100k",
+    "population_estimate": 63000,
+    "notable_feature": "Fast-growing Tucson suburb; Dove Mountain luxury resort area; Tortolita Mountains",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Lake Havasu City",
+    "tier": 2,
+    "county": "Mohave",
+    "population_tier": "20k-100k",
+    "population_estimate": 59000,
+    "notable_feature": "Home to the London Bridge relocated from England in 1968; popular boating destination on the Colorado River",
+    "nearest_metro": "Lake Havasu City"
+  },
+  {
+    "name": "Casa Grande",
+    "tier": 2,
+    "county": "Pinal",
+    "population_tier": "20k-100k",
+    "population_estimate": 54000,
+    "notable_feature": "Casa Grande Ruins National Monument nearby; midpoint between Phoenix and Tucson on I-10",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Prescott Valley",
+    "tier": 2,
+    "county": "Yavapai",
+    "population_tier": "20k-100k",
+    "population_estimate": 53000,
+    "notable_feature": "Largest town in Yavapai County; Findlay Toyota Center; mile-high elevation with four mild seasons",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Catalina Foothills",
+    "tier": 2,
+    "county": "Pima",
+    "population_tier": "20k-100k",
+    "population_estimate": 50000,
+    "notable_feature": "Affluent unincorporated Tucson suburb at the base of the Santa Catalina Mountains; Sabino Canyon nearby",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Oro Valley",
+    "tier": 2,
+    "county": "Pima",
+    "population_tier": "20k-100k",
+    "population_estimate": 49000,
+    "notable_feature": "Affluent Tucson suburb against the Santa Catalina Mountains; Catalina State Park; top-rated schools",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Prescott",
+    "tier": 2,
+    "county": "Yavapai",
+    "population_tier": "20k-100k",
+    "population_estimate": 46000,
+    "notable_feature": "Former Arizona territorial capital; historic Whiskey Row; Prescott National Forest; temperate mountain climate",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Sierra Vista",
+    "tier": 2,
+    "county": "Cochise",
+    "population_tier": "20k-100k",
+    "population_estimate": 44000,
+    "notable_feature": "Adjacent to Fort Huachuca Army base; gateway to Coronado National Memorial; Ramsey Canyon birding",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Bullhead City",
+    "tier": 2,
+    "county": "Mohave",
+    "population_tier": "20k-100k",
+    "population_estimate": 42000,
+    "notable_feature": "Colorado River community across from Laughlin NV casinos; water recreation and snowbird destination",
+    "nearest_metro": "Lake Havasu City"
+  },
+  {
+    "name": "Apache Junction",
+    "tier": 2,
+    "county": "Pinal",
+    "population_tier": "20k-100k",
+    "population_estimate": 41000,
+    "notable_feature": "Gateway to the Superstition Mountains and Lost Dutchman State Park; popular winter visitor destination",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "San Luis",
+    "tier": 2,
+    "county": "Yuma",
+    "population_tier": "20k-100k",
+    "population_estimate": 39000,
+    "notable_feature": "Border city adjacent to San Luis Rio Colorado Mexico; youngest and fastest-growing cities in Arizona",
+    "nearest_metro": "Yuma"
+  },
+  {
+    "name": "Maricopa",
+    "tier": 2,
+    "county": "Pinal",
+    "population_tier": "20k-100k",
+    "population_estimate": 39000,
+    "notable_feature": "One of Arizona's fastest-growing cities; Ak-Chin Indian Community nearby; master-planned communities",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Sahuarita",
+    "tier": 2,
+    "county": "Pima",
+    "population_tier": "20k-100k",
+    "population_estimate": 38000,
+    "notable_feature": "Fast-growing Tucson suburb; Titan Missile Museum; Raytheon employment hub; family-oriented planned communities",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Sun City",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 37500,
+    "notable_feature": "America's first active adult retirement community (est. 1960); age-restricted 55+ community; strong retiree healthcare needs",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "El Mirage",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 36000,
+    "notable_feature": "Growing West Valley community; Luke Air Force Base adjacent; diverse and young population",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Kingman",
+    "tier": 2,
+    "county": "Mohave",
+    "population_tier": "20k-100k",
+    "population_estimate": 36000,
+    "notable_feature": "Historic Route 66 hub; Mohave County seat; gateway to Grand Canyon West and Hualapai Nation",
+    "nearest_metro": "Kingman"
+  },
+  {
+    "name": "Fortuna Foothills",
+    "tier": 2,
+    "county": "Yuma",
+    "population_tier": "20k-100k",
+    "population_estimate": 30000,
+    "notable_feature": "Unincorporated Yuma suburb; popular winter visitor community; Yuma Proving Ground nearby",
+    "nearest_metro": "Yuma"
+  },
+  {
+    "name": "Sun City West",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 27000,
+    "notable_feature": "Age-restricted 55+ Del Webb retirement community; extensive recreation centers and golf courses",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Florence",
+    "tier": 2,
+    "county": "Pinal",
+    "population_tier": "20k-100k",
+    "population_estimate": 24000,
+    "notable_feature": "Pinal County seat; one of Arizona's oldest towns (est. 1866); historic downtown",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Fountain Hills",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 24000,
+    "notable_feature": "Home to one of the world's tallest fountains (560 ft); upscale community near McDowell Mountain Regional Park",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Green Valley",
+    "tier": 2,
+    "county": "Pima",
+    "population_tier": "20k-100k",
+    "population_estimate": 23000,
+    "notable_feature": "Unincorporated retirement community south of Tucson; Madera Canyon birding; significant senior population",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Anthem",
+    "tier": 2,
+    "county": "Maricopa",
+    "population_tier": "20k-100k",
+    "population_estimate": 23000,
+    "notable_feature": "Master-planned community north of Phoenix; Anthem Community Park; family-friendly with top-rated schools",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Gold Canyon",
+    "tier": 2,
+    "county": "Pinal",
+    "population_tier": "20k-100k",
+    "population_estimate": 22000,
+    "notable_feature": "Scenic community at the base of the Superstition Mountains; popular retirement and golf destination",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Nogales",
+    "tier": 2,
+    "county": "Santa Cruz",
+    "population_tier": "20k-100k",
+    "population_estimate": 20000,
+    "notable_feature": "Major US-Mexico border crossing; Santa Cruz County seat; rich binational culture; Tubac arts colony nearby",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Coolidge",
+    "tier": 3,
+    "county": "Pinal",
+    "population_tier": "5k-20k",
+    "population_estimate": 19000,
+    "notable_feature": "Casa Grande Ruins adjacent; one of Arizona's fastest-growing small cities; historic cotton farming heritage",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Eloy",
+    "tier": 3,
+    "county": "Pinal",
+    "population_tier": "5k-20k",
+    "population_estimate": 19000,
+    "notable_feature": "Skydiving capital of Arizona with Skydive Arizona; growing I-10 corridor community",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Payson",
+    "tier": 3,
+    "county": "Gila",
+    "population_tier": "5k-20k",
+    "population_estimate": 17000,
+    "notable_feature": "Heart of Rim Country below the Mogollon Rim; Tonto Natural Bridge State Park; mountain escape from Phoenix heat",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Douglas",
+    "tier": 3,
+    "county": "Cochise",
+    "population_tier": "5k-20k",
+    "population_estimate": 16000,
+    "notable_feature": "Historic border town; Gadsden Hotel landmark; Cochise College; sister city to Agua Prieta Mexico",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Somerton",
+    "tier": 3,
+    "county": "Yuma",
+    "population_tier": "5k-20k",
+    "population_estimate": 15000,
+    "notable_feature": "Agricultural community near Yuma; Cocopah Indian Reservation nearby; growing residential area",
+    "nearest_metro": "Yuma"
+  },
+  {
+    "name": "Chino Valley",
+    "tier": 3,
+    "county": "Yavapai",
+    "population_tier": "5k-20k",
+    "population_estimate": 14000,
+    "notable_feature": "Growing community north of Prescott; rural ranch character; affordable alternative to Prescott",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Sun Lakes",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 14000,
+    "notable_feature": "Upscale age-restricted retirement community south of Chandler; multiple golf courses; active adult lifestyle",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Paradise Valley",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 13000,
+    "notable_feature": "Arizona's wealthiest municipality; luxury resorts including The Phoenician and Sanctuary; Camelback Mountain",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Cottonwood",
+    "tier": 3,
+    "county": "Yavapai",
+    "population_tier": "5k-20k",
+    "population_estimate": 13000,
+    "notable_feature": "Heart of the Verde Valley wine region; Dead Horse Ranch State Park; gateway to Jerome and Sedona",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Camp Verde",
+    "tier": 3,
+    "county": "Yavapai",
+    "population_tier": "5k-20k",
+    "population_estimate": 12500,
+    "notable_feature": "Montezuma Castle National Monument; Verde River recreation; Out of Africa Wildlife Park",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Show Low",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "5k-20k",
+    "population_estimate": 12600,
+    "notable_feature": "White Mountains hub city at 6400 ft; Fool Hollow Lake; four-season recreation including skiing",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Safford",
+    "tier": 3,
+    "county": "Graham",
+    "population_tier": "5k-20k",
+    "population_estimate": 10200,
+    "notable_feature": "Graham County seat; Eastern Arizona College; Mount Graham International Observatory",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Sedona",
+    "tier": 3,
+    "county": "Yavapai/Coconino",
+    "population_tier": "5k-20k",
+    "population_estimate": 10000,
+    "notable_feature": "World-famous red rock formations; spiritual energy vortexes; thriving arts community; Chapel of the Holy Cross",
+    "nearest_metro": "Flagstaff"
+  },
+  {
+    "name": "Catalina",
+    "tier": 3,
+    "county": "Pima",
+    "population_tier": "5k-20k",
+    "population_estimate": 9000,
+    "notable_feature": "Unincorporated community north of Tucson near Catalina State Park; growing residential area",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Winslow",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "5k-20k",
+    "population_estimate": 8700,
+    "notable_feature": "Famous from the Eagles Take It Easy song; Standing on the Corner Park; Route 66 heritage",
+    "nearest_metro": "Flagstaff"
+  },
+  {
+    "name": "Wickenburg",
+    "tier": 3,
+    "county": "Maricopa/Yavapai",
+    "population_tier": "5k-20k",
+    "population_estimate": 8500,
+    "notable_feature": "Historic gold mining town; dude ranch heritage; Desert Caballeros Western Museum",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Page",
+    "tier": 3,
+    "county": "Coconino",
+    "population_tier": "5k-20k",
+    "population_estimate": 7300,
+    "notable_feature": "Gateway to Antelope Canyon, Horseshoe Bend, and Lake Powell; Glen Canyon Dam",
+    "nearest_metro": "Flagstaff"
+  },
+  {
+    "name": "Tolleson",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 7300,
+    "notable_feature": "Small West Valley community near downtown Phoenix; diverse community; I-10 access",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Globe",
+    "tier": 3,
+    "county": "Gila",
+    "population_tier": "5k-20k",
+    "population_estimate": 7200,
+    "notable_feature": "Historic copper mining town; Gila County seat; Besh-Ba-Gowah Archaeological Park",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Litchfield Park",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 7000,
+    "notable_feature": "Charming historic West Valley community; The Wigwam luxury resort; founded by Goodyear Tire",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Youngtown",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 7000,
+    "notable_feature": "First age-restricted retirement community in the US (est. 1954); adjacent to Sun City",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Snowflake",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "5k-20k",
+    "population_estimate": 6800,
+    "notable_feature": "Historic Mormon pioneer settlement; White Mountains gateway; small-town community character",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Benson",
+    "tier": 3,
+    "county": "Cochise",
+    "population_tier": "5k-20k",
+    "population_estimate": 5500,
+    "notable_feature": "Gateway to Kartchner Caverns State Park; San Pedro Riparian Conservation Area; historic railroad town",
+    "nearest_metro": "Tucson"
+  },
+  {
+    "name": "Guadalupe",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 5300,
+    "notable_feature": "Yaqui Indian community with rich cultural traditions; annual Easter ceremonies; Mercado district",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Cave Creek",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "5k-20k",
+    "population_estimate": 5000,
+    "notable_feature": "Western-themed desert town north of Scottsdale; Spur Cross Ranch; frontier character",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Clarkdale",
+    "tier": 3,
+    "county": "Yavapai",
+    "population_tier": "5k-20k",
+    "population_estimate": 5000,
+    "notable_feature": "Verde Canyon Railroad scenic train; Tuzigoot National Monument; historic copper smelting town",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Pinetop-Lakeside",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "under 5k",
+    "population_estimate": 5000,
+    "notable_feature": "White Mountains resort community at 7000 ft; Woodland Lake Park; Sunrise Park Resort skiing nearby",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Holbrook",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "under 5k",
+    "population_estimate": 4900,
+    "notable_feature": "Gateway to Petrified Forest National Park; Route 66 town; Navajo County seat; Wigwam Motel",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Eagar",
+    "tier": 3,
+    "county": "Apache",
+    "population_tier": "under 5k",
+    "population_estimate": 4900,
+    "notable_feature": "White Mountains community; adjacent to Springerville; Big Lake recreation area gateway",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Dewey-Humboldt",
+    "tier": 3,
+    "county": "Yavapai",
+    "population_tier": "under 5k",
+    "population_estimate": 4600,
+    "notable_feature": "Small Prescott-area community; Agua Fria River area; affordable high-country living",
+    "nearest_metro": "Prescott"
+  },
+  {
+    "name": "Taylor",
+    "tier": 3,
+    "county": "Navajo",
+    "population_tier": "under 5k",
+    "population_estimate": 4400,
+    "notable_feature": "Adjacent to Snowflake; Mormon pioneer heritage; White Mountains agricultural community",
+    "nearest_metro": "Show Low"
+  },
+  {
+    "name": "Carefree",
+    "tier": 3,
+    "county": "Maricopa",
+    "population_tier": "under 5k",
+    "population_estimate": 3700,
+    "notable_feature": "Upscale desert community; world's largest sundial; art galleries and fine dining",
+    "nearest_metro": "Phoenix"
+  },
+  {
+    "name": "Willcox",
+    "tier": 3,
+    "county": "Cochise",
+    "population_tier": "under 5k",
+    "population_estimate": 3300,
+    "notable_feature": "Arizona wine country with multiple vineyards; Chiricahua National Monument nearby",
+    "nearest_metro": "Tucson"
+  }
+]

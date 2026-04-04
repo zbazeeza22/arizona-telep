@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <title>ADHD Learning Center for Adults in Arizona | Arizona Telepsychiatry Clinic</title>
+    <title>Mental Health Learning Center | Arizona Telepsychiatry Clinic</title>
     <meta
       name="description"
-      content="Browse ADHD learning articles for adults in Arizona. Understand symptoms, treatment options, and how online telepsychiatry visits work."
+      content="Explore expert articles on ADHD, anxiety, insomnia, and telepsychiatry for adults in Arizona. Learn about symptoms, treatment options, and how online psychiatric care works."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="https://arizonatelepsychiatryclinic.com/blog" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mental Health Learning Center | Arizona Telepsychiatry Clinic" />
+    <meta property="og:description" content="Explore expert articles on ADHD, anxiety, insomnia, and telepsychiatry for adults in Arizona. Learn about symptoms, treatment options, and how online psychiatric care works." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arizonatelepsychiatryclinic.com/blog" />
+    <meta property="og:site_name" content="Arizona Telepsychiatry Clinic" />
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,127 +24,650 @@
         theme: {
           extend: {
             colors: {
-              primary: { 0: "#F6F7F2", 30: "#6BAF92", 40: "#3F7A5B" },
-              neutral: { 10: "#F5F5F7", 50: "#6B7280", 60: "#111827" },
+              primary: {
+                0: "#F6F7F2",
+                30: "#6BAF92",
+                40: "#3F7A5B",
+              },
+              neutral: {
+                10: "#F5F5F7",
+                50: "#6B7280",
+                60: "#111827",
+              },
+            },
+            fontFamily: {
+              primary: ["Red Hat Text", "system-ui", "sans-serif"],
             },
           },
         },
       };
     </script>
+
+    <!-- Google Font: Red Hat Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD: CollectionPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Mental Health Learning Center",
+        "description": "Expert articles on ADHD, anxiety, insomnia, and telepsychiatry for adults in Arizona.",
+        "url": "https://arizonatelepsychiatryclinic.com/blog",
+        "publisher": {
+          "@type": "MedicalClinic",
+          "name": "Arizona Telepsychiatry Clinic",
+          "url": "https://arizonatelepsychiatryclinic.com"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://arizonatelepsychiatryclinic.com/article-anxiety-vs-normal-worry.html",
+              "name": "Anxiety vs Normal Worry: When to See a Professional"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://arizonatelepsychiatryclinic.com/article-insomnia-mental-health.html",
+              "name": "Insomnia and Mental Health: The Hidden Connection"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "url": "https://arizonatelepsychiatryclinic.com/article-telepsychiatry-vs-therapy.html",
+              "name": "Telepsychiatry vs Therapy: Which One Do You Need?"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "url": "https://arizonatelepsychiatryclinic.com/article-adhd-symptoms-adults.html",
+              "name": "Common ADHD Symptoms in Adults"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "url": "https://arizonatelepsychiatryclinic.com/article-adult-adhd-arizona.html",
+              "name": "Adult ADHD Treatment Options in Arizona"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "url": "https://arizonatelepsychiatryclinic.com/article-adhd-women-afab.html",
+              "name": "Signs of ADHD in Women and AFAB Adults"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "url": "https://arizonatelepsychiatryclinic.com/article-prepare-online-visit.html",
+              "name": "How to Prepare for Your First Online Visit"
+            }
+          ]
+        }
+      }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://arizonatelepsychiatryclinic.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Learning Center",
+            "item": "https://arizonatelepsychiatryclinic.com/blog"
+          }
+        ]
+      }
+    </script>
   </head>
-  <body class="bg-primary-0 text-neutral-600">
-    <header class="bg-white border-b sticky top-0 z-40">
+
+  <body class="font-primary text-neutral-60 bg-white">
+    <!-- ============ NAVBAR ============ -->
+    <header class="w-full border-b bg-white sticky top-0 z-40">
       <div
-        class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between"
+        class="max-w-6xl mx-auto flex items-center justify-between h-16 px-4 lg:h-20"
       >
-        <a
-          href="index.html"
-          class="text-sm text-primary-30 hover:text-primary-40"
-          >← Back to home</a
-        >
-        <nav class="hidden sm:flex items-center gap-4 text-sm">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <span class="font-semibold text-lg text-neutral-900">
+            Arizona Telepsychiatry Clinic
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center space-x-6 text-sm">
+          <div class="relative" id="desktop-treat-wrapper">
+            <button
+              id="desktop-treat-btn"
+              class="flex items-center text-primary-30 hover:text-primary-40"
+              type="button"
+            >
+              What we treat
+              <svg
+                class="w-4 h-4 ml-1 transition-transform duration-200"
+                id="desktop-treat-chevron"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div
+              id="desktop-treat-dropdown"
+              class="hidden absolute left-0 top-full mt-2 w-56 bg-white shadow-lg rounded-xl border py-2 z-50"
+            >
+              <a href="adhd.html" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-10 hover:text-primary-30">ADHD</a>
+              <a href="anxiety-depression.html" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-10 hover:text-primary-30">Anxiety</a>
+              <a href="anxiety-depression.html" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-10 hover:text-primary-30">Depression</a>
+              <a href="insomnia.html" class="block px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-10 hover:text-primary-30">Insomnia</a>
+            </div>
+          </div>
           <a href="index.html#pricing" class="hover:text-primary-30">Pricing</a>
-          <a href="index.html#treatment" class="hover:text-primary-30"
-            >Process</a
+          <a href="index.html#treatment" class="hover:text-primary-30">Process</a>
+          <a href="blog.html" class="text-primary-30 font-medium">Learning Center</a>
+          <a href="index.html#faq" class="hover:text-primary-30">FAQs</a>
+        </nav>
+
+        <!-- Book Now CTA -->
+        <div class="hidden md:flex items-center space-x-2">
+          <a
+            href="book.html"
+            class="rounded-md font-medium text-white bg-primary-30 hover:bg-primary-40 shadow-sm px-5 py-2.5 text-sm"
           >
-          <a href="book.html" class="rounded-md bg-primary-30 px-4 py-2 text-xs
-            font-medium text-white hover:bg-primary-40"
-            >Book now</a
-          >
+            Book Now
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden p-2 rounded-md text-neutral-600 hover:bg-neutral-10"
+          aria-label="Open menu"
+          onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+        >
+          <svg width="24" height="24">
+            <path
+              stroke="currentColor"
+              stroke-width="2.5"
+              d="M4 6H20M4 12H20M4 18H20"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="md:hidden hidden border-t bg-white">
+        <nav class="flex flex-col px-4 py-3 space-y-2 text-sm">
+          <div>
+            <button
+              id="mobile-treat-btn"
+              class="w-full flex items-center justify-between py-2 text-primary-30"
+              type="button"
+            >
+              <span>What we treat</span>
+              <svg
+                class="w-4 h-4 ml-1 transition-transform duration-200"
+                id="mobile-treat-chevron"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div id="mobile-treat-dropdown" class="hidden pl-4 py-1 space-y-1">
+              <a href="adhd.html" class="block py-1.5 text-neutral-600 hover:text-primary-30">ADHD</a>
+              <a href="anxiety-depression.html" class="block py-1.5 text-neutral-600 hover:text-primary-30">Anxiety</a>
+              <a href="anxiety-depression.html" class="block py-1.5 text-neutral-600 hover:text-primary-30">Depression</a>
+              <a href="insomnia.html" class="block py-1.5 text-neutral-600 hover:text-primary-30">Insomnia</a>
+            </div>
+          </div>
+          <a href="index.html#pricing" class="py-1 hover:text-primary-30">Pricing</a>
+          <a href="index.html#treatment" class="py-1 hover:text-primary-30">Process</a>
+          <a href="blog.html" class="py-1 text-primary-30 font-medium">Learning Center</a>
+          <a href="index.html#faq" class="py-1 hover:text-primary-30">FAQs</a>
+          <div class="pt-3 flex flex-col space-y-2">
+            <a
+              href="book.html"
+              class="text-center rounded-md py-2.5 font-medium text-white bg-primary-30 hover:bg-primary-40"
+            >
+              Book Now
+            </a>
+          </div>
         </nav>
       </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-10 space-y-16">
-      <section>
-        <p class="text-xs font-semibold uppercase tracking-wide text-primary-30">
-          ADHD learning center for Arizona
-        </p>
-        <h1
-          class="mt-2 text-3xl md:text-4xl font-semibold text-neutral-900 max-w-3xl"
-        >
-          ADHD education for adults in Arizona
-        </h1>
-        <p class="mt-3 text-neutral-600 max-w-3xl">
-          Our learning center is written to help adults in Arizona understand
-          ADHD, evaluation options, and what to expect from online
-          telepsychiatry visits. The information below is educational and is
-          not a substitute for personal medical advice.
-        </p>
-      </section>
+    <main>
+      <!-- ============ HERO / PAGE HEADER ============ -->
+      <section class="bg-primary-0 border-b">
+        <div class="max-w-6xl mx-auto px-4 py-10 md:py-16">
+          <!-- Breadcrumbs -->
+          <nav aria-label="Breadcrumb" class="mb-6">
+            <ol class="flex items-center space-x-2 text-sm text-neutral-50">
+              <li>
+                <a href="index.html" class="hover:text-primary-30 transition-colors">Home</a>
+              </li>
+              <li>
+                <svg class="w-4 h-4 inline-block text-neutral-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </li>
+              <li>
+                <span class="text-neutral-60 font-medium">Learning Center</span>
+              </li>
+            </ol>
+          </nav>
 
-      <!-- Article list -->
-      <section class="space-y-6">
-        <h2 class="text-xl font-semibold text-neutral-900">
-          Recent articles
-        </h2>
-        <div class="grid gap-6 md:grid-cols-2">
-          <a
-            href="article-adhd-symptoms-adults.html"
-            class="rounded-xl bg-white border hover:border-primary-30 shadow-sm p-5 flex flex-col gap-2"
-          >
-            <p class="text-xs font-medium text-primary-30">
-              Common ADHD symptoms
-            </p>
-            <h3 class="text-lg font-semibold text-neutral-900">
-              Common ADHD symptoms in adults in Arizona
-            </h3>
-            <p class="text-sm text-neutral-600">
-              A plain‑language guide to how ADHD often shows up in everyday life
-              for adults.
-            </p>
-          </a>
-
-          <a
-            href="article-adult-adhd-arizona.html"
-            class="rounded-xl bg-white border hover:border-primary-30 shadow-sm p-5 flex flex-col gap-2"
-          >
-            <p class="text-xs font-medium text-primary-30">
-              ADHD treatment in Arizona
-            </p>
-            <h3 class="text-lg font-semibold text-neutral-900">
-              Adult ADHD treatment options in Arizona: telepsychiatry explained
-            </h3>
-            <p class="text-sm text-neutral-600">
-              How online ADHD visits work, who they’re for, and what a typical
-              treatment plan looks like for adults in Arizona.
-            </p>
-          </a>
-
-          <a
-            href="article-adhd-women-afab.html"
-            class="rounded-xl bg-white border hover:border-primary-30 shadow-sm p-5 flex flex-col gap-2"
-          >
-            <p class="text-xs font-medium text-primary-30">
-              ADHD in women &amp; AFAB adults
-            </p>
-            <h3 class="text-lg font-semibold text-neutral-900">
-              Signs of ADHD in women and AFAB adults: what we see in Arizona
-            </h3>
-            <p class="text-sm text-neutral-600">
-              Many women are diagnosed later in life. Learn the patterns we
-              commonly see in our Arizona patients.
-            </p>
-          </a>
-
-          <a
-            href="article-prepare-online-visit.html"
-            class="rounded-xl bg-white border hover:border-primary-30 shadow-sm p-5 flex flex-col gap-2"
-          >
-            <p class="text-xs font-medium text-primary-30">
-              First telepsychiatry visit
-            </p>
-            <h3 class="text-lg font-semibold text-neutral-900">
-              How to prepare for your first online ADHD appointment in Arizona
-            </h3>
-            <p class="text-sm text-neutral-600">
-              A simple checklist to get the most out of your first virtual
-              psychiatry session.
-            </p>
-          </a>
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary-30">
+            Learning Center
+          </p>
+          <h1 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 max-w-3xl leading-tight">
+            Mental health resources for adults in Arizona
+          </h1>
+          <p class="mt-4 text-lg text-neutral-50 max-w-2xl">
+            Expert-written articles on ADHD, anxiety, insomnia, and telepsychiatry to help you understand your mental health and treatment options.
+          </p>
         </div>
       </section>
 
+      <!-- ============ FILTER TABS ============ -->
+      <section class="border-b bg-white sticky top-16 lg:top-20 z-30">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex items-center gap-2 py-3 overflow-x-auto no-scrollbar" id="filter-tabs">
+            <button
+              data-filter="all"
+              class="filter-tab active shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-primary-30 text-white"
+              type="button"
+            >
+              All
+            </button>
+            <button
+              data-filter="adhd"
+              class="filter-tab shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-neutral-10 text-neutral-50 hover:bg-neutral-200"
+              type="button"
+            >
+              ADHD
+            </button>
+            <button
+              data-filter="anxiety"
+              class="filter-tab shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-neutral-10 text-neutral-50 hover:bg-neutral-200"
+              type="button"
+            >
+              Anxiety
+            </button>
+            <button
+              data-filter="insomnia"
+              class="filter-tab shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-neutral-10 text-neutral-50 hover:bg-neutral-200"
+              type="button"
+            >
+              Insomnia
+            </button>
+            <button
+              data-filter="getting-started"
+              class="filter-tab shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-neutral-10 text-neutral-50 hover:bg-neutral-200"
+              type="button"
+            >
+              Getting Started
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FEATURED ARTICLE ============ -->
+      <section class="max-w-6xl mx-auto px-4 pt-10 md:pt-14" id="articles-container">
+        <div class="article-card" data-category="anxiety">
+          <a
+            href="article-anxiety-vs-normal-worry.html"
+            class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all overflow-hidden md:flex"
+          >
+            <div class="md:w-1/2 bg-gradient-to-br from-amber-50 to-amber-100 p-8 md:p-12 flex items-center justify-center">
+              <div class="text-center">
+                <span class="inline-block text-5xl mb-4" aria-hidden="true">
+                  <svg class="w-16 h-16 mx-auto text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </span>
+                <p class="text-sm font-semibold text-amber-700 uppercase tracking-wide">Featured Article</p>
+              </div>
+            </div>
+            <div class="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+              <span class="inline-block w-fit rounded-full bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                Anxiety
+              </span>
+              <h2 class="mt-4 text-2xl md:text-3xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Anxiety vs Normal Worry: When to See a Professional
+              </h2>
+              <p class="mt-3 text-neutral-50 leading-relaxed">
+                Everyone worries sometimes, but when does everyday worry cross the line into an anxiety disorder? Learn the key differences and when it might be time to talk to a psychiatric provider.
+              </p>
+              <span class="mt-5 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- ============ ARTICLE GRID ============ -->
+        <div class="grid gap-6 md:grid-cols-2 mt-10" id="article-grid">
+
+          <!-- Card: Insomnia and Mental Health -->
+          <div class="article-card" data-category="insomnia">
+            <a
+              href="article-insomnia-mental-health.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                Insomnia
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Insomnia and Mental Health: The Hidden Connection
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                Chronic sleep problems and mental health conditions often fuel each other. Discover how insomnia connects to anxiety, depression, and ADHD, and why treating sleep can change everything.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Card: Telepsychiatry vs Therapy -->
+          <div class="article-card" data-category="getting-started">
+            <a
+              href="article-telepsychiatry-vs-therapy.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                Getting Started
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Telepsychiatry vs Therapy: Which One Do You Need?
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                Psychiatry and therapy aren't the same thing, but they work well together. Learn the difference between a psychiatric provider and a therapist, and figure out which type of care fits your needs.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Card: Common ADHD Symptoms in Adults -->
+          <div class="article-card" data-category="adhd">
+            <a
+              href="article-adhd-symptoms-adults.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                ADHD
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Common ADHD Symptoms in Adults
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                A plain-language guide to how ADHD often shows up in everyday adult life, from trouble focusing to emotional dysregulation and beyond.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Card: Adult ADHD Treatment Options in Arizona -->
+          <div class="article-card" data-category="adhd">
+            <a
+              href="article-adult-adhd-arizona.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                ADHD
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Adult ADHD Treatment Options in Arizona
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                How online ADHD visits work, who they are designed for, and what a typical treatment plan looks like for adults across Arizona.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ============ CTA BANNER ============ -->
+        <div class="my-12 rounded-2xl bg-gradient-to-r from-primary-40 to-primary-30 p-8 md:p-12 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-white">
+            Have questions about your mental health?
+          </h2>
+          <p class="mt-3 text-white/80 max-w-xl mx-auto">
+            Book a consultation with our board-certified provider. We offer flexible online appointments for adults across Arizona.
+          </p>
+          <a
+            href="book.html"
+            class="mt-6 inline-block rounded-lg bg-white text-primary-40 font-semibold px-8 py-3.5 text-sm hover:bg-neutral-10 shadow-lg transition-colors"
+          >
+            Book a Consultation
+          </a>
+        </div>
+
+        <!-- ============ MORE ARTICLES (continued grid) ============ -->
+        <div class="grid gap-6 md:grid-cols-2 mb-16" id="article-grid-2">
+
+          <!-- Card: Signs of ADHD in Women and AFAB Adults -->
+          <div class="article-card" data-category="adhd">
+            <a
+              href="article-adhd-women-afab.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                ADHD
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                Signs of ADHD in Women and AFAB Adults
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                Many women and AFAB adults are diagnosed later in life. Learn the patterns that are commonly overlooked and why ADHD presents differently in these populations.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Card: How to Prepare for Your First Online Visit -->
+          <div class="article-card" data-category="getting-started">
+            <a
+              href="article-prepare-online-visit.html"
+              class="group block rounded-2xl bg-white border border-neutral-200 hover:border-primary-30 shadow-sm hover:shadow-md transition-all p-6"
+            >
+              <span class="inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 uppercase tracking-wide">
+                Getting Started
+              </span>
+              <h3 class="mt-4 text-xl font-bold text-neutral-900 group-hover:text-primary-40 transition-colors leading-snug">
+                How to Prepare for Your First Online Visit
+              </h3>
+              <p class="mt-2 text-neutral-50 text-sm leading-relaxed">
+                A simple checklist to help you get the most out of your first virtual psychiatry session, from tech setup to what questions to bring.
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary-30 font-medium text-sm group-hover:text-primary-40 transition-colors">
+                Read article
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-width="2" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="bg-primary-40 text-white">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+          <div class="flex flex-wrap items-start justify-between gap-10">
+            <div class="max-w-md">
+              <div class="flex items-center gap-2">
+                <p class="font-semibold">Arizona Telepsychiatry Clinic</p>
+              </div>
+              <p class="text-white/70 mt-3 text-sm">
+                Virtual-first psychiatric care with flexible scheduling, video visits, and
+                ongoing support between appointments. Connect with your board-certified
+                provider from home. We serve adults across Arizona, including Phoenix,
+                Tucson, Mesa, Chandler, Scottsdale, Gilbert, Tempe, Glendale, Flagstaff,
+                and Yuma.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-10 text-sm">
+              <div>
+                <p class="font-semibold">Company</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="index.html#provider" class="hover:text-white">About</a></li>
+                  <li><a href="index.html#provider" class="hover:text-white">Providers</a></li>
+                  <li><a href="book.html" class="hover:text-white">Locations</a></li>
+                  <li><a href="admin-login.html" class="hover:text-white">Admin</a></li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold">Resources</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="index.html#faq" class="hover:text-white">FAQ</a></li>
+                  <li><a href="index.html#pricing" class="hover:text-white">Pricing</a></li>
+                  <li><a href="index.html#reviews" class="hover:text-white">Reviews</a></li>
+                  <li><a href="blog.html" class="hover:text-white">Learning Center</a></li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold">Legal</p>
+                <ul class="mt-3 space-y-2 text-white/70">
+                  <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
+                  <li><a href="terms-of-service.html" class="hover:text-white">Terms of Service</a></li>
+                  <li>
+                    <a href="javascript:void(0)" onclick="alert('Cookie preferences coming soon.')" class="hover:text-white">Cookie preferences</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="border-t border-white/10 mt-10 pt-6 text-xs text-white/60">
+            &copy; 2026 Arizona Telepsychiatry Clinic. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </main>
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+      // --- Desktop dropdown ---
+      const dBtn = document.getElementById("desktop-treat-btn");
+      const dDrop = document.getElementById("desktop-treat-dropdown");
+      const dChev = document.getElementById("desktop-treat-chevron");
+      const dWrap = document.getElementById("desktop-treat-wrapper");
+
+      dBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const open = !dDrop.classList.contains("hidden");
+        dDrop.classList.toggle("hidden");
+        dChev.style.transform = open ? "" : "rotate(90deg)";
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!dWrap.contains(e.target)) {
+          dDrop.classList.add("hidden");
+          dChev.style.transform = "";
+        }
+      });
+
+      // --- Mobile dropdown ---
+      const mBtn = document.getElementById("mobile-treat-btn");
+      const mDrop = document.getElementById("mobile-treat-dropdown");
+      const mChev = document.getElementById("mobile-treat-chevron");
+
+      mBtn.addEventListener("click", function () {
+        const open = !mDrop.classList.contains("hidden");
+        mDrop.classList.toggle("hidden");
+        mChev.style.transform = open ? "" : "rotate(90deg)";
+      });
+
+      // --- Filter tabs ---
+      const tabs = document.querySelectorAll(".filter-tab");
+      const cards = document.querySelectorAll(".article-card");
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          const filter = tab.getAttribute("data-filter");
+
+          // Update active tab styling
+          tabs.forEach(function (t) {
+            t.classList.remove("bg-primary-30", "text-white");
+            t.classList.add("bg-neutral-10", "text-neutral-50");
+          });
+          tab.classList.remove("bg-neutral-10", "text-neutral-50");
+          tab.classList.add("bg-primary-30", "text-white");
+
+          // Filter cards
+          cards.forEach(function (card) {
+            if (filter === "all" || card.getAttribute("data-category") === filter) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+
+    <style>
+      /* Hide scrollbar on filter tabs */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
   </body>
 </html>

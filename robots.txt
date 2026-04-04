@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arizonatelepsychiatryclinic.com/sitemap.xml
+
+# Allow all search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block admin pages
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /admin-pelvic-scan.html
+Disallow: /api/

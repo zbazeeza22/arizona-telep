@@ -170,6 +170,31 @@
     .de-table tr:hover td { background: #FAFBF8; }
 
     .tech-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; font-size: 12px; font-weight: 500; border-radius: 8px; background: #F3F4F6; color: #374151; border: 1px solid #E5E7EB; }
+
+    /* ── Chart Styles ── */
+    .donut-chart { width: 220px; height: 220px; border-radius: 50%; position: relative; margin: 0 auto; }
+    .donut-hole { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 120px; height: 120px; border-radius: 50%; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .donut-hole .dh-value { font-size: 22px; font-weight: 800; color: #111827; }
+    .donut-hole .dh-label { font-size: 10px; color: #6B7280; margin-top: 2px; }
+
+    .bar-chart-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+    .bar-label { width: 180px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #374151; text-align: right; }
+    .bar-track { flex: 1; height: 28px; background: #F3F4F6; border-radius: 8px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; border-radius: 8px; display: flex; align-items: center; padding-left: 10px; transition: width 0.8s ease; }
+    .bar-fill span { font-size: 11px; font-weight: 700; color: #fff; white-space: nowrap; }
+    .bar-value { width: 90px; flex-shrink: 0; font-size: 13px; font-weight: 600; color: #111827; }
+
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+    .legend-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+    .legend-text { font-size: 13px; color: #374151; }
+    .legend-pct { font-size: 13px; font-weight: 700; color: #111827; margin-left: auto; }
+
+    @media (max-width: 767px) {
+      .bar-label { width: 100px; font-size: 11px; }
+      .bar-value { width: 70px; font-size: 11px; }
+      .donut-chart { width: 180px; height: 180px; }
+      .donut-hole { width: 100px; height: 100px; }
+    }
   </style>
 </head>
 <body class="font-primary bg-primary-0 text-neutral-600 min-h-screen">
@@ -333,10 +358,18 @@
             </button>
           </li>
           <li>
-            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap" data-panel="intel">
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="intel">
               <span class="inline-flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 Competitive Intel
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap" data-panel="acquisition">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                Acquisition Analytics
               </span>
             </button>
           </li>
@@ -1659,6 +1692,292 @@
                 <div class="danger-box"><p class="text-xs font-bold text-red-800">May 2026</p><p class="text-sm text-red-700">New HIPAA Security Rule — MFA and encryption MANDATORY for all ePHI systems</p></div>
                 <div class="danger-box"><p class="text-xs font-bold text-red-800">Dec 31, 2026</p><p class="text-sm text-red-700">DEA telehealth flexibility may EXPIRE — monitor for permanent rules</p></div>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 13: Acquisition Analytics -->
+      <section id="panel-acquisition" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <h2 class="text-lg font-semibold text-neutral-900">Acquisition Analytics — Where Medvi Gets Their Clients</h2>
+              <p class="text-sm text-neutral-500 mt-1">Research-backed estimates from 15 AI agents analyzing affiliate networks, Meta Ad Library, press coverage, and DNS/HTTP data. Based on $401M revenue (2025).</p>
+            </div>
+            <span class="priority-badge pri-high">Data-Driven Estimates</span>
+          </div>
+
+          <div class="mt-6 space-y-8">
+
+            <!-- Donut Chart + Legend -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Client Acquisition by Channel — % of Total Patients</p>
+              <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Donut -->
+                <div class="donut-chart" style="background: conic-gradient(
+                  #3b82f6 0deg 216deg,
+                  #8b5cf6 216deg 280.8deg,
+                  #6BAF92 280.8deg 309.6deg,
+                  #f97316 309.6deg 331.2deg,
+                  #ef4444 331.2deg 345.6deg,
+                  #9CA3AF 345.6deg 360deg
+                );">
+                  <div class="donut-hole">
+                    <span class="dh-value">~1.1M</span>
+                    <span class="dh-label">Est. Patients (2025)</span>
+                  </div>
+                </div>
+                <!-- Legend -->
+                <div class="flex-1 min-w-0">
+                  <div class="legend-row"><div class="legend-dot" style="background:#3b82f6"></div><span class="legend-text">Meta (FB/IG) via Affiliates</span><span class="legend-pct">60%</span></div>
+                  <div class="legend-row"><div class="legend-dot" style="background:#8b5cf6"></div><span class="legend-text">Native / Display / Email Affiliates</span><span class="legend-pct">18%</span></div>
+                  <div class="legend-row"><div class="legend-dot" style="background:#6BAF92"></div><span class="legend-text">Medvi Direct Meta Ads</span><span class="legend-pct">8%</span></div>
+                  <div class="legend-row"><div class="legend-dot" style="background:#f97316"></div><span class="legend-text">TikTok via Affiliates</span><span class="legend-pct">6%</span></div>
+                  <div class="legend-row"><div class="legend-dot" style="background:#ef4444"></div><span class="legend-text">Google / SEM (Affiliate Bids)</span><span class="legend-pct">4%</span></div>
+                  <div class="legend-row"><div class="legend-dot" style="background:#9CA3AF"></div><span class="legend-text">Other (PR, Direct, Referral)</span><span class="legend-pct">4%</span></div>
+                  <p class="text-xs text-neutral-400 mt-3">Source: Affiliate network listings (OfferVault, Affplus, Affi.io), Meta Ad Library searches, Steven Tey analysis, NYT/Inc./PYMNTS reporting, traffic source data from affiliate program terms.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="info-box">
+              <p class="text-sm font-bold text-blue-800">Key Finding: 78% of All Acquisition Runs Through Affiliates</p>
+              <p class="text-sm text-blue-700 mt-1">Medvi's strategy is NOT traditional paid advertising. They built a 10,000+ affiliate army that creates content, runs ads, and drives traffic — Medvi only pays on conversion ($300–500 CPA). The affiliates bear the ad spend risk. This is why 2 people can run a $401M company: the marketing engine is outsourced to 10,000 independent contractors.</p>
+            </div>
+
+            <!-- Budget Spend Bar Chart -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Estimated Annual Ad Spend by Channel (Medvi + Affiliate Ecosystem Combined)</p>
+              <div class="rounded-xl bg-primary-0 p-5">
+                <div class="space-y-2">
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Meta (FB/IG) Affiliates</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:82%;background:#3b82f6"><span>$130–160M</span></div></div>
+                    <span class="bar-value">$130–160M</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Native/Display/Email</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:22%;background:#8b5cf6"><span>$30–40M</span></div></div>
+                    <span class="bar-value">$30–40M</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Medvi Direct Meta</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:12%;background:#6BAF92"><span>$15–20M</span></div></div>
+                    <span class="bar-value">$15–20M</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">TikTok Affiliates</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:8%;background:#f97316"><span>$10–15M</span></div></div>
+                    <span class="bar-value">$10–15M</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Google / SEM</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:6%;background:#ef4444"><span>$8–12M</span></div></div>
+                    <span class="bar-value">$8–12M</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Other / PR</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:4%;background:#9CA3AF"><span>$3–5M</span></div></div>
+                    <span class="bar-value">$3–5M</span>
+                  </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-neutral-200 flex items-center justify-between">
+                  <span class="text-sm font-bold text-neutral-900">Total Estimated Ecosystem Spend</span>
+                  <span class="text-lg font-bold text-primary-40">$196–252M</span>
+                </div>
+              </div>
+              <p class="text-xs text-neutral-400 mt-2">Includes both Medvi's direct CPA payouts (~$50–100M to affiliates) AND what affiliates spend on ads to earn those payouts. Affiliates bear the upfront ad cost; Medvi pays only on conversion.</p>
+            </div>
+
+            <!-- How The Money Flows -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">How The Money Flows — Revenue Waterfall</p>
+              <div class="space-y-1">
+                <div class="funnel-step" style="background:#DCFCE7"><span class="funnel-num" style="background:#22C55E">$</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">$401M Gross Revenue (2025)</p><p class="text-xs text-neutral-500">500K+ patients x ~$800 avg annual spend (blended first-month + refills)</p></div><span class="text-sm font-bold text-neutral-900">100%</span></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num" style="background:#3b82f6">1</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">Affiliate CPA Payouts</p><p class="text-xs text-neutral-500">~$350 avg CPA x ~250K affiliate-driven patients</p></div><span class="text-sm font-bold text-red-600">−$87M (22%)</span></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num" style="background:#8b5cf6">2</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">OpenLoop + CareValidate (Clinical COGS)</p><p class="text-xs text-neutral-500">Per-visit provider fees, platform fees, credentialing</p></div><span class="text-sm font-bold text-red-600">−$80M (20%)</span></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num" style="background:#f97316">3</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">Pharmacy Compounding + Shipping</p><p class="text-xs text-neutral-500">Belmar Pharma, Beluga Health — compounded semaglutide/tirzepatide</p></div><span class="text-sm font-bold text-red-600">−$120M (30%)</span></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num" style="background:#6BAF92">4</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">Direct Ad Spend + Tech + Ops</p><p class="text-xs text-neutral-500">Medvi's own Meta ads, Stripe fees, Vercel, Klaviyo, Zendesk, AI tools</p></div><span class="text-sm font-bold text-red-600">−$49M (12%)</span></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step" style="background:#DCFCE7"><span class="funnel-num" style="background:#22C55E">&#10003;</span><div class="flex-1"><p class="text-sm font-semibold text-neutral-900">Net Profit</p><p class="text-xs text-neutral-500">16.2% net margin — verified by The New York Times</p></div><span class="text-sm font-bold text-primary-40">$65M (16.2%)</span></div>
+              </div>
+            </div>
+
+            <!-- Platform Deep Dive -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Platform-by-Platform Breakdown</p>
+              <div class="space-y-3">
+
+                <!-- Meta/Facebook -->
+                <div class="expand-card open" id="ec-acq-meta">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-acq-meta')">
+                    <div class="flex items-center gap-3">
+                      <div class="legend-dot" style="background:#3b82f6;width:16px;height:16px;border-radius:4px"></div>
+                      <div>
+                        <p class="text-sm font-semibold text-neutral-900">Meta (Facebook / Instagram) — 68% of Total</p>
+                        <p class="text-xs text-neutral-500">60% via affiliates + 8% direct = dominant channel</p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-semibold text-primary-40 mb-2">How It Works</p>
+                        <ul class="space-y-1.5 text-sm text-neutral-600">
+                          <li>10,000+ affiliates run FB/IG ads as "doctors"</li>
+                          <li>Whitelisted "Partnership Ads" (dark posts)</li>
+                          <li>Ads appear from personal doctor profiles, not Medvi</li>
+                          <li>AI-generated creative (Midjourney + Runway + ElevenLabs)</li>
+                          <li>Affiliates bear the ad spend risk</li>
+                          <li>Medvi pays $300–500 only on conversion</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <p class="text-xs font-semibold text-primary-40 mb-2">Evidence Sources</p>
+                        <ul class="space-y-1.5 text-sm text-neutral-600">
+                          <li>Steven Tey X analysis: "10K+ affiliates, $500/lead"</li>
+                          <li>OfferVault: $350 CPA, FB/IG accepted traffic</li>
+                          <li>Affplus: CPA offer with social media listed</li>
+                          <li>35+ state AGs wrote Meta about Medvi ads</li>
+                          <li>Futurism: exposed deepfaked doctor accounts</li>
+                          <li>Meta Ad Library: active Medvi advertiser</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-3 mt-4">
+                      <div class="stat-card text-center"><p class="stat-value">$145–180M</p><p class="stat-label">Est. Total Meta Spend</p></div>
+                      <div class="stat-card text-center"><p class="stat-value">$300–500</p><p class="stat-label">CPA to Affiliates</p></div>
+                      <div class="stat-card text-center"><p class="stat-value">~750K</p><p class="stat-label">Est. Patients from Meta</p></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Native/Display -->
+                <div class="expand-card" id="ec-acq-native">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-acq-native')">
+                    <div class="flex items-center gap-3">
+                      <div class="legend-dot" style="background:#8b5cf6;width:16px;height:16px;border-radius:4px"></div>
+                      <div>
+                        <p class="text-sm font-semibold text-neutral-900">Native / Display / Email — 18%</p>
+                        <p class="text-xs text-neutral-500">Listicles, advertorials, Taboola, Outbrain, email blasts</p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-sm text-neutral-600 mb-3">Affiliates create "Top 5 GLP-1 Programs" listicles on Forbes Health, US Weekly, and similar sites. These rank Medvi #1 with affiliate links. Also includes Taboola/Outbrain native placements and email marketing campaigns. All accepted per Medvi's affiliate terms.</p>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                      <div class="stat-card text-center"><p class="stat-value">$30–40M</p><p class="stat-label">Est. Channel Spend</p></div>
+                      <div class="stat-card text-center"><p class="stat-value">~200K</p><p class="stat-label">Est. Patients</p></div>
+                      <div class="stat-card text-center"><p class="stat-value">$150–200</p><p class="stat-label">Est. Affiliate CPA</p></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="expand-card" id="ec-acq-tiktok">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-acq-tiktok')">
+                    <div class="flex items-center gap-3">
+                      <div class="legend-dot" style="background:#f97316;width:16px;height:16px;border-radius:4px"></div>
+                      <div>
+                        <p class="text-sm font-semibold text-neutral-900">TikTok — 6%</p>
+                        <p class="text-xs text-neutral-500">Via affiliates only — listed as accepted traffic source</p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-sm text-neutral-600 mb-3">TikTok is explicitly listed as an accepted traffic source in Medvi's affiliate program (Affplus, OfferVault). Affiliates create weight-loss content and drive to Medvi's quiz funnel. No evidence of Medvi running its own TikTok ads.</p>
+                    <div class="warn-box"><p class="text-sm font-semibold text-amber-800">Regulatory Warning</p><p class="text-sm text-amber-700 mt-1">Done Health spent $4.3M on TikTok ads (500M impressions) and is now under DEA investigation. Cerebral had TikTok ads pulled. For telepsychiatry, TikTok is high-risk for controlled substance advertising.</p></div>
+                  </div>
+                </div>
+
+                <!-- Google/SEM -->
+                <div class="expand-card" id="ec-acq-google">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-acq-google')">
+                    <div class="flex items-center gap-3">
+                      <div class="legend-dot" style="background:#ef4444;width:16px;height:16px;border-radius:4px"></div>
+                      <div>
+                        <p class="text-sm font-semibold text-neutral-900">Google / SEM — 4%</p>
+                        <p class="text-xs text-neutral-500">Minimal — mostly affiliate trademark bidding</p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-sm text-neutral-600 mb-3">No public evidence of Medvi running its own Google Ads. However, their affiliate terms prohibit "trademark bidding without explicit permission" — confirming that affiliates ARE bidding on Google keywords. Multiple domain variants (medvi.org, medvi-glp.com, en-medvi.com, us-medvi.com) suggest SEO landing page strategy, not paid SEM. <strong>This is Medvi's biggest blind spot — zero organic SEO investment.</strong></p>
+                  </div>
+                </div>
+
+                <!-- Organic/SEO -->
+                <div class="expand-card" id="ec-acq-seo">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-acq-seo')">
+                    <div class="flex items-center gap-3">
+                      <div class="legend-dot" style="background:#9CA3AF;width:16px;height:16px;border-radius:4px"></div>
+                      <div>
+                        <p class="text-sm font-semibold text-neutral-900">Organic SEO — 0%</p>
+                        <p class="text-xs text-neutral-500">ZERO investment — our #1 competitive opportunity</p>
+                      </div>
+                    </div>
+                    <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <div class="danger-box">
+                      <p class="text-sm font-bold text-red-800">Medvi Has ZERO Organic Search Strategy</p>
+                      <p class="text-sm text-red-700 mt-2">No blog. No programmatic location pages. No schema markup. No Google Business Profile. Fragmented across 9+ subdomains and 5+ external domains — zero consolidated domain authority. 100% of their traffic is paid or affiliate-driven. This means they pay for EVERY patient, EVERY time. One Meta policy change could crater their entire business overnight.</p>
+                    </div>
+                    <div class="rounded-xl bg-primary-0 p-4 mt-3">
+                      <p class="text-sm font-bold text-primary-40">Our Opportunity</p>
+                      <p class="text-sm text-neutral-600 mt-1">We can dominate organic search for Arizona telepsychiatry with 50+ programmatic pages (condition + city), 4 blog posts/month, and schema markup. SEO leads cost $50–100 CAC vs. Medvi's $300–500. This is our structural advantage.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CPA Comparison -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Affiliate CPA Comparison — Medvi vs. Competitors</p>
+              <div class="rounded-xl bg-primary-0 p-5">
+                <div class="space-y-3">
+                  <div class="bar-chart-row">
+                    <span class="bar-label font-bold">Medvi</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#3b82f6"><span>$300–500 CPA</span></div></div>
+                    <span class="bar-value">$300–500</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Hims & Hers</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:45%;background:#8b5cf6"><span>$175–250</span></div></div>
+                    <span class="bar-value">$175–250</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label">Ro</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:15%;background:#9CA3AF"><span>$50–75</span></div></div>
+                    <span class="bar-value">$50–75</span>
+                  </div>
+                  <div class="bar-chart-row">
+                    <span class="bar-label text-primary-40 font-bold">Our Target (AZ Psych)</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:40%;background:#6BAF92"><span>$150–250</span></div></div>
+                    <span class="bar-value">$150–250</span>
+                  </div>
+                </div>
+                <p class="text-xs text-neutral-400 mt-3">Source: OfferVault, Affplus, Katalys telehealth affiliate guide. Medvi pays 4–7x more than Ro, making it irresistible for affiliate media buyers.</p>
+              </div>
+            </div>
+
+            <!-- Data Sources -->
+            <div class="rounded-lg border p-4">
+              <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-2">Research Methodology & Sources</p>
+              <p class="text-xs text-neutral-500">Estimates derived from: (1) Affiliate network listings on OfferVault, Affplus, Affi.io showing $300–500 CPA and accepted traffic sources; (2) Steven Tey's X analysis confirming 10K+ affiliates; (3) NYT verification of $401M revenue and 16.2% margin; (4) Media Matters report on 35+ state AGs urging Meta to remove Medvi ads; (5) Futurism investigation on whitelisted doctor accounts; (6) PYMNTS/Inc. reporting on 2-person team and $20K bootstrap; (7) Industry benchmarks for telehealth COGS ($40–50/visit) from Bask Health; (8) Medvi's own terms listing accepted traffic sources (email, native, display, listicles, social). Patient count estimated from revenue / blended ARPU.</p>
             </div>
 
           </div>

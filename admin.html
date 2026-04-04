@@ -195,6 +195,52 @@
       .donut-chart { width: 180px; height: 180px; }
       .donut-hole { width: 100px; height: 100px; }
     }
+
+    /* ── Creative Intelligence Styles ── */
+    .hook-card { border: 2px solid #E5E7EB; border-radius: 14px; padding: 24px; position: relative; overflow: hidden; }
+    .hook-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+    .hook-card.hook-struggle::before { background: linear-gradient(90deg, #3b82f6, #6366f1); }
+    .hook-card.hook-authority::before { background: linear-gradient(90deg, #6BAF92, #3F7A5B); }
+    .hook-card.hook-transform::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+    .hook-num { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: #fff; flex-shrink: 0; }
+
+    .trigger-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid; }
+    .trigger-fear { background: #FEE2E2; color: #991B1B; border-color: #FECACA; }
+    .trigger-social { background: #DBEAFE; color: #1E40AF; border-color: #BFDBFE; }
+    .trigger-transform { background: #FEF3C7; color: #92400E; border-color: #FDE68A; }
+    .trigger-authority { background: #D1FAE5; color: #065F46; border-color: #A7F3D0; }
+    .trigger-urgency { background: #F3E8FF; color: #6B21A8; border-color: #DDD6FE; }
+    .trigger-curiosity { background: #E0E7FF; color: #3730A3; border-color: #C7D2FE; }
+
+    .brief-card { border: 1px solid #E5E7EB; border-radius: 14px; overflow: hidden; transition: all 0.2s; }
+    .brief-card:hover { border-color: #6BAF92; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .brief-header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+    .brief-header:hover { background: #FAFBF8; }
+    .brief-num { width: 28px; height: 28px; background: #6BAF92; color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+    .brief-body { display: none; padding: 0 20px 20px; border-top: 1px solid #F3F4F6; }
+    .brief-card.open .brief-body { display: block; padding-top: 16px; }
+    .brief-card.open .bc-chevron { transform: rotate(180deg); }
+    .bc-chevron { transition: transform 0.2s; flex-shrink: 0; }
+
+    .format-tag { display: inline-flex; padding: 3px 10px; font-size: 11px; font-weight: 600; border-radius: 6px; background: #F3F4F6; color: #374151; }
+    .condition-tag { display: inline-flex; padding: 3px 10px; font-size: 11px; font-weight: 600; border-radius: 6px; }
+    .cond-adhd { background: #DBEAFE; color: #1E40AF; }
+    .cond-anxiety { background: #FEF3C7; color: #92400E; }
+    .cond-depression { background: #E0E7FF; color: #3730A3; }
+    .cond-insomnia { background: #F3E8FF; color: #6B21A8; }
+    .cond-general { background: #D1FAE5; color: #065F46; }
+
+    .ad-specimen { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px; padding: 16px; }
+    .ad-specimen-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9CA3AF; margin-bottom: 8px; }
+    .specimen-quote { font-size: 14px; font-style: italic; color: #374151; border-left: 3px solid #6BAF92; padding-left: 12px; margin: 8px 0; }
+
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .vs-table th { text-align: center; padding: 10px 12px; background: #F6F7F2; font-weight: 700; color: #3F7A5B; }
+    .vs-table th:first-child { text-align: left; }
+    .vs-table td { padding: 10px 12px; border-bottom: 1px solid #F3F4F6; text-align: center; }
+    .vs-table td:first-child { text-align: left; font-weight: 500; }
+    .vs-bad { color: #DC2626; }
+    .vs-good { color: #16A34A; }
   </style>
 </head>
 <body class="font-primary bg-primary-0 text-neutral-600 min-h-screen">
@@ -366,10 +412,18 @@
             </button>
           </li>
           <li>
-            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap" data-panel="acquisition">
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="acquisition">
               <span class="inline-flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 Acquisition Analytics
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap" data-panel="creative">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                Creative Intelligence
               </span>
             </button>
           </li>
@@ -2128,6 +2182,1038 @@
         </div>
       </section>
 
+      <!-- Panel 14: Creative Intelligence -->
+      <section id="panel-creative" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-1">
+            <h2 class="text-lg font-semibold text-neutral-900">Creative Intelligence</h2>
+            <span class="priority-badge pri-high">Meta = 68% of Medvi</span>
+          </div>
+          <p class="text-sm text-neutral-500">Medvi's ad creative strategy reverse-engineered from Meta Ad Library, TikTok, and 15 research agents. Adapted for compliant telepsychiatry marketing.</p>
+
+          <div class="mt-6 space-y-8">
+
+            <!-- ═══ SECTION 1: The 3 Hook Patterns ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">3 Dominant Hook Patterns (from 5,000+ Medvi Ads)</p>
+
+              <div class="grid gap-5 lg:grid-cols-3">
+                <!-- Hook 1: Hidden Struggle Recognition -->
+                <div class="hook-card hook-struggle">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="hook-num" style="background: #3b82f6;">1</div>
+                    <div>
+                      <p class="text-sm font-bold text-neutral-900">Hidden Struggle Recognition</p>
+                      <p class="text-xs text-neutral-500">60% of top-performing ads</p>
+                    </div>
+                  </div>
+                  <p class="text-xs text-neutral-600 mb-3">Names the viewer's unspoken pain — validates that what they're feeling is real and there's a reason for it. Creates instant "they're talking to me" recognition.</p>
+                  <div class="ad-specimen">
+                    <div class="ad-specimen-label">Medvi Examples</div>
+                    <p class="specimen-quote">"That thing you've been dealing with? There's a reason."</p>
+                    <p class="specimen-quote">"Still struggling with weight despite doing everything right?"</p>
+                  </div>
+                  <div class="mt-3">
+                    <p class="text-xs font-semibold text-blue-700 mb-1">Adapted for Telepsychiatry:</p>
+                    <p class="specimen-quote" style="border-left-color: #3b82f6;">"Still can't focus after 3 coffees? There might be a reason."</p>
+                    <p class="specimen-quote" style="border-left-color: #3b82f6;">"If your brain won't shut off at 2am, it's not just stress."</p>
+                    <p class="specimen-quote" style="border-left-color: #3b82f6;">"You're not lazy. Your brain might just work differently."</p>
+                  </div>
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="trigger-pill trigger-curiosity">Curiosity</span>
+                    <span class="trigger-pill trigger-fear">Fear Removal</span>
+                  </div>
+                </div>
+
+                <!-- Hook 2: Authority/Trust Transfer -->
+                <div class="hook-card hook-authority">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="hook-num" style="background: #3F7A5B;">2</div>
+                    <div>
+                      <p class="text-sm font-bold text-neutral-900">Authority / Trust Transfer</p>
+                      <p class="text-xs text-neutral-500">25% of top-performing ads</p>
+                    </div>
+                  </div>
+                  <p class="text-xs text-neutral-600 mb-3">Borrows credibility from a medical authority figure. Medvi fabricated 800+ fake doctor Facebook pages. We use our REAL licensed NP — an unfakeable advantage.</p>
+                  <div class="ad-specimen">
+                    <div class="ad-specimen-label">Medvi Examples (Fraudulent)</div>
+                    <p class="specimen-quote">"Dr. Robert Whitworth" — fabricated doctor page with whitelisted Partnership Ads</p>
+                    <p class="specimen-quote">"Professor Albust Dongledore" — obvious fake name, still ran ads</p>
+                    <p class="specimen-quote">"Dr. Richard Horzgock" — AI-generated headshot, fake credentials</p>
+                  </div>
+                  <div class="danger-box mt-3">
+                    <p class="text-xs font-bold text-red-800">MEDVI'S APPROACH IS ILLEGAL. We do it right:</p>
+                    <p class="text-xs text-red-700 mt-1">Real provider, real credentials, real license number. This is our competitive moat — authenticity in a market full of fraud.</p>
+                  </div>
+                  <div class="mt-3">
+                    <p class="text-xs font-semibold text-green-700 mb-1">Our Compliant Version:</p>
+                    <p class="specimen-quote" style="border-left-color: #3F7A5B;">"Board-certified PMHNP explains why adult ADHD is underdiagnosed"</p>
+                    <p class="specimen-quote" style="border-left-color: #3F7A5B;">"Your Arizona-licensed psychiatric provider, from your couch"</p>
+                    <p class="specimen-quote" style="border-left-color: #3F7A5B;">"Licensed. Arizona-based. Accepting new patients this week."</p>
+                  </div>
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="trigger-pill trigger-authority">Authority</span>
+                    <span class="trigger-pill trigger-social">Trust</span>
+                  </div>
+                </div>
+
+                <!-- Hook 3: Transformation Promise -->
+                <div class="hook-card hook-transform">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="hook-num" style="background: #ef4444;">3</div>
+                    <div>
+                      <p class="text-sm font-bold text-neutral-900">Transformation Promise</p>
+                      <p class="text-xs text-neutral-500">15% of top-performing ads</p>
+                    </div>
+                  </div>
+                  <p class="text-xs text-neutral-600 mb-3">Dramatic visual before/after showing life change. Medvi used deepfaked photos ("Sandra K," "Michael P," "Melissa C"). We use process-based testimonials instead.</p>
+                  <div class="ad-specimen">
+                    <div class="ad-specimen-label">Medvi Examples (Deepfaked)</div>
+                    <p class="specimen-quote">"Sandra K" — AI-manipulated before/after weight loss photos</p>
+                    <p class="specimen-quote">"Join 500,000+ MEDVi patients who transformed their lives"</p>
+                    <p class="specimen-quote">"No side effects, just real results" — Instagram ad (FDA violation)</p>
+                  </div>
+                  <div class="warn-box mt-3">
+                    <p class="text-xs font-bold text-amber-800">COMPLIANCE NOTE:</p>
+                    <p class="text-xs text-amber-700 mt-1">Mental health outcomes cannot be guaranteed. Use process testimonials ("I finally got an evaluation") not outcome claims ("My anxiety is cured"). FTC requires honest endorsements with typical results disclosures.</p>
+                  </div>
+                  <div class="mt-3">
+                    <p class="text-xs font-semibold text-orange-700 mb-1">Our Compliant Version:</p>
+                    <p class="specimen-quote" style="border-left-color: #f59e0b;">"I spent 10 years thinking I was broken. Turns out I had ADHD." — real patient, with consent</p>
+                    <p class="specimen-quote" style="border-left-color: #f59e0b;">"What getting a psychiatric evaluation actually looks like (it's easier than you think)"</p>
+                  </div>
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="trigger-pill trigger-transform">Transformation</span>
+                    <span class="trigger-pill trigger-social">Social Proof</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 2: Emotional Trigger Map ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Emotional Trigger Analysis</p>
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-fear">Fear Removal</span>
+                    <span class="text-xs font-bold text-neutral-900">35%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">"What if something is actually wrong?" → "There's help, and it's easy to access." Removes the fear of finding out, replaces with comfort of a path forward.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: Anxiety, Depression</p>
+                </div>
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-social">Social Proof</span>
+                    <span class="text-xs font-bold text-neutral-900">25%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">"500,000+ patients" / "Arizona's trusted telehealth provider." Normalized seeking help by showing mass adoption. Medvi fabricated these numbers — ours must be real.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: All conditions</p>
+                </div>
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-transform">Transformation</span>
+                    <span class="text-xs font-bold text-neutral-900">15%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">"My whole life changed after getting evaluated." Show the journey, not the clinical outcome. Process-focused storytelling works within FDA/FTC guardrails.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: ADHD, Depression</p>
+                </div>
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-authority">Authority</span>
+                    <span class="text-xs font-bold text-neutral-900">12%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">Licensed provider explaining the condition. Medvi faked this with 800+ fabricated doctor pages. Our real NP credentials are the ultimate unfakeable asset.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: ADHD (stigma reduction)</p>
+                </div>
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-urgency">Urgency</span>
+                    <span class="text-xs font-bold text-neutral-900">8%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">"Accepting new patients this week" / "Next available: tomorrow." Time-bound availability creates action. Must be truthful — fake scarcity violates FTC.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: Conversion, retargeting</p>
+                </div>
+                <div class="stat-card">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="trigger-pill trigger-curiosity">Curiosity</span>
+                    <span class="text-xs font-bold text-neutral-900">5%</span>
+                  </div>
+                  <p class="text-xs text-neutral-600">"3 signs your anxiety isn't just stress" / "Why your ADHD was missed as a kid." Opens an information gap the viewer must close. Drives clicks to educational content.</p>
+                  <p class="text-xs font-semibold text-neutral-900 mt-2">Best for: Top-of-funnel, SEO</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 3: Visual Format Patterns ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Visual Format Patterns</p>
+
+              <div class="overflow-x-auto">
+                <table class="vs-table">
+                  <thead>
+                    <tr>
+                      <th style="width:25%">Format</th>
+                      <th>Medvi Usage</th>
+                      <th>Our Approach</th>
+                      <th>Platform</th>
+                      <th>Funnel Stage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="format-tag">Provider Talking Head</span></td>
+                      <td class="vs-bad">Deepfaked AI doctors</td>
+                      <td class="vs-good">Real NP on camera</td>
+                      <td>Meta, YouTube, TikTok</td>
+                      <td>Awareness + Trust</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">Before/After Photo</span></td>
+                      <td class="vs-bad">AI-manipulated ("Sandra K")</td>
+                      <td class="vs-good">Process journey (with consent)</td>
+                      <td>Meta, Instagram</td>
+                      <td>Consideration</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">Text Overlay / Carousel</span></td>
+                      <td>Listicle-style symptom education</td>
+                      <td class="vs-good">Clinically accurate info cards</td>
+                      <td>Instagram, Meta</td>
+                      <td>Awareness</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">Native Ad / Advertorial</span></td>
+                      <td>Editorial-style listicle pages</td>
+                      <td class="vs-good">Educational blog content</td>
+                      <td>Google, SEO</td>
+                      <td>Consideration</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">Product Imagery</span></td>
+                      <td class="vs-bad">AI-generated Ozempic boxes</td>
+                      <td class="vs-good">N/A (service, not product)</td>
+                      <td>—</td>
+                      <td>—</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">UGC-Style Video</span></td>
+                      <td>Fake patient testimonials</td>
+                      <td class="vs-good">Real patient stories (w/ HIPAA consent)</td>
+                      <td>TikTok, Reels</td>
+                      <td>Awareness + Trust</td>
+                    </tr>
+                    <tr>
+                      <td><span class="format-tag">Static Infographic</span></td>
+                      <td>Weight loss statistics</td>
+                      <td class="vs-good">Mental health data / myth-busting</td>
+                      <td>Pinterest, Meta</td>
+                      <td>Awareness</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 4: Medvi vs Us Side-by-Side ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Medvi's Playbook vs Our Compliant Adaptation</p>
+
+              <div class="overflow-x-auto">
+                <table class="vs-table">
+                  <thead>
+                    <tr>
+                      <th style="width:30%">Tactic</th>
+                      <th>Medvi (What They Did)</th>
+                      <th>Us (What We Do)</th>
+                      <th>Risk Level</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Doctor endorsements</td>
+                      <td class="vs-bad">800+ fabricated Facebook doctor pages</td>
+                      <td class="vs-good">Real licensed PMHNP, real credentials</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                    <tr>
+                      <td>Patient testimonials</td>
+                      <td class="vs-bad">Deepfaked before/after photos</td>
+                      <td class="vs-good">Process testimonials with HIPAA consent</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                    <tr>
+                      <td>Outcome claims</td>
+                      <td class="vs-bad">"No side effects, just real results" (FDA violation)</td>
+                      <td class="vs-good">"Get evaluated by a licensed provider"</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                    <tr>
+                      <td>Patient count claims</td>
+                      <td class="vs-bad">"Join 500,000+ patients" (unverified)</td>
+                      <td class="vs-good">Only cite real, verifiable numbers</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                    <tr>
+                      <td>Affiliate model</td>
+                      <td>$300-500 CPA, 10K+ affiliates</td>
+                      <td class="vs-good">$150-250 CPA, compliant creative kit</td>
+                      <td><span class="priority-badge pri-med">Monitor</span></td>
+                    </tr>
+                    <tr>
+                      <td>Meta ad volume</td>
+                      <td>5,000+ simultaneous active ads</td>
+                      <td class="vs-good">Focused testing: 20-50 ads, scale winners</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                    <tr>
+                      <td>TikTok presence</td>
+                      <td>Weak (~263 views avg, validation only)</td>
+                      <td class="vs-good">Educational NP content, no lead gen</td>
+                      <td><span class="priority-badge pri-med">Caution</span></td>
+                    </tr>
+                    <tr>
+                      <td>SEO strategy</td>
+                      <td class="vs-bad">ZERO organic content (blind spot)</td>
+                      <td class="vs-good">Programmatic SEO: condition + city pages</td>
+                      <td><span class="priority-badge pri-low">Safe</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 5: TikTok Intel ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">TikTok Intelligence: @medviorg</p>
+              <div class="info-box mb-4">
+                <p class="text-sm font-bold text-blue-800">Key Finding: TikTok is NOT Medvi's growth engine.</p>
+                <p class="text-xs text-blue-700 mt-1">Average ~263 views per post. TikTok serves as a validation/credibility channel, not acquisition. Their 68% Meta budget tells the real story — Facebook/Instagram is where the money flows. For telepsychiatry, TikTok is better used for educational authority-building, not direct patient acquisition.</p>
+              </div>
+
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="channel-card">
+                  <p class="text-xs font-semibold text-neutral-400 mb-1">TOP PERFORMING FORMAT</p>
+                  <p class="text-sm font-bold text-neutral-900">Talking Head / Provider Explainer</p>
+                  <p class="text-xs text-neutral-600 mt-1">Provider or "expert" speaking directly to camera about a condition. Highest engagement in GLP-1/health TikTok. 2x engagement vs static posts.</p>
+                  <div class="flex gap-2 mt-2"><span class="format-tag">Video</span><span class="condition-tag cond-general">All Conditions</span></div>
+                </div>
+                <div class="channel-card">
+                  <p class="text-xs font-semibold text-neutral-400 mb-1">2ND HIGHEST</p>
+                  <p class="text-sm font-bold text-neutral-900">Journey Documentation</p>
+                  <p class="text-xs text-neutral-600 mt-1">"Week 1, Week 4, Week 8" style progress updates. For mental health: "Month 1 of finally getting evaluated." Process-focused, not outcome-focused.</p>
+                  <div class="flex gap-2 mt-2"><span class="format-tag">Video Series</span><span class="condition-tag cond-adhd">ADHD</span></div>
+                </div>
+                <div class="channel-card">
+                  <p class="text-xs font-semibold text-neutral-400 mb-1">3RD HIGHEST</p>
+                  <p class="text-sm font-bold text-neutral-900">Trend Adaptation / Duet</p>
+                  <p class="text-xs text-neutral-600 mt-1">Reacting to trending sounds or content with health angle. Low production, high relatability. Requires consistent posting cadence to hit trends.</p>
+                  <div class="flex gap-2 mt-2"><span class="format-tag">Short Video</span><span class="condition-tag cond-anxiety">Anxiety</span></div>
+                </div>
+              </div>
+
+              <div class="warn-box mt-4">
+                <p class="text-xs font-bold text-amber-800">TIKTOK COMPLIANCE WARNING</p>
+                <p class="text-xs text-amber-700 mt-1">Done Health founder was convicted. Cerebral was fined $7M. Both used TikTok aggressively for controlled substance marketing. For telepsychiatry: educational content ONLY. NO direct-response lead gen for controlled substances. Licensed provider must appear in all clinical content. FTC disclosure required on all sponsored content.</p>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 6: Meta Ad Library Teardown ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Meta Ad Library Teardown: Medvi's 5,000+ Ads</p>
+
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="stat-card">
+                  <div class="stat-value">5,000+</div>
+                  <div class="stat-label">Peak Active Ads (Simultaneous)</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">800+</div>
+                  <div class="stat-label">Fabricated Facebook "Doctor" Pages</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">$273M</div>
+                  <div class="stat-label">Estimated Annual Meta Spend (68% of $401M rev)</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value">$300-500</div>
+                  <div class="stat-label">Cost Per Acquisition (Affiliate + Meta)</div>
+                </div>
+              </div>
+
+              <div class="mt-5 space-y-3">
+                <p class="text-xs font-semibold text-neutral-900">Documented Ad Specimens (Longest-Running / Highest-Volume):</p>
+
+                <div class="expand-card" id="ec-ad1">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-ad1')">
+                    <div class="flex items-center gap-3">
+                      <span class="priority-badge pri-high">Fraud</span>
+                      <div>
+                        <p class="text-sm font-bold text-neutral-900">"Sandra K" Before/After Transformation</p>
+                        <p class="text-xs text-neutral-500">Deepfaked weight loss photos — AI-manipulated imagery</p>
+                      </div>
+                    </div>
+                    <svg class="ec-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-xs text-neutral-600"><strong>Hook:</strong> Transformation Promise — dramatic visual change</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Trigger:</strong> Social proof + transformation desire</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Format:</strong> Static image, before/after split</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Copy:</strong> "Sandra K lost 47 lbs in 12 weeks with MEDVi"</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Why it worked:</strong> Concrete numbers, named person (even if fake), visual proof triggers pattern recognition for authenticity</p>
+                    <p class="text-xs text-red-600 mt-2 font-semibold">WHY WE CAN'T COPY: Deepfaked photos, fabricated results, FDA-violating outcome claims. Futurism exposed these as AI-manipulated.</p>
+                    <p class="text-xs text-green-700 mt-1 font-semibold">OUR ADAPTATION: Real patient process story with HIPAA-compliant consent. "I finally understood why I couldn't focus." No outcome claims.</p>
+                  </div>
+                </div>
+
+                <div class="expand-card" id="ec-ad2">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-ad2')">
+                    <div class="flex items-center gap-3">
+                      <span class="priority-badge pri-high">Fraud</span>
+                      <div>
+                        <p class="text-sm font-bold text-neutral-900">"Dr. Robert Whitworth" Partnership Ad</p>
+                        <p class="text-xs text-neutral-500">Fabricated doctor Facebook page — whitelisted for Partnership Ads</p>
+                      </div>
+                    </div>
+                    <svg class="ec-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-xs text-neutral-600"><strong>Hook:</strong> Authority Transfer — doctor-endorsed credibility</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Trigger:</strong> Authority + trust</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Format:</strong> Video (AI-generated headshot in frame)</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Mechanism:</strong> Facebook Partnership Ads run from the "doctor" page, not the Medvi brand page. Bypasses brand-level ad restrictions. 800+ such pages identified.</p>
+                    <p class="text-xs text-red-600 mt-2 font-semibold">WHY WE CAN'T COPY: Fabricated medical professionals is healthcare fraud. NYT investigated and exposed this operation.</p>
+                    <p class="text-xs text-green-700 mt-1 font-semibold">OUR ADAPTATION: Real NP creates educational video content. Real credentials, real face, real license. This IS our moat.</p>
+                  </div>
+                </div>
+
+                <div class="expand-card" id="ec-ad3">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-ad3')">
+                    <div class="flex items-center gap-3">
+                      <span class="priority-badge pri-high">FDA Violation</span>
+                      <div>
+                        <p class="text-sm font-bold text-neutral-900">"No Side Effects, Just Real Results"</p>
+                        <p class="text-xs text-neutral-500">Instagram ad with unapproved drug claims — FDA Warning Letter #721455</p>
+                      </div>
+                    </div>
+                    <svg class="ec-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-xs text-neutral-600"><strong>Hook:</strong> Fear Removal — eliminates the #1 objection (side effects)</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Trigger:</strong> Fear removal + transformation promise</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Format:</strong> Static image with bold text overlay</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Why it worked:</strong> Directly addresses the primary objection. Side effects are the #1 reason people don't start treatment.</p>
+                    <p class="text-xs text-red-600 mt-2 font-semibold">WHY WE CAN'T COPY: Claiming "no side effects" for any medication is an FDA violation. All medications have potential side effects.</p>
+                    <p class="text-xs text-green-700 mt-1 font-semibold">OUR ADAPTATION: "Your provider will discuss treatment options and what to expect — including potential side effects. No surprises." Honesty builds more trust.</p>
+                  </div>
+                </div>
+
+                <div class="expand-card" id="ec-ad4">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-ad4')">
+                    <div class="flex items-center gap-3">
+                      <span class="priority-badge pri-med">Unverified</span>
+                      <div>
+                        <p class="text-sm font-bold text-neutral-900">"Join 500,000+ MEDVi Patients"</p>
+                        <p class="text-xs text-neutral-500">Social proof banner — unverified patient count used across all creatives</p>
+                      </div>
+                    </div>
+                    <svg class="ec-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-xs text-neutral-600"><strong>Hook:</strong> Social Proof — mass adoption normalizes the decision</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Trigger:</strong> Bandwagon effect, safety in numbers</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Format:</strong> Text overlay badge/banner on every ad creative</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Why it worked:</strong> Reduces perceived risk. If 500K others did it, it must be safe/legitimate.</p>
+                    <p class="text-xs text-amber-600 mt-2 font-semibold">COMPLIANCE NOTE: FTC requires substantiation for numerical claims. Only cite verifiable numbers.</p>
+                    <p class="text-xs text-green-700 mt-1 font-semibold">OUR ADAPTATION: Start with "Now accepting new patients in Arizona" → grow to real patient counts as they accumulate. "Trusted by [X] Arizona families" (when true).</p>
+                  </div>
+                </div>
+
+                <div class="expand-card" id="ec-ad5">
+                  <div class="expand-card-header" onclick="toggleExpand('ec-ad5')">
+                    <div class="flex items-center gap-3">
+                      <span class="priority-badge pri-high">Fraud</span>
+                      <div>
+                        <p class="text-sm font-bold text-neutral-900">AI-Generated Ozempic Product Boxes</p>
+                        <p class="text-xs text-neutral-500">AI-rendered medication imagery — implied pharmaceutical partnership</p>
+                      </div>
+                    </div>
+                    <svg class="ec-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="expand-card-body">
+                    <p class="text-xs text-neutral-600"><strong>Hook:</strong> Brand Trust Transfer — borrows Ozempic/Novo Nordisk brand equity</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Trigger:</strong> Authority (pharmaceutical brand recognition)</p>
+                    <p class="text-xs text-neutral-600 mt-1"><strong>Format:</strong> AI-generated product photography</p>
+                    <p class="text-xs text-red-600 mt-2 font-semibold">WHY WE CAN'T COPY: N/A for telepsychiatry (service-based, not product-based). But the principle — borrowing established brand equity — applies.</p>
+                    <p class="text-xs text-green-700 mt-1 font-semibold">OUR ADAPTATION: Partner with recognized brands: "In-network with [Insurance]" / "Accredited by AAAHC" / "LegitScript Certified." Borrow real institutional trust.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 7: 4-Tier Creative System ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">4-Tier Creative System (Adapted from Medvi's Funnel)</p>
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="channel-card border-t-4 border-t-blue-400">
+                  <p class="text-xs font-bold text-blue-600 mb-1">TIER 1: COLD AWARENESS</p>
+                  <p class="text-sm font-bold text-neutral-900">Education-First Content</p>
+                  <p class="text-xs text-neutral-600 mt-2">Hook pattern: Hidden Struggle Recognition. Goal: stop the scroll, create "that's me" moment. No CTAs to book — just learn.</p>
+                  <div class="mt-3 space-y-1">
+                    <p class="text-xs text-neutral-500">• "5 signs of adult ADHD most doctors miss"</p>
+                    <p class="text-xs text-neutral-500">• "Why your insomnia might not be about sleep"</p>
+                    <p class="text-xs text-neutral-500">• Myth-busting carousel/video</p>
+                  </div>
+                  <div class="flex gap-2 mt-3"><span class="format-tag">Video</span><span class="format-tag">Carousel</span></div>
+                </div>
+                <div class="channel-card border-t-4 border-t-green-400">
+                  <p class="text-xs font-bold text-green-600 mb-1">TIER 2: WARM CONSIDERATION</p>
+                  <p class="text-sm font-bold text-neutral-900">Authority + Process Content</p>
+                  <p class="text-xs text-neutral-600 mt-2">Hook pattern: Authority Transfer. Goal: build trust, show the process is easy and legitimate. Retarget Tier 1 engagers.</p>
+                  <div class="mt-3 space-y-1">
+                    <p class="text-xs text-neutral-500">• NP explains what an evaluation looks like</p>
+                    <p class="text-xs text-neutral-500">• "What to expect from your first visit"</p>
+                    <p class="text-xs text-neutral-500">• Process walkthrough (3 simple steps)</p>
+                  </div>
+                  <div class="flex gap-2 mt-3"><span class="format-tag">Provider Video</span><span class="format-tag">Infographic</span></div>
+                </div>
+                <div class="channel-card border-t-4 border-t-amber-400">
+                  <p class="text-xs font-bold text-amber-600 mb-1">TIER 3: CONVERSION</p>
+                  <p class="text-sm font-bold text-neutral-900">Social Proof + CTA</p>
+                  <p class="text-xs text-neutral-600 mt-2">Hook pattern: Transformation Promise (process-focused). Goal: drive booking. Show real patients, real provider, real ease-of-use.</p>
+                  <div class="mt-3 space-y-1">
+                    <p class="text-xs text-neutral-500">• Patient journey testimonial (with consent)</p>
+                    <p class="text-xs text-neutral-500">• "Accepting new patients — book this week"</p>
+                    <p class="text-xs text-neutral-500">• Insurance accepted callout</p>
+                  </div>
+                  <div class="flex gap-2 mt-3"><span class="format-tag">Testimonial</span><span class="format-tag">Static CTA</span></div>
+                </div>
+                <div class="channel-card border-t-4 border-t-red-400">
+                  <p class="text-xs font-bold text-red-600 mb-1">TIER 4: RETARGETING</p>
+                  <p class="text-sm font-bold text-neutral-900">Urgency + Reminder</p>
+                  <p class="text-xs text-neutral-600 mt-2">Hook pattern: Urgency. Goal: convert warm leads who didn't book. Time-sensitive, direct CTA. Pixel-based retargeting audience.</p>
+                  <div class="mt-3 space-y-1">
+                    <p class="text-xs text-neutral-500">• "Still thinking about it? Next slot: tomorrow"</p>
+                    <p class="text-xs text-neutral-500">• "Your assessment is waiting"</p>
+                    <p class="text-xs text-neutral-500">• Limited availability messaging (truthful)</p>
+                  </div>
+                  <div class="flex gap-2 mt-3"><span class="format-tag">Dynamic</span><span class="format-tag">Text Overlay</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 8: 10 Content Briefs ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-2">10 Content Briefs — Ready to Produce</p>
+              <p class="text-xs text-neutral-500 mb-4">Each brief uses proven patterns from Medvi's $273M Meta spend, adapted for compliant Arizona telepsychiatry marketing. Ordered by priority.</p>
+
+              <div class="space-y-3">
+
+                <!-- Brief 1 -->
+                <div class="brief-card" id="brief-1">
+                  <div class="brief-header" onclick="toggleBrief('brief-1')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">1</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">ADHD — "Still Can't Focus After 3 Coffees?"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-adhd">ADHD</span><span class="format-tag">Video 30-60s</span><span class="trigger-pill trigger-curiosity" style="padding:2px 8px;font-size:10px;">Curiosity</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Hidden Struggle Recognition — names the unspoken daily battle of undiagnosed adult ADHD</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Opening Hook (first 3 seconds)</p>
+                        <p class="text-xs text-neutral-600 italic">"Still can't focus after 3 coffees? There might be a reason nobody told you about."</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Script Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li>Hook: Coffee/focus struggle (3s)</li>
+                          <li>Validate: "It's not laziness, it's not willpower" (5s)</li>
+                          <li>Educate: "Adult ADHD affects 4.4% of US adults — most don't know" (8s)</li>
+                          <li>Solution: "A licensed psychiatric NP can evaluate you from home" (5s)</li>
+                          <li>CTA: "Arizona Telepsychiatry. Book a confidential assessment." (5s)</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">NP speaking directly to camera in professional but approachable setting. Warm lighting, clean background. Subtitles mandatory (85% of Meta video watched without sound).</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta (Feed + Reels), TikTok, YouTube Shorts. Tier 1 (Cold Awareness).</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">No diagnostic claims. "There might be a reason" is education, not diagnosis. Provider must be identified with real credentials if appearing on camera.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 2 -->
+                <div class="brief-card" id="brief-2">
+                  <div class="brief-header" onclick="toggleBrief('brief-2')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">2</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">Anxiety — "5 Signs Your Anxiety Isn't Just Stress"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-anxiety">Anxiety</span><span class="format-tag">Carousel 5 slides</span><span class="trigger-pill trigger-fear" style="padding:2px 8px;font-size:10px;">Fear Removal</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Hidden Struggle Recognition — differentiates "normal stress" from clinical anxiety</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Slide Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li><strong>Cover:</strong> "5 Signs Your Anxiety Isn't 'Just Stress'" — bold text, muted background</li>
+                          <li><strong>Slide 2:</strong> "You rehearse conversations before they happen" — relatable scenario</li>
+                          <li><strong>Slide 3:</strong> "Your body keeps score — chest tightness, jaw clenching, stomach knots"</li>
+                          <li><strong>Slide 4:</strong> "You avoid things that used to be easy — calls, events, decisions"</li>
+                          <li><strong>Slide 5:</strong> "A licensed provider can help you understand what's happening — from your couch. Book a confidential assessment."</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Clean, minimal design. Sage green + white palette (brand colors). Each slide: one short sentence with plenty of white space. No stock photos — typography-focused.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Instagram Carousel, Meta Feed. Tier 1 (Cold Awareness). Save-worthy format drives algorithm boost.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">Education, not diagnosis. "Signs your anxiety isn't just stress" is informational. No "Do you have anxiety?" framing (Meta Tier 3 restriction).</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 3 -->
+                <div class="brief-card" id="brief-3">
+                  <div class="brief-header" onclick="toggleBrief('brief-3')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">3</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">Depression — "You're Not Lazy. You're Not Broken."</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-depression">Depression</span><span class="format-tag">Text Overlay Static</span><span class="trigger-pill trigger-fear" style="padding:2px 8px;font-size:10px;">Fear Removal</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Hidden Struggle Recognition — destigmatizes depression by removing self-blame</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Copy</p>
+                        <p class="text-xs text-neutral-600 italic">"You're not lazy. You're not broken. You might just need support you haven't found yet."</p>
+                        <p class="text-xs text-neutral-600 mt-2 italic">"Arizona Telepsychiatry — confidential psychiatric evaluations from home."</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Why This Works</p>
+                        <p class="text-xs text-neutral-600">Addresses the internal narrative of people with undiagnosed depression. They've been told (or tell themselves) they're lazy, weak, or just need to try harder. This ad says "it's not your fault" — which is both clinically accurate and emotionally disarming.</p>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Dark-to-light gradient background. Bold white text. Minimalist. No people, no stock photos. The text IS the creative. Sage green CTA bar at bottom.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta Feed, Instagram Stories, Pinterest. Tier 1 (Cold Awareness). High save/share potential.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">No diagnostic language. "You might just need support" is a suggestion to seek help, not a medical claim. Avoids "Do you have depression?" framing.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 4 -->
+                <div class="brief-card" id="brief-4">
+                  <div class="brief-header" onclick="toggleBrief('brief-4')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">4</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">ADHD — "Board-Certified NP Explains Why ADHD Is Underdiagnosed"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-adhd">ADHD</span><span class="format-tag">Provider Video 90s</span><span class="trigger-pill trigger-authority" style="padding:2px 8px;font-size:10px;">Authority</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Authority Transfer — real licensed NP explaining clinical reality (counter to Medvi's fake doctors)</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Script Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li>Hook: "I'm [Name], a board-certified psychiatric NP, and I evaluate adults for ADHD every week" (5s)</li>
+                          <li>Stat: "75% of adults with ADHD don't know they have it" (5s)</li>
+                          <li>Why missed: "Most people picture hyperactive kids. But adult ADHD looks like missed deadlines, lost keys, and relationships that keep falling apart" (15s)</li>
+                          <li>Common myths: "No, you don't have to be hyper. No, it's not just about focus. No, getting evaluated doesn't mean you'll be medicated." (15s)</li>
+                          <li>CTA: "If this sounds familiar, you deserve clarity. I offer confidential evaluations online for Arizona residents." (10s)</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">NP in professional attire, natural lighting, clean office or home office. Eye contact with camera. Subtitles with brand font. Lower third: Name, credentials, license number.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">YouTube (long-form SEO), Meta (cut to 30s), TikTok (30s cut), Instagram Reels. Tier 2 (Warm Consideration).</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Why This Is Our Moat</p>
+                        <p class="text-xs text-neutral-600 font-semibold">Medvi fabricated 800+ doctor pages. We have a REAL provider. Every piece of authority content we make is unfakeable, unscandalizable, and builds compounding trust over time.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 5 -->
+                <div class="brief-card" id="brief-5">
+                  <div class="brief-header" onclick="toggleBrief('brief-5')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">5</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">Insomnia — "If Your Brain Won't Shut Off at 2am"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-insomnia">Insomnia</span><span class="format-tag">Video 30s</span><span class="trigger-pill trigger-curiosity" style="padding:2px 8px;font-size:10px;">Curiosity</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Hidden Struggle Recognition — targets the specific 2am rumination experience</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Script Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li>Hook: "It's 2am. Your brain is replaying every conversation from 2019." (3s)</li>
+                          <li>Validate: "Melatonin didn't work. Sleep hygiene didn't work." (4s)</li>
+                          <li>Reframe: "Because insomnia often isn't about sleep — it's about what your brain can't let go of." (6s)</li>
+                          <li>Solution: "A psychiatric evaluation can find the root cause" (5s)</li>
+                          <li>CTA: "Arizona Telepsychiatry. Online. Confidential. This week." (4s)</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Dark/nighttime aesthetic transitioning to warm morning light. Phone screen glow on face (relatable 2am phone-checking). Transition to provider speaking in daylight.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta Feed, Instagram Reels, TikTok. Tier 1 (Cold Awareness). Schedule to run at night (10pm-2am) for maximum resonance.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">Educational framing. "Insomnia often isn't about sleep" is clinical education, not diagnosis. No medication mentions.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 6 -->
+                <div class="brief-card" id="brief-6">
+                  <div class="brief-header" onclick="toggleBrief('brief-6')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">6</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">General — "What a Telepsychiatry Visit Actually Looks Like"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-general">General</span><span class="format-tag">Process Video 60s</span><span class="trigger-pill trigger-authority" style="padding:2px 8px;font-size:10px;">Authority</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Authority Transfer + Fear Removal — demystifies the process, removes anxiety about seeking help</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Script Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li>Hook: "Thinking about talking to a psychiatrist but don't know what to expect?" (4s)</li>
+                          <li>Step 1: "Book online — takes 2 minutes" (show booking screen, 5s)</li>
+                          <li>Step 2: "Complete a brief assessment from your phone" (show quiz, 5s)</li>
+                          <li>Step 3: "Video visit with your Arizona-licensed provider" (show video call, 10s)</li>
+                          <li>Outcome: "You'll leave with a clear understanding of what's going on and next steps" (8s)</li>
+                          <li>CTA: "No waiting rooms. No judgment. Just answers." (5s)</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Split-screen or scene transitions: patient at home on couch → phone screen → video call with provider. Warm, inviting, not clinical. Real locations, not sterile.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">YouTube (main version), Meta (30s cut), website landing page hero. Tier 2 (Warm Consideration). Retarget people who visited site but didn't book.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Why This Matters</p>
+                        <p class="text-xs text-neutral-600">The #1 barrier to mental health care is fear of the unknown. This ad eliminates that by showing exactly what happens. Medvi never made this content — it's a gap we fill.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 7 -->
+                <div class="brief-card" id="brief-7">
+                  <div class="brief-header" onclick="toggleBrief('brief-7')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">7</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">ADHD — "3 ADHD Myths That Keep Adults From Getting Help"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-adhd">ADHD</span><span class="format-tag">Carousel 4 slides</span><span class="trigger-pill trigger-curiosity" style="padding:2px 8px;font-size:10px;">Curiosity</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Myth-Busting (sub-pattern of Hidden Struggle Recognition) — breaks misconceptions that prevent help-seeking</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Slide Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li><strong>Cover:</strong> "3 ADHD Myths That Keep Adults From Getting Help" — bold, clean</li>
+                          <li><strong>Myth 1:</strong> "You have to be hyperactive" → Reality: Inattentive ADHD is the most common in adults</li>
+                          <li><strong>Myth 2:</strong> "You'd know by now" → Reality: Average age of adult diagnosis is 36</li>
+                          <li><strong>Myth 3:</strong> "Getting evaluated means you'll be put on meds" → Reality: Evaluation gives you clarity, not a prescription</li>
+                          <li><strong>CTA:</strong> "Curious? A confidential evaluation takes the guesswork out. Book with a licensed NP."</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">"Myth" in red strikethrough, "Reality" in green. Bold contrasting design. Swipeable, save-worthy. Brand colors on final CTA slide.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Instagram Carousel, Meta Feed, Pinterest. Tier 1 (Cold Awareness). Myth-busting is the highest-saved content format on Instagram.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">All statistics must be sourced (CDC, NIMH). Educational framing only. "Curious?" is softer than "Do you have ADHD?" and avoids Meta Tier 3 flags.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 8 -->
+                <div class="brief-card" id="brief-8">
+                  <div class="brief-header" onclick="toggleBrief('brief-8')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">8</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">Depression — "I Spent 10 Years Thinking I Was Broken"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-depression">Depression</span><span class="format-tag">Patient Story 60s</span><span class="trigger-pill trigger-transform" style="padding:2px 8px;font-size:10px;">Transformation</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Transformation Promise (process-focused) — real patient sharing their journey to evaluation, NOT outcome claims</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Script Outline</p>
+                        <ol class="text-xs text-neutral-600 list-decimal ml-4 space-y-1">
+                          <li>Hook: "I spent 10 years thinking I was broken." (3s, patient on camera)</li>
+                          <li>Story: "I couldn't get out of bed. I lost friends. I thought it was just who I was." (10s)</li>
+                          <li>Turning point: "Then I finally talked to someone — a real psychiatric provider, not just a therapist." (8s)</li>
+                          <li>Process: "The evaluation was 45 minutes on video. No waiting room. No judgment." (8s)</li>
+                          <li>Reflection: "I finally had a name for what I was feeling. That alone changed everything." (8s)</li>
+                          <li>CTA: "If this sounds like you, you're not alone. Arizona Telepsychiatry." (5s)</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Real patient (with written HIPAA authorization + video release). Casual setting, natural light. NOT polished — authenticity is the point. Subtitles with empathetic pacing.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta Feed, YouTube, website testimonials page. Tier 3 (Conversion). Most powerful ad format for mental health — real stories drive action.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600 font-semibold">CRITICAL: Process testimonial only. Patient shares the PROCESS (evaluation, video visit, getting clarity) not the OUTCOME (medication working, symptoms cured). FTC requires "Results not typical" if any outcome is implied. HIPAA video release required.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 9 -->
+                <div class="brief-card" id="brief-9">
+                  <div class="brief-header" onclick="toggleBrief('brief-9')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">9</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">Insomnia — "Online Sleep Assessment — Results in 24 Hours"</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-insomnia">Insomnia</span><span class="format-tag">Static Image</span><span class="trigger-pill trigger-urgency" style="padding:2px 8px;font-size:10px;">Urgency</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Urgency + Authority — time-bound promise of fast results with professional backing</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Copy</p>
+                        <p class="text-xs text-neutral-600">Headline: <strong>"Can't Sleep? Get Answers Fast."</strong></p>
+                        <p class="text-xs text-neutral-600 mt-1">Subhead: "Online psychiatric sleep assessment. Licensed NP. Results in 24 hours."</p>
+                        <p class="text-xs text-neutral-600 mt-1">CTA button: "Start Your Assessment"</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Why This Works</p>
+                        <p class="text-xs text-neutral-600">People with insomnia are desperate and have usually tried everything (melatonin, sleep hygiene, apps). Offering speed + professional evaluation is the differentiator. "24 hours" must be operationally true.</p>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Dark background (nighttime blue-black), moon/stars subtle. Clean typography, high contrast. CTA button in brand green. Mobile-optimized dimensions (1080x1350).</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta Feed, Google Display, retargeting. Tier 3/4 (Conversion + Retargeting). Run at night (10pm-2am) for contextual relevance.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">"Results in 24 hours" must be operationally accurate — means provider reviews assessment within 24h, not diagnostic results. Clarify in landing page.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Brief 10 -->
+                <div class="brief-card" id="brief-10">
+                  <div class="brief-header" onclick="toggleBrief('brief-10')">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <span class="brief-num">10</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-bold text-neutral-900 truncate">General — "Licensed. Arizona-Based. Accepting Patients This Week."</p>
+                        <div class="flex gap-2 mt-1"><span class="condition-tag cond-general">General</span><span class="format-tag">Static + Video 15s</span><span class="trigger-pill trigger-social" style="padding:2px 8px;font-size:10px;">Social Proof</span></div>
+                      </div>
+                    </div>
+                    <svg class="bc-chevron w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                  <div class="brief-body">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Hook Pattern</p>
+                        <p class="text-xs text-neutral-600">Social Proof + Urgency — establishes legitimacy and creates action with availability window</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Copy Variations</p>
+                        <p class="text-xs text-neutral-600 italic">A: "Licensed. Arizona-based. Accepting new patients this week."</p>
+                        <p class="text-xs text-neutral-600 italic mt-1">B: "Your Arizona psychiatric provider is one click away."</p>
+                        <p class="text-xs text-neutral-600 italic mt-1">C: "Skip the 3-month waitlist. See a licensed NP this week."</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Why This Works</p>
+                        <p class="text-xs text-neutral-600">Psychiatry wait times average 2-3 months. "This week" is a genuine competitive advantage. Three trust signals in one line: Licensed (authority), Arizona-based (local/relevant), Accepting patients (availability). Medvi never positioned on speed-to-provider — they sold the product, not the care.</p>
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-neutral-900 mb-1">Visual Direction</p>
+                        <p class="text-xs text-neutral-600">Static: Provider headshot + credentials + "Book This Week" CTA. Video (15s): Provider waves, says "Hi, I'm [Name], and I'm accepting new patients this week in Arizona." Clean, warm, direct.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Platform & Placement</p>
+                        <p class="text-xs text-neutral-600">Meta Feed, Google Search Ads (text version), retargeting. Tier 4 (Retargeting). Run to site visitors who didn't convert, quiz abandoners.</p>
+                        <p class="text-xs font-bold text-neutral-900 mt-3 mb-1">Compliance Notes</p>
+                        <p class="text-xs text-neutral-600">"This week" must be true — don't run if booked out. Update availability dynamically or pause ad when full.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 9: Production Priority Matrix ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-4">Production Priority Matrix</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Brief</th>
+                      <th>Format</th>
+                      <th>Effort</th>
+                      <th>Impact</th>
+                      <th>Produce First?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>4</td>
+                      <td>NP Explains ADHD</td>
+                      <td>Provider Video 90s</td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td><span class="priority-badge pri-high">Highest</span></td>
+                      <td><strong style="color:#16A34A">YES — #1 Priority</strong></td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>What a Visit Looks Like</td>
+                      <td>Process Video 60s</td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td><span class="priority-badge pri-high">Highest</span></td>
+                      <td><strong style="color:#16A34A">YES — #2 Priority</strong></td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>3 Coffees / ADHD</td>
+                      <td>Video 30-60s</td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td><span class="priority-badge pri-high">High</span></td>
+                      <td><strong style="color:#16A34A">YES — #3 Priority</strong></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>5 Signs Anxiety</td>
+                      <td>Carousel 5 slides</td>
+                      <td><span class="priority-badge pri-low">Low</span></td>
+                      <td><span class="priority-badge pri-high">High</span></td>
+                      <td><strong style="color:#16A34A">YES — #4 Priority</strong></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Not Lazy / Depression</td>
+                      <td>Static Image</td>
+                      <td><span class="priority-badge pri-low">Low</span></td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td>Quick win — make in Canva</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>3 ADHD Myths</td>
+                      <td>Carousel 4 slides</td>
+                      <td><span class="priority-badge pri-low">Low</span></td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td>Quick win — make in Canva</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>Accepting Patients</td>
+                      <td>Static + Video 15s</td>
+                      <td><span class="priority-badge pri-low">Low</span></td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td>Retargeting — needs pixel first</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>2am Brain / Insomnia</td>
+                      <td>Video 30s</td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td><span class="priority-badge pri-med">Medium</span></td>
+                      <td>After core 4 are live</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>Sleep Assessment</td>
+                      <td>Static Image</td>
+                      <td><span class="priority-badge pri-low">Low</span></td>
+                      <td><span class="priority-badge pri-low">Medium</span></td>
+                      <td>After core 4 are live</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>Patient Story</td>
+                      <td>Patient Video 60s</td>
+                      <td><span class="priority-badge pri-high">High</span></td>
+                      <td><span class="priority-badge pri-high">Highest</span></td>
+                      <td>Needs real patient — produce when available</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ═══ SECTION 10: Research Methodology ═══ -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Research Methodology</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-chip">Meta Ad Library</span>
+                <span class="tech-chip">TikTok @medviorg</span>
+                <span class="tech-chip">Futurism (Deepfake Investigation)</span>
+                <span class="tech-chip">NYT (Fake Doctor Investigation)</span>
+                <span class="tech-chip">FDA Warning Letters</span>
+                <span class="tech-chip">FTC Enforcement Actions</span>
+                <span class="tech-chip">DOJ Press Releases</span>
+                <span class="tech-chip">Reddit r/Ozempic</span>
+                <span class="tech-chip">Hacker News Threads</span>
+                <span class="tech-chip">STAT News</span>
+                <span class="tech-chip">Inc. Magazine</span>
+                <span class="tech-chip">RevOffers Affiliate Portal</span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-3">Analysis compiled from 3 specialized research agents: TikTok Intelligence, Meta Ad Library Teardown, and Creative Pattern Analysis. All Medvi ad specimens documented from public sources. Compliant adaptations reviewed against Meta Tier 3 restrictions, FDA advertising guidelines, FTC endorsement rules, and HIPAA patient privacy requirements.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -2276,6 +3362,11 @@
 
     /* ── Distribution Engine: Expandable Cards ── */
     function toggleExpand(id) {
+      var card = document.getElementById(id);
+      if (card) card.classList.toggle('open');
+    }
+
+    function toggleBrief(id) {
       var card = document.getElementById(id);
       if (card) card.classList.toggle('open');
     }

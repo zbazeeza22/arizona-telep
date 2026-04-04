@@ -116,6 +116,60 @@
     .url-editor .btn-save:hover { background: #3F7A5B; }
     .url-editor .btn-cancel { background: #E5E7EB; color: #374151; }
     .url-editor .btn-cancel:hover { background: #D1D5DB; }
+
+    /* ── Distribution Engine Styles ── */
+    .nav-divider { padding: 10px 16px 4px; }
+    .nav-divider span { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9CA3AF; }
+    @media (max-width: 767px) { .nav-divider { padding: 8px 12px 2px; } }
+
+    .stat-card { background: linear-gradient(135deg, #F6F7F2 0%, #fff 100%); border: 1px solid #E5E7EB; border-radius: 12px; padding: 20px; }
+    .stat-value { font-size: 26px; font-weight: 700; color: #3F7A5B; line-height: 1.1; }
+    .stat-label { font-size: 12px; color: #6B7280; margin-top: 4px; }
+
+    .expand-card { border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+    .expand-card:hover { border-color: #6BAF92; }
+    .expand-card-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; user-select: none; }
+    .expand-card-header:hover { background: #FAFBF8; }
+    .expand-card-header .ec-chevron { transition: transform 0.2s; flex-shrink: 0; }
+    .expand-card.open .expand-card-header .ec-chevron { transform: rotate(180deg); }
+    .expand-card-body { display: none; padding: 0 20px 20px; }
+    .expand-card.open .expand-card-body { display: block; }
+
+    .layer-card { border-radius: 12px; padding: 20px; border: 2px solid; }
+    .layer-you { border-color: #6BAF92; background: #F6F7F2; }
+    .layer-rented { border-color: #93C5FD; background: #EFF6FF; }
+    .layer-pharm { border-color: #C4B5FD; background: #F5F3FF; }
+
+    .priority-badge { display: inline-flex; padding: 2px 10px; font-size: 11px; font-weight: 600; border-radius: 9999px; }
+    .pri-high { background: #FEE2E2; color: #991B1B; }
+    .pri-med { background: #FEF3C7; color: #92400E; }
+    .pri-low { background: #DCFCE7; color: #166534; }
+
+    .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; }
+    .check-item input[type="checkbox"] { accent-color: #6BAF92; margin-top: 3px; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+    .check-item.checked label { text-decoration: line-through; color: #9CA3AF; }
+
+    .warn-box { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 12px; padding: 16px 20px; }
+    .danger-box { background: #FEE2E2; border: 1px solid #FECACA; border-radius: 12px; padding: 16px 20px; }
+    .info-box { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 16px 20px; }
+
+    .channel-card { border: 1px solid #E5E7EB; border-radius: 12px; padding: 20px; transition: all 0.2s; }
+    .channel-card:hover { border-color: #6BAF92; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+    .funnel-step { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #F6F7F2; border-radius: 10px; }
+    .funnel-num { width: 32px; height: 32px; background: #6BAF92; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .funnel-arrow { text-align: center; color: #6BAF92; font-size: 18px; padding: 2px 0; }
+
+    .calc-input { width: 130px; padding: 6px 10px; font-size: 14px; border: 1px solid #D1D5DB; border-radius: 8px; text-align: right; }
+    .calc-input:focus { outline: none; border-color: #6BAF92; box-shadow: 0 0 0 2px rgba(107,175,146,0.15); }
+    .calc-result { font-size: 22px; font-weight: 700; color: #3F7A5B; }
+
+    .de-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .de-table th { text-align: left; padding: 8px 12px; background: #F6F7F2; font-weight: 600; color: #3F7A5B; border-bottom: 2px solid #E5E7EB; }
+    .de-table td { padding: 8px 12px; border-bottom: 1px solid #F3F4F6; }
+    .de-table tr:hover td { background: #FAFBF8; }
+
+    .tech-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; font-size: 12px; font-weight: 500; border-radius: 8px; background: #F3F4F6; color: #374151; border: 1px solid #E5E7EB; }
   </style>
 </head>
 <body class="font-primary bg-primary-0 text-neutral-600 min-h-screen">
@@ -214,6 +268,75 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
                 Pelvic Scan Tool
+              </span>
+            </button>
+          </li>
+
+          <!-- Distribution Engine -->
+          <li class="nav-divider">
+            <span>Distribution Engine</span>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="playbook">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                The Playbook
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="affiliates">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                Affiliate Program
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="channels">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                Growth Channels
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="funnel">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                Conversion Funnel
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="providers">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                Provider Network
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="financial">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Financial Model
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap border-b border-neutral-100" data-panel="compliance">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                Compliance Center
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="admin-nav-btn w-full text-left px-4 py-3 text-sm font-medium hover:bg-primary-0 transition-colors whitespace-nowrap" data-panel="intel">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                Competitive Intel
               </span>
             </button>
           </li>
@@ -572,6 +695,1120 @@
         </div>
       </section>
 
+      <!-- Panel 5: The Playbook -->
+      <section id="panel-playbook" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <h2 class="text-lg font-semibold text-neutral-900">The Playbook — Medvi Strategy Decoded</h2>
+              <p class="text-sm text-neutral-500 mt-1">The $401M distribution engine reverse-engineered for Arizona telepsychiatry.</p>
+            </div>
+            <span class="priority-badge pri-high">Critical Strategy</span>
+          </div>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- The 3-Layer Architecture -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">The Medvi Formula — 3-Layer Architecture</p>
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div class="layer-card layer-you">
+                  <p class="text-xs font-bold uppercase tracking-wide text-primary-40 mb-2">Layer 1: Brand + Marketing</p>
+                  <p class="text-sm font-semibold text-neutral-900">YOU OWN THIS</p>
+                  <ul class="mt-3 space-y-1.5 text-sm text-neutral-600">
+                    <li>Patient acquisition</li>
+                    <li>Website & landing pages</li>
+                    <li>Ad campaigns & creative</li>
+                    <li>Affiliate program</li>
+                    <li>Brand & trust signals</li>
+                  </ul>
+                  <p class="mt-3 text-xs font-semibold text-primary-40">Medvi: 2 employees own this</p>
+                </div>
+                <div class="layer-card layer-rented">
+                  <p class="text-xs font-bold uppercase tracking-wide text-blue-700 mb-2">Layer 2: Clinical Infrastructure</p>
+                  <p class="text-sm font-semibold text-neutral-900">RENTED / OUTSOURCED</p>
+                  <ul class="mt-3 space-y-1.5 text-sm text-neutral-600">
+                    <li>OpenLoop — 20K+ clinicians</li>
+                    <li>CareValidate — credentialing</li>
+                    <li>SteadyMD — alternative</li>
+                    <li>600+ insurance payers</li>
+                    <li>Per-visit pricing (~$30-60)</li>
+                  </ul>
+                  <p class="mt-3 text-xs font-semibold text-blue-700">Zero W-2 providers needed</p>
+                </div>
+                <div class="layer-card layer-pharm">
+                  <p class="text-xs font-bold uppercase tracking-wide text-purple-700 mb-2">Layer 3: Pharmacy / Fulfillment</p>
+                  <p class="text-sm font-semibold text-neutral-900">RENTED / PARTNERED</p>
+                  <ul class="mt-3 space-y-1.5 text-sm text-neutral-600">
+                    <li>Belmar Pharma (compounding)</li>
+                    <li>HealthWarehouse / Amazon</li>
+                    <li>Direct-to-patient shipping</li>
+                    <li>28-day auto-renewal model</li>
+                    <li>For non-controlled meds only</li>
+                  </ul>
+                  <p class="mt-3 text-xs font-semibold text-purple-700">N/A for Schedule II meds</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Stats Comparison -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Head-to-Head Comparison</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead>
+                    <tr><th>Metric</th><th>Medvi (GLP-1 Weight Loss)</th><th>Our Target (Telepsychiatry AZ)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="font-medium">Revenue (Year 1)</td><td>$401M</td><td>$2M–5M</td></tr>
+                    <tr><td class="font-medium">Employees</td><td>2</td><td>1–3</td></tr>
+                    <tr><td class="font-medium">Startup Capital</td><td>$20K (bootstrapped)</td><td>$10K–25K</td></tr>
+                    <tr><td class="font-medium">CPA (Cost Per Acquisition)</td><td>$300–500</td><td>$150–250</td></tr>
+                    <tr><td class="font-medium">Affiliates</td><td>10,000+</td><td>Target: 500 Year 1</td></tr>
+                    <tr><td class="font-medium">States</td><td>49</td><td>Arizona (expand later)</td></tr>
+                    <tr><td class="font-medium">Net Margin</td><td>16.2%</td><td>Target: 20–30%</td></tr>
+                    <tr><td class="font-medium">Patient LTV</td><td>~$1,500 (6-mo sub)</td><td>$2,000–5,000 (insurance)</td></tr>
+                    <tr><td class="font-medium">Clinical Model</td><td>OpenLoop/CareValidate</td><td>Own NP + OpenLoop overflow</td></tr>
+                    <tr><td class="font-medium">Primary Channel</td><td>Facebook affiliate ads</td><td>SEO + Google Ads + Affiliates</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Replicate vs Avoid -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="rounded-xl bg-primary-0 p-5">
+                <p class="text-sm font-bold text-primary-40 mb-3">REPLICATE</p>
+                <ul class="space-y-2 text-sm text-neutral-600">
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> Quiz/assessment funnel (symptom checker → booking)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> High-CPA affiliate program ($150–250)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> AI-powered operations (support, content, ops)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> Outsourced clinical via OpenLoop/SteadyMD</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> Mobile-first, CTA-dense landing pages</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> Education-first content marketing</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 mt-0.5 flex-shrink-0">&#10003;</span> Stripe + Klaviyo + Zendesk stack</li>
+                </ul>
+              </div>
+              <div class="danger-box">
+                <p class="text-sm font-bold text-red-800 mb-3">DO NOT REPLICATE</p>
+                <ul class="space-y-2 text-sm text-red-900">
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> Deepfaked patient photos & testimonials</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> Fake doctor Facebook accounts (whitelisted ads)</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> FDA-violating drug claims (Warning Letter #721455)</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> Payment before physician evaluation</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> No self-service cancellation (BBB F rating)</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> Sharing PHI with ad platforms (Cerebral fined $7M)</li>
+                  <li class="flex items-start gap-2"><span class="mt-0.5 flex-shrink-0">&#10007;</span> AI-generated "doctor" avatars for trust</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Launch Checklist -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">12-Step Launch Roadmap</p>
+              <div class="rounded-xl bg-primary-0 p-5 space-y-1" id="launch-checklist">
+                <div class="check-item" data-check="launch_1"><input type="checkbox" id="lc1"><label for="lc1" class="text-sm text-neutral-700">1. Set up OpenLoop or SteadyMD partnership (clinical infrastructure)</label></div>
+                <div class="check-item" data-check="launch_2"><input type="checkbox" id="lc2"><label for="lc2" class="text-sm text-neutral-700">2. Get LegitScript certification for health advertising</label></div>
+                <div class="check-item" data-check="launch_3"><input type="checkbox" id="lc3"><label for="lc3" class="text-sm text-neutral-700">3. Build condition-specific landing pages (ADHD, anxiety, depression, insomnia)</label></div>
+                <div class="check-item" data-check="launch_4"><input type="checkbox" id="lc4"><label for="lc4" class="text-sm text-neutral-700">4. Create patient assessment quiz flow (PHQ-9, GAD-7, ASRS)</label></div>
+                <div class="check-item" data-check="launch_5"><input type="checkbox" id="lc5"><label for="lc5" class="text-sm text-neutral-700">5. Set up Stripe billing + Klaviyo email automation</label></div>
+                <div class="check-item" data-check="launch_6"><input type="checkbox" id="lc6"><label for="lc6" class="text-sm text-neutral-700">6. Launch Google Ads campaigns (condition-segmented, $2K–5K/mo)</label></div>
+                <div class="check-item" data-check="launch_7"><input type="checkbox" id="lc7"><label for="lc7" class="text-sm text-neutral-700">7. Publish 20 SEO pages (programmatic: condition + city combos)</label></div>
+                <div class="check-item" data-check="launch_8"><input type="checkbox" id="lc8"><label for="lc8" class="text-sm text-neutral-700">8. Launch affiliate program on ShareASale / Impact ($150–250 CPA)</label></div>
+                <div class="check-item" data-check="launch_9"><input type="checkbox" id="lc9"><label for="lc9" class="text-sm text-neutral-700">9. Create affiliate compliance kit (approved messaging, FTC disclosures)</label></div>
+                <div class="check-item" data-check="launch_10"><input type="checkbox" id="lc10"><label for="lc10" class="text-sm text-neutral-700">10. Launch Meta ads with education-first creative (video preferred)</label></div>
+                <div class="check-item" data-check="launch_11"><input type="checkbox" id="lc11"><label for="lc11" class="text-sm text-neutral-700">11. Recruit first 50 affiliates (mental health bloggers, influencers)</label></div>
+                <div class="check-item" data-check="launch_12"><input type="checkbox" id="lc12"><label for="lc12" class="text-sm text-neutral-700">12. Scale winning channels — double budget on sub-$200 CPA channels</label></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 6: Affiliate Program -->
+      <section id="panel-affiliates" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <h2 class="text-lg font-semibold text-neutral-900">Affiliate Program — Revenue Engine</h2>
+              <p class="text-sm text-neutral-500 mt-1">Performance-based distribution at scale. Medvi's 10,000+ affiliates generated $401M.</p>
+            </div>
+            <span class="priority-badge pri-high">Revenue Driver</span>
+          </div>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Commission Structure -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Commission Structure</p>
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div class="stat-card">
+                  <p class="stat-value">$150–250</p>
+                  <p class="stat-label">Recommended CPA / Patient</p>
+                  <p class="text-xs text-neutral-400 mt-2">vs. Medvi's $300–500 for GLP-1</p>
+                </div>
+                <div class="stat-card">
+                  <p class="stat-value">10–15%</p>
+                  <p class="stat-label">Recurring Monthly Option</p>
+                  <p class="text-xs text-neutral-400 mt-2">On ongoing patient subscription revenue</p>
+                </div>
+                <div class="stat-card">
+                  <p class="stat-value">Net-15</p>
+                  <p class="stat-label">Payout Terms</p>
+                  <p class="text-xs text-neutral-400 mt-2">Medvi: Net-7 to Net-30</p>
+                </div>
+              </div>
+              <div class="warn-box mt-4">
+                <p class="text-sm font-semibold text-amber-800">Target Patient LTV Must Justify CPA</p>
+                <p class="text-sm text-amber-700 mt-1">Insurance-based LTV: $2,000–5,000/yr. Cash-pay LTV: $1,000–3,000/yr. At $200 CPA, payback is 1–3 months on insurance model. Always maintain 3:1+ LTV:CAC ratio.</p>
+              </div>
+            </div>
+
+            <!-- Network Strategy -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Affiliate Network Strategy</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">ShareASale</p>
+                  <p class="text-xs text-neutral-500 mt-1">Largest health/wellness affiliate network. Low barrier to entry. Good for initial launch.</p>
+                  <span class="priority-badge pri-low mt-2">Recommended Start</span>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">Impact.com</p>
+                  <p class="text-xs text-neutral-500 mt-1">Enterprise-grade tracking. Used by major DTC brands. Better fraud detection.</p>
+                  <span class="priority-badge pri-med mt-2">Scale Phase</span>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">PartnerStack</p>
+                  <p class="text-xs text-neutral-500 mt-1">B2B focused. Good for therapy practice referrals and provider partnerships.</p>
+                  <span class="priority-badge pri-med mt-2">Phase 2</span>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">Direct Partnerships</p>
+                  <p class="text-xs text-neutral-500 mt-1">Higher margin, custom terms. Target mental health bloggers, PCPs, therapists directly.</p>
+                  <span class="priority-badge pri-high mt-2">Highest ROI</span>
+                </div>
+              </div>
+              <p class="text-xs text-neutral-400 mt-3">Medvi uses: CPG Affiliate Partners, Vexio, RevOffers, Guru Media. They accept email, native, display, listicles, social (FB/IG/TikTok).</p>
+            </div>
+
+            <!-- Compliance Kit -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Affiliate Compliance Kit</p>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-xl bg-primary-0 p-5">
+                  <p class="text-sm font-bold text-primary-40 mb-3">Approved Messaging</p>
+                  <ul class="space-y-2 text-sm text-neutral-600">
+                    <li>"Licensed psychiatric providers in Arizona"</li>
+                    <li>"Evidence-based treatment for ADHD, anxiety & depression"</li>
+                    <li>"Board-certified psychiatric nurse practitioners"</li>
+                    <li>"Convenient online appointments from home"</li>
+                    <li>"Insurance accepted — check your coverage"</li>
+                    <li>"Comprehensive mental health assessment"</li>
+                  </ul>
+                </div>
+                <div class="danger-box">
+                  <p class="text-sm font-bold text-red-800 mb-3">Prohibited Language</p>
+                  <ul class="space-y-2 text-sm text-red-900">
+                    <li>"Guaranteed Adderall/Xanax prescription"</li>
+                    <li>"Get your ADHD meds in 24 hours"</li>
+                    <li>"Cure your anxiety/depression"</li>
+                    <li>"No real doctor visit needed"</li>
+                    <li>"Do you have ADHD?" (implies diagnosis)</li>
+                    <li>Any before/after claims or fake testimonials</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="info-box mt-4">
+                <p class="text-sm font-semibold text-blue-800">FTC Disclosure Required</p>
+                <p class="text-sm text-blue-700 mt-1">All affiliates must include: "This content contains affiliate links. I may earn a commission if you book through my link, at no extra cost to you. I only recommend services I believe in." — per FTC Endorsement Guidelines (16 CFR Part 255).</p>
+              </div>
+            </div>
+
+            <!-- Recruitment Funnel -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Where to Find Affiliates</p>
+              <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="rounded-lg border p-4">
+                  <p class="text-sm font-semibold text-neutral-900">Mental Health Bloggers</p>
+                  <p class="text-xs text-neutral-500 mt-1">ADHD influencers, anxiety bloggers, therapy advocates. High trust, warm audiences.</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <p class="text-sm font-semibold text-neutral-900">Psychology Today Writers</p>
+                  <p class="text-xs text-neutral-500 mt-1">Licensed therapists with existing audiences. Credible referral source.</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <p class="text-sm font-semibold text-neutral-900">Wellness Influencers</p>
+                  <p class="text-xs text-neutral-500 mt-1">TikTok/IG creators in wellness space. Education-first content only.</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <p class="text-sm font-semibold text-neutral-900">Health Review Sites</p>
+                  <p class="text-xs text-neutral-500 mt-1">Telehealth comparison sites, "best online psychiatrist" listicles.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 7: Growth Channels -->
+      <section id="panel-channels" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Growth Channels — Multi-Channel Strategy</h2>
+          <p class="text-sm text-neutral-500 mt-1">Channel-by-channel acquisition plan with budgets, tactics, and priority ranking.</p>
+
+          <div class="mt-6 space-y-4">
+
+            <!-- Channel 1: SEO -->
+            <div class="expand-card open" id="ec-seo">
+              <div class="expand-card-header" onclick="toggleExpand('ec-seo')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-high">Priority #1</span>
+                  <p class="text-sm font-semibold text-neutral-900">SEO & Content — Medvi's Biggest Blind Spot</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <p class="text-sm text-neutral-600 mb-4">Medvi has ZERO organic SEO — no blog, no programmatic pages, no schema markup. This is the #1 competitive gap to exploit. Organic leads have the lowest CAC ($50–100) and highest conversion quality.</p>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">Programmatic SEO Pages</p>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                      <li>"Online psychiatrist Phoenix"</li>
+                      <li>"ADHD telehealth Arizona"</li>
+                      <li>"Telepsychiatry Tucson"</li>
+                      <li>"Anxiety treatment Scottsdale online"</li>
+                      <li>"Depression medication management Mesa"</li>
+                    </ul>
+                    <p class="text-xs text-neutral-400 mt-2">Build 50+ condition + city pages at scale</p>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">Content Calendar</p>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                      <li>4 blog posts/month (E-E-A-T optimized)</li>
+                      <li>Schema markup: MedicalClinic, FAQPage, Review</li>
+                      <li>Provider directories: Psychology Today, ZocDoc</li>
+                      <li>Google Business Profile optimization</li>
+                      <li>Healthgrades, Vitals, WebMD listings</li>
+                    </ul>
+                    <p class="text-xs text-neutral-400 mt-2">Target: 1,000 organic visits/mo by Month 6</p>
+                  </div>
+                </div>
+                <div class="stat-card mt-4">
+                  <div class="flex items-center justify-between">
+                    <div><p class="stat-label">Estimated CAC</p><p class="stat-value">$50–100</p></div>
+                    <div><p class="stat-label">Monthly Budget</p><p class="text-lg font-bold text-neutral-900">$500–1,500</p></div>
+                    <div><p class="stat-label">Time to ROI</p><p class="text-lg font-bold text-neutral-900">3–6 months</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 2: Google Ads -->
+            <div class="expand-card" id="ec-google">
+              <div class="expand-card-header" onclick="toggleExpand('ec-google')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-high">Priority #2</span>
+                  <p class="text-sm font-semibold text-neutral-900">Google Ads — High-Intent Capture</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <p class="text-sm text-neutral-600 mb-4">Capture patients actively searching for help. Condition-segmented campaigns with dedicated landing pages per condition.</p>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">Campaign Structure</p>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                      <li>Campaign 1: ADHD (highest intent, highest CPC)</li>
+                      <li>Campaign 2: Anxiety / Depression</li>
+                      <li>Campaign 3: Insomnia / Sleep</li>
+                      <li>Campaign 4: General Telepsychiatry</li>
+                      <li>Call-only ads for mobile (40%+ of traffic)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">Targeting</p>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                      <li>Geo: Arizona only (Phoenix metro primary)</li>
+                      <li>Age: 25–55 (peak telepsychiatry demo)</li>
+                      <li>Negative keywords: "free," "DIY," "near me"</li>
+                      <li>Landing pages: condition-specific</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="stat-card mt-4">
+                  <div class="flex items-center justify-between">
+                    <div><p class="stat-label">Target CPA</p><p class="stat-value">$150–300</p></div>
+                    <div><p class="stat-label">Monthly Budget</p><p class="text-lg font-bold text-neutral-900">$2,000–5,000</p></div>
+                    <div><p class="stat-label">Time to ROI</p><p class="text-lg font-bold text-neutral-900">2–4 weeks</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 3: Meta/Facebook -->
+            <div class="expand-card" id="ec-meta">
+              <div class="expand-card-header" onclick="toggleExpand('ec-meta')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-med">Priority #3</span>
+                  <p class="text-sm font-semibold text-neutral-900">Meta / Facebook — Education-First Approach</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <div class="warn-box mb-4">
+                  <p class="text-sm font-semibold text-amber-800">Meta Tier 3 Restrictions Apply</p>
+                  <p class="text-sm text-amber-700 mt-1">Mental health is Tier 3 restricted on Meta. You CANNOT say "Do you have ADHD?" — that implies diagnosis. Use education-first framing: "Learn about ADHD management options." LegitScript pre-approval required for health ads.</p>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">Creative Strategy</p>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                      <li>Video-first (2x CTR vs static images)</li>
+                      <li>Provider-led educational content</li>
+                      <li>Patient journey stories (with real consent)</li>
+                      <li>"5 signs you should talk to a psychiatrist"</li>
+                      <li>Carousel: myth vs fact format</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-primary-40 mb-2">What Medvi Does (Don't Copy)</p>
+                    <ul class="space-y-1 text-sm text-red-600">
+                      <li>Whitelisted ads through fake doctor accounts</li>
+                      <li>"Partnership Ads" / dark posts at scale</li>
+                      <li>Affiliates run FB ads as different "doctors"</li>
+                      <li>AI-generated doctor avatars</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="stat-card mt-4">
+                  <div class="flex items-center justify-between">
+                    <div><p class="stat-label">Target CPA</p><p class="stat-value">$200–400</p></div>
+                    <div><p class="stat-label">Monthly Budget</p><p class="text-lg font-bold text-neutral-900">$1,500–3,000</p></div>
+                    <div><p class="stat-label">Pre-Req</p><p class="text-lg font-bold text-amber-600">LegitScript</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 4: Podcasts -->
+            <div class="expand-card" id="ec-podcast">
+              <div class="expand-card-header" onclick="toggleExpand('ec-podcast')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-med">Priority #4</span>
+                  <p class="text-sm font-semibold text-neutral-900">Podcast Sponsorships — Trust Channel</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <p class="text-sm text-neutral-600 mb-3">Host-read ads on mental health and Arizona-local podcasts. High trust, strong conversion. Use unique promo codes to track attribution.</p>
+                <div class="stat-card">
+                  <div class="flex items-center justify-between">
+                    <div><p class="stat-label">Est. CAC</p><p class="stat-value">$100–200</p></div>
+                    <div><p class="stat-label">Monthly Budget</p><p class="text-lg font-bold text-neutral-900">$500–1,500</p></div>
+                    <div><p class="stat-label">Quality</p><p class="text-lg font-bold text-primary-40">High</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel 5: YouTube -->
+            <div class="expand-card" id="ec-youtube">
+              <div class="expand-card-header" onclick="toggleExpand('ec-youtube')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-low">Priority #5</span>
+                  <p class="text-sm font-semibold text-neutral-900">YouTube Educational — Provider-Led Content</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <p class="text-sm text-neutral-600">Provider explainer videos: "What ADHD actually looks like in adults," "What to expect at your first telehealth visit," "ADHD myths debunked by a psychiatric NP." Builds E-E-A-T, drives organic leads, reusable for Meta ads.</p>
+              </div>
+            </div>
+
+            <!-- Channel 6: Affiliates -->
+            <div class="expand-card" id="ec-affiliates">
+              <div class="expand-card-header" onclick="toggleExpand('ec-affiliates')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-low">Priority #6</span>
+                  <p class="text-sm font-semibold text-neutral-900">Affiliate Network — Performance-Based Scale</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <p class="text-sm text-neutral-600">$150–250 CPA with compliant creative provided. See the Affiliate Program panel for full strategy. This is Medvi's primary growth engine (10K+ affiliates).</p>
+              </div>
+            </div>
+
+            <!-- Channel 7: TikTok -->
+            <div class="expand-card" id="ec-tiktok">
+              <div class="expand-card-header" onclick="toggleExpand('ec-tiktok')">
+                <div class="flex items-center gap-3">
+                  <span class="priority-badge pri-med">Priority #7</span>
+                  <p class="text-sm font-semibold text-neutral-900">TikTok Educational — Use With Extreme Caution</p>
+                </div>
+                <svg class="w-5 h-5 text-neutral-400 ec-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="expand-card-body">
+                <div class="danger-box">
+                  <p class="text-sm font-semibold text-red-800">High Regulatory Risk</p>
+                  <p class="text-sm text-red-700 mt-1">Done Health founder was CONVICTED for conspiring to distribute Adderall via telehealth. Cerebral was fined $7M for sharing patient data with TikTok/Snapchat/LinkedIn. Licensed provider content ONLY. No direct-response lead gen for controlled substances. Education-first or avoid entirely.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 8: Conversion Funnel -->
+      <section id="panel-funnel" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Conversion Funnel — Patient Journey</h2>
+          <p class="text-sm text-neutral-500 mt-1">The Medvi-inspired acquisition funnel adapted for ethical telepsychiatry.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Funnel Diagram -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Patient Acquisition Flow</p>
+              <div class="space-y-1">
+                <div class="funnel-step"><span class="funnel-num">1</span><div><p class="text-sm font-semibold text-neutral-900">Ad / Content / Referral</p><p class="text-xs text-neutral-500">Google, Meta, affiliate, SEO, podcast, direct</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">2</span><div><p class="text-sm font-semibold text-neutral-900">Condition-Specific Landing Page</p><p class="text-xs text-neutral-500">ADHD, anxiety, depression, insomnia — tailored hero + CTA</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">3</span><div><p class="text-sm font-semibold text-neutral-900">Mental Health Assessment Quiz (5–10 min)</p><p class="text-xs text-neutral-500">PHQ-9, GAD-7, ASRS screening + medical history + insurance check</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">4</span><div><p class="text-sm font-semibold text-neutral-900">Insurance / Payment Selection</p><p class="text-xs text-neutral-500">Insurance verification or cash-pay pricing shown</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">5</span><div><p class="text-sm font-semibold text-neutral-900">Provider Match (24–48h)</p><p class="text-xs text-neutral-500">Matched with licensed AZ provider by condition specialty</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">6</span><div><p class="text-sm font-semibold text-neutral-900">Video Consultation (45–60 min)</p><p class="text-xs text-neutral-500">Full psychiatric evaluation — audio-visual required for Schedule II</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">7</span><div><p class="text-sm font-semibold text-neutral-900">Treatment Plan + Rx (if appropriate)</p><p class="text-xs text-neutral-500">Diagnosis, treatment plan, prescriptions sent to patient's pharmacy</p></div></div>
+                <div class="funnel-arrow">&#8595;</div>
+                <div class="funnel-step"><span class="funnel-num">8</span><div><p class="text-sm font-semibold text-neutral-900">Ongoing Care — Monthly Follow-ups</p><p class="text-xs text-neutral-500">Medication management, therapy referrals, outcome tracking</p></div></div>
+              </div>
+              <div class="warn-box mt-4">
+                <p class="text-sm font-semibold text-amber-800">Key Difference from Medvi</p>
+                <p class="text-sm text-amber-700 mt-1">Medvi charges BEFORE physician evaluation (Step 4 comes before Step 5). For psychiatric controlled substances, the physician evaluation MUST come first. Never charge before clinical assessment — this is what got Done Health's founder convicted.</p>
+              </div>
+            </div>
+
+            <!-- Assessment Quiz -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Assessment Quiz — Validated Screening Tools</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">PHQ-9 (Depression)</p>
+                  <p class="text-xs text-neutral-500 mt-1">9-item Patient Health Questionnaire. Gold standard for depression screening. Score 0–27, cutoff ≥10 for moderate depression.</p>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">GAD-7 (Anxiety)</p>
+                  <p class="text-xs text-neutral-500 mt-1">7-item Generalized Anxiety Disorder scale. Score 0–21, cutoff ≥10 for moderate anxiety. Takes 2 minutes.</p>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">ASRS v1.1 (ADHD)</p>
+                  <p class="text-xs text-neutral-500 mt-1">Adult ADHD Self-Report Scale. 6-item screener developed by WHO. High sensitivity for adult ADHD.</p>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-semibold text-neutral-900">ISI (Insomnia)</p>
+                  <p class="text-xs text-neutral-500 mt-1">Insomnia Severity Index. 7-item questionnaire. Score 0–28, cutoff ≥15 for moderate insomnia.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Landing Page Templates -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Landing Pages Needed (Condition-Specific)</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="rounded-lg border p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-neutral-900">ADHD Assessment</p>
+                    <span class="priority-badge pri-high">Highest Volume</span>
+                  </div>
+                  <p class="text-xs text-neutral-500 mt-2">Hero: "Get an ADHD Evaluation from a Licensed AZ Provider" | 3-step process | ASRS quiz embed | Provider credentials | FAQ | CTA every 2 sections</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-neutral-900">Anxiety & Depression</p>
+                    <span class="priority-badge pri-high">High Volume</span>
+                  </div>
+                  <p class="text-xs text-neutral-500 mt-2">Hero: "Online Anxiety & Depression Treatment in Arizona" | PHQ-9/GAD-7 quiz | Insurance checker | Testimonials | Same-week appointments</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-neutral-900">Insomnia / Sleep</p>
+                    <span class="priority-badge pri-med">Medium Volume</span>
+                  </div>
+                  <p class="text-xs text-neutral-500 mt-2">Hero: "Can't Sleep? Talk to an Arizona Psychiatry Provider Online" | ISI quiz | Non-benzo options highlighted | CBT-i referral path</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-neutral-900">General Mental Health</p>
+                    <span class="priority-badge pri-low">Catch-All</span>
+                  </div>
+                  <p class="text-xs text-neutral-500 mt-2">Hero: "Arizona's Online Psychiatry Clinic" | Multiple condition paths | "Not sure what you need?" quiz | All providers listed</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conversion Tactics -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Conversion Optimization Tactics (From Medvi)</p>
+              <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">Interactive Symptom Checker</p><p class="text-xs text-neutral-500 mt-1">Like Medvi's weight calculator but for mental health screening</p></div>
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">CTA Every 1–2 Sections</p><p class="text-xs text-neutral-500 mt-1">Sticky CTA bar on mobile, inline buttons desktop</p></div>
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">Social Proof Layering</p><p class="text-xs text-neutral-500 mt-1">Patient count, reviews, provider credentials, "5 patients booked today"</p></div>
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">Trust Signals</p><p class="text-xs text-neutral-500 mt-1">LegitScript badge, HIPAA compliance, Arizona license #, board certifications</p></div>
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">Mobile-First Design</p><p class="text-xs text-neutral-500 mt-1">60%+ traffic is mobile. Thumb-friendly CTAs, fast load times</p></div>
+                <div class="rounded-lg bg-primary-0 p-4"><p class="text-sm font-medium text-neutral-900">Exit-Intent Popup</p><p class="text-xs text-neutral-500 mt-1">"Take our free 2-minute screening" — capture emails before they leave</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 9: Provider Network -->
+      <section id="panel-providers" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Provider Network — Clinical Infrastructure</h2>
+          <p class="text-sm text-neutral-500 mt-1">How to staff the clinic using the Medvi / OpenLoop outsourced model.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Infrastructure Options -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Infrastructure Options — Compare</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead>
+                    <tr><th>Option</th><th>Speed to Market</th><th>Cost</th><th>Control</th><th>Best For</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-medium">OpenLoop</td>
+                      <td><span class="priority-badge pri-low">Fastest</span></td>
+                      <td>$25–100K setup + per-visit</td>
+                      <td>Low</td>
+                      <td>Max speed, scale overnight</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium">SteadyMD / Wheel</td>
+                      <td><span class="priority-badge pri-low">Fast</span></td>
+                      <td>Similar to OpenLoop</td>
+                      <td>Medium</td>
+                      <td>Wheel powers Amazon Clinic</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium">Hybrid (Recommended)</td>
+                      <td><span class="priority-badge pri-med">Moderate</span></td>
+                      <td>Own NPs + overflow</td>
+                      <td>High</td>
+                      <td>Quality + scale balance</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium">Build Your Own</td>
+                      <td><span class="priority-badge pri-high">Slowest</span></td>
+                      <td>$150K+/yr per provider</td>
+                      <td>Full</td>
+                      <td>Max quality, vertical control</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="info-box mt-4">
+                <p class="text-sm font-semibold text-blue-800">Recommended: Hybrid Model</p>
+                <p class="text-sm text-blue-700 mt-1">Start with your own core Arizona PMHNP team (1–3 providers) for quality control. Use OpenLoop for overflow capacity, after-hours coverage, and rapid scaling. This gives you clinical quality AND the ability to scale like Medvi.</p>
+              </div>
+            </div>
+
+            <!-- Arizona Requirements -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Arizona Provider Requirements</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="warn-box">
+                  <p class="text-sm font-semibold text-amber-800">Schedule II Prescribing (Stimulants)</p>
+                  <ul class="mt-2 space-y-1 text-sm text-amber-700">
+                    <li>MUST use audio-visual telehealth evaluation</li>
+                    <li>Audio-only NOT sufficient for stimulants</li>
+                    <li>Register with AZ CSPMP before prescribing</li>
+                    <li>Check PDMP before every controlled Rx</li>
+                  </ul>
+                </div>
+                <div class="info-box">
+                  <p class="text-sm font-semibold text-blue-800">DEA Telehealth Extension</p>
+                  <ul class="mt-2 space-y-1 text-sm text-blue-700">
+                    <li>Extended through December 31, 2026</li>
+                    <li>Prescribe Schedule II via telehealth (with video)</li>
+                    <li>Monitor for permanent rulemaking</li>
+                    <li>Ryan Haight Act waiver still active</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rounded-xl bg-primary-0 p-5 mt-3">
+                <p class="text-sm font-semibold text-neutral-900 mb-2">Arizona Advantages</p>
+                <ul class="space-y-1.5 text-sm text-neutral-600">
+                  <li class="flex items-start gap-2"><span class="text-primary-30">&#10003;</span> Telehealth parity law — insurance must cover same as in-person</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30">&#10003;</span> Audio-only permitted for behavioral health (expands rural reach)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30">&#10003;</span> NP scope of practice is favorable (full practice authority with FPA)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30">&#10003;</span> Large underserved population (especially rural AZ)</li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30">&#10003;</span> PSYPACT member for interstate psychology practice</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Provider Economics -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Provider Types & Economics</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead>
+                    <tr><th>Provider Type</th><th>Hourly Rate</th><th>Best Use Case</th><th>ROI Rank</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="font-medium">Psychiatrist (MD/DO)</td><td>$200–350/hr</td><td>Complex cases, diagnostic clarity</td><td><span class="priority-badge pri-med">Medium</span></td></tr>
+                    <tr><td class="font-medium">PMHNP</td><td>$80–150/hr</td><td>Medication management (best ROI)</td><td><span class="priority-badge pri-low">Highest</span></td></tr>
+                    <tr><td class="font-medium">LCSW / Therapist</td><td>$50–100/hr</td><td>Therapy sessions, CBT/DBT</td><td><span class="priority-badge pri-low">High</span></td></tr>
+                    <tr><td class="font-medium">OpenLoop (per visit)</td><td>~$30–60/visit</td><td>Overflow, after-hours, scaling</td><td><span class="priority-badge pri-low">Scale Play</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Done Health Warning -->
+            <div class="danger-box">
+              <p class="text-sm font-bold text-red-800">CAUTIONARY TALE: Done Health</p>
+              <p class="text-sm text-red-700 mt-2">Done Health founder Ruthia He was CONVICTED by the DOJ for conspiring to illegally distribute Adderall. The DOJ alleged 40M+ illegitimate stimulant prescriptions. Done prioritized volume over clinical integrity — providers were pressured to prescribe in under 10 minutes.</p>
+              <p class="text-sm font-bold text-red-800 mt-3">NEVER sacrifice clinical integrity for volume. Every evaluation must be thorough, documented, and clinically appropriate.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 10: Financial Model -->
+      <section id="panel-financial" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Financial Model — Unit Economics</h2>
+          <p class="text-sm text-neutral-500 mt-1">Revenue projections, unit economics calculator, and channel economics.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Revenue Models -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Revenue Model Options</p>
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div class="channel-card">
+                  <p class="text-sm font-bold text-neutral-900">Insurance-Based</p>
+                  <p class="text-xs text-neutral-400 mt-1">Talkiatry Model</p>
+                  <ul class="mt-3 space-y-1 text-sm text-neutral-600">
+                    <li>LTV: $2,000–5,000/yr</li>
+                    <li>Complex billing infrastructure</li>
+                    <li>600+ payer contracts (via OpenLoop)</li>
+                    <li>Higher patient retention</li>
+                    <li>Larger addressable market</li>
+                  </ul>
+                  <span class="priority-badge pri-low mt-3">Recommended</span>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-bold text-neutral-900">Cash-Pay</p>
+                  <p class="text-xs text-neutral-400 mt-1">Medvi Model</p>
+                  <ul class="mt-3 space-y-1 text-sm text-neutral-600">
+                    <li>LTV: $1,000–3,000/yr</li>
+                    <li>Simpler operations</li>
+                    <li>No insurance hassles</li>
+                    <li>Higher churn risk</li>
+                    <li>Faster to launch</li>
+                  </ul>
+                  <span class="priority-badge pri-med mt-3">Quick Start</span>
+                </div>
+                <div class="channel-card">
+                  <p class="text-sm font-bold text-neutral-900">Hybrid</p>
+                  <p class="text-xs text-neutral-400 mt-1">Best of Both</p>
+                  <ul class="mt-3 space-y-1 text-sm text-neutral-600">
+                    <li>Insurance for core psychiatry</li>
+                    <li>Cash-pay for coaching/wellness</li>
+                    <li>Maximizes addressable market</li>
+                    <li>Multiple revenue streams</li>
+                    <li>Operational complexity higher</li>
+                  </ul>
+                  <span class="priority-badge pri-low mt-3">Scale Play</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unit Economics Calculator -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Unit Economics Calculator</p>
+              <div class="rounded-xl bg-primary-0 p-6" id="calc-container">
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div>
+                    <label class="text-xs font-semibold text-neutral-600 block mb-1">Avg Revenue / Patient / Month ($)</label>
+                    <input type="number" class="calc-input w-full" id="calc-rev" value="250" oninput="recalcUnitEcon()">
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-neutral-600 block mb-1">Customer Acquisition Cost ($)</label>
+                    <input type="number" class="calc-input w-full" id="calc-cac" value="200" oninput="recalcUnitEcon()">
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-neutral-600 block mb-1">Monthly Churn Rate (%)</label>
+                    <input type="number" class="calc-input w-full" id="calc-churn" value="5" step="0.5" oninput="recalcUnitEcon()">
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-neutral-600 block mb-1">Gross Margin (%)</label>
+                    <input type="number" class="calc-input w-full" id="calc-margin" value="60" oninput="recalcUnitEcon()">
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-neutral-600 block mb-1">Target Patients (Month 12)</label>
+                    <input type="number" class="calc-input w-full" id="calc-patients" value="200" oninput="recalcUnitEcon()">
+                  </div>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-4 mt-6 pt-6 border-t border-neutral-200">
+                  <div class="text-center">
+                    <p class="stat-label">Lifetime Value (LTV)</p>
+                    <p class="calc-result" id="calc-ltv">$5,000</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="stat-label">LTV:CAC Ratio</p>
+                    <p class="calc-result" id="calc-ratio">25.0x</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="stat-label">Payback Period</p>
+                    <p class="calc-result" id="calc-payback">0.8 mo</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="stat-label">Monthly Revenue (Mo 12)</p>
+                    <p class="calc-result" id="calc-monthly">$50,000</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Channel Economics Table -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Channel Economics Comparison</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead>
+                    <tr><th>Channel</th><th>Est. CAC</th><th>Volume Potential</th><th>Lead Quality</th><th>Time to ROI</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="font-medium">SEO / Organic</td><td>$50–100</td><td>Medium</td><td><span class="priority-badge pri-low">Highest</span></td><td>3–6 months</td></tr>
+                    <tr><td class="font-medium">Google Ads</td><td>$150–300</td><td>High</td><td><span class="priority-badge pri-low">High</span></td><td>2–4 weeks</td></tr>
+                    <tr><td class="font-medium">Affiliates</td><td>$150–250</td><td>Scalable</td><td><span class="priority-badge pri-med">Medium</span></td><td>4–8 weeks</td></tr>
+                    <tr><td class="font-medium">Meta Ads</td><td>$200–400</td><td>High</td><td><span class="priority-badge pri-med">Medium</span></td><td>2–6 weeks</td></tr>
+                    <tr><td class="font-medium">Partnerships</td><td>$25–75</td><td>Low</td><td><span class="priority-badge pri-low">Highest</span></td><td>1–3 months</td></tr>
+                    <tr><td class="font-medium">Podcasts</td><td>$100–200</td><td>Low</td><td><span class="priority-badge pri-low">High</span></td><td>1–2 months</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Talkiatry Benchmark -->
+            <div class="info-box">
+              <p class="text-sm font-bold text-blue-800">Benchmark: Talkiatry (Gold Standard for Telepsychiatry)</p>
+              <div class="grid gap-4 sm:grid-cols-4 mt-3">
+                <div><p class="text-xs text-blue-600">Series D (Feb 2026)</p><p class="text-sm font-bold text-blue-800">$210M</p></div>
+                <div><p class="text-xs text-blue-600">Total Raised</p><p class="text-sm font-bold text-blue-800">$400M+</p></div>
+                <div><p class="text-xs text-blue-600">Psychiatrists</p><p class="text-sm font-bold text-blue-800">800+</p></div>
+                <div><p class="text-xs text-blue-600">Patient Visits</p><p class="text-sm font-bold text-blue-800">3M+</p></div>
+              </div>
+              <p class="text-sm text-blue-700 mt-3">In-network with 100+ insurers. Talkiatry proves the insurance-based telepsychiatry model works at massive scale. They did it with VC money — we replicate the model bootstrapped using the Medvi distribution playbook.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 11: Compliance Center -->
+      <section id="panel-compliance" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <h2 class="text-lg font-semibold text-neutral-900">Compliance Center — Legal & Regulatory</h2>
+              <p class="text-sm text-neutral-500 mt-1">Critical compliance requirements for Arizona telepsychiatry operations.</p>
+            </div>
+            <span class="priority-badge pri-high">Non-Negotiable</span>
+          </div>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Arizona Telehealth Laws -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Arizona Telehealth Laws</p>
+              <div class="rounded-xl bg-primary-0 p-5">
+                <ul class="space-y-2 text-sm text-neutral-600">
+                  <li class="flex items-start gap-2"><span class="text-primary-30 font-bold">&#10003;</span> <span><strong>Telehealth Parity:</strong> Insurance must cover telehealth same as in-person (A.R.S. § 20-841.09)</span></li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 font-bold">&#10003;</span> <span><strong>Audio-Only Permitted:</strong> For behavioral health services (expands rural reach significantly)</span></li>
+                  <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">!</span> <span><strong>Schedule II Exception:</strong> MUST use audio-visual for stimulant prescribing (audio-only not allowed)</span></li>
+                  <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">!</span> <span><strong>CSPMP Registration:</strong> Register with AZ Controlled Substances Prescription Monitoring Program before prescribing</span></li>
+                  <li class="flex items-start gap-2"><span class="text-primary-30 font-bold">&#10003;</span> <span><strong>Out-of-State Providers:</strong> Must register with AZ boards (can use OpenLoop's credentialing)</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Federal Requirements -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Federal Requirements</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="warn-box">
+                  <p class="text-sm font-semibold text-amber-800">DEA Telehealth Extension</p>
+                  <p class="text-sm text-amber-700 mt-1">Extended through Dec 31, 2026. Ryan Haight Act waiver still active. MONITOR for permanent rulemaking — if it expires, all Schedule II telehealth prescribing may require in-person visit first.</p>
+                </div>
+                <div class="danger-box">
+                  <p class="text-sm font-semibold text-red-800">HIPAA — Zero Tolerance</p>
+                  <p class="text-sm text-red-700 mt-1">NEVER share PHI with ad platforms. Cerebral was fined $7M for sharing patient data with LinkedIn, Snapchat, and TikTok via tracking pixels. Use server-side conversion tracking only.</p>
+                </div>
+                <div class="info-box">
+                  <p class="text-sm font-semibold text-blue-800">FTC Advertising Rules</p>
+                  <p class="text-sm text-blue-700 mt-1">No fake testimonials, no AI deepfakes, proper endorsement disclosures. FTC Health Claims Act applies to all health-related advertising claims.</p>
+                </div>
+                <div class="warn-box">
+                  <p class="text-sm font-semibold text-amber-800">ADS for Mental Health Act (Dec 2025)</p>
+                  <p class="text-sm text-amber-700 mt-1">New reporting requirements for mental health digital advertising. Requires disclosure of targeting criteria and ad spend to FTC. Applies to telehealth advertisers.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advertising Compliance -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Advertising Compliance</p>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-xl bg-primary-0 p-5">
+                  <p class="text-sm font-bold text-primary-40 mb-3">Safe Ad Messaging</p>
+                  <ul class="space-y-2 text-sm text-neutral-600">
+                    <li>"Learn about ADHD management options"</li>
+                    <li>"Schedule a mental health evaluation"</li>
+                    <li>"Talk to a licensed Arizona provider"</li>
+                    <li>"Evidence-based psychiatric treatment online"</li>
+                    <li>"Convenient, confidential mental health care"</li>
+                  </ul>
+                </div>
+                <div class="danger-box">
+                  <p class="text-sm font-bold text-red-800 mb-3">Prohibited Ad Messaging</p>
+                  <ul class="space-y-2 text-sm text-red-900">
+                    <li>"Do you have ADHD?" (implies diagnosis)</li>
+                    <li>"Get Adderall online" (promotes specific controlled substance)</li>
+                    <li>"Guaranteed prescription" (no medical guarantee)</li>
+                    <li>"Cure your depression" (no cure claims)</li>
+                    <li>Fake patient testimonials or deepfake doctors</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="warn-box mt-3">
+                <p class="text-sm font-semibold text-amber-800">LegitScript Certification Required</p>
+                <p class="text-sm text-amber-700 mt-1">Meta and Google require LegitScript certification for healthcare advertising. Apply at legitscript.com — approval takes 2–4 weeks. Cost: ~$1,000–2,000/yr. Without this, your health ads will be rejected or your account suspended.</p>
+              </div>
+            </div>
+
+            <!-- Competitor Warnings -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Competitor Cautionary Tales</p>
+              <div class="space-y-3">
+                <div class="danger-box">
+                  <div class="flex items-center gap-2 mb-2">
+                    <p class="text-sm font-bold text-red-800">Done Health — Criminal Conviction</p>
+                    <span class="priority-badge pri-high">CRIMINAL</span>
+                  </div>
+                  <p class="text-sm text-red-700">Founder Ruthia He convicted by DOJ. Alleged 40M+ illegitimate Adderall prescriptions. Providers pressured to prescribe in under 10 minutes. $100M+ illegal distribution scheme. Lesson: NEVER sacrifice clinical integrity for volume.</p>
+                </div>
+                <div class="danger-box">
+                  <div class="flex items-center gap-2 mb-2">
+                    <p class="text-sm font-bold text-red-800">Cerebral — $7M FTC Fine</p>
+                    <span class="priority-badge pri-high">FINE</span>
+                  </div>
+                  <p class="text-sm text-red-700">Shared patient PHI with LinkedIn, Snapchat, and TikTok via tracking pixels on their website. Violated HIPAA and FTC Act. Lesson: NEVER put ad platform tracking pixels on pages that collect health data.</p>
+                </div>
+                <div class="warn-box">
+                  <div class="flex items-center gap-2 mb-2">
+                    <p class="text-sm font-bold text-amber-800">Medvi — FDA Warning Letter</p>
+                    <span class="priority-badge pri-med">WARNING</span>
+                  </div>
+                  <p class="text-sm text-amber-700">FDA Warning Letter #721455 for unapproved drug claims. Deepfaked patient photos exposed by NYT/Futurism. BBB F rating due to cancellation complaints. Fake doctor Facebook accounts. Lesson: Build trust legitimately — shortcuts create existential risk.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compliance Checklist -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Compliance Checklist</p>
+              <div class="rounded-xl bg-primary-0 p-5 space-y-1" id="compliance-checklist">
+                <div class="check-item" data-check="comp_1"><input type="checkbox" id="cc1"><label for="cc1" class="text-sm text-neutral-700">LegitScript certification applied & approved</label></div>
+                <div class="check-item" data-check="comp_2"><input type="checkbox" id="cc2"><label for="cc2" class="text-sm text-neutral-700">HIPAA Privacy Officer designated</label></div>
+                <div class="check-item" data-check="comp_3"><input type="checkbox" id="cc3"><label for="cc3" class="text-sm text-neutral-700">Arizona CSPMP registration complete</label></div>
+                <div class="check-item" data-check="comp_4"><input type="checkbox" id="cc4"><label for="cc4" class="text-sm text-neutral-700">DEA registration current and active</label></div>
+                <div class="check-item" data-check="comp_5"><input type="checkbox" id="cc5"><label for="cc5" class="text-sm text-neutral-700">Ad tracking audit — NO PHI sent to Meta/Google pixels</label></div>
+                <div class="check-item" data-check="comp_6"><input type="checkbox" id="cc6"><label for="cc6" class="text-sm text-neutral-700">Affiliate compliance kit created and distributed</label></div>
+                <div class="check-item" data-check="comp_7"><input type="checkbox" id="cc7"><label for="cc7" class="text-sm text-neutral-700">Patient consent forms updated for telehealth</label></div>
+                <div class="check-item" data-check="comp_8"><input type="checkbox" id="cc8"><label for="cc8" class="text-sm text-neutral-700">Business Associate Agreements signed (all vendors)</label></div>
+                <div class="check-item" data-check="comp_9"><input type="checkbox" id="cc9"><label for="cc9" class="text-sm text-neutral-700">Server-side conversion tracking only (no client pixels on PHI pages)</label></div>
+                <div class="check-item" data-check="comp_10"><input type="checkbox" id="cc10"><label for="cc10" class="text-sm text-neutral-700">Malpractice insurance with telehealth coverage obtained</label></div>
+              </div>
+            </div>
+
+            <!-- 2026 Deadlines -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">2026 Critical Deadlines</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="warn-box"><p class="text-xs font-bold text-amber-800">Feb 16, 2026</p><p class="text-sm text-amber-700">Update Notice of Privacy Practices (SUD protections — 42 CFR Part 2 alignment)</p></div>
+                <div class="warn-box"><p class="text-xs font-bold text-amber-800">March 1, 2026</p><p class="text-sm text-amber-700">Report any 2025 data breaches to HHS (annual breach reporting deadline)</p></div>
+                <div class="danger-box"><p class="text-xs font-bold text-red-800">May 2026</p><p class="text-sm text-red-700">New HIPAA Security Rule — MFA and encryption MANDATORY for all ePHI systems</p></div>
+                <div class="danger-box"><p class="text-xs font-bold text-red-800">Dec 31, 2026</p><p class="text-sm text-red-700">DEA telehealth flexibility may EXPIRE — monitor for permanent rules</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 12: Competitive Intel -->
+      <section id="panel-intel" class="admin-section">
+        <div class="bg-white rounded-xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-neutral-900">Competitive Intel — Medvi Deep Dive</h2>
+          <p class="text-sm text-neutral-500 mt-1">Complete Medvi teardown from 15 AI research agents. The playbook dissected.</p>
+
+          <div class="mt-6 space-y-6">
+
+            <!-- Company Profile -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Medvi Company Profile</p>
+              <div class="grid gap-4 sm:grid-cols-4 lg:grid-cols-5">
+                <div class="stat-card text-center"><p class="stat-value">$401M</p><p class="stat-label">Revenue (2025)</p></div>
+                <div class="stat-card text-center"><p class="stat-value">$1.8B</p><p class="stat-label">Projected (2026)</p></div>
+                <div class="stat-card text-center"><p class="stat-value">2</p><p class="stat-label">Employees</p></div>
+                <div class="stat-card text-center"><p class="stat-value">$20K</p><p class="stat-label">Startup Capital</p></div>
+                <div class="stat-card text-center"><p class="stat-value">16.2%</p><p class="stat-label">Net Margin</p></div>
+              </div>
+              <div class="grid gap-3 sm:grid-cols-3 mt-4">
+                <div class="rounded-lg border p-4">
+                  <p class="text-xs font-semibold text-neutral-400">Founded</p>
+                  <p class="text-sm font-bold text-neutral-900">September 2024</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <p class="text-xs font-semibold text-neutral-400">Founder</p>
+                  <p class="text-sm font-bold text-neutral-900">Matthew Gallagher (@galligator)</p>
+                </div>
+                <div class="rounded-lg border p-4">
+                  <p class="text-xs font-semibold text-neutral-400">Funding</p>
+                  <p class="text-sm font-bold text-neutral-900">$0 raised (bootstrapped)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Confirmed Tech Stack (via DNS / HTTP Headers)</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-chip">Framer — Marketing site</span>
+                <span class="tech-chip">ClickFunnels — Quiz funnels</span>
+                <span class="tech-chip">Next.js / Vercel — Patient portal</span>
+                <span class="tech-chip">Cloudflare — CDN</span>
+                <span class="tech-chip">Stripe — Payments</span>
+                <span class="tech-chip">Klaviyo — Email automation</span>
+                <span class="tech-chip">Zendesk — Customer support</span>
+                <span class="tech-chip">RevOffers — Affiliate tracking</span>
+                <span class="tech-chip">OpenLoop — Clinical ops</span>
+                <span class="tech-chip">CareValidate — Credentialing</span>
+                <span class="tech-chip">Belmar Pharma — Compounding</span>
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <p class="text-xs font-semibold text-neutral-400 mr-2 self-center">AI Tools:</p>
+                <span class="tech-chip">ChatGPT</span>
+                <span class="tech-chip">Claude</span>
+                <span class="tech-chip">Grok</span>
+                <span class="tech-chip">Midjourney</span>
+                <span class="tech-chip">Runway</span>
+                <span class="tech-chip">ElevenLabs</span>
+              </div>
+            </div>
+
+            <!-- Affiliate Program Details -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Affiliate Program Details</p>
+              <div class="overflow-x-auto">
+                <table class="de-table">
+                  <thead><tr><th>Attribute</th><th>Details</th></tr></thead>
+                  <tbody>
+                    <tr><td class="font-medium">CPA Range</td><td>$300–500 per patient acquisition</td></tr>
+                    <tr><td class="font-medium">Payout Terms</td><td>Net-7 to Net-30 (varies by network)</td></tr>
+                    <tr><td class="font-medium">Active Affiliates</td><td>10,000+ across all networks</td></tr>
+                    <tr><td class="font-medium">Networks</td><td>CPG Affiliate Partners, Vexio, RevOffers, Guru Media</td></tr>
+                    <tr><td class="font-medium">Accepted Channels</td><td>Email, native, display, listicles, social (FB/IG/TikTok)</td></tr>
+                    <tr><td class="font-medium">Creative Provided</td><td>Yes — pre-approved landing pages and ad creative</td></tr>
+                    <tr><td class="font-medium">Key Tactic</td><td>Affiliates run FB ads as whitelisted "doctor" accounts</td></tr>
+                    <tr><td class="font-medium">Conversion Flow</td><td>Ad → ClickFunnels quiz → Checkout (pre-physician) → Rx</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Vulnerabilities -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Medvi Vulnerabilities to Exploit</p>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="channel-card border-l-4 border-l-red-400">
+                  <p class="text-sm font-bold text-neutral-900">ZERO Organic SEO</p>
+                  <p class="text-xs text-neutral-500 mt-1">No blog, no programmatic location pages, no schema markup. Their entire traffic is paid. We can dominate organic search.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-red-400">
+                  <p class="text-sm font-bold text-neutral-900">BBB F Rating</p>
+                  <p class="text-xs text-neutral-500 mt-1">ConsumerAffairs 3.6/5. Massive complaint volume about billing, cancellation difficulty, and unfulfilled promises.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-red-400">
+                  <p class="text-sm font-bold text-neutral-900">FDA Warning Letter</p>
+                  <p class="text-xs text-neutral-500 mt-1">Warning Letter #721455 for unapproved drug claims. Regulatory risk could shut down operations.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-red-400">
+                  <p class="text-sm font-bold text-neutral-900">Deepfake Scandal</p>
+                  <p class="text-xs text-neutral-500 mt-1">NYT and Futurism exposed AI-generated patient photos and testimonials. Trust erosion accelerating.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-amber-400">
+                  <p class="text-sm font-bold text-neutral-900">No Self-Service Cancel</p>
+                  <p class="text-xs text-neutral-500 mt-1">Patients must contact support to cancel. FTC cracking down on "dark patterns." We offer easy cancellation as a differentiator.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-amber-400">
+                  <p class="text-sm font-bold text-neutral-900">No Native Mobile App</p>
+                  <p class="text-xs text-neutral-500 mt-1">All web-based. Mobile app could be a competitive advantage for patient retention and engagement.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-amber-400">
+                  <p class="text-sm font-bold text-neutral-900">Fragmented Domain Authority</p>
+                  <p class="text-xs text-neutral-500 mt-1">9+ subdomains, 5+ external domains. No consolidated SEO authority. Easy to outrank on Google.</p>
+                </div>
+                <div class="channel-card border-l-4 border-l-amber-400">
+                  <p class="text-sm font-bold text-neutral-900">OpenLoop Data Breach</p>
+                  <p class="text-xs text-neutral-500 mt-1">1.6M patient records exposed (Jan 2026). Medvi's clinical infrastructure partner had a massive breach. Trust liability.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Sources -->
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-primary-30 mb-3">Research Sources</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-chip">New York Times</span>
+                <span class="tech-chip">Inc. Magazine</span>
+                <span class="tech-chip">PYMNTS</span>
+                <span class="tech-chip">Futurism</span>
+                <span class="tech-chip">STAT News</span>
+                <span class="tech-chip">Hacker News</span>
+                <span class="tech-chip">Reddit r/Ozempic</span>
+                <span class="tech-chip">BBB Reports</span>
+                <span class="tech-chip">FDA CDER</span>
+                <span class="tech-chip">DOJ Press Releases</span>
+                <span class="tech-chip">FTC Enforcement</span>
+                <span class="tech-chip">DNS/HTTP Analysis</span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-3">Data compiled from 15 AI research agents running parallel investigations across web, social, regulatory, and technical sources.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -717,6 +1954,81 @@
     });
 
     updateLastUpdatedDisplay();
+
+    /* ── Distribution Engine: Expandable Cards ── */
+    function toggleExpand(id) {
+      var card = document.getElementById(id);
+      if (card) card.classList.toggle('open');
+    }
+
+    /* ── Distribution Engine: Checklist Persistence ── */
+    var checkItems = qsa('.check-item[data-check]');
+    checkItems.forEach(function (item) {
+      var key = 'de_check_' + item.dataset.check;
+      var cb = qs('input[type="checkbox"]', item);
+      if (!cb) return;
+
+      // Restore state
+      if (localStorage.getItem(key) === 'true') {
+        cb.checked = true;
+        item.classList.add('checked');
+      }
+
+      cb.addEventListener('change', function () {
+        if (cb.checked) {
+          localStorage.setItem(key, 'true');
+          item.classList.add('checked');
+        } else {
+          localStorage.removeItem(key);
+          item.classList.remove('checked');
+        }
+      });
+    });
+
+    /* ── Distribution Engine: Unit Economics Calculator ── */
+    function recalcUnitEcon() {
+      var rev = parseFloat(qs('#calc-rev').value) || 0;
+      var cac = parseFloat(qs('#calc-cac').value) || 0;
+      var churn = (parseFloat(qs('#calc-churn').value) || 1) / 100;
+      var margin = (parseFloat(qs('#calc-margin').value) || 1) / 100;
+      var patients = parseFloat(qs('#calc-patients').value) || 0;
+
+      var ltv = churn > 0 ? rev / churn : 0;
+      var ratio = cac > 0 ? ltv / cac : 0;
+      var payback = rev > 0 ? cac / rev : 0;
+      var monthly = rev * patients;
+
+      qs('#calc-ltv').textContent = '$' + Math.round(ltv).toLocaleString();
+      qs('#calc-ratio').textContent = ratio.toFixed(1) + 'x';
+      qs('#calc-payback').textContent = payback.toFixed(1) + ' mo';
+      qs('#calc-monthly').textContent = '$' + Math.round(monthly).toLocaleString();
+
+      // Save to localStorage
+      localStorage.setItem('de_calc', JSON.stringify({
+        rev: qs('#calc-rev').value,
+        cac: qs('#calc-cac').value,
+        churn: qs('#calc-churn').value,
+        margin: qs('#calc-margin').value,
+        patients: qs('#calc-patients').value
+      }));
+    }
+
+    // Restore calculator values from localStorage
+    (function () {
+      var saved = localStorage.getItem('de_calc');
+      if (saved) {
+        try {
+          var vals = JSON.parse(saved);
+          if (vals.rev) qs('#calc-rev').value = vals.rev;
+          if (vals.cac) qs('#calc-cac').value = vals.cac;
+          if (vals.churn) qs('#calc-churn').value = vals.churn;
+          if (vals.margin) qs('#calc-margin').value = vals.margin;
+          if (vals.patients) qs('#calc-patients').value = vals.patients;
+        } catch (e) {}
+      }
+      // Initial calculation if calculator exists on page
+      if (qs('#calc-rev')) recalcUnitEcon();
+    })();
   </script>
 </body>
 </html>
